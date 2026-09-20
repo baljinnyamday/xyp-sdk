@@ -7,6 +7,7 @@ from pathlib import Path
 
 from xyp_generator.python.emit import emit as emit_python
 from xyp_generator.spec import load_api
+from xyp_generator.typescript.emit import emit as emit_typescript
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 
@@ -16,6 +17,8 @@ def main() -> None:
     written = emit_python(api, REPO_ROOT / "packages" / "python" / "src" / "xyp")
     summary = f"{len(api.services)} services in {len(api.groups)} groups"
     sys.stdout.write(f"python: {summary} -> {len(written)} files\n")
+    written = emit_typescript(api, REPO_ROOT / "packages" / "typescript")
+    sys.stdout.write(f"typescript: {summary} -> {len(written)} files\n")
 
 
 if __name__ == "__main__":

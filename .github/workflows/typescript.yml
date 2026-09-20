@@ -1,0 +1,42 @@
+name: typescript
+
+on:
+  push:
+    branches: [main]
+    paths: ["packages/typescript/**", "generator/**", "spec/**", ".github/workflows/typescript.yml"]
+  pull_request:
+    paths: ["packages/typescript/**", "generator/**", "spec/**", ".github/workflows/typescript.yml"]
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [18, 20, 22, 24]
+    defaults:
+      run:
+        working-directory: packages/typescript
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: packages/typescript/package.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: packages/typescript/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm build
+      - run: pnpm dlx publint
+      - run: pnpm dlx @arethetypeswrong/cli --pack .
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: The built package works from CommonJS and ESM on Node ${{ matrix.node }}
+        run: |
+          node -e "const { Xyp, XypConfigError } = require('./dist/index.cjs'); try { new Xyp() } catch (e) { if (!(e instanceof XypConfigError)) throw e }"
+          node --input-type=module -e "import { Xyp, XypConfigError } from './dist/index.js'; try { new Xyp() } catch (e) { if (!(e instanceof XypConfigError)) throw e }"

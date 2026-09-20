@@ -6,7 +6,7 @@ from one description of the API so every language exposes the same services.
 | Language | Package | Status |
 | --- | --- | --- |
 | Python | [`packages/python`](packages/python) — `pip install xyp` | alpha |
-| TypeScript | `packages/typescript` | planned |
+| TypeScript / Node.js | [`packages/typescript`](packages/typescript) — `npm install xyp-sdk@alpha` | alpha |
 | Go | `packages/go` | planned |
 | Java | `packages/java` | planned |
 | PHP | `packages/php` | planned |
@@ -27,8 +27,9 @@ packages/<language>  small hand-written core + generated models and services
 
 - **Update the catalog:** `uv run spec/fetch_spec.py`
 - **Regenerate:** `cd generator && uv run xyp-generate`
-- **Never edit generated files** (`operations/`, `services/`, `models/`,
-  `_groups.py`, `_operations.py`); change the generator or the spec.
+- **Never edit generated files** (Python: `operations/`, `services/`, `models/`,
+  `_groups.py`, `_operations.py`; TypeScript: `src/operations/`, `src/services/`,
+  `src/types/`, `src/groups.ts`, `src/registry.ts`); change the generator or the spec.
 
 XYP publishes SOAP WSDLs only inside its VPN, and its responses are typed
 `xs:anyType`, so the public portal catalog is the only description of what

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.5.14/schema.json",
+  "files": { "includes": ["src/**", "tests/**", "*.ts", "*.json", "!dist"] },
+  "formatter": { "indentStyle": "space", "lineWidth": 100 },
+  "linter": {
+    "rules": {
+      "preset": "recommended",
+      "style": { "noNonNullAssertion": "error", "useImportType": "error" },
+      "suspicious": { "noConsole": "error" }
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["src/operations/**", "src/services/**"],
+      "formatter": { "lineWidth": 320 }
+    }
+  ]
+}

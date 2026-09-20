@@ -16,6 +16,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v5
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: packages/typescript/package.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install the formatter the TypeScript emitter uses
+        run: pnpm install --frozen-lockfile
+        working-directory: packages/typescript
       - run: uv sync
       - run: uv run ruff check .
       - run: uv run ruff format --check .
