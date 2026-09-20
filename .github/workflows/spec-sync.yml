@@ -2,8 +2,8 @@ name: spec-sync
 
 # XYP adds and changes services without notice. Every week this re-fetches the public
 # catalog, regenerates every SDK, tests them, and opens a pull request when anything
-# changed. Pull requests opened with GITHUB_TOKEN do not start other workflows, so the
-# checks run here, before the pull request is opened.
+# changed. GitHub holds the usual CI on a bot-opened pull request until a maintainer
+# clicks "Approve and run workflows", so the same checks run here first.
 on:
   schedule:
     - cron: "17 3 * * 1" # Mondays 03:17 UTC
@@ -61,8 +61,8 @@ jobs:
             cat "$RUNNER_TEMP/summary.md"
             echo
             echo "Both SDKs were regenerated from the new catalog, and lint, type checks and"
-            echo "tests passed in the [sync run]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
-            echo "(pull requests opened by a workflow do not start the usual CI)."
+            echo "tests already passed in the [sync run]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)."
+            echo "The usual CI on this pull request waits for you: click **Approve and run workflows** below."
             echo
             echo "**To release:** merge, bump the versions in \`packages/python/pyproject.toml\` and"
             echo "\`packages/typescript/package.json\`, then push the tags \`python-v<version>\` and"
