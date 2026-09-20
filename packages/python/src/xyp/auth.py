@@ -91,7 +91,8 @@ class _AuthEntity:
 
     def __repr__(self) -> str:
         kind = self.auth_type.name if self.auth_type else "CUSTOM"
-        return f"{type(self).__name__}({kind}, regnum={self.regnum!r}, secrets=***)"
+        # No regnum either: it is a national ID and reprs end up in logs.
+        return f"{type(self).__name__}({kind}, regnum=***, secrets=***)"
 
 
 class CitizenAuth(_AuthEntity):

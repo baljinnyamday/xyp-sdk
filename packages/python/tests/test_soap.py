@@ -131,3 +131,10 @@ def test_entity_expansion_is_refused() -> None:
     bomb = b'<?xml version="1.0"?><!DOCTYPE x [<!ENTITY a "aaaa">]><x>&a;</x>'
     with pytest.raises(XypResponseError):
         parse_response(bomb)
+
+
+def test_auth_repr_shows_no_citizen_data() -> None:
+    auth = CitizenAuth.with_otp(regnum="РД00000000", otp=123456)
+    assert "РД00000000" not in repr(auth)
+    assert "123456" not in repr(auth)
+    assert "SMS_OTP" in repr(auth)
