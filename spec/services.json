@@ -7545,6 +7545,301 @@
     ]
   },
   {
+    "id": "6a73d740c1d3ff8459203c65",
+    "operationName": "WS100101_getCitizenIDCardInfo",
+    "operationDetail": "Иргэний үнэмлэхний мэдээлэл дамжуулах сервис",
+    "orgName": "Улсын бүртгэлийн ерөнхий газар",
+    "version": "1.5.0",
+    "endpoint": "https://xyp.gov.mn/citizen-1.5.0/ws?WSDL",
+    "input": [
+      {
+        "wsInputName": "regnum",
+        "wsInputDetail": "регистрийн дугаар",
+        "wsInputDatatype": "String"
+      },
+      {
+        "wsInputName": "civilId",
+        "wsInputDetail": "Иргэний хувийн дугаар",
+        "wsInputDatatype": "String"
+      }
+    ],
+    "output": [
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 23386,
+        "wsResponseName": "aimagCityName",
+        "wsResponseDetail": "Аймгийн нэр",
+        "parentId": 23385
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 23387,
+        "wsResponseName": "soumDistrictName",
+        "wsResponseDetail": "Сумын нэр",
+        "parentId": 23385
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 23388,
+        "wsResponseName": "bagKhorooName",
+        "wsResponseDetail": "Багын нэр",
+        "parentId": 23385
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 23389,
+        "wsResponseName": "addressRegionName",
+        "wsResponseDetail": "Хороололын нэр",
+        "parentId": 23385
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 23390,
+        "wsResponseName": "addressTownName",
+        "wsResponseDetail": "Хотхон",
+        "parentId": 23385
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 23391,
+        "wsResponseName": "addressStreetName",
+        "wsResponseDetail": "Гудамж",
+        "parentId": 23385
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 23392,
+        "wsResponseName": "addressApartmentName",
+        "wsResponseDetail": "Байр",
+        "parentId": 23385
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 23393,
+        "wsResponseName": "addressDoor",
+        "wsResponseDetail": "Тоот",
+        "parentId": 23385
+      },
+      {
+        "wsResponseDatatype": "Date",
+        "wsResponseId": 23394,
+        "wsResponseName": "registerDate",
+        "wsResponseDetail": "Бүртгэлийн огноо",
+        "parentId": 23385
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 15585,
+        "wsResponseName": "passportNum",
+        "wsResponseDetail": "Гадаад пасспортын дугаар",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "List<T>",
+        "wsResponseId": 23385,
+        "wsResponseName": "listAddress",
+        "wsResponseDetail": "Хаягын жагсаалт",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 15586,
+        "wsResponseName": "passTime",
+        "wsResponseDetail": "Хэддэх удаагаа",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "Date",
+        "wsResponseId": 15602,
+        "wsResponseName": "passportDate",
+        "wsResponseDetail": "Гадаад пасспортын огноо",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 13944,
+        "wsResponseName": "regnum",
+        "wsResponseDetail": "Регистрийн дугаар",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 13945,
+        "wsResponseName": "civilId",
+        "wsResponseDetail": "Иргэний хувийн дугаар",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 13946,
+        "wsResponseName": "firstname",
+        "wsResponseDetail": "Нэр",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 13947,
+        "wsResponseName": "lastname",
+        "wsResponseDetail": "Овог",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 13948,
+        "wsResponseName": "surname",
+        "wsResponseDetail": "Ургийн овог",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "byte[]",
+        "wsResponseId": 13949,
+        "wsResponseName": "image",
+        "wsResponseDetail": "Зураг",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 13950,
+        "wsResponseName": "nationality",
+        "wsResponseDetail": "Үндэс",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 13951,
+        "wsResponseName": "gender",
+        "wsResponseDetail": "Хүйс",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "Date",
+        "wsResponseId": 13952,
+        "wsResponseName": "birthDate",
+        "wsResponseDetail": "Төрсөн өдөр",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 13953,
+        "wsResponseName": "birthDateAsText",
+        "wsResponseDetail": "Төрсөн өдөр",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 13954,
+        "wsResponseName": "birthPlace",
+        "wsResponseDetail": "Төрсөн газар",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 13955,
+        "wsResponseName": "passportIssueDate",
+        "wsResponseDetail": "Үнэмлэх олгосон өдөр",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 13956,
+        "wsResponseName": "passportExpireDate",
+        "wsResponseDetail": "Үнэмлэх хүчинтэй хугацаа",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 13957,
+        "wsResponseName": "passportAddress",
+        "wsResponseDetail": "Иргэний үнэмлэх дээрх хаяг",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 13958,
+        "wsResponseName": "aimagCityCode",
+        "wsResponseDetail": "Аймаг, хотын код",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 13959,
+        "wsResponseName": "aimagCityName",
+        "wsResponseDetail": "Аймаг, хотын нэр",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 13960,
+        "wsResponseName": "soumDistrictCode",
+        "wsResponseDetail": "Сум, дүүрэгийн код",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 13961,
+        "wsResponseName": "soumDistrictName",
+        "wsResponseDetail": "Сум, дүүрэгийн нэр",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 13962,
+        "wsResponseName": "bagKhorooCode",
+        "wsResponseDetail": "Баг, хорооны нэр",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 13963,
+        "wsResponseName": "bagKhorooName",
+        "wsResponseDetail": "Баг, хорооны нэр",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 13964,
+        "wsResponseName": "addressRegionName",
+        "wsResponseDetail": "Хорооллын нэр",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 13965,
+        "wsResponseName": "addressStreetName",
+        "wsResponseDetail": "Гудамжны нэр",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 13966,
+        "wsResponseName": "addressTownName",
+        "wsResponseDetail": "Хотхоны нэр",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 13967,
+        "wsResponseName": "addressApartmentName",
+        "wsResponseDetail": "Байрны нэр",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 13968,
+        "wsResponseName": "addressDetail",
+        "wsResponseDetail": "Хаяг дэлгэрэнгүй",
+        "parentId": null
+      },
+      {
+        "wsResponseDatatype": "String",
+        "wsResponseId": 13969,
+        "wsResponseName": "personId",
+        "wsResponseDetail": "Иргэний дугаар",
+        "parentId": null
+      }
+    ]
+  },
+  {
     "id": "6a73d6f9c1d3ff8459203971",
     "operationName": "WS100102_getCitizenBirthInfo",
     "operationDetail": "Иргэний төрсний гэрчилгээний мэдээлэл дамжуулах сервис",
