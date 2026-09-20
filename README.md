@@ -1,11 +1,16 @@
 # xyp-sdk
 
+[![PyPI](https://img.shields.io/pypi/v/xyp?include_prereleases&label=PyPI%20%C2%B7%20xyp)](https://pypi.org/project/xyp/)
+[![npm](https://img.shields.io/npm/v/xyp-sdk/alpha?label=npm%20%C2%B7%20xyp-sdk)](https://www.npmjs.com/package/xyp-sdk)
+[![python](https://github.com/baljinnyamday/xyp-sdk/actions/workflows/python.yml/badge.svg)](https://github.com/baljinnyamday/xyp-sdk/actions/workflows/python.yml)
+[![typescript](https://github.com/baljinnyamday/xyp-sdk/actions/workflows/typescript.yml/badge.svg)](https://github.com/baljinnyamday/xyp-sdk/actions/workflows/typescript.yml)
+
 SDKs for **XYP (ХУР)**, Mongolia's government data exchange system, generated
 from one description of the API so every language exposes the same services.
 
 | Language | Package | Status |
 | --- | --- | --- |
-| Python | [`packages/python`](packages/python) — `pip install xyp` | alpha |
+| Python | [`packages/python`](packages/python) — `pip install "xyp>=0.1.0a2"` | alpha |
 | TypeScript / Node.js | [`packages/typescript`](packages/typescript) — `npm install xyp-sdk@alpha` | alpha |
 | Go | `packages/go` | planned |
 | Java | `packages/java` | planned |
