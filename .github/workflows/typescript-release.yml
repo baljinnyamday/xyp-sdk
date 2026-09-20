@@ -26,7 +26,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-          registry-url: https://registry.npmjs.org
+      # No `registry-url`: setup-node would write an `_authToken` placeholder into .npmrc,
+      # and npm then skips the OIDC exchange that trusted publishing relies on.
+      - name: Trusted publishing needs npm >= 11.5.1
+        run: npm install -g npm@^11.5.1 && npm --version
       - name: Tag must match the package version
         run: test "typescript-v$(node -p "require('./package.json').version")" = "$GITHUB_REF_NAME"
       - run: pnpm install --frozen-lockfile

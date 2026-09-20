@@ -6,6 +6,8 @@ xyp = Xyp(access_token="...", private_key="private.key")
 card = xyp.citizen.get_citizen_id_card_info(regnum="...")
 """
 
+from importlib.metadata import version
+
 from xyp._client import AsyncXyp, Xyp
 from xyp._models import Mismatch, XypModel, XypModelMismatchWarning
 from xyp.auth import AuthType, CitizenAuth, OperatorAuth
@@ -28,7 +30,7 @@ from xyp.errors import (
     XypValidationError,
 )
 
-__version__ = "0.1.0a2"
+__version__ = version("xyp")
 
 __all__ = [
     "AccessDeniedError",

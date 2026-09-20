@@ -106,6 +106,12 @@ def test_mismatches_inside_lists_only_drop_what_is_wrong() -> None:
     assert broken.xyp_mismatches[0].value == "text"
 
 
+def test_nil_items_do_not_cost_the_rest_of_the_list() -> None:
+    sample = parse_model(Sample, {"listData": [None, {"year": "2020"}]})
+    assert sample.items == [Item(year=2020)]
+    assert sample.xyp_mismatches == ()
+
+
 def test_a_response_that_is_not_an_object_still_returns() -> None:
     with pytest.warns(XypModelMismatchWarning, match="<response>"):
         sample = parse_model(Sample, "just text")

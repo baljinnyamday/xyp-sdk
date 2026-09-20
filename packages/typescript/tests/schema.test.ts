@@ -131,6 +131,29 @@ describe("decodeResponse", () => {
     ]);
   });
 
+  it("reports text in a bytes field instead of returning garbage bytes", () => {
+    // ("none" is left out: four alphabet characters are valid base64, in any decoder)
+    for (const text of ["N/A", "0", "NoImage", "байхгүй"]) {
+      const sample = decodeResponse<Sample>("Sample", SCHEMA, { photo: text });
+      expect(sample.photo, text).toBeNull();
+      expect(sample.xypMismatches[0]?.value, text).toBe(text);
+    }
+    const wrapped = decodeResponse<Sample>("Sample", SCHEMA, { photo: "AA\nE=" });
+    expect(wrapped.photo).toEqual(new Uint8Array([0, 1])); // line-wrapped base64 is fine
+  });
+
+  it("reads hand-typed booleans and integers like the Python SDK does", () => {
+    const read = (data: Record<string, string>) => decodeResponse<Sample>("Sample", SCHEMA, data);
+    expect(["Y", "yes", "T", "on", "TRUE"].map((t) => read({ active: t }).active)).toEqual(
+      Array(5).fill(true),
+    );
+    expect(["N", "no", "F", "off", "0"].map((t) => read({ active: t }).active)).toEqual(
+      Array(5).fill(false),
+    );
+    expect(read({ age: "34.0" }).age).toBe(34);
+    expect(read({ age: "34.5" }).age).toBeNull();
+  });
+
   it("reports a response that is not an object", () => {
     const sample = decodeResponse<Sample>("Sample", SCHEMA, "just text");
     expect(sample.firstName).toBeNull();

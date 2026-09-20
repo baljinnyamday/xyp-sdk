@@ -188,3 +188,32 @@ def test_mismatch_warning_points_at_the_callers_line(private_key_pem: bytes) -> 
     assert card.birth_date is None
     assert card.xyp_mismatches[0].path == "birthDate"
     assert caught[0].filename == __file__
+
+
+@respx.mock
+def test_soap_fault_text_survives_http_500(private_key_pem: bytes) -> None:
+    fault = (
+        b'<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body>'
+        b"<soap:Fault><faultcode>soap:Client</faultcode><faultstring>Unmarshalling Error: "
+        b"unexpected element</faultstring></soap:Fault></soap:Body></soap:Envelope>"
+    )
+    respx.post(CITIZEN_URL).respond(status_code=500, content=fault)
+    xyp = Xyp(access_token=TEST_TOKEN, private_key=private_key_pem)
+
+    with pytest.raises(XypResponseError, match=r"HTTP 500.*Unmarshalling Error") as raised:
+        xyp.citizen.get_citizen_id_card_info(regnum="x")
+    assert raised.value.status_code == 500
+
+
+def test_base_url_without_a_scheme_is_a_config_error(private_key_pem: bytes) -> None:
+    for client in (Xyp, AsyncXyp):
+        with pytest.raises(XypConfigError, match="https://"):
+            client(access_token=TEST_TOKEN, private_key=private_key_pem, base_url="xyp.gov.mn")
+
+
+def test_version_matches_the_package_metadata() -> None:
+    from importlib.metadata import version
+
+    import xyp
+
+    assert xyp.__version__ == version("xyp")

@@ -37,7 +37,13 @@ describe("createSigner", () => {
     const der = TEST_KEYS.privateKey.export({ type: "pkcs8", format: "der" });
     const expected = createSigner(TEST_TOKEN, TEST_KEY_PEM).headers(FIXED_TIMESTAMP);
 
-    for (const source of [file, new Uint8Array(der), Buffer.from(TEST_KEY_PEM)]) {
+    const pkcs1 = TEST_KEYS.privateKey.export({ type: "pkcs1", format: "der" });
+    for (const source of [
+      file,
+      new Uint8Array(der),
+      new Uint8Array(pkcs1),
+      Buffer.from(TEST_KEY_PEM),
+    ]) {
       expect(createSigner(TEST_TOKEN, source).headers(FIXED_TIMESTAMP)).toEqual(expected);
     }
   });

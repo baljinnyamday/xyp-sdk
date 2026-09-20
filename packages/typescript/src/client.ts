@@ -52,9 +52,13 @@ export class Xyp extends ServiceGroups {
         `Pass privateKey (path, PEM text or bytes) or set ${PRIVATE_KEY_ENV} to the key path`,
       );
     }
+    const baseUrl = options.baseUrl ?? DEFAULT_BASE_URL;
+    if (!/^https?:\/\//i.test(baseUrl)) {
+      throw new XypConfigError(`baseUrl must start with https:// (or http://), got "${baseUrl}"`);
+    }
     const transport = new Transport({
       signer: createSigner(accessToken, privateKey, options.privateKeyPassphrase),
-      baseUrl: options.baseUrl ?? DEFAULT_BASE_URL,
+      baseUrl,
       timeoutMs: options.timeoutMs ?? DEFAULT_TIMEOUT_MS,
       verify: options.verify ?? true,
     });

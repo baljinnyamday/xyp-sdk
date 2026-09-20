@@ -160,8 +160,13 @@ function unwrap(reply: HttpReply): unknown {
   try {
     result = parseResponse(reply.body);
   } catch (error) {
-    if (reply.status >= HTTP_ERROR_STATUS) {
-      throw new XypResponseError(`XYP answered with HTTP ${reply.status}`, reply.status);
+    if (reply.status >= HTTP_ERROR_STATUS && error instanceof XypResponseError) {
+      // JAX-WS sends SOAP faults with HTTP 500: keep the fault text, it is the only
+      // diagnostic the caller gets, and add the status to it.
+      throw new XypResponseError(
+        `XYP answered with HTTP ${reply.status}: ${error.message}`,
+        reply.status,
+      );
     }
     throw error;
   }

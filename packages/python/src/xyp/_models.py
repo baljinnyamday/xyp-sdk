@@ -77,6 +77,12 @@ def _as_list(value: Any) -> list[Any]:
     return cast("list[Any]", value) if isinstance(value, list) else [value]
 
 
+def _list_items(value: Any) -> list[Any]:
+    """A single item stands for a one-item list. Empty/nil items carry no data and
+    would fail the whole list, so they are dropped."""
+    return [item for item in _as_list(value) if item is not None]
+
+
 class XypModel(BaseModel):
     """Response data. Every field is optional and unknown fields are kept, so a
     provider adding or omitting a field never breaks your code."""
@@ -100,7 +106,7 @@ class XypModel(BaseModel):
         raw = cast("dict[str, Any]", data)
         aliases = _list_aliases(cls)
         return {
-            key: _as_list(value) if key in aliases and value is not None else value
+            key: _list_items(value) if key in aliases and value is not None else value
             for key, value in raw.items()
         }
 

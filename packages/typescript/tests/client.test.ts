@@ -139,6 +139,24 @@ describe("Xyp", () => {
     expect(error).toMatchObject({ statusCode: 502, origin: "xyp" });
   });
 
+  it("keeps the SOAP fault text when XYP answers with HTTP 500", async () => {
+    const fault =
+      '<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body>' +
+      "<soap:Fault><faultcode>soap:Client</faultcode><faultstring>Unmarshalling Error: " +
+      "unexpected element</faultstring></soap:Fault></soap:Body></soap:Envelope>";
+    const xyp = connect(await fakeXyp(() => ({ status: 500, body: fault })));
+    const error = await xyp.citizen.getCitizenIDCardInfo({}).catch((e) => e);
+    expect(error).toBeInstanceOf(XypResponseError);
+    expect(error).toMatchObject({ statusCode: 500, origin: "xyp" });
+    expect(String(error)).toMatch(/HTTP 500.*Unmarshalling Error: unexpected element/);
+  });
+
+  it("rejects a baseUrl without a scheme as a config error", () => {
+    const options = { accessToken: TEST_TOKEN, privateKey: TEST_KEY_PEM, baseUrl: "xyp.gov.mn" };
+    expect(() => new Xyp(options)).toThrow(XypConfigError);
+    expect(() => new Xyp(options)).toThrow(/https:\/\//);
+  });
+
   it("reads credentials from the environment", () => {
     expect(() => new Xyp({ privateKey: TEST_KEY_PEM })).toThrow(XypConfigError);
     expect(() => new Xyp({ accessToken: TEST_TOKEN })).toThrow(/XYP_PRIVATE_KEY/);

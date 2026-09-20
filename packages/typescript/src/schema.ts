@@ -27,11 +27,13 @@ export interface Mismatch {
 /** A decoded response. `xypMismatches` is normally empty and is not enumerable. */
 export type XypResult<T> = T & { readonly xypMismatches: readonly Mismatch[] };
 
-const TRUE_TEXT = new Set(["true", "1"]);
-const FALSE_TEXT = new Set(["false", "0"]);
-const INTEGER = /^[+-]?\d+$/;
+// The same lenient spellings pydantic accepts, so both SDKs read a response the same way.
+const TRUE_TEXT = new Set(["true", "1", "t", "yes", "y", "on"]);
+const FALSE_TEXT = new Set(["false", "0", "f", "no", "n", "off"]);
+const INTEGER = /^[+-]?\d+(\.0+)?$/; // "34.0" is an integer written by a spreadsheet
 const FLOAT = /^[+-]?(\d+\.?\d*|\.\d+)([eE][+-]?\d+)?$/;
-const BASE64 = /^[A-Za-z0-9+/\s]*={0,2}$/;
+// Strict on purpose: Buffer.from(text, "base64") silently turns "N/A" into garbage bytes.
+const BASE64 = /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/;
 // Must start with a full date: a bare "2020" is a year, not a timestamp.
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}([T ]\d{2}:\d{2}(:\d{2}(\.\d+)?)?(Z|[+-]\d{2}:?\d{2})?)?$/;
 
@@ -140,7 +142,10 @@ const SCALAR_DECODERS: Readonly<Record<ScalarType, (text: string) => unknown>> =
     if (TRUE_TEXT.has(lower)) return true;
     return FALSE_TEXT.has(lower) ? false : undefined;
   },
-  bytes: (text) => (BASE64.test(text) ? new Uint8Array(Buffer.from(text, "base64")) : undefined),
+  bytes: (text) => {
+    const compact = text.replace(/\s/g, "");
+    return BASE64.test(compact) ? new Uint8Array(Buffer.from(compact, "base64")) : undefined;
+  },
   // Providers fill date fields by hand and formats are not documented:
   // ISO 8601 becomes a Date, anything else is kept as text rather than rejected.
   date: (text) => {

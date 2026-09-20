@@ -76,8 +76,10 @@ class _Protocol:
             result = parse_response(content)
         except XypResponseError as error:
             if status_code >= _HTTP_ERROR_STATUS:
+                # JAX-WS sends SOAP faults with HTTP 500: keep the fault text, it is the
+                # only diagnostic the caller gets, and add the status to it.
                 raise XypResponseError(
-                    f"XYP answered with HTTP {status_code}", status_code=status_code
+                    f"XYP answered with HTTP {status_code}: {error}", status_code=status_code
                 ) from error
             raise
         if result.result_code != RESULT_CODE_OK:

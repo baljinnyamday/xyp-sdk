@@ -21,6 +21,12 @@ ACCESS_TOKEN_ENV = "XYP_ACCESS_TOKEN"
 PRIVATE_KEY_ENV = "XYP_PRIVATE_KEY"
 
 
+def _checked_base_url(base_url: str) -> str:
+    if not base_url.lower().startswith(("https://", "http://")):
+        raise XypConfigError(f"base_url must start with https:// (or http://), got {base_url!r}")
+    return base_url
+
+
 def _signer_from(
     access_token: str | None,
     private_key: PrivateKeySource | None,
@@ -77,7 +83,7 @@ class Xyp(SyncGroups):
         signer = _signer_from(access_token, private_key, private_key_password)
         self._owns_client = http_client is None
         client = http_client or httpx.Client(timeout=timeout, verify=build_verify(verify))
-        self._transport = SyncTransport(signer, base_url, client)
+        self._transport = SyncTransport(signer, _checked_base_url(base_url), client)
 
     def call(
         self,
@@ -137,7 +143,7 @@ class AsyncXyp(AsyncGroups):
         signer = _signer_from(access_token, private_key, private_key_password)
         self._owns_client = http_client is None
         client = http_client or httpx.AsyncClient(timeout=timeout, verify=build_verify(verify))
-        self._transport = AsyncTransport(signer, base_url, client)
+        self._transport = AsyncTransport(signer, _checked_base_url(base_url), client)
 
     async def call(
         self,

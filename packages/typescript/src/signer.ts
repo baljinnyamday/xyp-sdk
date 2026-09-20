@@ -47,15 +47,18 @@ function readKeyBytes(source: PrivateKeySource): Buffer {
 function loadPrivateKey(source: PrivateKeySource, passphrase?: string): KeyObject {
   const data = readKeyBytes(source);
   const isPem = data.includes(PEM_MARKER);
-  let key: KeyObject;
-  try {
-    key = createPrivateKey({
-      key: data,
-      format: isPem ? "pem" : "der",
-      ...(isPem ? {} : { type: "pkcs8" as const }),
-      ...(passphrase === undefined ? {} : { passphrase }),
-    });
-  } catch {
+  // PEM names its own format; DER does not, so both common RSA encodings are tried.
+  const attempts = isPem
+    ? [{ format: "pem" as const }]
+    : [
+        { format: "der" as const, type: "pkcs8" as const },
+        { format: "der" as const, type: "pkcs1" as const },
+      ];
+  const key = attempts.reduce<KeyObject | undefined>(
+    (found, attempt) => found ?? tryCreateKey(data, attempt, passphrase),
+    undefined,
+  );
+  if (key === undefined) {
     // Deliberately no detail from the underlying error: it can echo key material.
     throw new XypConfigError(
       "privateKey is not a valid PEM/DER private key (or the passphrase is wrong)",
@@ -63,4 +66,20 @@ function loadPrivateKey(source: PrivateKeySource, passphrase?: string): KeyObjec
   }
   if (key.asymmetricKeyType !== "rsa") throw new XypConfigError("privateKey must be an RSA key");
   return key;
+}
+
+function tryCreateKey(
+  key: Buffer,
+  encoding: { format: "pem" } | { format: "der"; type: "pkcs8" | "pkcs1" },
+  passphrase?: string,
+): KeyObject | undefined {
+  try {
+    return createPrivateKey({
+      key,
+      ...encoding,
+      ...(passphrase === undefined ? {} : { passphrase }),
+    });
+  } catch {
+    return undefined;
+  }
 }
