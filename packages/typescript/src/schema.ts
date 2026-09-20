@@ -37,6 +37,9 @@ const ISO_DATE = /^\d{4}-\d{2}-\d{2}([T ]\d{2}:\d{2}(:\d{2}(\.\d+)?)?(Z|[+-]\d{2
 
 type Report = (path: string, problem: string, value: unknown) => void;
 
+/** Marks a value that did not fit, as opposed to a legitimate null from XYP. */
+const REJECTED = Symbol("rejected");
+
 export function decodeResponse<T>(name: string, schema: Schema, data: unknown): XypResult<T> {
   const mismatches: Mismatch[] = [];
   const report: Report = (path, problem, value) => {
@@ -83,28 +86,41 @@ function decodeObject(
   return { ...data, ...Object.fromEntries(declared) };
 }
 
+/** A declared field: a value that does not fit is reported and becomes null. */
 function decodeValue(spec: FieldSpec, value: unknown, path: string, report: Report): unknown {
+  const decoded = decodeItem(spec, value, path, report);
+  return decoded === REJECTED ? null : decoded;
+}
+
+/** Like `decodeValue`, but tells the caller when the value itself was rejected. */
+function decodeItem(spec: FieldSpec, value: unknown, path: string, report: Report): unknown {
   if (value === null || spec === "any") return value;
   if (typeof spec === "string") return decodeScalar(spec, value, path, report);
-  if ("list" in spec) {
-    // XML cannot tell a one-item list from a single value; the schema can.
-    const items = Array.isArray(value) ? value : [value];
-    return items.map((item, index) => decodeValue(spec.list, item, `${path}[${index}]`, report));
-  }
+  if ("list" in spec) return decodeList(spec.list, value, path, report);
   if (isRecord(value)) return decodeObject(spec.object, value, path, report);
   report(path, "expected an object", value);
-  return null;
+  return REJECTED;
+}
+
+function decodeList(item: FieldSpec, value: unknown, path: string, report: Report): unknown {
+  // XML cannot tell a one-item list from a single value; the schema can.
+  // Empty/nil items carry no data and would break the `T[]` promise, so they are dropped.
+  const items = (Array.isArray(value) ? value : [value]).filter((entry) => entry !== null);
+  const decoded = items.map((entry, index) => decodeItem(item, entry, `${path}[${index}]`, report));
+  // The types promise `T[]`, never `(T | null)[]`: when an item itself does not fit,
+  // the whole list becomes null and the raw items stay available in the mismatches.
+  return decoded.includes(REJECTED) ? REJECTED : decoded;
 }
 
 function decodeScalar(type: ScalarType, value: unknown, path: string, report: Report): unknown {
   if (typeof value !== "string") {
     report(path, `expected ${type}, got ${Array.isArray(value) ? "a list" : "an object"}`, value);
-    return null;
+    return REJECTED;
   }
   const decoded = SCALAR_DECODERS[type](value);
   if (decoded === undefined) {
     report(path, `not a valid ${type}`, value);
-    return null;
+    return REJECTED;
   }
   return decoded;
 }

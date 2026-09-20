@@ -108,6 +108,29 @@ describe("decodeResponse", () => {
     expect(JSON.stringify(sample.xypMismatches)).not.toContain("РД00000000");
   });
 
+  it("never puts null inside a list: the types promise T[]", () => {
+    const schema: Schema = {
+      years: { list: "int" },
+      listData: { list: { object: { year: "int" } } },
+    };
+    const sample = decodeResponse<{ years: readonly number[] | null; listData: unknown }>(
+      "Sample",
+      schema,
+      { years: ["2020", "MMXXI"], listData: [{ year: "1" }, "text"] },
+    );
+
+    expect(sample.years).toBeNull();
+    expect(sample.listData).toBeNull();
+    expect(sample.xypMismatches.map((m) => [m.path, m.value])).toEqual([
+      ["years[1]", "MMXXI"],
+      ["listData[1]", "text"],
+    ]);
+    // a legitimate nil item from XYP is not a mismatch
+    expect(decodeResponse<{ years: unknown }>("Sample", schema, { years: ["1"] }).years).toEqual([
+      1,
+    ]);
+  });
+
   it("reports a response that is not an object", () => {
     const sample = decodeResponse<Sample>("Sample", SCHEMA, "just text");
     expect(sample.firstName).toBeNull();

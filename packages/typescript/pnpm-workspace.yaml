@@ -1,2 +1,4 @@
+# esbuild ships its binary through optionalDependencies, so its install script is not
+# needed. Saying so explicitly keeps `pnpm install` from failing in CI.
 allowBuilds:
-  esbuild: set this to true or false
+  esbuild: false
