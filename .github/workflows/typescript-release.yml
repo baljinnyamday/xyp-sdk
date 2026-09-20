@@ -1,0 +1,38 @@
+name: typescript-release
+
+# Publishes packages/typescript to npm when a tag like typescript-v0.1.0-alpha.2 is pushed.
+# Uses npm Trusted Publishing (OIDC): no npm token exists anywhere. npm only allows a
+# trusted publisher on a package that already exists, so the very first version is
+# published by hand (see packages/typescript/README.md, "Releasing").
+on:
+  push:
+    tags: ["typescript-v*"]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: npm
+    permissions:
+      id-token: write
+      contents: read
+    defaults:
+      run:
+        working-directory: packages/typescript
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: packages/typescript/package.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+      - name: Tag must match the package version
+        run: test "typescript-v$(node -p "require('./package.json').version")" = "$GITHUB_REF_NAME"
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint && pnpm typecheck && pnpm test && pnpm build
+      - name: Pre-releases go to their own dist-tag so `npm install xyp-sdk` never gets one
+        run: |
+          version=$(node -p "require('./package.json').version")
+          case "$version" in *-*) tag="${version#*-}"; tag="${tag%%.*}" ;; *) tag=latest ;; esac
+          npm publish --access public --provenance --tag "$tag"

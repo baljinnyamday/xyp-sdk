@@ -194,6 +194,13 @@ pnpm build       # tsup: ESM + CJS + types
 `uv run xyp-generate` from `generator/` instead of editing them.
 `tests/fixtures/envelopes.json` comes from `scripts/make_fixtures.py`.
 
+### Releasing
+
+Bump `version` in `package.json`, commit, then push a tag `typescript-v<version>`:
+the release workflow tests, builds and publishes with npm Trusted Publishing (no
+token). Versions with a suffix (`0.1.0-alpha.2`) are published under that dist-tag
+(`alpha`), so a plain `npm install xyp-sdk` never picks up a pre-release.
+
 ## License
 
 MIT
