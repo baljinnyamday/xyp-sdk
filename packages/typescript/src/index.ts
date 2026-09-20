@@ -30,4 +30,4 @@ export {
 export { MISMATCH_WARNING, type Mismatch, type XypResult } from "./schema.js";
 export type { PrivateKeySource } from "./signer.js";
 export type { CallOptions, RawCallOptions, Verify } from "./transport.js";
-export type * as types from "./types/index.js";
+export type * from "./types/index.js";

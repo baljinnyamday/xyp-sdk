@@ -34,6 +34,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v5
       - run: uv build --out-dir dist
+      - name: The installed wheel works with stable dependencies
+        run: uv run --isolated --no-project --with dist/*.whl python scripts/release_check.py
+      - name: ...and when the user enables pre-releases of every dependency (pip install --pre)
+        run: uv run --isolated --no-project --prerelease allow --with dist/*.whl python scripts/release_check.py
       - name: The installed wheel ships the CA certificates
         run: |
           uv run --isolated --no-project --with dist/*.whl python -c \

@@ -10,13 +10,13 @@ import type { CallOptions, Transport } from "../../transport.js";
 const OPERATION = "PS100104_checkKindergartenEnrollment";
 
 /** Input of PS100104_checkKindergartenEnrollment. */
-export interface CheckKindergartenEnrollmentParams {
+export interface CheckKindergartenEnrollmentPS100104Params {
   /** бүртгэлийн дугаар */
   readonly civilId?: string;
 }
 
 /** PS100104_checkKindergartenEnrollment: СӨБ Элсэлтийн бүртгэл шалгах */
-export interface CheckKindergartenEnrollmentResponse {
+export interface CheckKindergartenEnrollmentPS100104Response {
   /** хүсэлтийн дугаар */
   readonly requestId: number | null;
   /** бүртгэлийн дугаар */
@@ -87,7 +87,7 @@ const SCHEMA: Schema = {
  *
  * Provider: Боловсролын мэдээллийн технологийн Төв
  */
-export async function checkKindergartenEnrollment(transport: Transport, params: CheckKindergartenEnrollmentParams = {}, options: CallOptions = {}): Promise<XypResult<CheckKindergartenEnrollmentResponse>> {
+export async function checkKindergartenEnrollment(transport: Transport, params: CheckKindergartenEnrollmentPS100104Params = {}, options: CallOptions = {}): Promise<XypResult<CheckKindergartenEnrollmentPS100104Response>> {
   const data = await transport.call(
     OPERATION,
     {
@@ -95,5 +95,5 @@ export async function checkKindergartenEnrollment(transport: Transport, params: 
     },
     options,
   );
-  return decodeResponse<CheckKindergartenEnrollmentResponse>("CheckKindergartenEnrollmentResponse", SCHEMA, data);
+  return decodeResponse<CheckKindergartenEnrollmentPS100104Response>("CheckKindergartenEnrollmentPS100104Response", SCHEMA, data);
 }

@@ -4,8 +4,12 @@ Typed Python SDK for **XYP (ХУР)**, Mongolia's government data exchange syste
 All 499 services, sync and async, fully type-hinted.
 
 ```bash
-pip install --pre xyp   # pre-release until it has been confirmed against production
+pip install "xyp>=0.1.0a2"     # or: uv add "xyp>=0.1.0a2"
 ```
+
+It is a pre-release until it has been confirmed against production. Naming the
+version like this lets pip pick the pre-release of `xyp` only; avoid
+`pip install --pre xyp`, which also pulls pre-releases of every dependency.
 
 ```python
 from xyp import Xyp

@@ -5,12 +5,12 @@
  * Each service lives in its own module under `operations/privateService`.
  */
 
-import { type CheckKindergartenEnrollmentParams, checkKindergartenEnrollment } from "../operations/privateService/checkKindergartenEnrollment.js";
-import { type ChildrenInfoByParentCivilIdParams, childrenInfoByParentCivilId } from "../operations/privateService/childrenInfoByParentCivilId.js";
+import { type CheckKindergartenEnrollmentPS100104Params, checkKindergartenEnrollment } from "../operations/privateService/checkKindergartenEnrollment.js";
+import { type ChildrenInfoByParentCivilIdPS100102Params, childrenInfoByParentCivilId } from "../operations/privateService/childrenInfoByParentCivilId.js";
 import { type IDCardInfoEmParams, iDCardInfoEm } from "../operations/privateService/iDCardInfoEm.js";
-import { type KindergartenDescriptionParams, kindergartenDescription } from "../operations/privateService/kindergartenDescription.js";
+import { type KindergartenDescriptionPS100101Params, kindergartenDescription } from "../operations/privateService/kindergartenDescription.js";
 import { type ResultKindergartenEnrollmentParams, resultKindergartenEnrollment } from "../operations/privateService/resultKindergartenEnrollment.js";
-import { type SendKindergartenEnrollmentParams, sendKindergartenEnrollment } from "../operations/privateService/sendKindergartenEnrollment.js";
+import { type SendKindergartenEnrollmentPS100103Params, sendKindergartenEnrollment } from "../operations/privateService/sendKindergartenEnrollment.js";
 import type { CallOptions, Transport } from "../transport.js";
 
 export type PrivateServiceService = ReturnType<typeof createPrivateServiceService>;
@@ -22,25 +22,25 @@ export function createPrivateServiceService(transport: Transport) {
      *
      * Provider: Боловсролын мэдээллийн технологийн Төв
      */
-    kindergartenDescription: (params: KindergartenDescriptionParams = {}, options: CallOptions = {}) => kindergartenDescription(transport, params, options),
+    kindergartenDescription: (params: KindergartenDescriptionPS100101Params = {}, options: CallOptions = {}) => kindergartenDescription(transport, params, options),
     /**
      * PS100102_childrenInfoByParentCivilId: Эцэг эхийн бүртгэлээр хүүхдийн мэдээлэл дуудах
      *
      * Provider: Улсын бүртгэлийн ерөнхий газар
      */
-    childrenInfoByParentCivilId: (params: ChildrenInfoByParentCivilIdParams = {}, options: CallOptions = {}) => childrenInfoByParentCivilId(transport, params, options),
+    childrenInfoByParentCivilId: (params: ChildrenInfoByParentCivilIdPS100102Params = {}, options: CallOptions = {}) => childrenInfoByParentCivilId(transport, params, options),
     /**
      * PS100103_sendKindergartenEnrollment: СӨБ Элсэлтийн бүртгэл илгээх
      *
      * Provider: Боловсролын мэдээллийн технологийн Төв
      */
-    sendKindergartenEnrollment: (params: SendKindergartenEnrollmentParams = {}, options: CallOptions = {}) => sendKindergartenEnrollment(transport, params, options),
+    sendKindergartenEnrollment: (params: SendKindergartenEnrollmentPS100103Params = {}, options: CallOptions = {}) => sendKindergartenEnrollment(transport, params, options),
     /**
      * PS100104_checkKindergartenEnrollment: СӨБ Элсэлтийн бүртгэл шалгах
      *
      * Provider: Боловсролын мэдээллийн технологийн Төв
      */
-    checkKindergartenEnrollment: (params: CheckKindergartenEnrollmentParams = {}, options: CallOptions = {}) => checkKindergartenEnrollment(transport, params, options),
+    checkKindergartenEnrollment: (params: CheckKindergartenEnrollmentPS100104Params = {}, options: CallOptions = {}) => checkKindergartenEnrollment(transport, params, options),
     /**
      * PS100110_resultKindergartenEnrollment: Нийслэлийн цэцэрлэгийн хуваарилалт
      *

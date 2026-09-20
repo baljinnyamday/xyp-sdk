@@ -31,6 +31,8 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm test
       - run: pnpm build
+      - name: A consumer project compiles against the built declarations
+        run: pnpm test:consumer
       - run: pnpm dlx publint
       - run: pnpm dlx @arethetypeswrong/cli --pack .
       - uses: actions/setup-node@v4
@@ -40,3 +42,11 @@ jobs:
         run: |
           node -e "const { Xyp, XypConfigError } = require('./dist/index.cjs'); try { new Xyp() } catch (e) { if (!(e instanceof XypConfigError)) throw e }"
           node --input-type=module -e "import { Xyp, XypConfigError } from './dist/index.js'; try { new Xyp() } catch (e) { if (!(e instanceof XypConfigError)) throw e }"
+      - name: The packed tarball works when installed into an empty project
+        run: |
+          pnpm pack --pack-destination "$RUNNER_TEMP"
+          mkdir "$RUNNER_TEMP/app" && cd "$RUNNER_TEMP/app"
+          npm init -y > /dev/null
+          npm install --silent "$RUNNER_TEMP"/xyp-sdk-*.tgz
+          cp "$GITHUB_WORKSPACE/packages/typescript/scripts/release_check.mjs" .
+          node release_check.mjs

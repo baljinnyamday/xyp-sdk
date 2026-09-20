@@ -1,6 +1,6 @@
 [project]
 name = "xyp"
-version = "0.1.0a1"
+version = "0.1.0a2"
 description = "Typed Python SDK for XYP (ХУР), Mongolia's government data exchange system"
 readme = "README.md"
 license = "MIT"
@@ -14,9 +14,11 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Typing :: Typed",
 ]
+# Upper bounds on purpose: `pip install --pre` enables pre-releases for every dependency,
+# and httpx 1.0 (in development) is a rewrite with a different API.
 dependencies = [
-    "httpx>=0.27",
-    "pydantic>=2.6",
+    "httpx>=0.27,<1",
+    "pydantic>=2.6,<3",
     "cryptography>=42",
     "defusedxml>=0.7.1",
     "typing-extensions>=4.6",

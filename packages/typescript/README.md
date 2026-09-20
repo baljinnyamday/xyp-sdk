@@ -69,9 +69,9 @@ await xyp.call("WS109999_brandNew", { regnum }, { endpoint: "citizen-1.5.0" });
 Types for annotations:
 
 ```ts
-import type { types } from "xyp-sdk";
+import type { GetCitizenIDCardInfoParams, GetCitizenIDCardInfoResponse } from "xyp-sdk";
 
-function show(card: types.citizen.GetCitizenIDCardInfoResponse) {}
+function show(card: GetCitizenIDCardInfoResponse) {}
 ```
 
 ## Citizen approval (OTP, fingerprint, digital signature, ДАН)

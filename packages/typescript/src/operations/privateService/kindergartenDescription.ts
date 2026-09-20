@@ -10,13 +10,13 @@ import type { CallOptions, Transport } from "../../transport.js";
 const OPERATION = "PS100101_kindergartenDescription";
 
 /** Input of PS100101_kindergartenDescription. */
-export interface KindergartenDescriptionParams {
+export interface KindergartenDescriptionPS100101Params {
   /** Регистрийн дугаар */
   readonly regnum?: string;
 }
 
 /** PS100101_kindergartenDescription: сургуулийн өмнөх боловсролын сургалтын байгууллагад суралцаж байгаа тодорхойлолтийн мэдээлэл дуудах */
-export interface KindergartenDescriptionResponse {
+export interface KindergartenDescriptionPS100101Response {
   /** регистрийн дугаар */
   readonly regnum: string | null;
   /** овог */
@@ -44,7 +44,7 @@ const SCHEMA: Schema = { regnum: "string", lastname: "string", firstname: "strin
  *
  * Provider: Боловсролын мэдээллийн технологийн Төв
  */
-export async function kindergartenDescription(transport: Transport, params: KindergartenDescriptionParams = {}, options: CallOptions = {}): Promise<XypResult<KindergartenDescriptionResponse>> {
+export async function kindergartenDescription(transport: Transport, params: KindergartenDescriptionPS100101Params = {}, options: CallOptions = {}): Promise<XypResult<KindergartenDescriptionPS100101Response>> {
   const data = await transport.call(
     OPERATION,
     {
@@ -52,5 +52,5 @@ export async function kindergartenDescription(transport: Transport, params: Kind
     },
     options,
   );
-  return decodeResponse<KindergartenDescriptionResponse>("KindergartenDescriptionResponse", SCHEMA, data);
+  return decodeResponse<KindergartenDescriptionPS100101Response>("KindergartenDescriptionPS100101Response", SCHEMA, data);
 }

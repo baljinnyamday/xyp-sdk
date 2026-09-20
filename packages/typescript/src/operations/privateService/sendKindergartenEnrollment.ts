@@ -10,7 +10,7 @@ import type { CallOptions, Transport } from "../../transport.js";
 const OPERATION = "PS100103_sendKindergartenEnrollment";
 
 /** Input of PS100103_sendKindergartenEnrollment. */
-export interface SendKindergartenEnrollmentParams {
+export interface SendKindergartenEnrollmentPS100103Params {
   /** Хүүхдийн Бүртгэлийн дугаар */
   readonly civilId?: number;
   /** Хүүхдийн Регистрийн дугаар */
@@ -88,7 +88,7 @@ export interface SendKindergartenEnrollmentParams {
 }
 
 /** PS100103_sendKindergartenEnrollment: СӨБ Элсэлтийн бүртгэл илгээх */
-export interface SendKindergartenEnrollmentResponse {
+export interface SendKindergartenEnrollmentPS100103Response {
   /** мэдэгдэл */
   readonly resultMsg: string | null;
   /** Амжилттай бүртгэгдсэн эсэх */
@@ -102,7 +102,7 @@ const SCHEMA: Schema = { resultMsg: "string", resultCode: "int" };
  *
  * Provider: Боловсролын мэдээллийн технологийн Төв
  */
-export async function sendKindergartenEnrollment(transport: Transport, params: SendKindergartenEnrollmentParams = {}, options: CallOptions = {}): Promise<XypResult<SendKindergartenEnrollmentResponse>> {
+export async function sendKindergartenEnrollment(transport: Transport, params: SendKindergartenEnrollmentPS100103Params = {}, options: CallOptions = {}): Promise<XypResult<SendKindergartenEnrollmentPS100103Response>> {
   const data = await transport.call(
     OPERATION,
     {
@@ -146,5 +146,5 @@ export async function sendKindergartenEnrollment(transport: Transport, params: S
     },
     options,
   );
-  return decodeResponse<SendKindergartenEnrollmentResponse>("SendKindergartenEnrollmentResponse", SCHEMA, data);
+  return decodeResponse<SendKindergartenEnrollmentPS100103Response>("SendKindergartenEnrollmentPS100103Response", SCHEMA, data);
 }

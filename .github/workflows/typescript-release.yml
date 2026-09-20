@@ -30,7 +30,7 @@ jobs:
       - name: Tag must match the package version
         run: test "typescript-v$(node -p "require('./package.json').version")" = "$GITHUB_REF_NAME"
       - run: pnpm install --frozen-lockfile
-      - run: pnpm lint && pnpm typecheck && pnpm test && pnpm build
+      - run: pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm test:consumer
       - name: Pre-releases go to their own dist-tag so `npm install xyp-sdk` never gets one
         run: |
           version=$(node -p "require('./package.json').version")

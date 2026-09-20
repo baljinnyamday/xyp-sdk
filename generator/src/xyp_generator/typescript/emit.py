@@ -206,28 +206,48 @@ def _operation_view(service: Service, name: str, base: str) -> OperationView:
     )
 
 
-def _group_view(group: str, services: tuple[Service, ...]) -> GroupView:
+def _group_view(
+    group: str, services: tuple[Service, ...], taken_types: frozenset[str]
+) -> GroupView:
+    """`taken_types` are the type names of earlier groups: every type is exported from the
+    package root, so names must be unique across the whole SDK, not just within a group."""
     operations: tuple[OperationView, ...] = ()
     for service in services:
         code, short = split_operation(service.operation)
         # Compared case-insensitively: module names must also be unique on macOS and Windows.
         taken = {operation.name.lower() for operation in operations}
         name = _lower_first(short)
-        clashes = name.lower() in taken or name in _RESERVED
-        name = f"{name}{code}" if clashes else name
-        base = _upper_first(name)
-        operations = (*operations, _operation_view(service, name, base))
+        name = f"{name}{code}" if name.lower() in taken or name in _RESERVED else name
+        view = _operation_view(service, name, _upper_first(name))
+        used = taken_types | {item for operation in operations for item in operation.exported_types}
+        if used & set(view.exported_types):
+            # The same service published in two groups: keep the method name, qualify the types.
+            view = _operation_view(service, name, f"{_upper_first(name)}{code}")
+        operations = (*operations, view)
 
-    type_names = [name for operation in operations for name in operation.exported_types]
-    duplicates = sorted({name for name in type_names if type_names.count(name) > 1})
-    if duplicates:
-        raise ValueError(f"Group {group!r} would define these types twice: {duplicates}")
     return GroupView(
         name=_camel(group),
         class_name=_upper_first(_camel(group)),
         endpoints=tuple(sorted({service.endpoint for service in services})),
         operations=operations,
     )
+
+
+def _group_views(api: Api) -> tuple[GroupView, ...]:
+    groups: tuple[GroupView, ...] = ()
+    for name, services in api.groups.items():
+        taken = frozenset(
+            item
+            for group in groups
+            for operation in group.operations
+            for item in operation.exported_types
+        )
+        groups = (*groups, _group_view(name, services, taken))
+    names = [item for group in groups for op in group.operations for item in op.exported_types]
+    duplicates = sorted({name for name in names if names.count(name) > 1})
+    if duplicates:
+        raise ValueError(f"These TypeScript types would be defined twice: {duplicates}")
+    return groups
 
 
 def emit(api: Api, package_dir: Path) -> list[Path]:
@@ -245,7 +265,7 @@ def emit(api: Api, package_dir: Path) -> list[Path]:
         return environment.get_template(template).render(**context)
 
     source = package_dir / "src"
-    groups = tuple(_group_view(name, services) for name, services in api.groups.items())
+    groups = _group_views(api)
     outputs = {
         source / "registry.ts": render("registry.ts.j2", api=api),
         source / "groups.ts": render("groups.ts.j2", groups=groups),

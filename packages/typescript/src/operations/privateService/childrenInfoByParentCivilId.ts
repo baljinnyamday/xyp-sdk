@@ -10,7 +10,7 @@ import type { CallOptions, Transport } from "../../transport.js";
 const OPERATION = "PS100102_childrenInfoByParentCivilId";
 
 /** Input of PS100102_childrenInfoByParentCivilId. */
-export interface ChildrenInfoByParentCivilIdParams {
+export interface ChildrenInfoByParentCivilIdPS100102Params {
   /** эцэг, эхийн бүртгэлийн дугаар */
   readonly parentCivilid?: string;
   /** Байгууллагын код */
@@ -26,7 +26,7 @@ export interface ChildrenInfoByParentCivilIdParams {
 }
 
 /** мэдээллийн жагсаалт */
-export interface ChildrenInfoByParentCivilIdListData {
+export interface ChildrenInfoByParentCivilIdPS100102ListData {
   /** Хүүхдийн Регистрийн дугаар */
   readonly regnum: string | null;
   /** Хүүхдийн Бүртгэлийн дугаар */
@@ -80,9 +80,9 @@ export interface ChildrenInfoByParentCivilIdListData {
 }
 
 /** PS100102_childrenInfoByParentCivilId: Эцэг эхийн бүртгэлээр хүүхдийн мэдээлэл дуудах */
-export interface ChildrenInfoByParentCivilIdResponse {
+export interface ChildrenInfoByParentCivilIdPS100102Response {
   /** мэдээллийн жагсаалт */
-  readonly listData: readonly ChildrenInfoByParentCivilIdListData[] | null;
+  readonly listData: readonly ChildrenInfoByParentCivilIdPS100102ListData[] | null;
 }
 
 const SCHEMA: Schema = {
@@ -124,7 +124,7 @@ const SCHEMA: Schema = {
  *
  * Provider: Улсын бүртгэлийн ерөнхий газар
  */
-export async function childrenInfoByParentCivilId(transport: Transport, params: ChildrenInfoByParentCivilIdParams = {}, options: CallOptions = {}): Promise<XypResult<ChildrenInfoByParentCivilIdResponse>> {
+export async function childrenInfoByParentCivilId(transport: Transport, params: ChildrenInfoByParentCivilIdPS100102Params = {}, options: CallOptions = {}): Promise<XypResult<ChildrenInfoByParentCivilIdPS100102Response>> {
   const data = await transport.call(
     OPERATION,
     {
@@ -137,5 +137,5 @@ export async function childrenInfoByParentCivilId(transport: Transport, params: 
     },
     options,
   );
-  return decodeResponse<ChildrenInfoByParentCivilIdResponse>("ChildrenInfoByParentCivilIdResponse", SCHEMA, data);
+  return decodeResponse<ChildrenInfoByParentCivilIdPS100102Response>("ChildrenInfoByParentCivilIdPS100102Response", SCHEMA, data);
 }
