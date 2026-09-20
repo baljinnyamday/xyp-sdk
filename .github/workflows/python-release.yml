@@ -29,3 +29,24 @@ jobs:
       - uses: pypa/gh-action-pypi-publish@release/v1
         with:
           packages-dir: packages/python/dist
+
+  github-release:
+    needs: publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version="${GITHUB_REF_NAME#python-v}"
+          case "$version" in *[a-z]*) flags="--prerelease --latest=false" ;; *) flags="" ;; esac
+          {
+            echo "**Install:** \`pip install \"xyp==$version\"\` · [PyPI](https://pypi.org/project/xyp/$version/) · [README](https://github.com/$GITHUB_REPOSITORY/tree/$GITHUB_REF_NAME/packages/python#readme)"
+            echo
+          } > notes.md
+          previous=$(git ls-remote --tags --sort=-v:refname origin 'python-v*' | awk -F/ '{print $3}' | grep -vx "$GITHUB_REF_NAME" | head -1)
+          gh release create "$GITHUB_REF_NAME" --title "Python: xyp $version" --notes-file notes.md \
+            --generate-notes ${previous:+--notes-start-tag "$previous"} $flags
