@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+dist/
+build/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.pyright/
+
+# Node
+node_modules/
+
+# Credentials must never be committed
+*.key
+*.pem
+!packages/python/src/xyp/certs/*.pem
+.env
+.env.*
+
+.DS_Store

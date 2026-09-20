@@ -1,0 +1,58 @@
+name: python
+
+on:
+  push:
+    branches: [main]
+    paths: ["packages/python/**", "generator/**", "spec/**", ".github/workflows/python.yml"]
+  pull_request:
+    paths: ["packages/python/**", "generator/**", "spec/**", ".github/workflows/python.yml"]
+
+jobs:
+  generator:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: generator
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run pyright
+      - run: uv run pytest
+      - name: Generated code is up to date
+        run: |
+          uv run xyp-generate
+          git diff --exit-code -- ../packages
+
+  package:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.10", "3.11", "3.12", "3.13"]
+    defaults:
+      run:
+        working-directory: packages/python
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync --python ${{ matrix.python }}
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run pyright
+      - run: uv run pytest
+
+  wheel:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/python
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv build --out-dir dist
+      - name: The installed wheel ships the CA certificates
+        run: |
+          uv run --isolated --no-project --with dist/*.whl python -c \
+            "from xyp._tls import build_verify; assert len(build_verify(True).get_ca_certs()) == 2"

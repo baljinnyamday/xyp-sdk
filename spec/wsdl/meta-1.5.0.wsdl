@@ -1,0 +1,319 @@
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://meta.xyp.gov.mn/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="MetaServiceService" targetNamespace="http://meta.xyp.gov.mn/">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://meta.xyp.gov.mn/" elementFormDefault="unqualified" targetNamespace="http://meta.xyp.gov.mn/" version="1.0">
+            <xs:element name="WS100001_listAccess" type="tns:WS100001_listAccess"/>
+            <xs:element name="WS100001_listAccessResponse" type="tns:WS100001_listAccessResponse"/>
+            <xs:element name="WS100002_mock" type="tns:WS100002_mock"/>
+            <xs:element name="WS100002_mockResponse" type="tns:WS100002_mockResponse"/>
+            <xs:element name="WS100003_getLog" type="tns:WS100003_getLog"/>
+            <xs:element name="WS100003_getLogResponse" type="tns:WS100003_getLogResponse"/>
+            <xs:element name="WS100008_registerOTPRequest" type="tns:WS100008_registerOTPRequest"/>
+            <xs:element name="WS100008_registerOTPRequestResponse" type="tns:WS100008_registerOTPRequestResponse"/>
+            <xs:element name="WS100009_checkOtp" type="tns:WS100009_checkOtp"/>
+            <xs:element name="WS100009_checkOtpResponse" type="tns:WS100009_checkOtpResponse"/>
+            <xs:complexType name="WS100008_registerOTPRequest">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="request" type="tns:registerOTPRequest"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="registerOTPRequest">
+                <xs:complexContent>
+                    <xs:extension base="tns:serviceRequest">
+                        <xs:sequence>
+                            <xs:element name="isApp" type="xs:int"/>
+                            <xs:element name="isEmail" type="xs:int"/>
+                            <xs:element name="isKiosk" type="xs:int"/>
+                            <xs:element name="isSms" type="xs:int"/>
+                            <xs:element minOccurs="0" name="jsonWSList" type="xs:string"/>
+                            <xs:element name="phoneNum" type="xs:int"/>
+                            <xs:element minOccurs="0" name="regnum" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="serviceRequest">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="auth" type="tns:authorizationData"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="authorizationData">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="citizen" type="tns:authorizationEntity"/>
+                    <xs:element minOccurs="0" name="operator" type="tns:authorizationEntity"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="authorizationEntity">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="appAuthToken" type="xs:string"/>
+                    <xs:element minOccurs="0" name="authAppName" type="xs:string"/>
+                    <xs:element minOccurs="0" name="certFingerprint" type="xs:string"/>
+                    <xs:element minOccurs="0" name="civilId" type="xs:string"/>
+                    <xs:element minOccurs="0" name="fingerprint" type="xs:base64Binary"/>
+                    <xs:element name="otp" type="xs:int"/>
+                    <xs:element minOccurs="0" name="regnum" type="xs:string"/>
+                    <xs:element minOccurs="0" name="signature" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="WS100008_registerOTPRequestResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="tns:serviceResponse"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="serviceResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="request" type="xs:anyType"/>
+                    <xs:element minOccurs="0" name="requestId" type="xs:string"/>
+                    <xs:element minOccurs="0" name="response" type="xs:anyType"/>
+                    <xs:element name="resultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="resultMessage" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="registerOTPData">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="resultMsg" type="xs:string"/>
+                    <xs:element minOccurs="0" name="status" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="WS100002_mock">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="request" type="tns:mockRequestData"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="mockRequestData">
+                <xs:complexContent>
+                    <xs:extension base="tns:serviceRequest">
+                        <xs:sequence/>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="WS100002_mockResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="tns:serviceResponse"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="mockData">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="param1" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="param10" nillable="true" type="xs:byte"/>
+                    <xs:element minOccurs="0" name="param11" type="tns:mockSubData"/>
+                    <xs:element minOccurs="0" name="param2" type="xs:string"/>
+                    <xs:element name="param3" type="xs:int"/>
+                    <xs:element minOccurs="0" name="param4" type="xs:dateTime"/>
+                    <xs:element name="param5" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="param6" type="xs:boolean"/>
+                    <xs:element name="param7" type="xs:float"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="param8" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="param9" type="xs:base64Binary"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="mockSubData">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="subData1" type="xs:string"/>
+                    <xs:element minOccurs="0" name="subData2" type="xs:string"/>
+                    <xs:element name="subData3" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="WS100009_checkOtp">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="request" type="tns:checkOtpRequestData"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="checkOtpRequestData">
+                <xs:complexContent>
+                    <xs:extension base="tns:serviceRequest">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="otp" type="xs:string"/>
+                            <xs:element minOccurs="0" name="regnum" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="WS100009_checkOtpResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="tns:serviceResponse"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="checkOtpData">
+                <xs:sequence>
+                    <xs:element name="match" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="WS100001_listAccess">
+                <xs:sequence/>
+            </xs:complexType>
+            <xs:complexType name="WS100001_listAccessResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="tns:serviceResponse"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="xypClientData">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="accessToken" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="approvedServices" nillable="true" type="tns:webService"/>
+                    <xs:element minOccurs="0" name="certFingerprint" type="xs:string"/>
+                    <xs:element minOccurs="0" name="certPath" type="xs:string"/>
+                    <xs:element minOccurs="0" name="certificate" type="xs:string"/>
+                    <xs:element minOccurs="0" name="expireDate" type="xs:dateTime"/>
+                    <xs:element name="id" type="xs:int"/>
+                    <xs:element name="orgId" type="xs:int"/>
+                    <xs:element minOccurs="0" name="orgTitle" type="xs:string"/>
+                    <xs:element minOccurs="0" name="orgTitleEng" type="xs:string"/>
+                    <xs:element minOccurs="0" name="registered" type="xs:boolean"/>
+                    <xs:element name="useNotification" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="webService">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="code" type="xs:string"/>
+                    <xs:element minOccurs="0" name="expireDate" type="xs:dateTime"/>
+                    <xs:element name="id" type="xs:int"/>
+                    <xs:element minOccurs="0" name="operationDetail" type="xs:string"/>
+                    <xs:element minOccurs="0" name="operationName" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="parameters" nillable="true" type="xs:string"/>
+                    <xs:element name="sendNotification" type="xs:int"/>
+                    <xs:element minOccurs="0" name="wsdlEndpint" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="WS100003_getLog">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="request" type="tns:logRequestData"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="logRequestData">
+                <xs:complexContent>
+                    <xs:extension base="tns:serviceRequest">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="operationName" type="xs:string"/>
+                            <xs:element minOccurs="0" name="requestId" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="WS100003_getLogResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="tns:serviceResponse"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="logInfoData">
+                <xs:sequence>
+                    <xs:element name="authCitizen" type="xs:boolean"/>
+                    <xs:element name="authOperator" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="citizenRegnum" type="xs:string"/>
+                    <xs:element minOccurs="0" name="clientOrg" type="xs:string"/>
+                    <xs:element minOccurs="0" name="operationName" type="xs:string"/>
+                    <xs:element minOccurs="0" name="operatorRegnum" type="xs:string"/>
+                    <xs:element minOccurs="0" name="requestData" type="xs:string"/>
+                    <xs:element minOccurs="0" name="responseData" type="xs:string"/>
+                    <xs:element name="resultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="serviceDate" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="wsEndpoint" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="WS100008_registerOTPRequest">
+        <wsdl:part element="tns:WS100008_registerOTPRequest" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="WS100009_checkOtpResponse">
+        <wsdl:part element="tns:WS100009_checkOtpResponse" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="WS100008_registerOTPRequestResponse">
+        <wsdl:part element="tns:WS100008_registerOTPRequestResponse" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="WS100003_getLog">
+        <wsdl:part element="tns:WS100003_getLog" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="WS100002_mock">
+        <wsdl:part element="tns:WS100002_mock" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="WS100002_mockResponse">
+        <wsdl:part element="tns:WS100002_mockResponse" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="WS100009_checkOtp">
+        <wsdl:part element="tns:WS100009_checkOtp" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="WS100001_listAccessResponse">
+        <wsdl:part element="tns:WS100001_listAccessResponse" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="WS100001_listAccess">
+        <wsdl:part element="tns:WS100001_listAccess" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="WS100003_getLogResponse">
+        <wsdl:part element="tns:WS100003_getLogResponse" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="MetaService">
+        <wsdl:operation name="WS100008_registerOTPRequest">
+            <wsdl:input message="tns:WS100008_registerOTPRequest" name="WS100008_registerOTPRequest"> </wsdl:input>
+            <wsdl:output message="tns:WS100008_registerOTPRequestResponse" name="WS100008_registerOTPRequestResponse"> </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="WS100002_mock">
+            <wsdl:input message="tns:WS100002_mock" name="WS100002_mock"> </wsdl:input>
+            <wsdl:output message="tns:WS100002_mockResponse" name="WS100002_mockResponse"> </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="WS100009_checkOtp">
+            <wsdl:input message="tns:WS100009_checkOtp" name="WS100009_checkOtp"> </wsdl:input>
+            <wsdl:output message="tns:WS100009_checkOtpResponse" name="WS100009_checkOtpResponse"> </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="WS100001_listAccess">
+            <wsdl:input message="tns:WS100001_listAccess" name="WS100001_listAccess"> </wsdl:input>
+            <wsdl:output message="tns:WS100001_listAccessResponse" name="WS100001_listAccessResponse"> </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="WS100003_getLog">
+            <wsdl:input message="tns:WS100003_getLog" name="WS100003_getLog"> </wsdl:input>
+            <wsdl:output message="tns:WS100003_getLogResponse" name="WS100003_getLogResponse"> </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="MetaServiceServiceSoapBinding" type="tns:MetaService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="WS100008_registerOTPRequest">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="WS100008_registerOTPRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="WS100008_registerOTPRequestResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="WS100002_mock">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="WS100002_mock">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="WS100002_mockResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="WS100009_checkOtp">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="WS100009_checkOtp">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="WS100009_checkOtpResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="WS100001_listAccess">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="WS100001_listAccess">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="WS100001_listAccessResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="WS100003_getLog">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="WS100003_getLog">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="WS100003_getLogResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="MetaServiceService">
+        <wsdl:port binding="tns:MetaServiceServiceSoapBinding" name="MetaServicePort">
+            <soap:address location="http://xyp.gov.mn/meta-1.5.0/ws"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

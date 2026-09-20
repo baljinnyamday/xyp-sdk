@@ -1,0 +1,31 @@
+name: python-release
+
+# Publishes packages/python to PyPI when a tag like python-v0.1.0a1 is pushed.
+# Uses PyPI Trusted Publishing: no API token exists anywhere.
+on:
+  push:
+    tags: ["python-v*"]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+      contents: read
+    defaults:
+      run:
+        working-directory: packages/python
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - name: Tag must match the package version
+        run: |
+          version=$(uv run --no-project python -c "import tomllib; print(tomllib.load(open('pyproject.toml','rb'))['project']['version'])")
+          test "python-v$version" = "$GITHUB_REF_NAME"
+      - run: uv sync
+      - run: uv run pytest
+      - run: uv build --out-dir dist
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: packages/python/dist

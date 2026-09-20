@@ -1,0 +1,79 @@
+[project]
+name = "xyp"
+version = "0.1.0a1"
+description = "Typed Python SDK for XYP (ХУР), Mongolia's government data exchange system"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "baljinnyamday" }]
+requires-python = ">=3.10"
+keywords = ["xyp", "khur", "mongolia", "soap", "sdk", "e-mongolia"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Typing :: Typed",
+]
+dependencies = [
+    "httpx>=0.27",
+    "pydantic>=2.6",
+    "cryptography>=42",
+    "defusedxml>=0.7.1",
+    "typing-extensions>=4.6",
+]
+
+[project.urls]
+Homepage = "https://github.com/baljinnyamday/xyp-sdk"
+Documentation = "https://github.com/baljinnyamday/xyp-sdk/tree/main/packages/python#readme"
+Issues = "https://github.com/baljinnyamday/xyp-sdk/issues"
+Source = "https://github.com/baljinnyamday/xyp-sdk/tree/main/packages/python"
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "pytest-asyncio>=0.24",
+    "respx>=0.21",
+    "ruff>=0.6",
+    "pyright>=1.1.380",
+    "types-defusedxml>=0.7.0.20260504",
+    "zeep>=4.3.3",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+# The repository ignores *.pem so credentials cannot be committed by accident;
+# the bundled CA certificates are the deliberate exception.
+artifacts = ["src/xyp/certs/*.pem"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/xyp"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+filterwarnings = ["error"]
+
+[tool.ruff]
+src = ["src"]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF", "TID252"]
+# Generated docstrings carry Mongolian text from the portal (Cyrillic is expected).
+ignore = ["RUF001", "RUF002", "RUF003"]
+
+[tool.ruff.lint.per-file-ignores]
+# Generated code: docstrings quote the portal verbatim, and some XYP names are very long.
+"src/xyp/operations/**/*.py" = ["E501"]
+"src/xyp/services/*.py" = ["E501"]
+
+[tool.pyright]
+typeCheckingMode = "strict"
+include = ["src"]
