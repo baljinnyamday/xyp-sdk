@@ -3,38 +3,11 @@ name: python
 on:
   push:
     branches: [main]
-    paths: ["packages/python/**", "generator/**", "spec/**", ".github/workflows/python.yml"]
+    paths: ["packages/python/**", ".github/workflows/python.yml"]
   pull_request:
-    paths: ["packages/python/**", "generator/**", "spec/**", ".github/workflows/python.yml"]
+    paths: ["packages/python/**", ".github/workflows/python.yml"]
 
 jobs:
-  generator:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: generator
-    steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v5
-      - uses: pnpm/action-setup@v4
-        with:
-          package_json_file: packages/typescript/package.json
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-      - name: Install the formatter the TypeScript emitter uses
-        run: pnpm install --frozen-lockfile
-        working-directory: packages/typescript
-      - run: uv sync
-      - run: uv run ruff check .
-      - run: uv run ruff format --check .
-      - run: uv run pyright
-      - run: uv run pytest
-      - name: Generated code is up to date
-        run: |
-          uv run xyp-generate
-          git diff --exit-code -- ../packages
-
   package:
     runs-on: ubuntu-latest
     strategy:

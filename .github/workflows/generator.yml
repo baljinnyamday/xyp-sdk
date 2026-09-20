@@ -1,0 +1,38 @@
+name: generator
+
+# The generator writes code into every SDK, so it runs when any of them, the spec
+# or the generator itself changes, and fails if committed generated code is stale.
+on:
+  push:
+    branches: [main]
+    paths: ["generator/**", "spec/**", "packages/**", ".github/workflows/generator.yml"]
+  pull_request:
+    paths: ["generator/**", "spec/**", "packages/**", ".github/workflows/generator.yml"]
+
+jobs:
+  generator:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: generator
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: packages/typescript/package.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install the formatter the TypeScript emitter uses
+        run: pnpm install --frozen-lockfile
+        working-directory: packages/typescript
+      - run: uv sync
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run pyright
+      - run: uv run pytest
+      - name: Generated code is up to date
+        run: |
+          uv run xyp-generate
+          git diff --exit-code -- ../packages
