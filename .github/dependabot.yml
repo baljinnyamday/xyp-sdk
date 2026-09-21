@@ -1,0 +1,19 @@
+version: 2
+
+updates:
+  # Workflow actions are the only third-party code this repository runs in CI.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: "ci"
+
+  # The Go module has no dependencies on purpose; this watches the Go directive
+  # and would catch one creeping in.
+  - package-ecosystem: gomod
+    directory: /packages/go
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: "go"
