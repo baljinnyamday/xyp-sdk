@@ -57,6 +57,6 @@ jobs:
             echo "**Install:** \`npm install xyp-sdk@$version\` · [npm](https://www.npmjs.com/package/xyp-sdk/v/$version) · [README](https://github.com/$GITHUB_REPOSITORY/tree/$GITHUB_REF_NAME/packages/typescript#readme)"
             echo
           } > notes.md
-          previous=$(git ls-remote --tags --sort=-v:refname origin 'typescript-v*' | awk -F/ '{print $3}' | grep -vx "$GITHUB_REF_NAME" | head -1)
+          previous=$(git ls-remote --tags --refs --sort=-v:refname origin 'typescript-v*' | awk -F/ '{print $3}' | grep -vx "$GITHUB_REF_NAME" | head -1)
           gh release create "$GITHUB_REF_NAME" --title "Node.js / TypeScript: xyp-sdk $version" --notes-file notes.md \
             --generate-notes ${previous:+--notes-start-tag "$previous"} $flags
