@@ -1,0 +1,21 @@
+{{ header }}
+
+// Package {{ group.package }} holds the {{ group.operations | length }} XYP services of the `{{ group.name }}` group,
+// served from {{ group.endpoints | join(", ") }}.
+//
+//	import (
+//		"{{ xyp_import }}"
+//		"{{ xyp_import }}/{{ group.package }}"
+//	)
+//
+//	client, err := xyp.NewClient(xyp.Options{})
+//	service := {{ group.package }}.New(client)
+package {{ group.package }}
+
+import "{{ xyp_import }}"
+
+// Service calls the `{{ group.name }}` group's services through one shared client.
+type Service struct{ client *xyp.Client }
+
+// New binds this group's services to client, which stays owned by the caller.
+func New(client *xyp.Client) *Service { return &Service{client: client} }

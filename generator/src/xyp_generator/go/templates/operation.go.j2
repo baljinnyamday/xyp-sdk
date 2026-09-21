@@ -1,0 +1,71 @@
+{{ header }}
+
+package {{ group.package }}
+
+{% if operation.uses_xyp %}
+import (
+	"context"
+
+	"{{ xyp_import }}"
+)
+{% else %}
+import "context"
+{% endif %}
+
+// {{ operation.params.name }} is the input of {{ operation.operation }}. Every field is
+// optional; a zero value is left out of the request.
+type {{ operation.params.name }} struct {
+{% for field in operation.params.fields %}
+{% if field.doc %}
+	// {{ field.doc }}
+{% endif %}
+	{{ field.name }} {{ field.type }} `xyp:"{{ field.wire_name }}"`
+{% endfor %}
+}
+{% for struct in operation.structs %}
+
+{% if struct.name == operation.response %}
+// {{ struct.name }} is the response of {{ operation.operation }}{% if struct.doc %}: {{ struct.doc }}{% endif %}.
+{% elif struct.doc %}
+// {{ struct.name }}: {{ struct.doc }}
+{% else %}
+// {{ struct.name }} is a nested object in the response of {{ operation.operation }}.
+{% endif %}
+type {{ struct.name }} struct {
+{% for field in struct.fields %}
+{% if field.doc %}
+	// {{ field.doc }}
+{% endif %}
+	{{ field.name }} {{ field.type }} `xyp:"{{ field.wire_name }}"`
+{% endfor %}
+{% if struct.name == operation.response %}
+
+	// Xyp carries what this struct could not. Mismatches lists the response
+	// fields that did not fit the model (they kept their zero value), and Raw is
+	// the whole response, including fields this struct does not declare.
+	Xyp xyp.Extras `xyp:"-"`
+{% endif %}
+}
+{% endfor %}
+
+// {{ operation.name }} calls {{ operation.operation }}{% if operation.doc %}: {{ operation.doc }}{% endif %}
+
+{% if operation.organization %}
+//
+// Provider: {{ operation.organization }}
+{% endif %}
+{% if operation.response %}
+func (s *Service) {{ operation.name }}(ctx context.Context, params {{ operation.params.name }}{% if operation.accepts_auth %}, opts ...xyp.CallOption{% endif %}) (*{{ operation.response }}, error) {
+	var out {{ operation.response }}
+	extras, err := s.client.Invoke(ctx, {{ operation.operation | gostr }}, params, &out{% if operation.accepts_auth %}, opts...{% endif %})
+	if err != nil {
+		return nil, err
+	}
+	out.Xyp = extras
+	return &out, nil
+}
+{% else %}
+func (s *Service) {{ operation.name }}(ctx context.Context, params {{ operation.params.name }}{% if operation.accepts_auth %}, opts ...xyp.CallOption{% endif %}) (any, error) {
+	return s.client.Call(ctx, {{ operation.operation | gostr }}, params{% if operation.accepts_auth %}, opts...{% endif %})
+}
+{% endif %}
