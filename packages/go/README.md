@@ -29,6 +29,9 @@ defer client.Close()
 
 card, err := citizen.New(client).GetCitizenIDCardInfo(ctx,
 	citizen.GetCitizenIDCardInfoParams{Regnum: "РД00000000"})
+if err != nil {
+	return err
+}
 fmt.Println(card.Firstname, card.Lastname)
 ```
 

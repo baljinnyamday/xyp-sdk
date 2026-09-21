@@ -2,6 +2,9 @@
 
     uv run --project ../python python scripts/make_fixtures.py
 
+Run it from packages/typescript after `pnpm install`: the TypeScript copy is formatted
+with the package's own biome, because `pnpm lint` checks it.
+
 The Python SDK's XML is verified against zeep (the SOAP library the known-working XYP
 clients use) for every operation in spec/wsdl. The TypeScript and Go SDKs must produce
 the same bytes for the same input, which makes them zeep-verified too.
