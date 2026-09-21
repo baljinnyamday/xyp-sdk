@@ -1,10 +1,10 @@
-"""Export request envelopes from the Python SDK as fixtures for the TypeScript tests.
+"""Export request envelopes from the Python SDK as fixtures for the other SDKs' tests.
 
     uv run --project ../python python scripts/make_fixtures.py
 
 The Python SDK's XML is verified against zeep (the SOAP library the known-working XYP
-clients use) for every operation in spec/wsdl. The TypeScript SDK must produce the
-same bytes for the same input, which makes it zeep-verified too.
+clients use) for every operation in spec/wsdl. The TypeScript and Go SDKs must produce
+the same bytes for the same input, which makes them zeep-verified too.
 """
 
 from __future__ import annotations
@@ -20,7 +20,10 @@ from xyp._operations import NAMESPACES
 from xyp._soap import build_envelope
 
 ROOT = Path(__file__).resolve().parents[3]
-OUTPUT = Path(__file__).resolve().parents[1] / "tests" / "fixtures" / "envelopes.json"
+OUTPUTS = (
+    ROOT / "packages" / "typescript" / "tests" / "fixtures" / "envelopes.json",
+    ROOT / "packages" / "go" / "xyp" / "testdata" / "envelopes.json",
+)
 XS = "{http://www.w3.org/2001/XMLSchema}"
 REGNUM = "РД00000000"
 SAMPLES: dict[str, Any] = {
@@ -55,7 +58,9 @@ def _request_fields(wsdl: Path) -> dict[str, dict[str, str]]:
 
     operations: dict[str, dict[str, str]] = {}
     for name, node in types.items():
-        request = next((el for el in node.iter(f"{XS}element") if el.get("name") == "request"), None)
+        request = next(
+            (el for el in node.iter(f"{XS}element") if el.get("name") == "request"), None
+        )
         if name and request is not None:
             operations[name] = fields(request.get("type", "").rpartition(":")[2])
     return operations
@@ -85,14 +90,18 @@ def main() -> None:
                     "operation": operation,
                     "namespace": namespace,
                     "params": params,
+                    # JSON objects have no order in Go, so the schema order is kept apart.
+                    "paramOrder": list(params),
                     "dateFields": [name for name in params if schema[name] == "dateTime"],
                     "auth": AUTH if accepts_auth else None,
                     "envelope": envelope.decode("utf-8"),
                 }
             )
-    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT.write_text(json.dumps(cases, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-    print(f"wrote {len(cases)} envelopes to {OUTPUT}")
+    payload = json.dumps(cases, ensure_ascii=False, indent=1) + "\n"
+    for output in OUTPUTS:
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(payload, encoding="utf-8")
+        print(f"wrote {len(cases)} envelopes to {output}")
 
 
 def _python_value(kind: str, value: Any) -> Any:

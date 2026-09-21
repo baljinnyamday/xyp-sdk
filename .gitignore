@@ -16,6 +16,7 @@ node_modules/
 *.key
 *.pem
 !packages/python/src/xyp/certs/*.pem
+!packages/go/xyp/certs/*.pem
 .env
 .env.*
 
