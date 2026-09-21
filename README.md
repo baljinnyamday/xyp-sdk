@@ -4,6 +4,7 @@
 [![npm](https://img.shields.io/npm/v/xyp-sdk/alpha?label=npm%20%C2%B7%20xyp-sdk)](https://www.npmjs.com/package/xyp-sdk)
 [![python](https://github.com/baljinnyamday/xyp-sdk/actions/workflows/python.yml/badge.svg)](https://github.com/baljinnyamday/xyp-sdk/actions/workflows/python.yml)
 [![typescript](https://github.com/baljinnyamday/xyp-sdk/actions/workflows/typescript.yml/badge.svg)](https://github.com/baljinnyamday/xyp-sdk/actions/workflows/typescript.yml)
+[![go](https://github.com/baljinnyamday/xyp-sdk/actions/workflows/go.yml/badge.svg)](https://github.com/baljinnyamday/xyp-sdk/actions/workflows/go.yml)
 
 SDKs for **XYP (ХУР)**, Mongolia's government data exchange system, generated
 from one description of the API so every language exposes the same services.
@@ -12,7 +13,7 @@ from one description of the API so every language exposes the same services.
 | --- | --- | --- |
 | Python | [`packages/python`](packages/python) — `pip install "xyp>=0.1.0a2"` | alpha |
 | TypeScript / Node.js | [`packages/typescript`](packages/typescript) — `npm install xyp-sdk@alpha` | alpha |
-| Go | `packages/go` | planned |
+| Go | [`packages/go`](packages/go) — `go get github.com/baljinnyamday/xyp-sdk/packages/go@v0.1.0-alpha.1` | alpha |
 | Java | `packages/java` | planned |
 | PHP | `packages/php` | planned |
 
@@ -34,7 +35,8 @@ packages/<language>  small hand-written core + generated models and services
 - **Regenerate:** `cd generator && uv run xyp-generate`
 - **Never edit generated files** (Python: `operations/`, `services/`, `models/`,
   `_groups.py`, `_operations.py`; TypeScript: `src/operations/`, `src/services/`,
-  `src/types/`, `src/groups.ts`, `src/registry.ts`); change the generator or the spec.
+  `src/types/`, `src/groups.ts`, `src/registry.ts`; Go: `xyp/registry.go` and every
+  `xyp/<group>/` package); change the generator or the spec.
 
 XYP publishes SOAP WSDLs only inside its VPN, and its responses are typed
 `xs:anyType`, so the public portal catalog is the only description of what

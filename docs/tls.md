@@ -97,6 +97,17 @@ Xyp(..., verify=ssl_context)         # full control
 Xyp(..., verify=False)               # no verification
 ```
 
+In Go:
+
+```go
+xyp.NewClient(xyp.Options{RootCAs: pool})               // trust a different CA
+xyp.NewClient(xyp.Options{InsecureSkipVerify: true})    // no verification
+```
+
+`xyp.BundledCAs()` returns a fresh pool holding the two certificates above, so
+`pool := xyp.BundledCAs(); pool.AppendCertsFromPEM(proxyCA)` trusts your proxy
+in addition to them.
+
 If verification starts failing after XYP renews its certificate under a new
 CA, update the SDK, or pass the new CA certificate through `verify=`.
 
