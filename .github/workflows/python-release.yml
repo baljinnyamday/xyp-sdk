@@ -47,6 +47,6 @@ jobs:
             echo "**Install:** \`pip install \"xyp==$version\"\` · [PyPI](https://pypi.org/project/xyp/$version/) · [README](https://github.com/$GITHUB_REPOSITORY/tree/$GITHUB_REF_NAME/packages/python#readme)"
             echo
           } > notes.md
-          previous=$(git ls-remote --tags --sort=-v:refname origin 'python-v*' | awk -F/ '{print $3}' | grep -vx "$GITHUB_REF_NAME" | head -1)
+          previous=$(git ls-remote --tags --refs --sort=-v:refname origin 'python-v*' | awk -F/ '{print $3}' | grep -vx "$GITHUB_REF_NAME" | head -1)
           gh release create "$GITHUB_REF_NAME" --title "Python: xyp $version" --notes-file notes.md \
             --generate-notes ${previous:+--notes-start-tag "$previous"} $flags
