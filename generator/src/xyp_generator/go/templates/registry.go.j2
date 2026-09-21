@@ -1,0 +1,19 @@
+{{ header }}
+
+package xyp
+
+// operationEndpoints maps an XYP operation name to the endpoint that serves it.
+var operationEndpoints = map[string]string{
+{% for service in api.services %}
+	{{ service.operation | gostr }}: {{ service.endpoint | gostr }},
+{% endfor %}
+}
+
+// knownNamespaces maps an endpoint to its XML namespace, for the endpoints whose
+// WSDL is checked into spec/wsdl/. Any other endpoint has its namespace read from
+// the live WSDL the first time it is used.
+var knownNamespaces = map[string]string{
+{% for endpoint, namespace in api.namespaces | dictsort %}
+	{{ endpoint | gostr }}: {{ namespace | gostr }},
+{% endfor %}
+}
