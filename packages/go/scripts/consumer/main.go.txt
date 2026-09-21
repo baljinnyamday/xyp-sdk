@@ -1,0 +1,64 @@
+// A project that depends on this module from the outside. It is stored as
+// main.go.txt so it is not part of this module's own build; CI copies it into a
+// throwaway module and runs it, once against the working tree and once against
+// the published version. Everything it does works without a network route to
+// XYP.
+package main
+
+import (
+	"context"
+	"crypto/rand"
+	"crypto/rsa"
+	"errors"
+	"fmt"
+	"os"
+
+	"github.com/baljinnyamday/xyp-sdk/packages/go/xyp"
+	"github.com/baljinnyamday/xyp-sdk/packages/go/xyp/citizen"
+)
+
+// Port 1 refuses connections, so nothing here waits on a real network.
+const unreachable = "http://127.0.0.1:1"
+
+func main() {
+	if err := check(); err != nil {
+		fmt.Fprintln(os.Stderr, "FAILED:", err)
+		os.Exit(1)
+	}
+	fmt.Println("OK: the module installs, compiles and behaves from outside")
+}
+
+func check() error {
+	key, err := rsa.GenerateKey(rand.Reader, 2048)
+	if err != nil {
+		return err
+	}
+
+	var configErr *xyp.ConfigError
+	_, err = xyp.NewClient(xyp.Options{AccessToken: "t", PrivateKey: key, BaseURL: "xyp.gov.mn"})
+	if !errors.As(err, &configErr) || xyp.OriginOf(err) != xyp.OriginConfig {
+		return fmt.Errorf("a base URL without a scheme gave %v, want a *xyp.ConfigError", err)
+	}
+
+	client, err := xyp.NewClient(xyp.Options{
+		AccessToken: "t", PrivateKey: key, BaseURL: unreachable,
+	})
+	if err != nil {
+		return fmt.Errorf("NewClient: %w", err)
+	}
+	defer client.Close()
+
+	ctx := context.Background()
+	if _, err := client.Call(ctx, "WS999999_doesNotExist", nil); !errors.As(err, &configErr) {
+		return fmt.Errorf("an unknown operation gave %v, want a *xyp.ConfigError", err)
+	}
+
+	// The generated packages are a separate import path, so this proves both ship.
+	_, err = citizen.New(client).GetCitizenIDCardInfo(ctx,
+		citizen.GetCitizenIDCardInfoParams{Regnum: "РД00000000"})
+	var connectionErr *xyp.ConnectionError
+	if !errors.As(err, &connectionErr) || xyp.OriginOf(err) != xyp.OriginNetwork {
+		return fmt.Errorf("an unreachable XYP gave %v, want a *xyp.ConnectionError", err)
+	}
+	return nil
+}
