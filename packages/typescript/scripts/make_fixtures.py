@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import json
 import re
+import subprocess
 from pathlib import Path
 from typing import Any
 from xml.etree.ElementTree import parse
@@ -102,6 +103,13 @@ def main() -> None:
         output.parent.mkdir(parents=True, exist_ok=True)
         output.write_text(payload, encoding="utf-8")
         print(f"wrote {len(cases)} envelopes to {output}")
+    # `pnpm lint` checks tests/ too, so the TypeScript copy gets the package's own formatting.
+    subprocess.run(
+        ["pnpm", "exec", "biome", "format", "--write", str(OUTPUTS[0])],
+        cwd=OUTPUTS[0].parents[2],
+        check=True,
+        capture_output=True,
+    )
 
 
 def _python_value(kind: str, value: Any) -> Any:
