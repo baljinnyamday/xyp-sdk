@@ -1,0 +1,86 @@
+name: go-release
+
+# Go modules are published by pushing a tag: there is no registry to upload to.
+# The tag must carry the module's subdirectory prefix, so `packages/go/v0.1.0`.
+# This workflow tests the tagged tree, creates the GitHub release, warms the
+# module proxy and then installs the published version into a throwaway project,
+# so a release nobody can `go get` fails loudly instead of quietly.
+on:
+  push:
+    tags: ["packages/go/v*"]
+
+env:
+  MODULE: github.com/baljinnyamday/xyp-sdk/packages/go
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/go
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+          cache-dependency-path: packages/go/go.mod
+      - name: The tag must be semver with the module's prefix
+        run: |
+          version="${GITHUB_REF_NAME#packages/go/}"
+          echo "$version" | grep -Eq '^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?(\+[0-9A-Za-z.-]+)?$' \
+            || { echo "$GITHUB_REF_NAME is not packages/go/vX.Y.Z"; exit 1; }
+      - run: test -z "$(gofmt -l .)" || { gofmt -l .; exit 1; }
+      - run: go vet ./...
+      - run: go test -race -count=1 ./...
+      - run: go mod verify
+
+  github-release:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version="${GITHUB_REF_NAME#packages/go/}"
+          case "$version" in *-*) flags="--prerelease --latest=false" ;; *) flags="" ;; esac
+          {
+            echo "**Install:** \`go get $MODULE@$version\` · [pkg.go.dev](https://pkg.go.dev/$MODULE/xyp@$version) · [README](https://github.com/$GITHUB_REPOSITORY/tree/$GITHUB_REF_NAME/packages/go#readme)"
+            echo
+          } > notes.md
+          previous=$(git ls-remote --tags --sort=-v:refname origin 'packages/go/v*' | sed 's#.*refs/tags/##' | grep -vx "$GITHUB_REF_NAME" | head -1)
+          gh release create "$GITHUB_REF_NAME" --title "Go: xyp $version" --notes-file notes.md \
+            --generate-notes ${previous:+--notes-start-tag "$previous"} $flags
+
+  proxy:
+    needs: github-release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+      - name: Warm the module proxy
+        run: |
+          version="${GITHUB_REF_NAME#packages/go/}"
+          for attempt in 1 2 3 4 5; do
+            curl -fsS "https://proxy.golang.org/$MODULE/@v/$version.info" && exit 0
+            echo "proxy not ready yet (attempt $attempt)"; sleep 20
+          done
+          exit 1
+      - name: The published version installs and runs in an empty project
+        env:
+          CONSUMER: ${{ runner.temp }}/consumer
+          GOFLAGS: -mod=mod
+        run: |
+          version="${GITHUB_REF_NAME#packages/go/}"
+          mkdir -p "$CONSUMER"
+          cp packages/go/scripts/consumer/main.go.txt "$CONSUMER/main.go"
+          cd "$CONSUMER"
+          go mod init consumercheck
+          go get "$MODULE@$version"
+          go vet ./...
+          go run .

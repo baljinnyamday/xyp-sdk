@@ -25,6 +25,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      # gofmt is what the Go emitter formats its output with.
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+          cache-dependency-path: packages/go/go.mod
 
       - name: Fetch the catalog from developer.xyp.gov.mn
         run: |
@@ -54,20 +59,28 @@ jobs:
         working-directory: packages/typescript
         run: pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm test:consumer
 
+      - name: Test the Go SDK
+        if: steps.diff.outputs.changed == 'true'
+        working-directory: packages/go
+        run: |
+          test -z "$(gofmt -l .)" || { gofmt -l .; exit 1; }
+          go vet ./... && go build ./... && go test -race -count=1 ./...
+
       - name: Write the pull request description
         if: steps.diff.outputs.changed == 'true'
         run: |
           {
             cat "$RUNNER_TEMP/summary.md"
             echo
-            echo "Both SDKs were regenerated from the new catalog, and lint, type checks and"
+            echo "Every SDK was regenerated from the new catalog, and lint, type checks and"
             echo "tests already passed in the [sync run]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)."
             echo "The usual CI on this pull request waits for you: click **Approve and run workflows** below."
             echo
             echo "**To release:** merge, bump the versions in \`packages/python/pyproject.toml\` and"
-            echo "\`packages/typescript/package.json\`, then push the tags \`python-v<version>\` and"
-            echo "\`typescript-v<version>\`. Removed or retyped fields are breaking for users; say so"
-            echo "in the release notes."
+            echo "\`packages/typescript/package.json\`, then push the tags \`python-v<version>\`,"
+            echo "\`typescript-v<version>\` and \`packages/go/v<version>\` (the Go module has no version"
+            echo "file: the tag is the version). Removed or retyped fields are breaking for users;"
+            echo "say so in the release notes."
           } > "$RUNNER_TEMP/body.md"
 
       - name: Open or update the pull request

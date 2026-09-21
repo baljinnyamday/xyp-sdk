@@ -24,6 +24,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      # gofmt is what the Go emitter formats its output with.
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+          cache-dependency-path: packages/go/go.mod
       - name: Install the formatter the TypeScript emitter uses
         run: pnpm install --frozen-lockfile
         working-directory: packages/typescript

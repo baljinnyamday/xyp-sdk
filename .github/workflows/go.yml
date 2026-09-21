@@ -1,0 +1,63 @@
+name: go
+
+on:
+  push:
+    branches: [main]
+    paths: ["packages/go/**", "generator/**", "spec/**", ".github/workflows/go.yml"]
+  pull_request:
+    paths: ["packages/go/**", "generator/**", "spec/**", ".github/workflows/go.yml"]
+
+jobs:
+  module:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go: ["1.23", "stable"]
+    defaults:
+      run:
+        working-directory: packages/go
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go }}
+          cache-dependency-path: packages/go/go.mod
+
+      - name: Generated and hand-written code is gofmt-clean
+        run: test -z "$(gofmt -l .)" || { gofmt -l .; exit 1; }
+      - run: go vet ./...
+      - run: go build ./...
+      - run: go test -race -count=1 ./...
+
+      # The module has no dependencies; keeping it that way is part of the deal.
+      - name: go.mod is tidy and no go.sum appears
+        run: |
+          go mod tidy
+          git diff --exit-code -- go.mod go.sum
+          test ! -e go.sum || { echo "go.sum exists: a dependency crept in"; exit 1; }
+      - run: go mod verify
+
+      - name: A project outside this repository compiles and runs against the module
+        env:
+          CONSUMER: ${{ runner.temp }}/consumer
+        run: |
+          mkdir -p "$CONSUMER"
+          cp scripts/consumer/main.go.txt "$CONSUMER/main.go"
+          cd "$CONSUMER"
+          go mod init consumercheck
+          go mod edit -replace github.com/baljinnyamday/xyp-sdk/packages/go="$GITHUB_WORKSPACE/packages/go"
+          go mod edit -require github.com/baljinnyamday/xyp-sdk/packages/go@v0.0.0
+          go mod tidy
+          go vet ./...
+          go run .
+
+      - uses: golangci/golangci-lint-action@v8
+        if: matrix.go == 'stable'
+        with:
+          version: v2.13.2 # the version this configuration was verified against
+          working-directory: packages/go
+      - name: govulncheck
+        if: matrix.go == 'stable'
+        run: |
+          go install golang.org/x/vuln/cmd/govulncheck@latest
+          govulncheck ./...
