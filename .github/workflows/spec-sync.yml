@@ -30,6 +30,12 @@ jobs:
         with:
           go-version: stable
           cache-dependency-path: packages/go/go.mod
+      # php-cs-fixer is what the PHP emitter formats its output with.
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          coverage: none
+          tools: composer:v2
 
       - name: Fetch the catalog from developer.xyp.gov.mn
         run: |
@@ -47,6 +53,7 @@ jobs:
         if: steps.diff.outputs.changed == 'true'
         run: |
           pnpm install --frozen-lockfile --dir packages/typescript
+          composer update --no-interaction --no-progress --prefer-stable
           cd generator && uv sync && uv run xyp-generate
 
       - name: Test the Python SDK
@@ -66,6 +73,10 @@ jobs:
           test -z "$(gofmt -l .)" || { gofmt -l .; exit 1; }
           go vet ./... && go build ./... && go test -race -count=1 ./...
 
+      - name: Test the PHP SDK
+        if: steps.diff.outputs.changed == 'true'
+        run: composer cs && composer analyse -- --no-progress && composer test
+
       - name: Write the pull request description
         if: steps.diff.outputs.changed == 'true'
         run: |
@@ -78,8 +89,9 @@ jobs:
             echo
             echo "**To release:** merge, bump the versions in \`packages/python/pyproject.toml\` and"
             echo "\`packages/typescript/package.json\`, then push the tags \`python-v<version>\`,"
-            echo "\`typescript-v<version>\` and \`packages/go/v<version>\` (the Go module has no version"
-            echo "file: the tag is the version). Removed or retyped fields are breaking for users;"
+            echo "\`typescript-v<version>\`, \`packages/go/v<version>\` and \`php-v<version>\` (the Go"
+            echo "module and the PHP package have no version file: the tag is the version)."
+            echo "Removed or retyped fields are breaking for users;"
             echo "say so in the release notes."
           } > "$RUNNER_TEMP/body.md"
 

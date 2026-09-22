@@ -29,6 +29,15 @@ jobs:
         with:
           go-version: stable
           cache-dependency-path: packages/go/go.mod
+      # php-cs-fixer is what the PHP emitter formats its output with.
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          coverage: none
+          tools: composer:v2
+      - name: Install the formatter the PHP emitter uses
+        run: composer update --no-interaction --no-progress --prefer-stable
+        working-directory: .
       - name: Install the formatter the TypeScript emitter uses
         run: pnpm install --frozen-lockfile
         working-directory: packages/typescript

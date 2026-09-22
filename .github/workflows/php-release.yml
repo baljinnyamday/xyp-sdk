@@ -1,0 +1,92 @@
+name: php-release
+
+# Packagist publishes a PHP version when it sees a tag on this repository (its
+# GitHub hook), so for PHP pushing the tag *is* publishing, as it is for Go. The
+# tag is a plain version like v0.1.0-alpha.1: Composer reads versions from tag
+# names and ignores the python-v*, typescript-v* and packages/go/v* tags.
+#
+# Tag only a commit whose php workflow passed. This workflow tests the tagged tree
+# again, waits for Packagist to list the version, installs it into an empty project
+# and creates the GitHub release. A bad release is fixed by releasing a new version,
+# never by moving the tag: lock files everywhere already record its commit.
+on:
+  push:
+    tags: ["v*"]
+
+env:
+  PACKAGE: baljinnyamday/xyp-sdk
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ["8.2", "8.5"]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+          tools: composer:v2
+      - name: The tag must be a semantic version Composer reads the same way
+        run: |
+          echo "$GITHUB_REF_NAME" | grep -Eq '^v[0-9]+\.[0-9]+\.[0-9]+(-(alpha|beta|RC)\.[0-9]+)?$' \
+            || { echo "$GITHUB_REF_NAME is not vX.Y.Z[-alpha|beta|RC.N]"; exit 1; }
+      - run: composer validate --strict
+      - run: composer update --no-interaction --no-progress --prefer-stable
+      - run: composer test
+      - run: composer analyse -- --no-progress
+
+  packagist:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
+        with:
+          php-version: "8.2"
+          coverage: none
+          tools: composer:v2
+      - name: Wait for Packagist to list the version
+        run: |
+          for attempt in $(seq 1 20); do
+            if curl -fsS "https://repo.packagist.org/p2/$PACKAGE.json" \
+                | jq -e --arg v "$GITHUB_REF_NAME" '.packages[env.PACKAGE][] | select(.version == $v)' >/dev/null; then
+              exit 0
+            fi
+            echo "Packagist does not list $GITHUB_REF_NAME yet (attempt $attempt)"; sleep 30
+          done
+          echo "Is the Packagist GitHub hook installed? https://packagist.org/packages/$PACKAGE"
+          exit 1
+      - name: The published version installs and runs in an empty project
+        env:
+          CONSUMER: ${{ runner.temp }}/consumer
+        run: |
+          mkdir -p "$CONSUMER"
+          cp packages/php/scripts/consumer.php "$CONSUMER/consumer.php"
+          cd "$CONSUMER"
+          echo '{"name": "consumer/check", "require": {}}' > composer.json
+          composer require --no-interaction --no-progress "$PACKAGE:${GITHUB_REF_NAME#v}"
+          php consumer.php
+
+  github-release:
+    needs: packagist
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - name: Create the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          case "$version" in *-*) flags="--prerelease --latest=false" ;; *) flags="" ;; esac
+          {
+            echo "**Install:** \`composer require $PACKAGE:$version\` · [Packagist](https://packagist.org/packages/$PACKAGE#$GITHUB_REF_NAME) · [README](https://github.com/$GITHUB_REPOSITORY/tree/$GITHUB_REF_NAME/packages/php#readme)"
+            echo
+          } > notes.md
+          previous=$(git ls-remote --tags --refs --sort=-v:refname origin 'v*' | sed 's#.*refs/tags/##' | grep -vx "$GITHUB_REF_NAME" | head -1)
+          gh release create "$GITHUB_REF_NAME" --title "PHP: $PACKAGE $version" --notes-file notes.md \
+            --generate-notes ${previous:+--notes-start-tag "$previous"} $flags

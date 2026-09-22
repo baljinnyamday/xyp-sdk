@@ -1,0 +1,70 @@
+name: php
+
+# composer.json sits at the repository root because Packagist only reads a package
+# from there; the code, tests and tool configurations live in packages/php.
+on:
+  push:
+    branches: [main]
+    paths: ["packages/php/**", "composer.json", ".gitattributes", "generator/**", "spec/**", ".github/workflows/php.yml"]
+  pull_request:
+    paths: ["packages/php/**", "composer.json", ".gitattributes", "generator/**", "spec/**", ".github/workflows/php.yml"]
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Every PHP version with upstream support. 8.2 also runs against the lowest
+        # versions composer.json allows, so its lower bounds stay honest.
+        php: ["8.2", "8.3", "8.4", "8.5"]
+        dependencies: ["highest"]
+        include:
+          - php: "8.2"
+            dependencies: "lowest"
+    name: php ${{ matrix.php }} (${{ matrix.dependencies }})
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+          tools: composer:v2
+
+      - run: composer validate --strict
+      - name: Install dependencies
+        run: |
+          flags="--no-interaction --no-progress --prefer-stable"
+          if [ "${{ matrix.dependencies }}" = lowest ]; then flags="$flags --prefer-lowest"; fi
+          composer update $flags
+      - run: composer test
+      - run: composer analyse -- --no-progress
+        if: matrix.dependencies == 'highest'
+      - run: composer cs
+        if: matrix.dependencies == 'highest' && matrix.php == '8.2'
+      - run: composer audit
+        if: matrix.dependencies == 'highest'
+
+      # Packagist serves GitHub's archive of the tagged commit, which honours
+      # .gitattributes export-ignore. Install exactly that, not the working tree.
+      - name: A project outside this repository installs and runs the package
+        if: matrix.dependencies == 'highest'
+        env:
+          DIST: ${{ runner.temp }}/dist
+          CONSUMER: ${{ runner.temp }}/consumer
+        run: |
+          mkdir -p "$DIST" "$CONSUMER"
+          git archive --format=tar HEAD | tar -x -C "$DIST"
+          # An allow-list, so a package added to the monorepo later cannot start
+          # shipping to PHP users without anyone noticing.
+          unexpected=$(cd "$DIST" && find . -type f \
+            ! -path './composer.json' ! -path './LICENSE' ! -path './README.md' \
+            ! -path './packages/php/README.md' ! -path './packages/php/LICENSE' \
+            ! -path './packages/php/src/*' ! -path './packages/php/resources/*')
+          test -z "$unexpected" || { echo "These files would ship to PHP users:"; echo "$unexpected"; exit 1; }
+          cp packages/php/scripts/consumer.php "$CONSUMER/consumer.php"
+          cd "$CONSUMER"
+          echo '{"name": "consumer/check", "require": {}}' > composer.json
+          composer config repositories.xyp '{"type": "path", "url": "'"$DIST"'", "options": {"symlink": false, "versions": {"baljinnyamday/xyp-sdk": "0.0.1"}}}'
+          composer require --no-interaction --no-progress baljinnyamday/xyp-sdk:0.0.1
+          php consumer.php
