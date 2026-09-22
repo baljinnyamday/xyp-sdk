@@ -17,6 +17,11 @@ jobs:
       matrix:
         # 17 is the baseline the jar is compiled for; 21 and 25 are the LTS releases users move to.
         java: ["17", "21", "25"]
+    # spotless's ModuleHelper calls a terminally deprecated sun.misc.Unsafe method, which JDK 25
+    # warns about unless Maven's JVM allows it. JDK 17 and 21 reject the flag (it arrived in 23), so
+    # it cannot go in .mvn/jvm.config and is set for the 25 leg only.
+    env:
+      MAVEN_OPTS: ${{ matrix.java == '25' && '--sun-misc-unsafe-memory-access=allow' || '' }}
     defaults:
       run:
         working-directory: packages/java
@@ -36,6 +41,13 @@ jobs:
       # formatting on 21 and later; the 17 job still proves the code compiles and passes there.
       # `install` is `verify` plus a copy into ~/.m2, where the consumer check finds the jar.
       - run: ./mvnw -B install
+
+      # The README's smoke test runs examples/Smoke.java as a single-file program; it must keep
+      # compiling, without warnings, against the jar that was just built.
+      - name: examples/Smoke.java compiles against the jar
+        run: |
+          version=$(./mvnw -q help:evaluate -Dexpression=project.version -DforceStdout)
+          javac -Xlint:all -Werror -d "$RUNNER_TEMP/smoke" -cp "target/xyp-sdk-$version.jar" examples/Smoke.java
 
       # A consumer on the class path and one on the module path see different things: only the
       # second reads module-info.java, and a missing export or an unreadable resource inside the

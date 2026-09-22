@@ -16,6 +16,10 @@ permissions:
 jobs:
   sync:
     runs-on: ubuntu-latest
+    # spotless's ModuleHelper calls a terminally deprecated sun.misc.Unsafe method, which JDK 25
+    # warns about unless Maven's JVM allows it. JDK 17 and 21 reject the flag, so it is set per job, not in .mvn/jvm.config.
+    env:
+      MAVEN_OPTS: --sun-misc-unsafe-memory-access=allow
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v5
