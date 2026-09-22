@@ -36,6 +36,14 @@ jobs:
           php-version: "8.2"
           coverage: none
           tools: composer:v2
+      # The Java emitter formats its output with `./mvnw spotless:apply` (google-java-format),
+      # which needs Java 21 or later.
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "25"
+          cache: maven
+          cache-dependency-path: packages/java/pom.xml
 
       - name: Fetch the catalog from developer.xyp.gov.mn
         run: |
@@ -77,6 +85,12 @@ jobs:
         if: steps.diff.outputs.changed == 'true'
         run: composer cs && composer analyse -- --no-progress && composer test
 
+      # On Java 25 this also checks formatting, which the pom skips before Java 21.
+      - name: Test the Java SDK
+        if: steps.diff.outputs.changed == 'true'
+        working-directory: packages/java
+        run: ./mvnw -B verify
+
       - name: Write the pull request description
         if: steps.diff.outputs.changed == 'true'
         run: |
@@ -87,12 +101,13 @@ jobs:
             echo "tests already passed in the [sync run]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)."
             echo "The usual CI on this pull request waits for you: click **Approve and run workflows** below."
             echo
-            echo "**To release:** merge, bump the versions in \`packages/python/pyproject.toml\` and"
-            echo "\`packages/typescript/package.json\`, then push the tags \`python-v<version>\`,"
-            echo "\`typescript-v<version>\`, \`packages/go/v<version>\` and \`php-v<version>\` (the Go"
-            echo "module and the PHP package have no version file: the tag is the version)."
-            echo "Removed or retyped fields are breaking for users;"
-            echo "say so in the release notes."
+            echo "**To release:** merge, bump the versions in \`packages/python/pyproject.toml\`,"
+            echo "\`packages/typescript/package.json\` and \`packages/java/pom.xml\` (in \`packages/java\`:"
+            echo "\`./mvnw versions:set -DnewVersion=<version> -DgenerateBackupPoms=false\`), then push the"
+            echo "tags \`python-v<version>\`, \`typescript-v<version>\`, \`java-v<version>\`,"
+            echo "\`packages/go/v<version>\` and \`php-v<version>\` (the Go module and the PHP package"
+            echo "have no version file: the tag is the version)."
+            echo "Removed or retyped fields are breaking for users; say so in the release notes."
           } > "$RUNNER_TEMP/body.md"
 
       - name: Open or update the pull request

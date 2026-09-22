@@ -38,6 +38,14 @@ jobs:
       - name: Install the formatter the PHP emitter uses
         run: composer update --no-interaction --no-progress --prefer-stable
         working-directory: .
+      # The Java emitter formats its output with `./mvnw spotless:apply` (google-java-format),
+      # which needs Java 21 or later.
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "25"
+          cache: maven
+          cache-dependency-path: packages/java/pom.xml
       - name: Install the formatter the TypeScript emitter uses
         run: pnpm install --frozen-lockfile
         working-directory: packages/typescript

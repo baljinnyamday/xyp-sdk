@@ -1,0 +1,145 @@
+name: java-release
+
+# Publishes packages/java to Maven Central when a tag like java-v0.1.0-alpha.1 is pushed.
+# Central has no trusted publishing, so the Central Portal user token and the signing key are
+# secrets of the `maven-central` environment, which only the publish job can read. Central never
+# lets a version be replaced or deleted, so everything that can be checked is checked on the tag
+# before anything is uploaded; afterwards the published artifact is installed into a throwaway
+# project, so a release nobody can resolve fails loudly instead of quietly.
+#
+# No job restores a dependency cache: a release is built from what Maven Central serves, not from
+# whatever an earlier run left in ~/.m2.
+on:
+  push:
+    tags: ["java-v*"]
+
+permissions:
+  contents: read
+
+env:
+  GROUP_ID: io.github.baljinnyamday
+  ARTIFACT_ID: xyp-sdk
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/java
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          distribution: temurin
+          java-version: "25"
+      - name: Tag must match the project version
+        run: |
+          version=$(./mvnw -q help:evaluate -Dexpression=project.version -DforceStdout)
+          test "java-v$version" = "$GITHUB_REF_NAME" \
+            || { echo "$GITHUB_REF_NAME does not match <version>$version</version> in pom.xml"; exit 1; }
+          case "$version" in *-SNAPSHOT) echo "a SNAPSHOT is not a release"; exit 1 ;; esac
+      # On 25 this also checks formatting, which the pom skips before Java 21.
+      - run: ./mvnw -B install
+      - name: A project outside this build compiles and runs against the jar, on both paths
+        run: |
+          ./mvnw -B -q -f scripts/consumer/pom.xml package -Dxyp.version="${GITHUB_REF_NAME#java-v}"
+          cd scripts/consumer/target
+          java -cp "classes:lib/*" consumercheck.Main class-path
+          java -p classes:lib -m consumercheck/consumercheck.Main module-path
+
+  publish:
+    needs: test
+    runs-on: ubuntu-latest
+    # Central usually publishes within minutes; the pom's waitMaxTime gives up after an hour.
+    timeout-minutes: 75
+    environment: maven-central
+    defaults:
+      run:
+        working-directory: packages/java
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      # Writes a settings.xml whose `central` server reads the token from the two environment
+      # variables named here, and imports the key into a keyring of its own that is deleted when
+      # the job ends. The passphrase stays in MAVEN_GPG_PASSPHRASE, where the gpg plugin reads it.
+      - uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          distribution: temurin
+          java-version: "25"
+          server-id: central
+          server-username-env-var: MAVEN_CENTRAL_USERNAME
+          server-password-env-var: MAVEN_CENTRAL_PASSWORD
+          gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+          gpg-passphrase-env-var: MAVEN_GPG_PASSPHRASE
+      # The test job has just run the tests on this commit. The release profile signs every
+      # artifact, uploads the bundle to the Central Portal and waits until it is published.
+      - name: Sign, upload and wait until Maven Central has published it
+        env:
+          MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+        run: ./mvnw -B -Prelease deploy -DskipTests
+
+  github-release:
+    needs: publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - name: Create the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version="${GITHUB_REF_NAME#java-v}"
+          case "$version" in *-*) flags="--prerelease --latest=false" ;; *) flags="" ;; esac
+          {
+            echo "**Install:** \`implementation(\"$GROUP_ID:$ARTIFACT_ID:$version\")\` (Gradle) or the \`<dependency>\` below (Maven) · [Maven Central](https://central.sonatype.com/artifact/$GROUP_ID/$ARTIFACT_ID/$version) · [javadoc.io](https://javadoc.io/doc/$GROUP_ID/$ARTIFACT_ID/$version) · [README](https://github.com/$GITHUB_REPOSITORY/tree/$GITHUB_REF_NAME/packages/java#readme)"
+            echo
+            echo '```xml'
+            echo "<dependency>"
+            echo "  <groupId>$GROUP_ID</groupId>"
+            echo "  <artifactId>$ARTIFACT_ID</artifactId>"
+            echo "  <version>$version</version>"
+            echo "</dependency>"
+            echo '```'
+            echo
+          } > notes.md
+          previous=$(git ls-remote --tags --refs --sort=-v:refname origin 'java-v*' | awk -F/ '{print $3}' | grep -vx "$GITHUB_REF_NAME" | head -1)
+          gh release create "$GITHUB_REF_NAME" --title "Java: xyp-sdk $version" --notes-file notes.md \
+            --generate-notes ${previous:+--notes-start-tag "$previous"} $flags
+
+  central:
+    needs: publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: packages/java
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      # The baseline: a consumer still on Java 17 must be able to use what was published.
+      - uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          distribution: temurin
+          java-version: "17"
+      # "Published" on the Portal means accepted; the copy to repo1.maven.org, which every build
+      # tool reads, follows later and can take up to about half an hour.
+      - name: Wait until repo1.maven.org serves the release
+        run: |
+          version="${GITHUB_REF_NAME#java-v}"
+          url="https://repo1.maven.org/maven2/${GROUP_ID//.//}/$ARTIFACT_ID/$version/$ARTIFACT_ID-$version.pom"
+          for attempt in $(seq 1 40); do
+            curl -fsS -o /dev/null "$url" && exit 0
+            echo "not on repo1.maven.org yet (attempt $attempt of 40)"; sleep 60
+          done
+          exit 1
+      # An empty local repository, so the SDK can only come from Maven Central.
+      - name: The published version resolves and runs in an empty project, on both paths
+        env:
+          MAVEN_REPO: ${{ runner.temp }}/m2
+        run: |
+          ./mvnw -B -q -f scripts/consumer/pom.xml package \
+            -Dxyp.version="${GITHUB_REF_NAME#java-v}" -Dmaven.repo.local="$MAVEN_REPO"
+          cd scripts/consumer/target
+          java -cp "classes:lib/*" consumercheck.Main class-path
+          java -p classes:lib -m consumercheck/consumercheck.Main module-path
