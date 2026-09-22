@@ -87,6 +87,8 @@ jobs:
             echo "**Install:** \`composer require $PACKAGE:$version\` · [Packagist](https://packagist.org/packages/$PACKAGE#$GITHUB_REF_NAME) · [README](https://github.com/$GITHUB_REPOSITORY/tree/$GITHUB_REF_NAME/packages/php#readme)"
             echo
           } > notes.md
-          previous=$(git ls-remote --tags --refs --sort=-v:refname origin 'v*' | sed 's#.*refs/tags/##' | grep -vx "$GITHUB_REF_NAME" | head -1)
+          # ls-remote patterns match the end of a ref, so 'v*' also finds packages/go/v*.
+          previous=$(git ls-remote --tags --refs --sort=-v:refname origin 'v*' | sed 's#.*refs/tags/##' \
+            | grep -E '^v[0-9]' | grep -vx "$GITHUB_REF_NAME" | head -1 || true)
           gh release create "$GITHUB_REF_NAME" --title "PHP: $PACKAGE $version" --notes-file notes.md \
             --generate-notes ${previous:+--notes-start-tag "$previous"} $flags
