@@ -1,0 +1,32 @@
+{% macro entries(pairs) %}
+{% if pairs %}
+      Map.ofEntries(
+{% for key, value in pairs %}
+          Map.entry({{ key | javastr }}, {{ value | javastr }}){{ ");" if loop.last else "," }}
+{% endfor %}
+{% else %}
+      Map.of();
+{% endif %}
+{%- endmacro %}
+{{ header }}
+
+package {{ root_package }};
+
+import java.util.Map;
+
+/** The catalog the generator read: which endpoint serves each operation, and known namespaces. */
+final class Registry {
+  /** Maps an XYP operation name to the endpoint that serves it. */
+  static final Map<String, String> OPERATION_ENDPOINTS =
+{{ entries(operation_endpoints) }}
+
+  /**
+   * Maps an endpoint to its XML namespace, for the endpoints whose WSDL is checked into
+   * spec/wsdl/. Any other endpoint has its namespace read from the live WSDL the first time it
+   * is used.
+   */
+  static final Map<String, String> KNOWN_NAMESPACES =
+{{ entries(known_namespaces) }}
+
+  private Registry() {}
+}

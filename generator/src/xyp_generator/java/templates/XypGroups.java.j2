@@ -1,0 +1,38 @@
+{{ header }}
+
+package {{ root_package }};
+
+{% for group in groups %}
+import {{ group.package }}.{{ group.class_name }};
+{% endfor %}
+
+/**
+ * One accessor per XYP service group, inherited by {@link XypClient}, its only subclass.
+ *
+ * <p>Each accessor returns the same group client every time, bound to this client and as
+ * thread-safe as it is.
+ */
+public abstract sealed class XypGroups permits XypClient {
+{% for group in groups %}
+  private final {{ group.class_name }} {{ group.accessor }};
+{% endfor %}
+
+  /** Binds every group client to this {@link XypClient}. */
+  protected XypGroups() {
+    XypClient client = (XypClient) this;
+{% for group in groups %}
+    this.{{ group.accessor }} = new {{ group.class_name }}(client);
+{% endfor %}
+  }
+{% for group in groups %}
+
+  /**
+   * Returns {{ group.summary }}.
+   *
+   * @return the {@code {{ group.name }}} services, bound to this client
+   */
+  public final {{ group.class_name }} {{ group.accessor }}() {
+    return {{ group.accessor }};
+  }
+{% endfor %}
+}

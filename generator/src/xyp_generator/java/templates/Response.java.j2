@@ -1,0 +1,28 @@
+{% macro record(view, modifiers) %}
+{{ view.javadoc | javadoc }}
+{{ modifiers }}record {{ view.name }}(
+{% for component in view.components %}
+    {{ component.type }} {{ component.name }}{{ ") {" if loop.last else "," }}
+{% endfor %}
+
+  static {{ view.name }} decode(ResponseReader reader) {
+    return new {{ view.name }}(
+{% for component in view.components %}
+        {{ component.decoder }}{{ ");" if loop.last else "," }}
+{% endfor %}
+  }
+{% for nested in view.records %}
+
+{{ record(nested, "public ") | indent(2, first=True) }}
+{% endfor %}
+}
+{%- endmacro %}
+{{ header }}
+
+package {{ group.package }};
+
+{% for import in response.imports %}
+import {{ import }};
+{% endfor %}
+
+{{ record(response.record, "public ") }}

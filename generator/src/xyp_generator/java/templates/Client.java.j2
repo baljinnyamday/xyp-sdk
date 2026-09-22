@@ -1,0 +1,37 @@
+{{ header }}
+
+package {{ group.package }};
+
+import {{ root_package }}.CallOptions;
+import {{ root_package }}.XypApiException;
+import {{ root_package }}.XypClient;
+import {{ root_package }}.XypException;
+import java.util.Objects;
+
+/**
+ * Calls {{ group.summary }}.
+ *
+ * <p>Get it from {@link XypClient#{{ group.accessor }}()}. It holds no state of its own, so it is
+ * as thread-safe as the client it is bound to.
+ */
+public final class {{ group.class_name }} {
+  private final XypClient client;
+
+  /**
+   * Binds the {@code {{ group.name }}} services to {@code client}, which stays owned by the caller.
+   *
+   * @param client the client every call goes through
+   */
+  public {{ group.class_name }}(XypClient client) {
+    this.client = Objects.requireNonNull(client, "client");
+  }
+{% for operation in group.operations %}
+{% for overload in operation.overloads %}
+
+{{ overload.javadoc | javadoc | indent(2, first=True) }}
+  public {{ operation.return_type }} {{ operation.method }}({{ overload.parameters }}) {
+    return {{ overload.body }};
+  }
+{% endfor %}
+{% endfor %}
+}
