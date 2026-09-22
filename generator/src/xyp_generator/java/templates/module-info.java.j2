@@ -1,0 +1,18 @@
+{{ header }}
+
+/**
+ * The XYP SDK: typed access to Mongolia's government data exchange (XYP, xyp.gov.mn).
+ *
+ * <p>Start with {@link {{ root_package }}.XypClient}. Each service group has its own package,
+ * {@code {{ root_package }}.<group>}, whose client is returned by the matching
+ * {@code XypClient} accessor.
+ */
+module {{ root_package }} {
+  requires java.net.http;
+  requires java.xml;
+
+  exports {{ root_package }};
+{% for group in groups %}
+  exports {{ group.package }};
+{% endfor %}
+}

@@ -1,0 +1,112 @@
+{{ header }}
+
+package {{ group.package }};
+
+{% for import in params.imports %}
+import {{ import }};
+{% endfor %}
+
+/**
+ * The request of {@link {{ group.class_name }}#{{ operation.method }}}, XYP operation
+ * {@code {{ operation.operation }}}.
+ *
+ * <p>Every field is optional: a field left {@code null} is not sent. Instances are immutable;
+ * create one with {@link #builder()}.
+ */
+public final class {{ params.name }} implements RequestParams {
+{% for field in params.fields %}
+  private final {{ field.type }} {{ field.name }};
+{% endfor %}
+
+  private {{ params.name }}(Builder builder) {
+{% for field in params.fields %}
+    this.{{ field.name }} = builder.{{ field.name }};
+{% endfor %}
+  }
+
+  /**
+   * Returns a builder with every field unset.
+   *
+   * @return a new builder
+   */
+  public static Builder builder() {
+    return new Builder();
+  }
+{% for field in params.fields %}
+
+  /**
+   * {{ field.doc or "Returns the {@code " ~ field.wire_name ~ "} field." }}
+   *
+   * @return the value{{ " (a copy)" if field.copy == "array" }}, or {@code null} when it is not set
+   */
+  public {{ field.type }} {{ field.name }}() {
+{% if field.copy == "array" %}
+    return {{ field.name }} == null ? null : {{ field.name }}.clone();
+{% else %}
+    return {{ field.name }};
+{% endif %}
+  }
+{% endfor %}
+
+  @Override
+  public Params toParams() {
+    return Params.builder()
+{% for field in params.fields %}
+        .add({{ field.wire_name | javastr }}, {{ field.name }})
+{% endfor %}
+        .build();
+  }
+
+  /**
+   * Builds a {@link {{ params.name }}}. Every setter accepts {@code null}, which leaves the field
+   * out of the request. A builder is not thread-safe; it can be reused, and setting a field again
+   * does not change the params it has already built.
+   */
+  public static final class Builder {
+{% for field in params.fields %}
+    private {{ field.type }} {{ field.name }};
+{% endfor %}
+
+    private Builder() {}
+{% for field in params.fields %}
+
+    /**
+     * {{ field.doc or "Sets the {@code " ~ field.wire_name ~ "} field." }}
+     *
+{% if field.copy == "list" %}
+     * @param {{ field.name }} the values, copied (a {@code null} item is not sent), or {@code null}
+{% elif field.copy == "map" %}
+     * @param {{ field.name }} the nested fields, copied in iteration order, or {@code null}
+{% elif field.copy == "array" %}
+     * @param {{ field.name }} the value, copied, or {@code null}
+{% else %}
+     * @param {{ field.name }} the value, or {@code null}
+{% endif %}
+     * @return this builder
+     */
+    public Builder {{ field.name }}({{ field.type }} {{ field.name }}) {
+{% if field.copy == "array" %}
+      this.{{ field.name }} = {{ field.name }} == null ? null : {{ field.name }}.clone();
+{% elif field.copy == "list" %}
+      this.{{ field.name }} =
+          {{ field.name }} == null ? null : Collections.unmodifiableList(new ArrayList<>({{ field.name }}));
+{% elif field.copy == "map" %}
+      this.{{ field.name }} =
+          {{ field.name }} == null ? null : Collections.unmodifiableMap(new LinkedHashMap<>({{ field.name }}));
+{% else %}
+      this.{{ field.name }} = {{ field.name }};
+{% endif %}
+      return this;
+    }
+{% endfor %}
+
+    /**
+     * Returns the params set so far.
+     *
+     * @return a new, immutable {@link {{ params.name }}}
+     */
+    public {{ params.name }} build() {
+      return new {{ params.name }}(this);
+    }
+  }
+}

@@ -6,6 +6,7 @@ import sys
 from pathlib import Path
 
 from xyp_generator.go.emit import emit as emit_go
+from xyp_generator.java.emit import emit as emit_java
 from xyp_generator.php.emit import emit as emit_php
 from xyp_generator.python.emit import emit as emit_python
 from xyp_generator.spec import load_api
@@ -25,6 +26,8 @@ def main() -> None:
     sys.stdout.write(f"go: {summary} -> {len(written)} files\n")
     written = emit_php(api, REPO_ROOT / "packages" / "php")
     sys.stdout.write(f"php: {summary} -> {len(written)} files\n")
+    written = emit_java(api, REPO_ROOT / "packages" / "java")
+    sys.stdout.write(f"java: {summary} -> {len(written)} files\n")
 
 
 if __name__ == "__main__":
