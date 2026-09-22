@@ -103,8 +103,13 @@
  * }
  * }</pre>
  *
- * <p>No message, {@code toString()} or log line ever contains the access token, the key, a one-time
- * code, a registration number or a response value.
+ * <p>No exception message or log line of the SDK, and no {@code toString()} of its own types
+ * ({@code XypClient}, {@code Auth}, {@code Mismatch}, {@code Extras}, the exceptions), contains the
+ * access token, the key, a one-time code, a registration number or a response value. Generated
+ * response records, and values such as {@link io.github.baljinnyamday.xyp.XypDate}, are plain data
+ * carriers: their {@code toString()} prints what they hold, citizen data included ({@code
+ * ListAccessResponse} even holds your access token), so log the fields you need, never a whole
+ * record.
  *
  * <h2>TLS</h2>
  *

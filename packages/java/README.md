@@ -164,6 +164,9 @@ IdCard card = xyp.invoke(
     IdCard::decode);
 ```
 
+The generated records decode the same way: `GetCitizenIDCardInfoResponse::decode`
+can be passed to `invoke`, for example with an endpoint override.
+
 Request parameters for `call` and `invoke` may be `null`, a generated
 `*Params` (sent in schema order), `Params` (sent in your order), any
 `RequestParams` of your own, or a `Map<String, ?>`. A `LinkedHashMap` or a
@@ -296,9 +299,13 @@ and `Extras`' `toString()`. `System.Logger` goes to `java.util.logging` unless
 you install a bridge (SLF4J's `slf4j-jdk-platform-logging`, Log4j's
 `log4j-jpl`); pass `logger(...)` to the builder to route or silence it.
 
-A response record's own `toString()` is the one a record always has: it prints
-every field, citizen data included (and `listAccess` echoes your access token).
-Log the fields you need, not the whole response.
+The SDK's own types (`XypClient`, `Auth`, `Mismatch`, `Extras`, the
+exceptions) never print a token, a key, a one-time code or a response value.
+Response records (and values such as `XypDate`) are different: they are plain
+data carriers, and their `toString()` is the one a record always has, printing
+every field it holds —
+citizen data included (`listAccess` even echoes your access token). Log the
+fields you need, never a whole response.
 
 ## TLS
 
@@ -358,6 +365,12 @@ A request field left `null` (or an empty string) is not sent. The generated
 `*Params` classes are immutable; their builders copy lists and arrays, and can
 be reused.
 
+A `byte[]` component of a response record, such as `image()`, is the record's
+own array, not a copy: don't modify it if the record is shared. And as with any
+record, `equals` and `hashCode` compare arrays by identity, so two records with
+the same photo are equal only if they hold the same array
+(`Arrays.equals(a.image(), b.image())` compares the contents).
+
 ## Threads, virtual threads and closing
 
 One `XypClient` is meant to be shared: it is immutable after `build()`, safe
@@ -371,6 +384,23 @@ holds no lock while it waits on the network.
 calls in flight; on Java 17 the JDK's HTTP client cannot be closed and is
 released when the client becomes unreachable. Calls after `close()` throw
 `XypConfigException`.
+
+## Testing your code
+
+To test the whole path, point `baseUrl("http://127.0.0.1:" + port)` at a local
+fake server that answers with a recorded SOAP response. To build response
+records for fixtures without any HTTP, decode a tree like the one `call`
+returns:
+
+```java
+Map<String, Object> tree = Map.of("regnum", "РД00000000", "firstname", "Бат", "lastname", "Дорж");
+GetCitizenIDCardInfoResponse card =
+    ResponseReader.decode(tree, GetCitizenIDCardInfoResponse::decode);
+```
+
+`XypClient` and the group clients are `final`; to mock them anyway, use
+Mockito's inline mock maker (the default since Mockito 5), or put your own
+interface in front of the calls you make.
 
 ## Modules and the class path
 

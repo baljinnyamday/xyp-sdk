@@ -26,6 +26,7 @@ import java.security.PrivateKey;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The Java snippets of packages/java/README.md, verbatim, so the build compiles them against the
@@ -182,6 +183,13 @@ final class ReadmeExamples {
       Object sent = mismatch.value(); // the raw value, when you do want it
     }
     Object raw = card.extras().raw(); // the whole response, undeclared fields included
+  }
+
+  void testFixture() {
+    Map<String, Object> tree =
+        Map.of("regnum", "РД00000000", "firstname", "Бат", "lastname", "Дорж");
+    GetCitizenIDCardInfoResponse card =
+        ResponseReader.decode(tree, GetCitizenIDCardInfoResponse::decode);
   }
 
   void tls() throws Exception {
