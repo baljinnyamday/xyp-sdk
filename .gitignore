@@ -22,6 +22,7 @@ node_modules/
 !packages/python/src/xyp/certs/*.pem
 !packages/go/xyp/certs/*.pem
 !packages/php/resources/certs/*.pem
+!packages/java/src/main/resources/io/github/baljinnyamday/xyp/certs/*.pem
 .env
 .env.*
 
