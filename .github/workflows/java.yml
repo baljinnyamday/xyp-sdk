@@ -1,0 +1,56 @@
+name: java
+
+on:
+  push:
+    branches: [main]
+    paths: ["packages/java/**", "generator/**", "spec/**", ".github/workflows/java.yml"]
+  pull_request:
+    paths: ["packages/java/**", "generator/**", "spec/**", ".github/workflows/java.yml"]
+
+permissions:
+  contents: read
+
+jobs:
+  library:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # 17 is the baseline the jar is compiled for; 21 and 25 are the LTS releases users move to.
+        java: ["17", "21", "25"]
+    defaults:
+      run:
+        working-directory: packages/java
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+          cache: maven
+          cache-dependency-path: |
+            packages/java/pom.xml
+            packages/java/scripts/consumer/pom.xml
+
+      # Compiles with -Werror, runs the tests, builds the sources and javadoc jars with doclint,
+      # and runs the enforcer. google-java-format needs Java 21 to run, so the pom only checks
+      # formatting on 21 and later; the 17 job still proves the code compiles and passes there.
+      # `install` is `verify` plus a copy into ~/.m2, where the consumer check finds the jar.
+      - run: ./mvnw -B install
+
+      # A consumer on the class path and one on the module path see different things: only the
+      # second reads module-info.java, and a missing export or an unreadable resource inside the
+      # named module fails there alone.
+      - name: A project outside this build compiles and runs against the jar, on both paths
+        run: |
+          version=$(./mvnw -q help:evaluate -Dexpression=project.version -DforceStdout)
+          ./mvnw -B -q -f scripts/consumer/pom.xml package -Dxyp.version="$version"
+          cd scripts/consumer/target
+          java -cp "classes:lib/*" consumercheck.Main class-path
+          java -p classes:lib -m consumercheck/consumercheck.Main module-path
+
+      # The library has no runtime dependencies; keeping it that way is part of the deal.
+      # copy-dependencies copied the SDK and everything it pulls in, so there must be one jar.
+      - name: The SDK brings no runtime dependencies
+        run: |
+          find scripts/consumer/target/lib -type f
+          test "$(find scripts/consumer/target/lib -type f | wc -l)" -eq 1

@@ -17,3 +17,22 @@ updates:
       interval: weekly
     commit-message:
       prefix: "go"
+
+  # The Java library has no runtime dependencies on purpose; its pom only pins build plugins
+  # and test dependencies (JUnit, Jackson for the fixtures). The consumer check pins the few
+  # plugins it runs. One grouped pull request a week keeps a dozen plugins from opening a
+  # dozen pull requests.
+  - package-ecosystem: maven
+    directories:
+      - /packages/java
+      - /packages/java/scripts/consumer
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: "java"
+    groups:
+      maven:
+        patterns: ["*"]
+    ignore:
+      # The consumer check depends on the SDK itself, at the version CI passes in.
+      - dependency-name: "io.github.baljinnyamday:xyp-sdk"

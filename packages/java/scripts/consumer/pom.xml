@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- A project that depends on the SDK from the outside, the way a user's would: no parent, no
+     reactor, only the published coordinates. CI builds it against the freshly installed jar and,
+     after a release, against the artifact on Maven Central, then runs it twice: once on the class
+     path and once on the module path, which proves the SDK's module descriptor works for modular
+     consumers too. From packages/java:
+
+       ./mvnw -B -q install -DskipTests
+       ./mvnw -B -q -f scripts/consumer/pom.xml package -Dxyp.version=<version>
+       java -cp "scripts/consumer/target/classes:scripts/consumer/target/lib/*" consumercheck.Main class-path
+       java -p scripts/consumer/target/classes:scripts/consumer/target/lib -m consumercheck/consumercheck.Main module-path
+
+     Nothing it does needs a network route to XYP. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>consumercheck</groupId>
+  <artifactId>consumercheck</artifactId>
+  <version>1</version>
+  <packaging>jar</packaging>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- The oldest Java the SDK supports: a consumer on 17 must be able to use it. -->
+    <maven.compiler.release>17</maven.compiler.release>
+    <!-- xyp.version has no default on purpose: the caller says which SDK version to check
+         (-Dxyp.version=0.1.0), so a stale default can never be checked by mistake. -->
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>io.github.baljinnyamday</groupId>
+      <artifactId>xyp-sdk</artifactId>
+      <version>${xyp.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <!-- Only the plugins `package` runs, pinned to the versions the SDK's own build uses. -->
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.5.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.16.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.6.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.5.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>3.11.0</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <!-- A deprecation or an unchecked warning from the SDK's public API fails here. -->
+          <compilerArgs>
+            <arg>-Xlint:all</arg>
+            <arg>-Werror</arg>
+          </compilerArgs>
+        </configuration>
+      </plugin>
+      <!-- Puts the SDK jar in target/lib, so `java` can be given it on either path. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-runtime-dependencies</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <includeScope>runtime</includeScope>
+              <outputDirectory>${project.build.directory}/lib</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

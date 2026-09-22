@@ -65,6 +65,10 @@
     <maven-deploy-plugin.version>3.2.0</maven-deploy-plugin.version>
     <maven-site-plugin.version>3.22.0</maven-site-plugin.version>
     <maven-enforcer-plugin.version>3.6.3</maven-enforcer-plugin.version>
+    <!-- Run from the command line only: CI reads project.version with help:evaluate, and a
+         release bumps it with versions:set. Pinned here so both behave the same everywhere. -->
+    <maven-help-plugin.version>3.5.2</maven-help-plugin.version>
+    <versions-maven-plugin.version>2.22.0</versions-maven-plugin.version>
     <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
     <central-publishing-maven-plugin.version>0.11.0</central-publishing-maven-plugin.version>
     <spotless-maven-plugin.version>3.10.2</spotless-maven-plugin.version>
@@ -155,6 +159,16 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-enforcer-plugin</artifactId>
           <version>${maven-enforcer-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-help-plugin</artifactId>
+          <version>${maven-help-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>versions-maven-plugin</artifactId>
+          <version>${versions-maven-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -307,8 +321,9 @@
     </profile>
 
     <!-- Publishing to Maven Central: ./mvnw -B -Prelease deploy
-         Needs the `central` server credentials in settings.xml and a signing key;
-         the key's passphrase comes from MAVEN_GPG_PASSPHRASE. -->
+         Needs the `central` server credentials (a Central Portal user token) in settings.xml and
+         the signing key in gpg's keyring; the key's passphrase comes from MAVEN_GPG_PASSPHRASE.
+         .github/workflows/java-release.yml sets all three up. -->
     <profile>
       <id>release</id>
       <build>
@@ -324,11 +339,10 @@
                   <goal>sign</goal>
                 </goals>
                 <configuration>
-                  <passphraseEnvName>MAVEN_GPG_PASSPHRASE</passphraseEnvName>
-                  <gpgArguments>
-                    <arg>--pinentry-mode</arg>
-                    <arg>loopback</arg>
-                  </gpgArguments>
+                  <!-- The passphrase may only come from MAVEN_GPG_PASSPHRASE (the plugin's default)
+                       or gpg-agent, never from settings.xml or this file. With a passphrase set,
+                       the plugin itself runs gpg with batch mode and loopback pinentry. -->
+                  <bestPractices>true</bestPractices>
                 </configuration>
               </execution>
             </executions>
@@ -339,8 +353,12 @@
             <extensions>true</extensions>
             <configuration>
               <publishingServerId>central</publishingServerId>
+              <deploymentName>${project.artifactId} ${project.version}</deploymentName>
               <autoPublish>true</autoPublish>
+              <!-- The release workflow only creates the GitHub release once this returns, so it
+                   waits for the Portal to publish; that usually takes minutes, rarely longer. -->
               <waitUntil>published</waitUntil>
+              <waitMaxTime>3600</waitMaxTime>
             </configuration>
           </plugin>
         </plugins>
