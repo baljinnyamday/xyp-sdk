@@ -25,7 +25,7 @@ jobs:
         with:
           node-version: 22
       # gofmt is what the Go emitter formats its output with.
-      - uses: actions/setup-go@v5
+      - uses: actions/setup-go@v7
         with:
           go-version: stable
           cache-dependency-path: packages/go/go.mod
