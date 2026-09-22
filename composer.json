@@ -1,0 +1,74 @@
+{
+    "name": "baljinnyamday/xyp-sdk",
+    "description": "Typed PHP SDK for XYP (ХУР), Mongolia's government data exchange system",
+    "license": "MIT",
+    "type": "library",
+    "keywords": [
+        "xyp",
+        "khur",
+        "mongolia",
+        "soap",
+        "sdk",
+        "e-mongolia"
+    ],
+    "authors": [
+        {
+            "name": "baljinnyamday",
+            "homepage": "https://github.com/baljinnyamday"
+        }
+    ],
+    "homepage": "https://github.com/baljinnyamday/xyp-sdk/tree/main/packages/php#readme",
+    "readme": "packages/php/README.md",
+    "support": {
+        "issues": "https://github.com/baljinnyamday/xyp-sdk/issues",
+        "source": "https://github.com/baljinnyamday/xyp-sdk/tree/main/packages/php",
+        "docs": "https://github.com/baljinnyamday/xyp-sdk/tree/main/packages/php#readme"
+    },
+    "require": {
+        "php": "^8.2",
+        "ext-curl": "*",
+        "ext-libxml": "*",
+        "ext-openssl": "*",
+        "ext-xmlreader": "*",
+        "psr/log": "^1.1 || ^2.0 || ^3.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "3.95.27",
+        "guzzlehttp/psr7": "^2.7",
+        "phpstan/phpstan": "2.2.14",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpstan/phpstan-strict-rules": "^2.0",
+        "phpunit/phpunit": "^11.5",
+        "psr/http-client": "^1.0",
+        "psr/http-factory": "^1.0"
+    },
+    "suggest": {
+        "psr/http-client": "To send requests through your own PSR-18 client (Guzzle, Symfony HttpClient) with Xyp\\Http\\Psr18Transport",
+        "psr/http-factory": "Required by Xyp\\Http\\Psr18Transport"
+    },
+    "autoload": {
+        "psr-4": {
+            "Xyp\\": "packages/php/src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Xyp\\Tests\\": "packages/php/tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "scripts": {
+        "analyse": "phpstan analyse --configuration=packages/php/phpstan.neon.dist --memory-limit=2G",
+        "cs": "php-cs-fixer fix --config=packages/php/.php-cs-fixer.dist.php --dry-run --diff",
+        "cs:fix": "php-cs-fixer fix --config=packages/php/.php-cs-fixer.dist.php",
+        "test": "phpunit --configuration=packages/php/phpunit.xml.dist"
+    },
+    "scripts-descriptions": {
+        "analyse": "PHPStan at level max with strict rules",
+        "cs": "Check coding style (PER-CS 2.0)",
+        "cs:fix": "Fix coding style",
+        "test": "Run the PHP SDK tests"
+    }
+}

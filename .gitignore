@@ -12,11 +12,16 @@ build/
 # Node
 node_modules/
 
+# PHP (composer.json is at the root because Packagist reads it from there)
+/vendor/
+/composer.lock
+
 # Credentials must never be committed
 *.key
 *.pem
 !packages/python/src/xyp/certs/*.pem
 !packages/go/xyp/certs/*.pem
+!packages/php/resources/certs/*.pem
 .env
 .env.*
 

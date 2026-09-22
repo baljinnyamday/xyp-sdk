@@ -1,0 +1,27 @@
+# composer.json is at the repository root because Packagist reads packages from
+# there, and Packagist serves GitHub's archive of each tagged commit. Everything
+# that is not the PHP runtime stays out of that archive, so `composer require`
+# downloads only packages/php/src and the bundled certificates. The php workflow
+# checks the archive against an allow-list.
+/.claude                export-ignore
+/.github                export-ignore
+/.gitattributes         export-ignore
+/.gitignore             export-ignore
+/docs                   export-ignore
+/generator              export-ignore
+/spec                   export-ignore
+/packages/go            export-ignore
+/packages/java          export-ignore
+/packages/python        export-ignore
+/packages/typescript    export-ignore
+/packages/php/.gitignore           export-ignore
+/packages/php/.php-cs-fixer.dist.php export-ignore
+/packages/php/examples             export-ignore
+/packages/php/phpstan.neon.dist    export-ignore
+/packages/php/phpunit.xml.dist     export-ignore
+/packages/php/scripts              export-ignore
+/packages/php/tests                export-ignore
+
+# Written by xyp-generator.
+/packages/php/src/Registry.php      linguist-generated
+/packages/php/src/ServiceGroups.php linguist-generated
