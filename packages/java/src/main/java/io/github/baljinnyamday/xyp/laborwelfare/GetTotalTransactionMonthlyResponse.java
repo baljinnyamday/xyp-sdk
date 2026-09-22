@@ -24,7 +24,14 @@ import java.util.List;
 public record GetTotalTransactionMonthlyResponse(
     Long year, Long month, String fundName, List<ListItem> list, Extras extras) {
 
-  static GetTotalTransactionMonthlyResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetTotalTransactionMonthlyResponse decode(ResponseReader reader) {
     return new GetTotalTransactionMonthlyResponse(
         reader.get("year", Decoders.INT),
         reader.get("month", Decoders.INT),
@@ -42,7 +49,14 @@ public record GetTotalTransactionMonthlyResponse(
    */
   public record ListItem(String officeName, Long totalAmount, Long count) {
 
-    static ListItem decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ListItem decode(ResponseReader reader) {
       return new ListItem(
           reader.get("officeName", Decoders.STRING),
           reader.get("totalAmount", Decoders.INT),

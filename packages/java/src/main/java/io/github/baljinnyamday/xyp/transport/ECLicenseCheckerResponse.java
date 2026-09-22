@@ -21,7 +21,14 @@ import io.github.baljinnyamday.xyp.ResponseReader;
 public record ECLicenseCheckerResponse(
     Long licenceId, Boolean isEcLicence, String message, Extras extras) {
 
-  static ECLicenseCheckerResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static ECLicenseCheckerResponse decode(ResponseReader reader) {
     return new ECLicenseCheckerResponse(
         reader.get("licenceId", Decoders.INT),
         reader.get("isEcLicence", Decoders.BOOL),

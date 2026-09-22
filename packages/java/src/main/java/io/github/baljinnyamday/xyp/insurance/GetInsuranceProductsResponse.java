@@ -19,7 +19,14 @@ import java.util.List;
  */
 public record GetInsuranceProductsResponse(List<ListItem> list, Extras extras) {
 
-  static GetInsuranceProductsResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetInsuranceProductsResponse decode(ResponseReader reader) {
     return new GetInsuranceProductsResponse(
         reader.get("list", Decoders.list(Decoders.object(ListItem::decode))), reader.extras());
   }
@@ -32,7 +39,14 @@ public record GetInsuranceProductsResponse(List<ListItem> list, Extras extras) {
    */
   public record ListItem(Long productId, String productName) {
 
-    static ListItem decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ListItem decode(ResponseReader reader) {
       return new ListItem(
           reader.get("productId", Decoders.INT), reader.get("productName", Decoders.STRING));
     }

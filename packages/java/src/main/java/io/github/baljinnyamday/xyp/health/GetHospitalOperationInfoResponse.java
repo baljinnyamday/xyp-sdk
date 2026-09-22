@@ -20,7 +20,14 @@ import java.util.List;
  */
 public record GetHospitalOperationInfoResponse(List<Data> data, Extras extras) {
 
-  static GetHospitalOperationInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetHospitalOperationInfoResponse decode(ResponseReader reader) {
     return new GetHospitalOperationInfoResponse(
         reader.get("data", Decoders.list(Decoders.object(Data::decode))), reader.extras());
   }
@@ -35,7 +42,14 @@ public record GetHospitalOperationInfoResponse(List<Data> data, Extras extras) {
    */
   public record Data(Long id, String code, String name, Long status) {
 
-    static Data decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Data decode(ResponseReader reader) {
       return new Data(
           reader.get("id", Decoders.INT),
           reader.get("code", Decoders.STRING),

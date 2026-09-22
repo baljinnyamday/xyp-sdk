@@ -43,7 +43,14 @@ public record ListAccessResponse(
     Long useNotification,
     Extras extras) {
 
-  static ListAccessResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static ListAccessResponse decode(ResponseReader reader) {
     return new ListAccessResponse(
         reader.get("id", Decoders.INT),
         reader.get("approvedServices", Decoders.list(Decoders.ANY)),

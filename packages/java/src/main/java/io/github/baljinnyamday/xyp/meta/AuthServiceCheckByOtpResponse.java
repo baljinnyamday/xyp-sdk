@@ -18,7 +18,14 @@ import io.github.baljinnyamday.xyp.ResponseReader;
  */
 public record AuthServiceCheckByOtpResponse(Boolean isMatch, Extras extras) {
 
-  static AuthServiceCheckByOtpResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static AuthServiceCheckByOtpResponse decode(ResponseReader reader) {
     return new AuthServiceCheckByOtpResponse(reader.get("isMatch", Decoders.BOOL), reader.extras());
   }
 }

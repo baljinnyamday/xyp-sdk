@@ -19,7 +19,14 @@ import io.github.baljinnyamday.xyp.ResponseReader;
  */
 public record HouseholdScoreCheckResponse(String message, Extras extras) {
 
-  static HouseholdScoreCheckResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static HouseholdScoreCheckResponse decode(ResponseReader reader) {
     return new HouseholdScoreCheckResponse(reader.get("message", Decoders.STRING), reader.extras());
   }
 }

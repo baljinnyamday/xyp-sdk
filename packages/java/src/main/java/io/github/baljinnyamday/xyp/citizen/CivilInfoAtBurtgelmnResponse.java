@@ -34,7 +34,14 @@ public record CivilInfoAtBurtgelmnResponse(
     List<Object> ws100201,
     Extras extras) {
 
-  static CivilInfoAtBurtgelmnResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static CivilInfoAtBurtgelmnResponse decode(ResponseReader reader) {
     return new CivilInfoAtBurtgelmnResponse(
         reader.get("WS100103", Decoders.list(Decoders.ANY)),
         reader.get("WS100104", Decoders.list(Decoders.ANY)),

@@ -19,7 +19,14 @@ import java.util.List;
  */
 public record ExchangeRateResponse(List<DataList> dataList, Extras extras) {
 
-  static ExchangeRateResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static ExchangeRateResponse decode(ResponseReader reader) {
     return new ExchangeRateResponse(
         reader.get("dataList", Decoders.list(Decoders.object(DataList::decode))), reader.extras());
   }
@@ -34,7 +41,14 @@ public record ExchangeRateResponse(List<DataList> dataList, Extras extras) {
    */
   public record DataList(String name, String code, String price, String date) {
 
-    static DataList decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static DataList decode(ResponseReader reader) {
       return new DataList(
           reader.get("name", Decoders.STRING),
           reader.get("code", Decoders.STRING),

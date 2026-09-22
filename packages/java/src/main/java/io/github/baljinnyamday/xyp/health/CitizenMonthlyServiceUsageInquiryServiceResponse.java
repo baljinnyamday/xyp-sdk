@@ -21,7 +21,14 @@ import java.util.List;
 public record CitizenMonthlyServiceUsageInquiryServiceResponse(
     List<InsuranceModel> insuranceModel, Extras extras) {
 
-  static CitizenMonthlyServiceUsageInquiryServiceResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static CitizenMonthlyServiceUsageInquiryServiceResponse decode(ResponseReader reader) {
     return new CitizenMonthlyServiceUsageInquiryServiceResponse(
         reader.get("insuranceModel", Decoders.list(Decoders.object(InsuranceModel::decode))),
         reader.extras());
@@ -55,7 +62,14 @@ public record CitizenMonthlyServiceUsageInquiryServiceResponse(
       Double totalMoney,
       List<Object> questionnaire) {
 
-    static InsuranceModel decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static InsuranceModel decode(ResponseReader reader) {
       return new InsuranceModel(
           reader.get("isConfirmed", Decoders.STRING),
           reader.get("rcad", Decoders.INT),

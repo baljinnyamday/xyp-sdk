@@ -19,7 +19,14 @@ import java.util.List;
  */
 public record GetFeedbackDimensionTagsResponse(List<Object> tags, Extras extras) {
 
-  static GetFeedbackDimensionTagsResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetFeedbackDimensionTagsResponse decode(ResponseReader reader) {
     return new GetFeedbackDimensionTagsResponse(
         reader.get("tags", Decoders.list(Decoders.ANY)), reader.extras());
   }

@@ -22,7 +22,14 @@ import java.util.List;
 public record ViolationPaymentByPlateNumberResponse(
     List<PaidList> paidList, List<UnpaidList> unpaidList, Extras extras) {
 
-  static ViolationPaymentByPlateNumberResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static ViolationPaymentByPlateNumberResponse decode(ResponseReader reader) {
     return new ViolationPaymentByPlateNumberResponse(
         reader.get("paidList", Decoders.list(Decoders.object(PaidList::decode))),
         reader.get("unpaidList", Decoders.list(Decoders.object(UnpaidList::decode))),
@@ -88,7 +95,14 @@ public record ViolationPaymentByPlateNumberResponse(
       String mofTmean,
       String mofRefnum) {
 
-    static PaidList decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static PaidList decode(ResponseReader reader) {
       return new PaidList(
           reader.get("amount", Decoders.INT),
           reader.get("invoiceNumber", Decoders.STRING),
@@ -177,7 +191,14 @@ public record ViolationPaymentByPlateNumberResponse(
       String mofTmean,
       String mofRefnum) {
 
-    static UnpaidList decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static UnpaidList decode(ResponseReader reader) {
       return new UnpaidList(
           reader.get("amount", Decoders.INT),
           reader.get("invoiceNumber", Decoders.STRING),

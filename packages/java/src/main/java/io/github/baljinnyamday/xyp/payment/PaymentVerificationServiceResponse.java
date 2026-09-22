@@ -21,7 +21,14 @@ import io.github.baljinnyamday.xyp.ResponseReader;
 public record PaymentVerificationServiceResponse(
     String data, Long status, String msg, Extras extras) {
 
-  static PaymentVerificationServiceResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static PaymentVerificationServiceResponse decode(ResponseReader reader) {
     return new PaymentVerificationServiceResponse(
         reader.get("data", Decoders.STRING),
         reader.get("status", Decoders.INT),

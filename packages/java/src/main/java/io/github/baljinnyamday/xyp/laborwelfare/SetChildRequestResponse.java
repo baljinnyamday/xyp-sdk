@@ -19,7 +19,14 @@ import io.github.baljinnyamday.xyp.ResponseReader;
  */
 public record SetChildRequestResponse(Long code, String result, Extras extras) {
 
-  static SetChildRequestResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static SetChildRequestResponse decode(ResponseReader reader) {
     return new SetChildRequestResponse(
         reader.get("code", Decoders.INT), reader.get("result", Decoders.STRING), reader.extras());
   }

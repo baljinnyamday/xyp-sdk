@@ -22,7 +22,14 @@ import io.github.baljinnyamday.xyp.ResponseReader;
 public record TaxReceiptBankByRegnumResponse(
     String invoiceNo, String invoiceType, String createdDate, Extras extras) {
 
-  static TaxReceiptBankByRegnumResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static TaxReceiptBankByRegnumResponse decode(ResponseReader reader) {
     return new TaxReceiptBankByRegnumResponse(
         reader.get("invoiceNo", Decoders.STRING),
         reader.get("invoiceType", Decoders.STRING),

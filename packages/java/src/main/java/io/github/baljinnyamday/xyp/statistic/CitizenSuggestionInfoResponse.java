@@ -67,7 +67,14 @@ public record CitizenSuggestionInfoResponse(
     List<LivestockTaxDetailList> livestockTaxDetailList,
     Extras extras) {
 
-  static CitizenSuggestionInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static CitizenSuggestionInfoResponse decode(ResponseReader reader) {
     return new CitizenSuggestionInfoResponse(
         reader.get("year", Decoders.INT),
         reader.get("canVote", Decoders.INT),
@@ -119,7 +126,14 @@ public record CitizenSuggestionInfoResponse(
       String location,
       String investTypeName) {
 
-    static FundedDetailList decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static FundedDetailList decode(ResponseReader reader) {
       return new FundedDetailList(
           reader.get("id", Decoders.INT),
           reader.get("activityCode", Decoders.INT),
@@ -149,7 +163,14 @@ public record CitizenSuggestionInfoResponse(
       Long targetNumber,
       String socialImpact) {
 
-    static AdditionalDetailList decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static AdditionalDetailList decode(ResponseReader reader) {
       return new AdditionalDetailList(
           reader.get("id", Decoders.INT),
           reader.get("activityName", Decoders.STRING),
@@ -169,7 +190,14 @@ public record CitizenSuggestionInfoResponse(
    */
   public record LivestockTaxDetailList(Long id, Long categoryCode, String description) {
 
-    static LivestockTaxDetailList decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static LivestockTaxDetailList decode(ResponseReader reader) {
       return new LivestockTaxDetailList(
           reader.get("id", Decoders.INT),
           reader.get("categoryCode", Decoders.INT),

@@ -30,7 +30,14 @@ public record SearchForDrugInstructionsByBarcodeResponse(
     List<Data> data,
     Extras extras) {
 
-  static SearchForDrugInstructionsByBarcodeResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static SearchForDrugInstructionsByBarcodeResponse decode(ResponseReader reader) {
     return new SearchForDrugInstructionsByBarcodeResponse(
         reader.get("retType", Decoders.INT),
         reader.get("retDesc", Decoders.STRING),
@@ -48,7 +55,14 @@ public record SearchForDrugInstructionsByBarcodeResponse(
    */
   public record Data(Long pk, String instruction) {
 
-    static Data decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Data decode(ResponseReader reader) {
       return new Data(reader.get("pk", Decoders.INT), reader.get("instruction", Decoders.STRING));
     }
   }

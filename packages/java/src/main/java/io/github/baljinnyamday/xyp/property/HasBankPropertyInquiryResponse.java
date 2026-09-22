@@ -22,7 +22,14 @@ import java.util.List;
 public record HasBankPropertyInquiryResponse(
     List<OwnerList> ownerList, List<PrevOwnerList> prevOwnerList, Extras extras) {
 
-  static HasBankPropertyInquiryResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static HasBankPropertyInquiryResponse decode(ResponseReader reader) {
     return new HasBankPropertyInquiryResponse(
         reader.get("ownerList", Decoders.list(Decoders.object(OwnerList::decode))),
         reader.get("prevOwnerList", Decoders.list(Decoders.object(PrevOwnerList::decode))),
@@ -55,7 +62,14 @@ public record HasBankPropertyInquiryResponse(
       String address,
       String isClosed) {
 
-    static OwnerList decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static OwnerList decode(ResponseReader reader) {
       return new OwnerList(
           reader.get("propertySize", Decoders.STRING),
           reader.get("registDate", Decoders.STRING),
@@ -100,7 +114,14 @@ public record HasBankPropertyInquiryResponse(
       String serviceTo,
       String serviceDtTo) {
 
-    static PrevOwnerList decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static PrevOwnerList decode(ResponseReader reader) {
       return new PrevOwnerList(
           reader.get("registDate", Decoders.STRING),
           reader.get("propertyNationRegnum", Decoders.STRING),

@@ -19,7 +19,14 @@ import java.util.List;
  */
 public record ListOfInvestmentRequestsResponse(List<ListItem> list, Extras extras) {
 
-  static ListOfInvestmentRequestsResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static ListOfInvestmentRequestsResponse decode(ResponseReader reader) {
     return new ListOfInvestmentRequestsResponse(
         reader.get("list", Decoders.list(Decoders.object(ListItem::decode))), reader.extras());
   }
@@ -44,7 +51,14 @@ public record ListOfInvestmentRequestsResponse(List<ListItem> list, Extras extra
       String appYear,
       String regnum) {
 
-    static ListItem decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ListItem decode(ResponseReader reader) {
       return new ListItem(
           reader.get("bankname", Decoders.STRING),
           reader.get("bankId", Decoders.INT),

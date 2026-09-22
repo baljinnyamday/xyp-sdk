@@ -54,7 +54,14 @@ public record GetLegalEntityInfoWithRegnumResponse(
     List<ChangeName> changeName,
     Extras extras) {
 
-  static GetLegalEntityInfoWithRegnumResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetLegalEntityInfoWithRegnumResponse decode(ResponseReader reader) {
     return new GetLegalEntityInfoWithRegnumResponse(
         reader.get("firstName", Decoders.STRING),
         reader.get("lastName", Decoders.STRING),
@@ -116,7 +123,14 @@ public record GetLegalEntityInfoWithRegnumResponse(
       String regulationDate,
       String contractDate) {
 
-    static General decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static General decode(ResponseReader reader) {
       return new General(
           reader.get("companyRegnum", Decoders.STRING),
           reader.get("companyName", Decoders.STRING),
@@ -180,7 +194,14 @@ public record GetLegalEntityInfoWithRegnumResponse(
       String createdUserName,
       String createdDate) {
 
-    static Address decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Address decode(ResponseReader reader) {
       return new Address(
           reader.get("companyRegnum", Decoders.STRING),
           reader.get("addressStatus", Decoders.STRING),
@@ -235,7 +256,14 @@ public record GetLegalEntityInfoWithRegnumResponse(
       String createdUserName,
       String createdDate) {
 
-    static Founder decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Founder decode(ResponseReader reader) {
       return new Founder(
           reader.get("status", Decoders.STRING),
           reader.get("stakeHolderTypeName", Decoders.STRING),
@@ -277,7 +305,14 @@ public record GetLegalEntityInfoWithRegnumResponse(
       String createdUserName,
       String createdDate) {
 
-    static Induty decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Induty decode(ResponseReader reader) {
       return new Induty(
           reader.get("companyRegnum", Decoders.STRING),
           reader.get("industryStatus", Decoders.STRING),
@@ -307,7 +342,14 @@ public record GetLegalEntityInfoWithRegnumResponse(
       String createdUserName,
       String createdDate) {
 
-    static Capital decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Capital decode(ResponseReader reader) {
       return new Capital(
           reader.get("companyRegnum", Decoders.STRING),
           reader.get("rowStatusName", Decoders.STRING),
@@ -339,7 +381,14 @@ public record GetLegalEntityInfoWithRegnumResponse(
       String createdUserName,
       String createdDate) {
 
-    static StakeHolders decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static StakeHolders decode(ResponseReader reader) {
       return new StakeHolders(
           reader.get("companyRegnum", Decoders.STRING),
           reader.get("status", Decoders.STRING),
@@ -374,7 +423,14 @@ public record GetLegalEntityInfoWithRegnumResponse(
       String createdUserName,
       String createdDate) {
 
-    static ShareHolders decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ShareHolders decode(ResponseReader reader) {
       return new ShareHolders(
           reader.get("companyRegnum", Decoders.STRING),
           reader.get("stakeholderTypeName", Decoders.STRING),
@@ -413,7 +469,14 @@ public record GetLegalEntityInfoWithRegnumResponse(
       String createdDate,
       String positionId) {
 
-    static GeneralR decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static GeneralR decode(ResponseReader reader) {
       return new GeneralR(
           reader.get("companyRegnum", Decoders.STRING),
           reader.get("status", Decoders.STRING),
@@ -454,7 +517,14 @@ public record GetLegalEntityInfoWithRegnumResponse(
       String createdUserName,
       String createdDate) {
 
-    static Branch decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Branch decode(ResponseReader reader) {
       return new Branch(
           reader.get("companyRegnum", Decoders.STRING),
           reader.get("branchStatus", Decoders.STRING),
@@ -493,7 +563,14 @@ public record GetLegalEntityInfoWithRegnumResponse(
       String createdUserName,
       String createdDate) {
 
-    static Liquidation decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Liquidation decode(ResponseReader reader) {
       return new Liquidation(
           reader.get("companyRegnum", Decoders.STRING),
           reader.get("companyName", Decoders.STRING),
@@ -525,7 +602,14 @@ public record GetLegalEntityInfoWithRegnumResponse(
       String companyNameNew,
       String amount) {
 
-    static ChangeFond decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ChangeFond decode(ResponseReader reader) {
       return new ChangeFond(
           reader.get("status", Decoders.STRING),
           reader.get("companyRegnum", Decoders.STRING),
@@ -552,7 +636,14 @@ public record GetLegalEntityInfoWithRegnumResponse(
       String createdDate,
       String companyType) {
 
-    static ChangeName decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ChangeName decode(ResponseReader reader) {
       return new ChangeName(
           reader.get("companyRegnum", Decoders.STRING),
           reader.get("requestedName", Decoders.STRING),

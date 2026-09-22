@@ -34,7 +34,14 @@ public record GetServiceDocumentListResponse(
     List<DocumentList> documentList,
     Extras extras) {
 
-  static GetServiceDocumentListResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetServiceDocumentListResponse decode(ResponseReader reader) {
     return new GetServiceDocumentListResponse(
         reader.get("code", Decoders.STRING),
         reader.get("name", Decoders.STRING),
@@ -57,7 +64,14 @@ public record GetServiceDocumentListResponse(
   public record DocumentList(
       Long documentId, String documentCode, String documentName, Long isRequired) {
 
-    static DocumentList decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static DocumentList decode(ResponseReader reader) {
       return new DocumentList(
           reader.get("documentId", Decoders.INT),
           reader.get("documentCode", Decoders.STRING),

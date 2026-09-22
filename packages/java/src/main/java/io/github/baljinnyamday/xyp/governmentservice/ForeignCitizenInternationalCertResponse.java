@@ -39,7 +39,14 @@ public record ForeignCitizenInternationalCertResponse(
     Object medicalCertificateData,
     Extras extras) {
 
-  static ForeignCitizenInternationalCertResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static ForeignCitizenInternationalCertResponse decode(ResponseReader reader) {
     return new ForeignCitizenInternationalCertResponse(
         reader.get("id", Decoders.STRING),
         reader.get("countryCode", Decoders.STRING),

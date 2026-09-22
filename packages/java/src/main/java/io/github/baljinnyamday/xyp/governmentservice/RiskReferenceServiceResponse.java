@@ -29,7 +29,14 @@ public record RiskReferenceServiceResponse(
     List<Risks> risks,
     Extras extras) {
 
-  static RiskReferenceServiceResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static RiskReferenceServiceResponse decode(ResponseReader reader) {
     return new RiskReferenceServiceResponse(
         reader.get("envs", Decoders.list(Decoders.object(Envs::decode))),
         reader.get("types", Decoders.list(Decoders.object(Types::decode))),
@@ -48,7 +55,14 @@ public record RiskReferenceServiceResponse(
    */
   public record Envs(String publicId, String id, String title) {
 
-    static Envs decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Envs decode(ResponseReader reader) {
       return new Envs(
           reader.get("publicId", Decoders.STRING),
           reader.get("id", Decoders.STRING),
@@ -65,7 +79,14 @@ public record RiskReferenceServiceResponse(
    */
   public record Types(String id, String publicId, String title) {
 
-    static Types decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Types decode(ResponseReader reader) {
       return new Types(
           reader.get("id", Decoders.STRING),
           reader.get("publicId", Decoders.STRING),
@@ -82,7 +103,14 @@ public record RiskReferenceServiceResponse(
    */
   public record Ctypes(String id, String publicId, String title) {
 
-    static Ctypes decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Ctypes decode(ResponseReader reader) {
       return new Ctypes(
           reader.get("id", Decoders.STRING),
           reader.get("publicId", Decoders.STRING),
@@ -100,7 +128,14 @@ public record RiskReferenceServiceResponse(
    */
   public record Status(String id, String publicId, String title, String desc) {
 
-    static Status decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Status decode(ResponseReader reader) {
       return new Status(
           reader.get("id", Decoders.STRING),
           reader.get("publicId", Decoders.STRING),
@@ -139,7 +174,14 @@ public record RiskReferenceServiceResponse(
       Object types,
       Object systems) {
 
-    static Risks decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Risks decode(ResponseReader reader) {
       return new Risks(
           reader.get("id", Decoders.STRING),
           reader.get("publicId", Decoders.STRING),

@@ -20,7 +20,14 @@ import java.util.List;
  */
 public record GetKidQuestionResultResponse(List<Result> result, Extras extras) {
 
-  static GetKidQuestionResultResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetKidQuestionResultResponse decode(ResponseReader reader) {
     return new GetKidQuestionResultResponse(
         reader.get("result", Decoders.list(Decoders.object(Result::decode))), reader.extras());
   }
@@ -45,7 +52,14 @@ public record GetKidQuestionResultResponse(List<Result> result, Extras extras) {
       String value,
       List<Object> answers) {
 
-    static Result decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Result decode(ResponseReader reader) {
       return new Result(
           reader.get("questionId", Decoders.INT),
           reader.get("senderName", Decoders.STRING),

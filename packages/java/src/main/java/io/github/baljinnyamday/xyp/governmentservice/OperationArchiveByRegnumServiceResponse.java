@@ -22,7 +22,14 @@ import java.util.List;
 public record OperationArchiveByRegnumServiceResponse(
     String regnum, List<ListItem> list, Extras extras) {
 
-  static OperationArchiveByRegnumServiceResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static OperationArchiveByRegnumServiceResponse decode(ResponseReader reader) {
     return new OperationArchiveByRegnumServiceResponse(
         reader.get("regnum", Decoders.STRING),
         reader.get("list", Decoders.list(Decoders.object(ListItem::decode))),
@@ -57,7 +64,14 @@ public record OperationArchiveByRegnumServiceResponse(
       String authorityName,
       List<Object> parts) {
 
-    static ListItem decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ListItem decode(ResponseReader reader) {
       return new ListItem(
           reader.get("employeeName", Decoders.STRING),
           reader.get("employeeRegnum", Decoders.STRING),

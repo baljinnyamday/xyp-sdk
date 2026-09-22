@@ -20,7 +20,14 @@ import java.util.List;
  */
 public record GetBankAccountResponse(List<ListItem> list, Extras extras) {
 
-  static GetBankAccountResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetBankAccountResponse decode(ResponseReader reader) {
     return new GetBankAccountResponse(
         reader.get("list", Decoders.list(Decoders.object(ListItem::decode))), reader.extras());
   }
@@ -36,7 +43,14 @@ public record GetBankAccountResponse(List<ListItem> list, Extras extras) {
   public record ListItem(
       String accountName, String bankName, String bankCode, String accountNumber) {
 
-    static ListItem decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ListItem decode(ResponseReader reader) {
       return new ListItem(
           reader.get("accountName", Decoders.STRING),
           reader.get("bankName", Decoders.STRING),

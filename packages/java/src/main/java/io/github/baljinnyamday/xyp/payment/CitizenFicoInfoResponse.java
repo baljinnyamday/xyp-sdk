@@ -25,7 +25,14 @@ public record CitizenFicoInfoResponse(
     Object ficoScoreData,
     Extras extras) {
 
-  static CitizenFicoInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static CitizenFicoInfoResponse decode(ResponseReader reader) {
     return new CitizenFicoInfoResponse(
         reader.get("dutiesInfo", Decoders.list(Decoders.object(DutiesInfo::decode))),
         reader.get("summaryData", Decoders.list(Decoders.object(SummaryData::decode))),
@@ -42,7 +49,14 @@ public record CitizenFicoInfoResponse(
    */
   public record DutiesInfo(String dutyTypeName, String clientName, Long balance) {
 
-    static DutiesInfo decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static DutiesInfo decode(ResponseReader reader) {
       return new DutiesInfo(
           reader.get("dutyTypeName", Decoders.STRING),
           reader.get("clientName", Decoders.STRING),
@@ -80,7 +94,14 @@ public record CitizenFicoInfoResponse(
       Long closedNotQuality,
       Long closedTotal) {
 
-    static SummaryData decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static SummaryData decode(ResponseReader reader) {
       return new SummaryData(
           reader.get("total", Decoders.INT),
           reader.get("normalTotal", Decoders.INT),

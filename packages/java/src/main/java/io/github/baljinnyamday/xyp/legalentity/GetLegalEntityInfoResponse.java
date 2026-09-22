@@ -51,7 +51,14 @@ public record GetLegalEntityInfoResponse(
     List<Object> changeName,
     Extras extras) {
 
-  static GetLegalEntityInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetLegalEntityInfoResponse decode(ResponseReader reader) {
     return new GetLegalEntityInfoResponse(
         reader.get("firstName", Decoders.STRING),
         reader.get("lastName", Decoders.STRING),
@@ -79,7 +86,14 @@ public record GetLegalEntityInfoResponse(
    */
   public record Founder(String registeredNumber) {
 
-    static Founder decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Founder decode(ResponseReader reader) {
       return new Founder(reader.get("registeredNumber", Decoders.STRING));
     }
   }
@@ -91,7 +105,14 @@ public record GetLegalEntityInfoResponse(
    */
   public record StakeHolders(String registeredNumber) {
 
-    static StakeHolders decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static StakeHolders decode(ResponseReader reader) {
       return new StakeHolders(reader.get("registeredNumber", Decoders.STRING));
     }
   }
@@ -103,7 +124,14 @@ public record GetLegalEntityInfoResponse(
    */
   public record ShareHolders(String registeredNumber) {
 
-    static ShareHolders decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ShareHolders decode(ResponseReader reader) {
       return new ShareHolders(reader.get("registeredNumber", Decoders.STRING));
     }
   }
@@ -115,7 +143,14 @@ public record GetLegalEntityInfoResponse(
    */
   public record GeneralR(String registeredNumber) {
 
-    static GeneralR decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static GeneralR decode(ResponseReader reader) {
       return new GeneralR(reader.get("registeredNumber", Decoders.STRING));
     }
   }

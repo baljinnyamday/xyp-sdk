@@ -35,7 +35,14 @@ public record GetCitizenMarriageInfoResponse(
     String registeredId,
     Extras extras) {
 
-  static GetCitizenMarriageInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetCitizenMarriageInfoResponse decode(ResponseReader reader) {
     return new GetCitizenMarriageInfoResponse(
         reader.get("husband", Decoders.ANY),
         reader.get("wife", Decoders.ANY),

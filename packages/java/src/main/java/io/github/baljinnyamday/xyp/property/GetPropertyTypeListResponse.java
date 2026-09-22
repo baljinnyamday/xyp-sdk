@@ -21,7 +21,14 @@ import java.util.List;
 public record GetPropertyTypeListResponse(
     List<PropertyListdata> propertyListdata, List<TransListdata> transListdata, Extras extras) {
 
-  static GetPropertyTypeListResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetPropertyTypeListResponse decode(ResponseReader reader) {
     return new GetPropertyTypeListResponse(
         reader.get("propertyListdata", Decoders.list(Decoders.object(PropertyListdata::decode))),
         reader.get("transListdata", Decoders.list(Decoders.object(TransListdata::decode))),
@@ -66,7 +73,14 @@ public record GetPropertyTypeListResponse(
       String serviceName,
       String fullAddress) {
 
-    static PropertyListdata decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static PropertyListdata decode(ResponseReader reader) {
       return new PropertyListdata(
           reader.get("serviceDate", Decoders.STRING),
           reader.get("propertyNationRegisterNumber", Decoders.STRING),
@@ -125,7 +139,14 @@ public record GetPropertyTypeListResponse(
       String serviceName,
       String fullAddress) {
 
-    static TransListdata decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static TransListdata decode(ResponseReader reader) {
       return new TransListdata(
           reader.get("serviceDate", Decoders.STRING),
           reader.get("propertyNationRegisterNumber", Decoders.STRING),

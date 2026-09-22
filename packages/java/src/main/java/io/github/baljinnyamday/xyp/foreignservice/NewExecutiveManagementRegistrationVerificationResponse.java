@@ -21,7 +21,15 @@ import java.util.List;
 public record NewExecutiveManagementRegistrationVerificationResponse(
     List<ListItem> list, Extras extras) {
 
-  static NewExecutiveManagementRegistrationVerificationResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static NewExecutiveManagementRegistrationVerificationResponse decode(
+      ResponseReader reader) {
     return new NewExecutiveManagementRegistrationVerificationResponse(
         reader.get("list", Decoders.list(Decoders.object(ListItem::decode))), reader.extras());
   }
@@ -33,7 +41,14 @@ public record NewExecutiveManagementRegistrationVerificationResponse(
    */
   public record ListItem(String companyRegnum) {
 
-    static ListItem decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ListItem decode(ResponseReader reader) {
       return new ListItem(reader.get("companyRegnum", Decoders.STRING));
     }
   }

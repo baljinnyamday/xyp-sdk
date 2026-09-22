@@ -38,7 +38,14 @@ public record FreightTransportTrainDocumentDetailResponse(
     List<String> files,
     Extras extras) {
 
-  static FreightTransportTrainDocumentDetailResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static FreightTransportTrainDocumentDetailResponse decode(ResponseReader reader) {
     return new FreightTransportTrainDocumentDetailResponse(
         reader.get("bill", Decoders.ANY),
         reader.get("freightForwarder", Decoders.ANY),
@@ -61,7 +68,14 @@ public record FreightTransportTrainDocumentDetailResponse(
    */
   public record Freights(String gng, String name, String weight) {
 
-    static Freights decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Freights decode(ResponseReader reader) {
       return new Freights(
           reader.get("gng", Decoders.STRING),
           reader.get("name", Decoders.STRING),
@@ -78,7 +92,14 @@ public record FreightTransportTrainDocumentDetailResponse(
    */
   public record Wagons(String number, String type, String owner) {
 
-    static Wagons decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Wagons decode(ResponseReader reader) {
       return new Wagons(
           reader.get("number", Decoders.STRING),
           reader.get("type", Decoders.STRING),

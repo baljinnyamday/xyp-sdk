@@ -29,7 +29,14 @@ public record SearchDrugImagesByBarcodeResponse(
     List<Data> data,
     Extras extras) {
 
-  static SearchDrugImagesByBarcodeResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static SearchDrugImagesByBarcodeResponse decode(ResponseReader reader) {
     return new SearchDrugImagesByBarcodeResponse(
         reader.get("retType", Decoders.INT),
         reader.get("retDesc", Decoders.STRING),
@@ -47,7 +54,14 @@ public record SearchDrugImagesByBarcodeResponse(
    */
   public record Data(Long pk, String photo) {
 
-    static Data decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Data decode(ResponseReader reader) {
       return new Data(reader.get("pk", Decoders.INT), reader.get("photo", Decoders.STRING));
     }
   }

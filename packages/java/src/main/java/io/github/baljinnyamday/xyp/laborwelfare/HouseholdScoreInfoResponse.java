@@ -70,7 +70,14 @@ public record HouseholdScoreInfoResponse(
     Long childUpdate,
     Extras extras) {
 
-  static HouseholdScoreInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static HouseholdScoreInfoResponse decode(ResponseReader reader) {
     return new HouseholdScoreInfoResponse(
         reader.get("children", Decoders.list(Decoders.object(Children::decode))),
         reader.get("propertyUpdate", Decoders.INT),
@@ -108,7 +115,14 @@ public record HouseholdScoreInfoResponse(
    */
   public record Children(String lastname, String firstname) {
 
-    static Children decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Children decode(ResponseReader reader) {
       return new Children(
           reader.get("lastname", Decoders.STRING), reader.get("firstname", Decoders.STRING));
     }
@@ -123,7 +137,14 @@ public record HouseholdScoreInfoResponse(
    */
   public record Adults(String lastname, String firstname, String memberType) {
 
-    static Adults decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Adults decode(ResponseReader reader) {
       return new Adults(
           reader.get("lastname", Decoders.STRING),
           reader.get("firstname", Decoders.STRING),

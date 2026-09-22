@@ -21,7 +21,14 @@ import io.github.baljinnyamday.xyp.ResponseReader;
 public record PoliceECLicenseCheckerResponse(
     String endDate, Boolean isLicence, String startDate, Extras extras) {
 
-  static PoliceECLicenseCheckerResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static PoliceECLicenseCheckerResponse decode(ResponseReader reader) {
     return new PoliceECLicenseCheckerResponse(
         reader.get("endDate", Decoders.STRING),
         reader.get("isLicence", Decoders.BOOL),

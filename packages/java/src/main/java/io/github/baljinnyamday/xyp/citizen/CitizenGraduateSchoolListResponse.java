@@ -22,7 +22,14 @@ import java.util.List;
 public record CitizenGraduateSchoolListResponse(
     List<ListData> listData, String result, Extras extras) {
 
-  static CitizenGraduateSchoolListResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static CitizenGraduateSchoolListResponse decode(ResponseReader reader) {
     return new CitizenGraduateSchoolListResponse(
         reader.get("listData", Decoders.list(Decoders.object(ListData::decode))),
         reader.get("result", Decoders.STRING),
@@ -47,7 +54,14 @@ public record CitizenGraduateSchoolListResponse(
       String programName,
       String educationCode) {
 
-    static ListData decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ListData decode(ResponseReader reader) {
       return new ListData(
           reader.get("educationId", Decoders.STRING),
           reader.get("institutionName", Decoders.STRING),

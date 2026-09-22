@@ -37,7 +37,14 @@ public record GetPropertyInfoResponse(
     List<PrprtyHistory> prprtyHistory,
     Extras extras) {
 
-  static GetPropertyInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetPropertyInfoResponse decode(ResponseReader reader) {
     return new GetPropertyInfoResponse(
         reader.get("prprtyType", Decoders.STRING),
         reader.get("prprtyNatNum", Decoders.STRING),
@@ -63,7 +70,14 @@ public record GetPropertyInfoResponse(
   public record OwnerList(
       String foreName, String lastName, String firstname, String regnum, String address) {
 
-    static OwnerList decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static OwnerList decode(ResponseReader reader) {
       return new OwnerList(
           reader.get("foreName", Decoders.STRING),
           reader.get("lastName", Decoders.STRING),
@@ -94,7 +108,14 @@ public record GetPropertyInfoResponse(
       String contractPrize,
       String imgCnt) {
 
-    static PrprtyHistory decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static PrprtyHistory decode(ResponseReader reader) {
       return new PrprtyHistory(
           reader.get("serviceName", Decoders.STRING),
           reader.get("registerDate", Decoders.STRING),

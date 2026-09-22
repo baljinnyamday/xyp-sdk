@@ -120,7 +120,14 @@ public record GetCitizenLaborInfoResponse(
     String wantType,
     Extras extras) {
 
-  static GetCitizenLaborInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetCitizenLaborInfoResponse decode(ResponseReader reader) {
     return new GetCitizenLaborInfoResponse(
         reader.get("createdDate", Decoders.STRING),
         reader.get("typeCode", Decoders.STRING),
@@ -199,7 +206,14 @@ public record GetCitizenLaborInfoResponse(
       String longitude,
       String description) {
 
-    static Addresses decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Addresses decode(ResponseReader reader) {
       return new Addresses(
           reader.get("provinceName", Decoders.STRING),
           reader.get("districtName", Decoders.STRING),
@@ -231,7 +245,14 @@ public record GetCitizenLaborInfoResponse(
       String salaryRangeName,
       String roleInfo) {
 
-    static DesiredJobs decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static DesiredJobs decode(ResponseReader reader) {
       return new DesiredJobs(
           reader.get("locationTypeName", Decoders.STRING),
           reader.get("jobTypeName", Decoders.STRING),

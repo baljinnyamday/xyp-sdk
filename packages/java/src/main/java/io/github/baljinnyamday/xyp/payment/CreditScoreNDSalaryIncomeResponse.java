@@ -30,7 +30,14 @@ public record CreditScoreNDSalaryIncomeResponse(
     List<Object> stateHistoriesData,
     Extras extras) {
 
-  static CreditScoreNDSalaryIncomeResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static CreditScoreNDSalaryIncomeResponse decode(ResponseReader reader) {
     return new CreditScoreNDSalaryIncomeResponse(
         reader.get("data", Decoders.ANY),
         reader.get("restInquirySummaryResponse", Decoders.ANY),

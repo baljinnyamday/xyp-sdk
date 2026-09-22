@@ -31,7 +31,14 @@ public record GetInvoiceByNumberResponse(
     List<Details> details,
     Extras extras) {
 
-  static GetInvoiceByNumberResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetInvoiceByNumberResponse decode(ResponseReader reader) {
     return new GetInvoiceByNumberResponse(
         reader.get("accountName", Decoders.STRING),
         reader.get("accountNumber", Decoders.STRING),
@@ -54,7 +61,14 @@ public record GetInvoiceByNumberResponse(
   public record Details(
       Long order, Double amount, Double apBalance, String description, String invoiceNumber) {
 
-    static Details decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Details decode(ResponseReader reader) {
       return new Details(
           reader.get("order", Decoders.INT),
           reader.get("amount", Decoders.FLOAT),

@@ -20,7 +20,14 @@ import java.util.List;
  */
 public record GetPropertyInfoByNationalPropertyNumberEngResponse(List<Data> data, Extras extras) {
 
-  static GetPropertyInfoByNationalPropertyNumberEngResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetPropertyInfoByNationalPropertyNumberEngResponse decode(ResponseReader reader) {
     return new GetPropertyInfoByNationalPropertyNumberEngResponse(
         reader.get("data", Decoders.list(Decoders.object(Data::decode))), reader.extras());
   }
@@ -34,7 +41,14 @@ public record GetPropertyInfoByNationalPropertyNumberEngResponse(List<Data> data
    */
   public record Data(String registDe, String prprtyServiceId, String prprtyNationRegistNo) {
 
-    static Data decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Data decode(ResponseReader reader) {
       return new Data(
           reader.get("registDe", Decoders.STRING),
           reader.get("prprtyServiceId", Decoders.STRING),

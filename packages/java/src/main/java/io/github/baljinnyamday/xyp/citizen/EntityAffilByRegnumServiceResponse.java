@@ -20,7 +20,14 @@ import java.util.List;
  */
 public record EntityAffilByRegnumServiceResponse(List<ListData> listData, Extras extras) {
 
-  static EntityAffilByRegnumServiceResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static EntityAffilByRegnumServiceResponse decode(ResponseReader reader) {
     return new EntityAffilByRegnumServiceResponse(
         reader.get("listData", Decoders.list(Decoders.object(ListData::decode))), reader.extras());
   }
@@ -49,7 +56,14 @@ public record EntityAffilByRegnumServiceResponse(List<ListData> listData, Extras
       String registeredDate,
       String statusName) {
 
-    static ListData decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ListData decode(ResponseReader reader) {
       return new ListData(
           reader.get("cprType", Decoders.STRING),
           reader.get("cprId", Decoders.STRING),

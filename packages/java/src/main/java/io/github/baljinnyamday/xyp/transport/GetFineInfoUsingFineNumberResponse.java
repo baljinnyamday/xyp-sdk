@@ -20,7 +20,14 @@ import java.util.List;
  */
 public record GetFineInfoUsingFineNumberResponse(List<Data> data, Extras extras) {
 
-  static GetFineInfoUsingFineNumberResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetFineInfoUsingFineNumberResponse decode(ResponseReader reader) {
     return new GetFineInfoUsingFineNumberResponse(
         reader.get("data", Decoders.list(Decoders.object(Data::decode))), reader.extras());
   }
@@ -63,7 +70,14 @@ public record GetFineInfoUsingFineNumberResponse(List<Data> data, Extras extras)
       String barcode,
       Long paymentStatus) {
 
-    static Data decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Data decode(ResponseReader reader) {
       return new Data(
           reader.get("driverNo", Decoders.STRING),
           reader.get("regnum", Decoders.STRING),

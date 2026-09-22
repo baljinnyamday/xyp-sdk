@@ -84,7 +84,14 @@ public record IDCardInfoEmResponse(
     String birthPlace,
     Extras extras) {
 
-  static IDCardInfoEmResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static IDCardInfoEmResponse decode(ResponseReader reader) {
     return new IDCardInfoEmResponse(
         reader.get("firstname", Decoders.STRING),
         reader.get("gender", Decoders.STRING),
@@ -145,7 +152,14 @@ public record IDCardInfoEmResponse(
       String addressDoor,
       XypDate registerDate) {
 
-    static ListAddress decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ListAddress decode(ResponseReader reader) {
       return new ListAddress(
           reader.get("aimagCityName", Decoders.STRING),
           reader.get("soumDistrictName", Decoders.STRING),

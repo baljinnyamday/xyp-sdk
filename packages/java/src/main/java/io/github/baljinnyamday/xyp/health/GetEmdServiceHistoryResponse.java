@@ -24,7 +24,14 @@ import java.util.List;
 public record GetEmdServiceHistoryResponse(
     String firstName, String lastName, String regnum, List<Data> data, Extras extras) {
 
-  static GetEmdServiceHistoryResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetEmdServiceHistoryResponse decode(ResponseReader reader) {
     return new GetEmdServiceHistoryResponse(
         reader.get("firstName", Decoders.STRING),
         reader.get("lastName", Decoders.STRING),
@@ -65,7 +72,14 @@ public record GetEmdServiceHistoryResponse(
       String drgCode,
       String drugType) {
 
-    static Data decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Data decode(ResponseReader reader) {
       return new Data(
           reader.get("identificationNumber", Decoders.INT),
           reader.get("year", Decoders.INT),

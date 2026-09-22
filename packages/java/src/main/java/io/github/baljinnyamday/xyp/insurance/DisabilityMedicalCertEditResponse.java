@@ -20,7 +20,14 @@ import io.github.baljinnyamday.xyp.ResponseReader;
  */
 public record DisabilityMedicalCertEditResponse(Long result, String resultMsg, Extras extras) {
 
-  static DisabilityMedicalCertEditResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static DisabilityMedicalCertEditResponse decode(ResponseReader reader) {
     return new DisabilityMedicalCertEditResponse(
         reader.get("result", Decoders.INT),
         reader.get("resultMsg", Decoders.STRING),

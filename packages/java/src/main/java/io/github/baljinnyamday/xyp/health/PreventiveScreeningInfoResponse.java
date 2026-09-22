@@ -20,7 +20,14 @@ import java.util.List;
  */
 public record PreventiveScreeningInfoResponse(List<Listdata> listdata, Extras extras) {
 
-  static PreventiveScreeningInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static PreventiveScreeningInfoResponse decode(ResponseReader reader) {
     return new PreventiveScreeningInfoResponse(
         reader.get("listdata", Decoders.list(Decoders.object(Listdata::decode))), reader.extras());
   }
@@ -61,7 +68,14 @@ public record PreventiveScreeningInfoResponse(List<Listdata> listdata, Extras ex
       String createdByName,
       List<Object> results) {
 
-    static Listdata decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Listdata decode(ResponseReader reader) {
       return new Listdata(
           reader.get("bookNumber", Decoders.STRING),
           reader.get("regnum", Decoders.STRING),
