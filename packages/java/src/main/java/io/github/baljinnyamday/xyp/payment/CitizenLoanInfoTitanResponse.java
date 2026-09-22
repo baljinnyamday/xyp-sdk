@@ -23,7 +23,14 @@ import java.util.List;
 public record CitizenLoanInfoTitanResponse(
     List<PartnerLoanListData> partnerLoanListData, List<ListData> listData, Extras extras) {
 
-  static CitizenLoanInfoTitanResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static CitizenLoanInfoTitanResponse decode(ResponseReader reader) {
     return new CitizenLoanInfoTitanResponse(
         reader.get(
             "partnerLoanListData", Decoders.list(Decoders.object(PartnerLoanListData::decode))),
@@ -76,7 +83,14 @@ public record CitizenLoanInfoTitanResponse(
       String mvalue,
       Double rate) {
 
-    static PartnerLoanListData decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static PartnerLoanListData decode(ResponseReader reader) {
       return new PartnerLoanListData(
           reader.get("customerName", Decoders.ANY),
           reader.get("regnum", Decoders.ANY),
@@ -144,7 +158,14 @@ public record CitizenLoanInfoTitanResponse(
       String morg,
       String mvalue) {
 
-    static ListData decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ListData decode(ResponseReader reader) {
       return new ListData(
           reader.get("dutyType", Decoders.STRING),
           reader.get("rate", Decoders.FLOAT),

@@ -22,7 +22,14 @@ import java.util.List;
 public record GetChildrenBirthInfoResponse(
     String momLastName, String momFirstName, List<Childs> childs, Extras extras) {
 
-  static GetChildrenBirthInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetChildrenBirthInfoResponse decode(ResponseReader reader) {
     return new GetChildrenBirthInfoResponse(
         reader.get("momLastName", Decoders.STRING),
         reader.get("momFirstName", Decoders.STRING),
@@ -39,7 +46,14 @@ public record GetChildrenBirthInfoResponse(
    */
   public record Childs(String regnum, Long twin, Long birthDate) {
 
-    static Childs decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Childs decode(ResponseReader reader) {
       return new Childs(
           reader.get("regnum", Decoders.STRING),
           reader.get("twin", Decoders.INT),

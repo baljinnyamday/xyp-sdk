@@ -64,7 +64,14 @@ public record GetReceiptByRegnumAndNumberResponse(
     String prescriptionTypeName,
     Extras extras) {
 
-  static GetReceiptByRegnumAndNumberResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetReceiptByRegnumAndNumberResponse decode(ResponseReader reader) {
     return new GetReceiptByRegnumAndNumberResponse(
         reader.get(
             "listReceiptTabletModel",
@@ -137,7 +144,14 @@ public record GetReceiptByRegnumAndNumberResponse(
       Long tbltId,
       Long tbltSize) {
 
-    static ListReceiptTabletModel decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ListReceiptTabletModel decode(ResponseReader reader) {
       return new ListReceiptTabletModel(
           reader.get("dailyCount", Decoders.STRING),
           reader.get("totalDays", Decoders.INT),
@@ -178,7 +192,14 @@ public record GetReceiptByRegnumAndNumberResponse(
         Long symptomId,
         String symptomName) {
 
-      static ListEffect decode(ResponseReader reader) {
+      /**
+       * Decodes this record from a response tree. The generated client uses it; it is public so you
+       * can decode a tree you already hold, with {@link ResponseReader#decode}.
+       *
+       * @param reader the reader over this record's element
+       * @return the decoded record
+       */
+      public static ListEffect decode(ResponseReader reader) {
         return new ListEffect(
             reader.get("effectEndId", Decoders.INT),
             reader.get("continueDateType", Decoders.INT),

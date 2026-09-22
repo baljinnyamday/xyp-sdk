@@ -23,7 +23,14 @@ import java.util.List;
 public record GetValidSpecialPermissionResponse(
     Boolean status, Long count, List<ListData> listData, Extras extras) {
 
-  static GetValidSpecialPermissionResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetValidSpecialPermissionResponse decode(ResponseReader reader) {
     return new GetValidSpecialPermissionResponse(
         reader.get("status", Decoders.BOOL),
         reader.get("count", Decoders.INT),
@@ -69,7 +76,14 @@ public record GetValidSpecialPermissionResponse(
       Long count,
       String orgDate) {
 
-    static ListData decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ListData decode(ResponseReader reader) {
       return new ListData(
           reader.get("id", Decoders.INT),
           reader.get("licenseType", Decoders.STRING),

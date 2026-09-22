@@ -23,7 +23,14 @@ import java.util.List;
 public record MultiDegreeInfoResponse(
     String firstname, String lastname, List<Degrees> degrees, Extras extras) {
 
-  static MultiDegreeInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static MultiDegreeInfoResponse decode(ResponseReader reader) {
     return new MultiDegreeInfoResponse(
         reader.get("firstname", Decoders.STRING),
         reader.get("lastname", Decoders.STRING),
@@ -49,7 +56,14 @@ public record MultiDegreeInfoResponse(
       String degreeState,
       String direction) {
 
-    static Degrees decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Degrees decode(ResponseReader reader) {
       return new Degrees(
           reader.get("degreeNumber", Decoders.STRING),
           reader.get("grade", Decoders.STRING),

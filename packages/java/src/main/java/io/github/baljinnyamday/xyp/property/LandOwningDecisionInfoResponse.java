@@ -19,7 +19,14 @@ import java.util.List;
  */
 public record LandOwningDecisionInfoResponse(List<ListData> listData, Extras extras) {
 
-  static LandOwningDecisionInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static LandOwningDecisionInfoResponse decode(ResponseReader reader) {
     return new LandOwningDecisionInfoResponse(
         reader.get("listData", Decoders.list(Decoders.object(ListData::decode))), reader.extras());
   }
@@ -46,7 +53,14 @@ public record LandOwningDecisionInfoResponse(List<ListData> listData, Extras ext
       String decisionDate,
       String decisionNum) {
 
-    static ListData decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ListData decode(ResponseReader reader) {
       return new ListData(
           reader.get("firstName", Decoders.STRING),
           reader.get("lastName", Decoders.STRING),

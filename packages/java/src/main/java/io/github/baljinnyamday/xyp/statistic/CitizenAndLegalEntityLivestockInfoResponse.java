@@ -40,7 +40,14 @@ public record CitizenAndLegalEntityLivestockInfoResponse(
     List<Object> addresses,
     Extras extras) {
 
-  static CitizenAndLegalEntityLivestockInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static CitizenAndLegalEntityLivestockInfoResponse decode(ResponseReader reader) {
     return new CitizenAndLegalEntityLivestockInfoResponse(
         reader.get("referenceDate", Decoders.STRING),
         reader.get("lastname", Decoders.STRING),

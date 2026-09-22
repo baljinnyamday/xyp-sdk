@@ -22,7 +22,14 @@ import java.util.List;
 public record GetHealthInsurancePremiumListResponse(
     List<PayedList> payedList, List<NotPayedList> notPayedList, Extras extras) {
 
-  static GetHealthInsurancePremiumListResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetHealthInsurancePremiumListResponse decode(ResponseReader reader) {
     return new GetHealthInsurancePremiumListResponse(
         reader.get("payedList", Decoders.list(Decoders.object(PayedList::decode))),
         reader.get("notPayedList", Decoders.list(Decoders.object(NotPayedList::decode))),
@@ -37,7 +44,14 @@ public record GetHealthInsurancePremiumListResponse(
    */
   public record PayedList(Long year, Long month) {
 
-    static PayedList decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static PayedList decode(ResponseReader reader) {
       return new PayedList(reader.get("year", Decoders.INT), reader.get("month", Decoders.INT));
     }
   }
@@ -50,7 +64,14 @@ public record GetHealthInsurancePremiumListResponse(
    */
   public record NotPayedList(Long year, Long month) {
 
-    static NotPayedList decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static NotPayedList decode(ResponseReader reader) {
       return new NotPayedList(reader.get("year", Decoders.INT), reader.get("month", Decoders.INT));
     }
   }

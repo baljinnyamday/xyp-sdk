@@ -37,7 +37,14 @@ public record LegalEntityBSLoanInfoResponse(
     List<LiveStockData> liveStockData,
     Extras extras) {
 
-  static LegalEntityBSLoanInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static LegalEntityBSLoanInfoResponse decode(ResponseReader reader) {
     return new LegalEntityBSLoanInfoResponse(
         reader.get("firstname", Decoders.STRING),
         reader.get("lastname", Decoders.STRING),
@@ -73,7 +80,14 @@ public record LegalEntityBSLoanInfoResponse(
       Long startyear,
       String address) {
 
-    static LiveStockData decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static LiveStockData decode(ResponseReader reader) {
       return new LiveStockData(
           reader.get("cowAmount", Decoders.INT),
           reader.get("horseAmount", Decoders.INT),

@@ -81,7 +81,14 @@ public record GetCitizenIDCardInfoResponse(
     String personId,
     Extras extras) {
 
-  static GetCitizenIDCardInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetCitizenIDCardInfoResponse decode(ResponseReader reader) {
     return new GetCitizenIDCardInfoResponse(
         reader.get("passportNum", Decoders.STRING),
         reader.get("listAddress", Decoders.list(Decoders.object(ListAddress::decode))),
@@ -140,7 +147,14 @@ public record GetCitizenIDCardInfoResponse(
       String addressDoor,
       XypDate registerDate) {
 
-    static ListAddress decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ListAddress decode(ResponseReader reader) {
       return new ListAddress(
           reader.get("aimagCityName", Decoders.STRING),
           reader.get("soumDistrictName", Decoders.STRING),

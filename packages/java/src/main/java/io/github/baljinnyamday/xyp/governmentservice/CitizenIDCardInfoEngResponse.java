@@ -77,7 +77,14 @@ public record CitizenIDCardInfoEngResponse(
     List<AddressList> addressList,
     Extras extras) {
 
-  static CitizenIDCardInfoEngResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static CitizenIDCardInfoEngResponse decode(ResponseReader reader) {
     return new CitizenIDCardInfoEngResponse(
         reader.get("civilId", Decoders.STRING),
         reader.get("regnum", Decoders.STRING),
@@ -135,7 +142,14 @@ public record CitizenIDCardInfoEngResponse(
       String addressApartmentName,
       String addressDetail) {
 
-    static AddressList decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static AddressList decode(ResponseReader reader) {
       return new AddressList(
           reader.get("arrivedDate", Decoders.STRING),
           reader.get("cityName", Decoders.STRING),

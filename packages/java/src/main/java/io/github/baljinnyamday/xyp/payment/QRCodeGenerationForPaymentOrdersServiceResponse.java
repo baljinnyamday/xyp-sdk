@@ -23,7 +23,14 @@ import java.util.List;
 public record QRCodeGenerationForPaymentOrdersServiceResponse(
     String qrCodeBase64, List<QrCodeLink> qrCodeLink, String qrUuid, Extras extras) {
 
-  static QRCodeGenerationForPaymentOrdersServiceResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static QRCodeGenerationForPaymentOrdersServiceResponse decode(ResponseReader reader) {
     return new QRCodeGenerationForPaymentOrdersServiceResponse(
         reader.get("qrCodeBase64", Decoders.STRING),
         reader.get("qrCodeLink", Decoders.list(Decoders.object(QrCodeLink::decode))),
@@ -42,7 +49,14 @@ public record QRCodeGenerationForPaymentOrdersServiceResponse(
    */
   public record QrCodeLink(String name, String logo, String description, String linkAdd) {
 
-    static QrCodeLink decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static QrCodeLink decode(ResponseReader reader) {
       return new QrCodeLink(
           reader.get("name", Decoders.STRING),
           reader.get("logo", Decoders.STRING),

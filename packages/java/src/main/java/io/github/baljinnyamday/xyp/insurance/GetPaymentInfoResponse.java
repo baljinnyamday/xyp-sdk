@@ -33,7 +33,14 @@ public record GetPaymentInfoResponse(
     List<Object> contract,
     Extras extras) {
 
-  static GetPaymentInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetPaymentInfoResponse decode(ResponseReader reader) {
     return new GetPaymentInfoResponse(
         reader.get("invoiceNumber", Decoders.STRING),
         reader.get("regnum", Decoders.STRING),

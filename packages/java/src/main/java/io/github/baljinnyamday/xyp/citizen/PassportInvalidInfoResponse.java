@@ -48,7 +48,14 @@ public record PassportInvalidInfoResponse(
     List<ListData> listData,
     Extras extras) {
 
-  static PassportInvalidInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static PassportInvalidInfoResponse decode(ResponseReader reader) {
     return new PassportInvalidInfoResponse(
         reader.get("regnumMN", Decoders.STRING),
         reader.get("regnumENG", Decoders.STRING),
@@ -100,7 +107,14 @@ public record PassportInvalidInfoResponse(
       String passportInvCauseName,
       String regDate) {
 
-    static ListData decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ListData decode(ResponseReader reader) {
       return new ListData(
           reader.get("regnumMN", Decoders.STRING),
           reader.get("regnumENG", Decoders.STRING),

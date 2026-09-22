@@ -43,7 +43,14 @@ public record GetComplaintStatusResponse(
     Long lastStatusId,
     Extras extras) {
 
-  static GetComplaintStatusResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetComplaintStatusResponse decode(ResponseReader reader) {
     return new GetComplaintStatusResponse(
         reader.get("lastStatusName", Decoders.STRING),
         reader.get("lastStatusShort", Decoders.STRING),
@@ -82,7 +89,14 @@ public record GetComplaintStatusResponse(
       String processedAt,
       String statusShort) {
 
-    static Actions decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Actions decode(ResponseReader reader) {
       return new Actions(
           reader.get("clientSessionId", Decoders.STRING),
           reader.get("responsibleOrganization", Decoders.STRING),

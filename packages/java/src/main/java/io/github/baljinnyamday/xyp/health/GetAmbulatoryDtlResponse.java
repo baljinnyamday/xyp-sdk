@@ -51,7 +51,14 @@ public record GetAmbulatoryDtlResponse(
     List<ListItem> list,
     Extras extras) {
 
-  static GetAmbulatoryDtlResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetAmbulatoryDtlResponse decode(ResponseReader reader) {
     return new GetAmbulatoryDtlResponse(
         reader.get("hospitalName", Decoders.STRING),
         reader.get("departName", Decoders.STRING),
@@ -80,7 +87,14 @@ public record GetAmbulatoryDtlResponse(
    */
   public record ListItem(String examCode, String examName) {
 
-    static ListItem decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ListItem decode(ResponseReader reader) {
       return new ListItem(
           reader.get("examCode", Decoders.STRING), reader.get("examName", Decoders.STRING));
     }

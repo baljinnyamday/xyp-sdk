@@ -22,7 +22,14 @@ import java.util.List;
 public record GetChildRequestInfoResponse(
     String regnum, Long fromType, List<ChildList> childList, Extras extras) {
 
-  static GetChildRequestInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetChildRequestInfoResponse decode(ResponseReader reader) {
     return new GetChildRequestInfoResponse(
         reader.get("regnum", Decoders.STRING),
         reader.get("fromType", Decoders.INT),
@@ -54,7 +61,14 @@ public record GetChildRequestInfoResponse(
       String description,
       List<Object> months) {
 
-    static ChildList decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ChildList decode(ResponseReader reader) {
       return new ChildList(
           reader.get("userId", Decoders.INT),
           reader.get("regnum", Decoders.STRING),

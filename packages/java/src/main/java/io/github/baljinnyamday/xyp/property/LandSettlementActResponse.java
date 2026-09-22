@@ -65,7 +65,14 @@ public record LandSettlementActResponse(
     Double totalPaidYearAmount,
     Extras extras) {
 
-  static LandSettlementActResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static LandSettlementActResponse decode(ResponseReader reader) {
     return new LandSettlementActResponse(
         reader.get("contractId", Decoders.INT),
         reader.get("contractNo", Decoders.STRING),

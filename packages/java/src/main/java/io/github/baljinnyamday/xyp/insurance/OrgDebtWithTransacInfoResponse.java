@@ -20,7 +20,14 @@ import java.util.List;
  */
 public record OrgDebtWithTransacInfoResponse(List<ListData> listData, Extras extras) {
 
-  static OrgDebtWithTransacInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static OrgDebtWithTransacInfoResponse decode(ResponseReader reader) {
     return new OrgDebtWithTransacInfoResponse(
         reader.get("listData", Decoders.list(Decoders.object(ListData::decode))), reader.extras());
   }
@@ -37,7 +44,14 @@ public record OrgDebtWithTransacInfoResponse(List<ListData> listData, Extras ext
   public record ListData(
       String cityName, Double debt, String orgName, String insuranceNumber, Double transac) {
 
-    static ListData decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ListData decode(ResponseReader reader) {
       return new ListData(
           reader.get("cityName", Decoders.STRING),
           reader.get("debt", Decoders.FLOAT),

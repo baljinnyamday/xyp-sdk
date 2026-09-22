@@ -20,7 +20,14 @@ import java.util.List;
  */
 public record GetOrgBenNumBy36MonthResponse(List<ListItem> list, Extras extras) {
 
-  static GetOrgBenNumBy36MonthResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetOrgBenNumBy36MonthResponse decode(ResponseReader reader) {
     return new GetOrgBenNumBy36MonthResponse(
         reader.get("list", Decoders.list(Decoders.object(ListItem::decode))), reader.extras());
   }
@@ -36,7 +43,14 @@ public record GetOrgBenNumBy36MonthResponse(List<ListItem> list, Extras extras) 
    */
   public record ListItem(Long benNumberFN, Long bemNumberMN, Long month, Double shim, Long year) {
 
-    static ListItem decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ListItem decode(ResponseReader reader) {
       return new ListItem(
           reader.get("benNumberFN", Decoders.INT),
           reader.get("bemNumberMN", Decoders.INT),

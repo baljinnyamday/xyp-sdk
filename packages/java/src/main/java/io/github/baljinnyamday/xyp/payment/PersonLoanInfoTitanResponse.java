@@ -23,7 +23,14 @@ import java.util.List;
 public record PersonLoanInfoTitanResponse(
     List<Rell> rell, List<Main> main, Long isLiabilities, Extras extras) {
 
-  static PersonLoanInfoTitanResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static PersonLoanInfoTitanResponse decode(ResponseReader reader) {
     return new PersonLoanInfoTitanResponse(
         reader.get("rell", Decoders.list(Decoders.object(Rell::decode))),
         reader.get("main", Decoders.list(Decoders.object(Main::decode))),
@@ -41,7 +48,14 @@ public record PersonLoanInfoTitanResponse(
    */
   public record Rell(Long total, Long normal, Long attention, Long notQuality) {
 
-    static Rell decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Rell decode(ResponseReader reader) {
       return new Rell(
           reader.get("total", Decoders.INT),
           reader.get("normal", Decoders.INT),
@@ -60,7 +74,14 @@ public record PersonLoanInfoTitanResponse(
    */
   public record Main(Long total, Long normal, Long attention, Long notQuality) {
 
-    static Main decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Main decode(ResponseReader reader) {
       return new Main(
           reader.get("total", Decoders.INT),
           reader.get("normal", Decoders.INT),

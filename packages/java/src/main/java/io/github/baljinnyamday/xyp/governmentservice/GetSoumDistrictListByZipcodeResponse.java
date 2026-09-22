@@ -19,7 +19,14 @@ import java.util.List;
  */
 public record GetSoumDistrictListByZipcodeResponse(List<ListItem> list, Extras extras) {
 
-  static GetSoumDistrictListByZipcodeResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetSoumDistrictListByZipcodeResponse decode(ResponseReader reader) {
     return new GetSoumDistrictListByZipcodeResponse(
         reader.get("list", Decoders.list(Decoders.object(ListItem::decode))), reader.extras());
   }
@@ -32,7 +39,14 @@ public record GetSoumDistrictListByZipcodeResponse(List<ListItem> list, Extras e
    */
   public record ListItem(Long zipCode, String name) {
 
-    static ListItem decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ListItem decode(ResponseReader reader) {
       return new ListItem(reader.get("zipCode", Decoders.INT), reader.get("name", Decoders.STRING));
     }
   }

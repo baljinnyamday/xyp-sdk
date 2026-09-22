@@ -20,7 +20,14 @@ import java.util.List;
  */
 public record GetEcareByRegnumResponse(String createdDate, List<Data> data, Extras extras) {
 
-  static GetEcareByRegnumResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetEcareByRegnumResponse decode(ResponseReader reader) {
     return new GetEcareByRegnumResponse(
         reader.get("createdDate", Decoders.STRING),
         reader.get("data", Decoders.list(Decoders.object(Data::decode))),
@@ -70,7 +77,14 @@ public record GetEcareByRegnumResponse(String createdDate, List<Data> data, Extr
       String hosOffName,
       String hosName) {
 
-    static Data decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Data decode(ResponseReader reader) {
       return new Data(
           reader.get("regnum", Decoders.STRING),
           reader.get("lastName", Decoders.STRING),

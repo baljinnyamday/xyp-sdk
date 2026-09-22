@@ -21,7 +21,14 @@ import io.github.baljinnyamday.xyp.ResponseReader;
 public record UnemploymentBenefitsCountResponse(
     Long workMonth, Long calculatePercent, Extras extras) {
 
-  static UnemploymentBenefitsCountResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static UnemploymentBenefitsCountResponse decode(ResponseReader reader) {
     return new UnemploymentBenefitsCountResponse(
         reader.get("workMonth", Decoders.INT),
         reader.get("calculatePercent", Decoders.INT),

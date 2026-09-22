@@ -23,7 +23,14 @@ import java.util.List;
 public record MultiLicenseInfoResponse(
     String lastname, String firstname, List<Licenses> licenses, Extras extras) {
 
-  static MultiLicenseInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static MultiLicenseInfoResponse decode(ResponseReader reader) {
     return new MultiLicenseInfoResponse(
         reader.get("lastname", Decoders.STRING),
         reader.get("firstname", Decoders.STRING),
@@ -47,7 +54,14 @@ public record MultiLicenseInfoResponse(
       String licenseState,
       String validStart) {
 
-    static Licenses decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Licenses decode(ResponseReader reader) {
       return new Licenses(
           reader.get("licenseNumber", Decoders.STRING),
           reader.get("licenseType", Decoders.STRING),

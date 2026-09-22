@@ -117,7 +117,14 @@ public record GetDriverLicenseInfoResponse(
     String extraInfo,
     Extras extras) {
 
-  static GetDriverLicenseInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetDriverLicenseInfoResponse decode(ResponseReader reader) {
     return new GetDriverLicenseInfoResponse(
         reader.get("isValid", Decoders.STRING),
         reader.get("lstScoreInfoDtl", Decoders.list(Decoders.ANY)),

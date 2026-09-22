@@ -19,7 +19,14 @@ import io.github.baljinnyamday.xyp.ResponseReader;
  */
 public record EarlyDetectionServiceResponse(Long status, String url, Extras extras) {
 
-  static EarlyDetectionServiceResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static EarlyDetectionServiceResponse decode(ResponseReader reader) {
     return new EarlyDetectionServiceResponse(
         reader.get("status", Decoders.INT), reader.get("url", Decoders.STRING), reader.extras());
   }

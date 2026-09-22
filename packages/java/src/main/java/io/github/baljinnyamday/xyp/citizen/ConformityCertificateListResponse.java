@@ -21,7 +21,14 @@ import java.util.List;
 public record ConformityCertificateListResponse(
     List<ApplicationListData> applicationListData, Extras extras) {
 
-  static ConformityCertificateListResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static ConformityCertificateListResponse decode(ResponseReader reader) {
     return new ConformityCertificateListResponse(
         reader.get(
             "applicationListData", Decoders.list(Decoders.object(ApplicationListData::decode))),
@@ -133,7 +140,14 @@ public record ConformityCertificateListResponse(
       List<Object> fileList,
       List<Object> productList) {
 
-    static ApplicationListData decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ApplicationListData decode(ResponseReader reader) {
       return new ApplicationListData(
           reader.get("id", Decoders.STRING),
           reader.get("webUserId", Decoders.STRING),

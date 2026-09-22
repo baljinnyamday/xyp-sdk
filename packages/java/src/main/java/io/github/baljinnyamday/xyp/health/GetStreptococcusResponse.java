@@ -34,7 +34,14 @@ public record GetStreptococcusResponse(
     List<ListItem> list,
     Extras extras) {
 
-  static GetStreptococcusResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetStreptococcusResponse decode(ResponseReader reader) {
     return new GetStreptococcusResponse(
         reader.get("hospitalName", Decoders.STRING),
         reader.get("serviceId", Decoders.INT),
@@ -55,7 +62,14 @@ public record GetStreptococcusResponse(
    */
   public record ListItem(Long examCode, String examName, String examResult) {
 
-    static ListItem decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ListItem decode(ResponseReader reader) {
       return new ListItem(
           reader.get("examCode", Decoders.INT),
           reader.get("examName", Decoders.STRING),

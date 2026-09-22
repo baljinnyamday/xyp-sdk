@@ -44,7 +44,14 @@ public record GetBankPropertyInquiryResponse(
     List<History> history,
     Extras extras) {
 
-  static GetBankPropertyInquiryResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetBankPropertyInquiryResponse decode(ResponseReader reader) {
     return new GetBankPropertyInquiryResponse(
         reader.get("propertySize", Decoders.STRING),
         reader.get("propertyNationRegnum", Decoders.STRING),
@@ -79,7 +86,14 @@ public record GetBankPropertyInquiryResponse(
       String regnum,
       String citizenCompCode) {
 
-    static Owner decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Owner decode(ResponseReader reader) {
       return new Owner(
           reader.get("Nation", Decoders.STRING),
           reader.get("surName", Decoders.STRING),
@@ -110,7 +124,14 @@ public record GetBankPropertyInquiryResponse(
       String contractPrice,
       Long imageCount) {
 
-    static History decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static History decode(ResponseReader reader) {
       return new History(
           reader.get("serviceName", Decoders.STRING),
           reader.get("registeredDate", Decoders.STRING),

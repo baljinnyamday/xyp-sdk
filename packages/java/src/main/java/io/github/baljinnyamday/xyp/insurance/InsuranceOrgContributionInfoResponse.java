@@ -58,7 +58,14 @@ public record InsuranceOrgContributionInfoResponse(
     List<Info> info,
     Extras extras) {
 
-  static InsuranceOrgContributionInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static InsuranceOrgContributionInfoResponse decode(ResponseReader reader) {
     return new InsuranceOrgContributionInfoResponse(
         reader.get("orgRegnum", Decoders.STRING),
         reader.get("orgId", Decoders.STRING),
@@ -123,7 +130,14 @@ public record InsuranceOrgContributionInfoResponse(
       String emdOrgSum,
       String emdBenSum) {
 
-    static Info decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Info decode(ResponseReader reader) {
       return new Info(
           reader.get("benCount", Decoders.INT),
           reader.get("womanCount", Decoders.INT),

@@ -21,7 +21,14 @@ import java.util.List;
  */
 public record LandCadastreAgreementInfoResponse(List<ListData> listData, Extras extras) {
 
-  static LandCadastreAgreementInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static LandCadastreAgreementInfoResponse decode(ResponseReader reader) {
     return new LandCadastreAgreementInfoResponse(
         reader.get("listData", Decoders.list(Decoders.object(ListData::decode))), reader.extras());
   }
@@ -56,7 +63,14 @@ public record LandCadastreAgreementInfoResponse(List<ListData> listData, Extras 
       Boolean egazarConfirm,
       Boolean confirmCertRequest) {
 
-    static ListData decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ListData decode(ResponseReader reader) {
       return new ListData(
           reader.get("contractId", Decoders.INT),
           reader.get("contractNo", Decoders.STRING),

@@ -20,7 +20,14 @@ import java.util.List;
  */
 public record CivilizedConfirmedServicesResponse(List<ListData> listData, Extras extras) {
 
-  static CivilizedConfirmedServicesResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static CivilizedConfirmedServicesResponse decode(ResponseReader reader) {
     return new CivilizedConfirmedServicesResponse(
         reader.get("listData", Decoders.list(Decoders.object(ListData::decode))), reader.extras());
   }
@@ -47,7 +54,14 @@ public record CivilizedConfirmedServicesResponse(List<ListData> listData, Extras
       String startDate,
       String endDate) {
 
-    static ListData decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ListData decode(ResponseReader reader) {
       return new ListData(
           reader.get("isService", Decoders.BOOL),
           reader.get("firstName", Decoders.STRING),

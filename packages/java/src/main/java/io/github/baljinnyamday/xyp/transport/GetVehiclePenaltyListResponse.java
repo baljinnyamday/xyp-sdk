@@ -21,7 +21,14 @@ import java.util.List;
  */
 public record GetVehiclePenaltyListResponse(List<ListData> listData, Extras extras) {
 
-  static GetVehiclePenaltyListResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetVehiclePenaltyListResponse decode(ResponseReader reader) {
     return new GetVehiclePenaltyListResponse(
         reader.get("listData", Decoders.list(Decoders.object(ListData::decode))), reader.extras());
   }
@@ -62,7 +69,14 @@ public record GetVehiclePenaltyListResponse(List<ListData> listData, Extras extr
       String sanc,
       String paymentIBANBankAccount) {
 
-    static ListData decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ListData decode(ResponseReader reader) {
       return new ListData(
           reader.get("amount", Decoders.INT),
           reader.get("barCode", Decoders.STRING),

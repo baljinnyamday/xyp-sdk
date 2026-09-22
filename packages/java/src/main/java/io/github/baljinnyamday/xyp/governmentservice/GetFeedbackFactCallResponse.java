@@ -55,7 +55,14 @@ public record GetFeedbackFactCallResponse(
     List<Calls> calls,
     Extras extras) {
 
-  static GetFeedbackFactCallResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetFeedbackFactCallResponse decode(ResponseReader reader) {
     return new GetFeedbackFactCallResponse(
         reader.get("callId", Decoders.INT),
         reader.get("startDate", Decoders.STRING),
@@ -106,7 +113,14 @@ public record GetFeedbackFactCallResponse(
       Long tagId,
       Long statusId) {
 
-    static Calls decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Calls decode(ResponseReader reader) {
       return new Calls(
           reader.get("sessionId", Decoders.INT),
           reader.get("departmentId", Decoders.INT),

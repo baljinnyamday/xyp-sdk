@@ -32,7 +32,14 @@ public record SendInvestmentRequestResponse(
     Long appYear,
     Extras extras) {
 
-  static SendInvestmentRequestResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static SendInvestmentRequestResponse decode(ResponseReader reader) {
     return new SendInvestmentRequestResponse(
         reader.get("status", Decoders.STRING),
         reader.get("monetizeType", Decoders.STRING),

@@ -40,7 +40,14 @@ public record PropertyInfoEngResponse(
     List<PropertyUnit> propertyUnit,
     Extras extras) {
 
-  static PropertyInfoEngResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static PropertyInfoEngResponse decode(ResponseReader reader) {
     return new PropertyInfoEngResponse(
         reader.get("propertySize", Decoders.STRING),
         reader.get("propertyNationNum", Decoders.STRING),
@@ -74,7 +81,14 @@ public record PropertyInfoEngResponse(
       String nationName,
       String rightStatus) {
 
-    static PropertyRight decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static PropertyRight decode(ResponseReader reader) {
       return new PropertyRight(
           reader.get("regnum", Decoders.STRING),
           reader.get("surName", Decoders.STRING),
@@ -110,7 +124,14 @@ public record PropertyInfoEngResponse(
       Long imgCount,
       String propertyNationNum) {
 
-    static PropertyUnit decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static PropertyUnit decode(ResponseReader reader) {
       return new PropertyUnit(
           reader.get("serviceName", Decoders.STRING),
           reader.get("registDate", Decoders.STRING),

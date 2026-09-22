@@ -20,7 +20,14 @@ import java.util.List;
  */
 public record LegalEntityNameValidityServiceResponse(List<NameList> nameList, Extras extras) {
 
-  static LegalEntityNameValidityServiceResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static LegalEntityNameValidityServiceResponse decode(ResponseReader reader) {
     return new LegalEntityNameValidityServiceResponse(
         reader.get("nameList", Decoders.list(Decoders.object(NameList::decode))), reader.extras());
   }
@@ -43,7 +50,14 @@ public record LegalEntityNameValidityServiceResponse(List<NameList> nameList, Ex
       String modifiedDate,
       String stateRegnum) {
 
-    static NameList decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static NameList decode(ResponseReader reader) {
       return new NameList(
           reader.get("bookNumber", Decoders.STRING),
           reader.get("requestedName", Decoders.STRING),

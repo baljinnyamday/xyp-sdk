@@ -28,7 +28,14 @@ public record GetCitizenSalaryInfoEngResponse(
     String regnum,
     Extras extras) {
 
-  static GetCitizenSalaryInfoEngResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetCitizenSalaryInfoEngResponse decode(ResponseReader reader) {
     return new GetCitizenSalaryInfoEngResponse(
         reader.get("detailDataList", Decoders.list(Decoders.object(DetailDataList::decode))),
         reader.get("firstname", Decoders.STRING),
@@ -64,7 +71,14 @@ public record GetCitizenSalaryInfoEngResponse(
       Double shim,
       Long year) {
 
-    static DetailDataList decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static DetailDataList decode(ResponseReader reader) {
       return new DetailDataList(
           reader.get("domName", Decoders.STRING),
           reader.get("isPayed", Decoders.STRING),

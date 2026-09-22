@@ -58,7 +58,14 @@ public record GetPassportCivilInfoResponse(
     List<ListData> listData,
     Extras extras) {
 
-  static GetPassportCivilInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetPassportCivilInfoResponse decode(ResponseReader reader) {
     return new GetPassportCivilInfoResponse(
         reader.get("civilId", Decoders.STRING),
         reader.get("regnum", Decoders.STRING),
@@ -106,7 +113,14 @@ public record GetPassportCivilInfoResponse(
       byte[] image,
       String name) {
 
-    static ListData decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ListData decode(ResponseReader reader) {
       return new ListData(
           reader.get("passport", Decoders.STRING),
           reader.get("passportNum", Decoders.STRING),

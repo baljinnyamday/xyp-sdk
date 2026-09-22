@@ -20,7 +20,14 @@ import java.util.List;
  */
 public record CitizenLivestockListResponse(List<ListData> listData, Extras extras) {
 
-  static CitizenLivestockListResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static CitizenLivestockListResponse decode(ResponseReader reader) {
     return new CitizenLivestockListResponse(
         reader.get("listData", Decoders.list(Decoders.object(ListData::decode))), reader.extras());
   }
@@ -91,7 +98,14 @@ public record CitizenLivestockListResponse(List<ListData> listData, Extras extra
       Object attackedByWildAnimals,
       Object other) {
 
-    static ListData decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ListData decode(ResponseReader reader) {
       return new ListData(
           reader.get("livestockTypeName", Decoders.ANY),
           reader.get("total", Decoders.ANY),

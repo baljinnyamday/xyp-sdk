@@ -63,6 +63,20 @@ def test_every_file_starts_with_the_header(emitted: tuple[Path, list[Path]]) -> 
         assert path.read_text(encoding="utf-8").startswith(f"{HEADER}\n"), path
 
 
+def test_every_record_decoder_is_public(emitted: tuple[Path, list[Path]]) -> None:
+    # Users pass X::decode to invoke and ResponseReader.decode, from their own packages.
+    _, paths = emitted
+    responses = [path for path in paths if path.name.endswith("Response.java")]
+    assert responses
+    for path in responses:
+        text = path.read_text(encoding="utf-8")
+        records = len(re.findall(r"^\s*public record ", text, re.MULTILINE))
+        decoders = re.findall(
+            r"^\s*(.*)static \w+ decode\(ResponseReader reader\)", text, re.MULTILINE
+        )
+        assert decoders == ["public "] * records, path
+
+
 def test_comments_hold_no_backslash_and_no_early_end(emitted: tuple[Path, list[Path]]) -> None:
     _, paths = emitted
     for path in paths:

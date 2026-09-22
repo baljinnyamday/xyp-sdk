@@ -48,7 +48,14 @@ public record CertificateSupplementLookUpResponse(
     List<ExamList> examList,
     Extras extras) {
 
-  static CertificateSupplementLookUpResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static CertificateSupplementLookUpResponse decode(ResponseReader reader) {
     return new CertificateSupplementLookUpResponse(
         reader.get(
             "electiveGradeLists", Decoders.list(Decoders.object(ElectiveGradeLists::decode))),
@@ -80,7 +87,14 @@ public record CertificateSupplementLookUpResponse(
   public record ElectiveGradeLists(
       String enrollmentCategoryCode, Long subjectAreaId, String courseName, String courseGrade) {
 
-    static ElectiveGradeLists decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ElectiveGradeLists decode(ResponseReader reader) {
       return new ElectiveGradeLists(
           reader.get("enrollmentCategoryCode", Decoders.STRING),
           reader.get("subjectAreaId", Decoders.INT),
@@ -100,7 +114,14 @@ public record CertificateSupplementLookUpResponse(
   public record MandatoryGradeLists(
       String enrollmentCategoryCode, Long subjectAreaId, String courseName, String courseGrade) {
 
-    static MandatoryGradeLists decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static MandatoryGradeLists decode(ResponseReader reader) {
       return new MandatoryGradeLists(
           reader.get("enrollmentCategoryCode", Decoders.STRING),
           reader.get("subjectAreaId", Decoders.INT),
@@ -118,7 +139,14 @@ public record CertificateSupplementLookUpResponse(
    */
   public record ExamList(Long examId, String examName, String score) {
 
-    static ExamList decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ExamList decode(ResponseReader reader) {
       return new ExamList(
           reader.get("examId", Decoders.INT),
           reader.get("examName", Decoders.STRING),

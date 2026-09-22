@@ -24,7 +24,14 @@ import io.github.baljinnyamday.xyp.XypDate;
 public record CheckECLIcenseFromKioskResponse(
     Long id, String kioskName, Long serviceFee, XypDate serviceDate, Extras extras) {
 
-  static CheckECLIcenseFromKioskResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static CheckECLIcenseFromKioskResponse decode(ResponseReader reader) {
     return new CheckECLIcenseFromKioskResponse(
         reader.get("id", Decoders.INT),
         reader.get("kioskName", Decoders.STRING),

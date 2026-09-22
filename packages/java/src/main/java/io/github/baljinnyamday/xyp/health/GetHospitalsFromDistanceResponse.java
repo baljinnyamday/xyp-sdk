@@ -70,7 +70,14 @@ public record GetHospitalsFromDistanceResponse(
     List<OperationListData> operationListData,
     Extras extras) {
 
-  static GetHospitalsFromDistanceResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetHospitalsFromDistanceResponse decode(ResponseReader reader) {
     return new GetHospitalsFromDistanceResponse(
         reader.get("id", Decoders.INT),
         reader.get("hospitalName", Decoders.STRING),
@@ -134,7 +141,14 @@ public record GetHospitalsFromDistanceResponse(
       String hsIntroduction,
       String status) {
 
-    static BranchListData decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static BranchListData decode(ResponseReader reader) {
       return new BranchListData(
           reader.get("branchId", Decoders.INT),
           reader.get("hospitalName", Decoders.STRING),
@@ -163,7 +177,14 @@ public record GetHospitalsFromDistanceResponse(
    */
   public record OperationListData(Long id, String code, String name, Long status) {
 
-    static OperationListData decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static OperationListData decode(ResponseReader reader) {
       return new OperationListData(
           reader.get("id", Decoders.INT),
           reader.get("code", Decoders.STRING),

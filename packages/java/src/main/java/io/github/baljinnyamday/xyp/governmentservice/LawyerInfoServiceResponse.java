@@ -88,7 +88,14 @@ public record LawyerInfoServiceResponse(
     List<SubPermitList> subPermitList,
     Extras extras) {
 
-  static LawyerInfoServiceResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static LawyerInfoServiceResponse decode(ResponseReader reader) {
     return new LawyerInfoServiceResponse(
         reader.get("academicDegree", Decoders.STRING),
         reader.get("academicDegreeId", Decoders.INT),
@@ -139,7 +146,14 @@ public record LawyerInfoServiceResponse(
   public record SubEducationList(
       String advocateId, String diplomaNumber, String id, String issuedDate) {
 
-    static SubEducationList decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static SubEducationList decode(ResponseReader reader) {
       return new SubEducationList(
           reader.get("advocateId", Decoders.STRING),
           reader.get("diplomaNumber", Decoders.STRING),
@@ -159,7 +173,14 @@ public record LawyerInfoServiceResponse(
   public record SubLegalSpecialtyList(
       String advocateId, String id, String legalSpecialty, Long legalSpecialtyId) {
 
-    static SubLegalSpecialtyList decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static SubLegalSpecialtyList decode(ResponseReader reader) {
       return new SubLegalSpecialtyList(
           reader.get("advocateId", Decoders.STRING),
           reader.get("id", Decoders.STRING),
@@ -179,7 +200,14 @@ public record LawyerInfoServiceResponse(
   public record SubPermitList(
       String advocateId, String approvedDate, String id, String permitNumber) {
 
-    static SubPermitList decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static SubPermitList decode(ResponseReader reader) {
       return new SubPermitList(
           reader.get("advocateId", Decoders.STRING),
           reader.get("approvedDate", Decoders.STRING),

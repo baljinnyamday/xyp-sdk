@@ -19,7 +19,14 @@ import java.util.List;
  */
 public record GetCitizenFoulInfoResponse(List<Object> listData, Extras extras) {
 
-  static GetCitizenFoulInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetCitizenFoulInfoResponse decode(ResponseReader reader) {
     return new GetCitizenFoulInfoResponse(
         reader.get("listData", Decoders.list(Decoders.ANY)), reader.extras());
   }

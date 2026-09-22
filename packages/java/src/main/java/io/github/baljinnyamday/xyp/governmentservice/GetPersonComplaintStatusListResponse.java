@@ -20,7 +20,14 @@ import java.util.List;
  */
 public record GetPersonComplaintStatusListResponse(List<ListData> listData, Extras extras) {
 
-  static GetPersonComplaintStatusListResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetPersonComplaintStatusListResponse decode(ResponseReader reader) {
     return new GetPersonComplaintStatusListResponse(
         reader.get("listData", Decoders.list(Decoders.object(ListData::decode))), reader.extras());
   }
@@ -49,7 +56,14 @@ public record GetPersonComplaintStatusListResponse(List<ListData> listData, Extr
       String typeName,
       String submittedAt) {
 
-    static ListData decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ListData decode(ResponseReader reader) {
       return new ListData(
           reader.get("statusShort", Decoders.STRING),
           reader.get("sessionId", Decoders.INT),

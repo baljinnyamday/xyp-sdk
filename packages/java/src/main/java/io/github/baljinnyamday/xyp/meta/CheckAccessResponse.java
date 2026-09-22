@@ -20,7 +20,14 @@ import java.util.List;
  */
 public record CheckAccessResponse(List<AccessList> accessList, Extras extras) {
 
-  static CheckAccessResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static CheckAccessResponse decode(ResponseReader reader) {
     return new CheckAccessResponse(
         reader.get("accessList", Decoders.list(Decoders.object(AccessList::decode))),
         reader.extras());
@@ -37,7 +44,14 @@ public record CheckAccessResponse(List<AccessList> accessList, Extras extras) {
   public record AccessList(
       String operationName, String operationDetail, List<Object> outputList, Boolean hasAccess) {
 
-    static AccessList decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static AccessList decode(ResponseReader reader) {
       return new AccessList(
           reader.get("operationName", Decoders.STRING),
           reader.get("operationDetail", Decoders.STRING),

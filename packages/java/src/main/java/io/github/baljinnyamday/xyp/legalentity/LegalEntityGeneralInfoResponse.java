@@ -56,7 +56,14 @@ public record LegalEntityGeneralInfoResponse(
     String contractDate,
     Extras extras) {
 
-  static LegalEntityGeneralInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static LegalEntityGeneralInfoResponse decode(ResponseReader reader) {
     return new LegalEntityGeneralInfoResponse(
         reader.get("companyRegnum", Decoders.STRING),
         reader.get("companyName", Decoders.STRING),

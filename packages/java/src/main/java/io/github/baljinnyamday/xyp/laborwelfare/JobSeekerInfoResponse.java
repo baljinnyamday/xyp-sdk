@@ -22,7 +22,14 @@ import io.github.baljinnyamday.xyp.XypDate;
 public record JobSeekerInfoResponse(
     String regnum, XypDate lastUpdateDate, XypDate registeredDate, Extras extras) {
 
-  static JobSeekerInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static JobSeekerInfoResponse decode(ResponseReader reader) {
     return new JobSeekerInfoResponse(
         reader.get("regnum", Decoders.STRING),
         reader.get("lastUpdateDate", Decoders.DATE),

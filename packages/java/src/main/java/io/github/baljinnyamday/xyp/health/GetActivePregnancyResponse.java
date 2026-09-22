@@ -19,7 +19,14 @@ import java.util.List;
  */
 public record GetActivePregnancyResponse(List<Result> result, Extras extras) {
 
-  static GetActivePregnancyResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetActivePregnancyResponse decode(ResponseReader reader) {
     return new GetActivePregnancyResponse(
         reader.get("result", Decoders.list(Decoders.object(Result::decode))), reader.extras());
   }
@@ -40,7 +47,14 @@ public record GetActivePregnancyResponse(List<Result> result, Extras extras) {
       String pregnancyWeeks,
       String remainingDays) {
 
-    static Result decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static Result decode(ResponseReader reader) {
       return new Result(
           reader.get("pregnancyNo", Decoders.STRING),
           reader.get("activeYear", Decoders.STRING),

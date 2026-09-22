@@ -23,7 +23,14 @@ import java.util.List;
 public record GetCitizenBelowSubsistenceLevelInfoResponse(
     Long totalRow, List<ListItem> list, Long totalPage, Extras extras) {
 
-  static GetCitizenBelowSubsistenceLevelInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static GetCitizenBelowSubsistenceLevelInfoResponse decode(ResponseReader reader) {
     return new GetCitizenBelowSubsistenceLevelInfoResponse(
         reader.get("totalRow", Decoders.INT),
         reader.get("list", Decoders.list(Decoders.object(ListItem::decode))),
@@ -51,7 +58,14 @@ public record GetCitizenBelowSubsistenceLevelInfoResponse(
       Long bagId,
       String actionDate) {
 
-    static ListItem decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ListItem decode(ResponseReader reader) {
       return new ListItem(
           reader.get("regnum", Decoders.STRING),
           reader.get("aimagId", Decoders.INT),

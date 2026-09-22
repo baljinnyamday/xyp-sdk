@@ -20,7 +20,14 @@ import java.util.List;
  */
 public record NotaryTrustArchivedInfoResponse(List<DataArray> dataArray, Extras extras) {
 
-  static NotaryTrustArchivedInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static NotaryTrustArchivedInfoResponse decode(ResponseReader reader) {
     return new NotaryTrustArchivedInfoResponse(
         reader.get("dataArray", Decoders.list(Decoders.object(DataArray::decode))),
         reader.extras());
@@ -54,7 +61,14 @@ public record NotaryTrustArchivedInfoResponse(List<DataArray> dataArray, Extras 
       String privilegeTypeName,
       String physicalPath) {
 
-    static DataArray decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static DataArray decode(ResponseReader reader) {
       return new DataArray(
           reader.get("bookId", Decoders.STRING),
           reader.get("employeeName", Decoders.STRING),

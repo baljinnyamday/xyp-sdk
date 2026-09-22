@@ -20,7 +20,14 @@ import java.util.List;
  */
 public record TaxPayerInfoResponse(List<ListTins> listTins, Extras extras) {
 
-  static TaxPayerInfoResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static TaxPayerInfoResponse decode(ResponseReader reader) {
     return new TaxPayerInfoResponse(
         reader.get("listTins", Decoders.list(Decoders.object(ListTins::decode))), reader.extras());
   }
@@ -33,7 +40,14 @@ public record TaxPayerInfoResponse(List<ListTins> listTins, Extras extras) {
    */
   public record ListTins(String tin, String name) {
 
-    static ListTins decode(ResponseReader reader) {
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static ListTins decode(ResponseReader reader) {
       return new ListTins(reader.get("tin", Decoders.STRING), reader.get("name", Decoders.STRING));
     }
   }

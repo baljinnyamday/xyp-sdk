@@ -49,7 +49,14 @@ public record ServiceForDonorCardCheckResponse(
     String cardNumber,
     Extras extras) {
 
-  static ServiceForDonorCardCheckResponse decode(ResponseReader reader) {
+  /**
+   * Decodes this record from a response tree. The generated client uses it; it is public so you can
+   * decode a tree you already hold, with {@link ResponseReader#decode}.
+   *
+   * @param reader the reader over this record's element
+   * @return the decoded record
+   */
+  public static ServiceForDonorCardCheckResponse decode(ResponseReader reader) {
     return new ServiceForDonorCardCheckResponse(
         reader.get("address", Decoders.STRING),
         reader.get("requestNumber", Decoders.STRING),
