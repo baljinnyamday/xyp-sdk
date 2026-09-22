@@ -1,0 +1,30 @@
+{{ preamble }}
+namespace {{ root }}\{{ group.namespace }};
+{% if view.imports %}
+
+{% for name in view.imports %}
+use {{ name }};
+{% endfor %}
+{% endif %}
+
+{{ view.doc | docblock }}
+{% if view.properties %}
+final readonly class {{ view.name }}
+{
+    /**
+{% for property in view.properties %}
+     * {{ property.param_tag }}
+{% endfor %}
+     */
+    public function __construct(
+{% for property in view.properties %}
+{% for attribute in property.attributes %}
+        #[{{ attribute }}]
+{% endfor %}
+        public {{ property.native_type }} ${{ property.name }} = {{ property.default }},
+{% endfor %}
+    ) {}
+}
+{% else %}
+final readonly class {{ view.name }} {}
+{% endif %}

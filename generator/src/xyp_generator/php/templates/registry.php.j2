@@ -1,0 +1,34 @@
+{{ preamble }}
+namespace {{ root }};
+
+/**
+ * Where each XYP operation is served, and the XML namespace of the endpoints whose
+ * WSDL is checked into spec/wsdl/.
+ *
+ * @internal
+ */
+final class Registry
+{
+    /**
+     * Operation name => the endpoint that serves it.
+     *
+     * @var array<string, string>
+     */
+    public const ENDPOINTS = [
+{% for service in api.services %}
+        {{ service.operation | phpstr }} => {{ service.endpoint | phpstr }},
+{% endfor %}
+    ];
+
+    /**
+     * Endpoint => its XML namespace. Any other endpoint has its namespace read from
+     * the live WSDL the first time it is used.
+     *
+     * @var array<string, string>
+     */
+    public const NAMESPACES = [
+{% for endpoint, namespace in api.namespaces | dictsort %}
+        {{ endpoint | phpstr }} => {{ namespace | phpstr }},
+{% endfor %}
+    ];
+}

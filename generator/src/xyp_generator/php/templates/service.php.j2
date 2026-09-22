@@ -1,0 +1,39 @@
+{{ preamble }}
+namespace {{ root }}\{{ group.namespace }};
+
+{% for name in group.imports %}
+use {{ name }};
+{% endfor %}
+
+{{ group.doc | docblock }}
+final class {{ group.service }}
+{
+    public function __construct(private readonly XypClient $client) {}
+{% for operation in group.operations %}
+
+{{ operation.doc | docblock(4) }}
+    public function {{ operation.method }}(
+        {{ operation.params.name }} $params = new {{ operation.params.name }}(),
+{% if operation.accepts_auth %}
+        ?Auth $auth = null,
+        ?Auth $operator = null,
+{% endif %}
+    ): {{ operation.response or "mixed" }} {
+{% if operation.response %}
+        return $this->client->invoke(
+            {{ operation.operation | phpstr }},
+            $params,
+            {{ operation.response }}::class,
+{% else %}
+        return $this->client->call(
+            {{ operation.operation | phpstr }},
+            $params,
+{% endif %}
+{% if operation.accepts_auth %}
+            auth: $auth,
+            operator: $operator,
+{% endif %}
+        );
+    }
+{% endfor %}
+}

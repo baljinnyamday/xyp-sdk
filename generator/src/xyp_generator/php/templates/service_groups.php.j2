@@ -1,0 +1,22 @@
+{{ preamble }}
+namespace {{ root }};
+
+/**
+ * One readonly property per XYP service group, used by XypClient.
+ *
+ * @internal
+ */
+trait ServiceGroups
+{
+{% for group in groups %}
+    /** {{ group.summary }} */
+    public readonly {{ group.namespace }}\{{ group.service }} ${{ group.client_property }};
+
+{% endfor %}
+    private function initServiceGroups(): void
+    {
+{% for group in groups %}
+        $this->{{ group.client_property }} = new {{ group.namespace }}\{{ group.service }}($this);
+{% endfor %}
+    }
+}
