@@ -12,9 +12,14 @@ final class RecordingLogger extends AbstractLogger
     public array $records = [];
 
     /**
+     * $message is untyped on purpose: psr/log 1.x declares no parameter types, and
+     * an implementation may not narrow them. composer.json allows ^1.1 || ^2 || ^3.
+     *
+     * @param mixed $level
+     * @param string|\Stringable $message
      * @param array<mixed> $context
      */
-    public function log(mixed $level, string|\Stringable $message, array $context = []): void
+    public function log($level, $message, array $context = []): void
     {
         $this->records[] = ['level' => $level, 'message' => (string) $message, 'context' => $context];
     }
