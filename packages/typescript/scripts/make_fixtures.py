@@ -6,8 +6,8 @@ Run it from packages/typescript after `pnpm install`: the TypeScript copy is for
 with the package's own biome, because `pnpm lint` checks it.
 
 The Python SDK's XML is verified against zeep (the SOAP library the known-working XYP
-clients use) for every operation in spec/wsdl. The TypeScript, Go and PHP SDKs must produce
-the same bytes for the same input, which makes them zeep-verified too.
+clients use) for every operation in spec/wsdl. The TypeScript, Go, PHP and Java SDKs must
+produce the same bytes for the same input, which makes them zeep-verified too.
 """
 
 from __future__ import annotations
@@ -28,6 +28,7 @@ OUTPUTS = (
     ROOT / "packages" / "typescript" / "tests" / "fixtures" / "envelopes.json",
     ROOT / "packages" / "go" / "xyp" / "testdata" / "envelopes.json",
     ROOT / "packages" / "php" / "tests" / "fixtures" / "envelopes.json",
+    ROOT / "packages" / "java" / "src" / "test" / "resources" / "envelopes.json",
 )
 XS = "{http://www.w3.org/2001/XMLSchema}"
 REGNUM = "РД00000000"
