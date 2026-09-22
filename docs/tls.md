@@ -108,6 +108,22 @@ xyp.NewClient(xyp.Options{InsecureSkipVerify: true})    // no verification
 `pool := xyp.BundledCAs(); pool.AppendCertsFromPEM(proxyCA)` trusts your proxy
 in addition to them.
 
+In Java:
+
+```java
+XypClient.builder().trustedCertificates(certificates)   // trust a different CA
+XypClient.builder().sslContext(sslContext)               // full control
+XypClient.builder().insecureSkipVerify(true)             // no verification
+```
+
+`XypTls.bundledCertificates()` returns a fresh, modifiable list holding the two
+certificates above, so adding your proxy's CA to it trusts the proxy in addition
+to them. The Java SDK builds its own `SSLContext` for each client, from an
+in-memory trust store holding only those certificates: it never imports
+anything into the JDK's `cacerts` (what the official Java sample has you do
+with `keytool`, for every program on that JDK), never calls
+`SSLContext.setDefault` and never sets a `javax.net.ssl.*` system property.
+
 If verification starts failing after XYP renews its certificate under a new
 CA, update the SDK, or pass the new CA certificate through `verify=`.
 
