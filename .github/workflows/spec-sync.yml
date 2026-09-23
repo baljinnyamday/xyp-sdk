@@ -21,7 +21,7 @@ jobs:
     env:
       MAVEN_OPTS: --sun-misc-unsafe-memory-access=allow
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@v5
       - uses: pnpm/action-setup@v4
         with:
