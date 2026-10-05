@@ -226,7 +226,7 @@ class GeneratedClientsTest {
 
   @Test
   void theClientHas16Groups() {
-    // RegistryTest checks the operations against spec/services.json; a change here is a spec change.
+    // RegistryTest checks the operations against the spec; a change here is a spec change.
     assertEquals(16, groupAccessors().size());
   }
 
