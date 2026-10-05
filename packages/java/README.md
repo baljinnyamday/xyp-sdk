@@ -5,7 +5,7 @@
 [![java](https://github.com/baljinnyamday/xyp-sdk/actions/workflows/java.yml/badge.svg)](https://github.com/baljinnyamday/xyp-sdk/actions/workflows/java.yml)
 
 Typed Java SDK for **XYP (ХУР)**, Mongolia's government data exchange system.
-All 499 services, Java 17+, no third-party dependencies, zero configuration for
+Every XYP service, Java 17+, no third-party dependencies, zero configuration for
 TLS and signing.
 
 Maven:
