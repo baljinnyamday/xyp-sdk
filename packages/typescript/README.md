@@ -1,7 +1,7 @@
 # xyp-sdk
 
 Typed Node.js SDK for **XYP (ХУР)**, Mongolia's government data exchange system.
-All 499 services, fully typed, zero configuration for TLS and signing.
+Every XYP service, fully typed, zero configuration for TLS and signing.
 
 ```bash
 npm install xyp-sdk@alpha     # pnpm add / yarn add / bun add work the same

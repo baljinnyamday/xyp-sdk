@@ -11,6 +11,7 @@ from the page's JS chunks first.
 import json
 import re
 import sys
+import time
 import urllib.request
 from pathlib import Path
 
@@ -19,6 +20,8 @@ DEFAULT_VERSION = "1.5.0"
 ACTION_NAME = "searchServices"
 PAGE_SIZE = 20  # the portal caps larger pages
 TIMEOUT_SECONDS = 60
+ATTEMPTS = 3  # the portal sometimes refuses or times out; a minute later it answers
+RETRY_DELAY_SECONDS = 30
 OUTPUT = Path(__file__).parent / "services.json"
 
 CHUNK_PATTERN = re.compile(r'/_next/static/chunks/[^"\\]+\.js')
@@ -27,8 +30,16 @@ ACTION_PATTERN = re.compile(r'createServerReference\)\("([0-9a-f]+)"[^"]*"' + AC
 
 def http(url: str, headers: dict[str, str] | None = None, body: bytes | None = None) -> str:
     request = urllib.request.Request(url, data=body, headers=headers or {})
-    with urllib.request.urlopen(request, timeout=TIMEOUT_SECONDS) as response:
-        return response.read().decode("utf-8")
+    for attempt in range(1, ATTEMPTS + 1):
+        try:
+            with urllib.request.urlopen(request, timeout=TIMEOUT_SECONDS) as response:
+                return response.read().decode("utf-8")
+        except OSError as error:  # URLError and socket timeouts are both OSErrors
+            if attempt == ATTEMPTS:
+                raise RuntimeError(f"{url} failed {ATTEMPTS} times; last error: {error}") from error
+            sys.stderr.write(f"{url}: {error}; retrying in {RETRY_DELAY_SECONDS}s\n")
+            time.sleep(RETRY_DELAY_SECONDS)
+    raise AssertionError("unreachable")
 
 
 def find_action_id(page_url: str) -> str:

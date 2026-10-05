@@ -5,7 +5,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/baljinnyamday/xyp-sdk/packages/go)](https://goreportcard.com/report/github.com/baljinnyamday/xyp-sdk/packages/go)
 
 Typed Go SDK for **XYP (ХУР)**, Mongolia's government data exchange system.
-All 499 services, no third-party dependencies, zero configuration for TLS and
+Every XYP service, no third-party dependencies, zero configuration for TLS and
 signing.
 
 ```bash

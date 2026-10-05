@@ -5,7 +5,7 @@
 [![php](https://github.com/baljinnyamday/xyp-sdk/actions/workflows/php.yml/badge.svg)](https://github.com/baljinnyamday/xyp-sdk/actions/workflows/php.yml)
 
 Typed PHP SDK for **XYP (ХУР)**, Mongolia's government data exchange system.
-All 499 services, zero configuration for TLS and signing, PHP 8.2+.
+Every XYP service, zero configuration for TLS and signing, PHP 8.2+.
 
 ```bash
 composer require baljinnyamday/xyp-sdk:0.1.0-alpha.1

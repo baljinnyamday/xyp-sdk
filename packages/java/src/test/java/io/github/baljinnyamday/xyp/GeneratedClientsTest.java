@@ -225,9 +225,8 @@ class GeneratedClientsTest {
   }
 
   @Test
-  void theRegistryHas499OperationsIn16Groups() {
-    // The same numbers as every other SDK in this repository; a change here is a spec change.
-    assertEquals(499, Registry.OPERATION_ENDPOINTS.size());
+  void theClientHas16Groups() {
+    // RegistryTest checks the operations against the spec; a change here is a spec change.
     assertEquals(16, groupAccessors().size());
   }
 

@@ -1,7 +1,7 @@
 # xyp
 
 Typed Python SDK for **XYP (ХУР)**, Mongolia's government data exchange system.
-All 499 services, sync and async, fully type-hinted.
+Every XYP service, sync and async, fully type-hinted.
 
 ```bash
 pip install "xyp>=0.1.0a2"     # or: uv add "xyp>=0.1.0a2"
