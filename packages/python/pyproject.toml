@@ -67,7 +67,7 @@ target-version = "py310"
 ban-relative-imports = "all"
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "UP", "B", "SIM", "RUF", "TID252"]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF", "TID252", "C4", "PIE", "RET", "S", "PT"]
 # Generated docstrings carry Mongolian text from the portal (Cyrillic is expected).
 ignore = ["RUF001", "RUF002", "RUF003"]
 
@@ -75,6 +75,9 @@ ignore = ["RUF001", "RUF002", "RUF003"]
 # Generated code: docstrings quote the portal verbatim, and some XYP names are very long.
 "src/xyp/operations/**/*.py" = ["E501"]
 "src/xyp/services/*.py" = ["E501"]
+# Tests assert, use fake tokens, and parse the XML they build themselves.
+"tests/**" = ["S101", "S105", "S314", "S603"]
+"scripts/**" = ["S101", "S105"]
 
 [tool.pyright]
 typeCheckingMode = "strict"

@@ -41,7 +41,7 @@ def tree_register(
         confirmed: isConfirmed
         registered_number: registeredNumber
     """
-    data = self._transport.call(
+    return self._transport.call(
         _OPERATION,
         {
             "regnum": regnum,
@@ -55,7 +55,6 @@ def tree_register(
         auth,
         operator,
     )
-    return data
 
 
 async def tree_register_async(
@@ -84,7 +83,7 @@ async def tree_register_async(
         confirmed: isConfirmed
         registered_number: registeredNumber
     """
-    data = await self._transport.call(
+    return await self._transport.call(
         _OPERATION,
         {
             "regnum": regnum,
@@ -98,4 +97,3 @@ async def tree_register_async(
         auth,
         operator,
     )
-    return data

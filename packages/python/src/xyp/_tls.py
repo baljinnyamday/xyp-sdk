@@ -35,6 +35,5 @@ def build_verify(verify: Verify) -> ssl.SSLContext | bool:
     if verify is False:
         return False
     if verify is True:
-        context = ssl.create_default_context(cadata=bundled_ca_pem())
-        return context
+        return ssl.create_default_context(cadata=bundled_ca_pem())
     return ssl.create_default_context(cafile=os.fspath(verify))

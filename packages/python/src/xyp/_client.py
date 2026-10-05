@@ -17,7 +17,7 @@ from xyp._transport import DEFAULT_BASE_URL, DEFAULT_TIMEOUT_SECONDS, AsyncTrans
 from xyp.auth import CitizenAuth, OperatorAuth
 from xyp.errors import XypConfigError
 
-ACCESS_TOKEN_ENV = "XYP_ACCESS_TOKEN"
+ACCESS_TOKEN_ENV = "XYP_ACCESS_TOKEN"  # noqa: S105 - the variable's name, not a token
 PRIVATE_KEY_ENV = "XYP_PRIVATE_KEY"
 
 

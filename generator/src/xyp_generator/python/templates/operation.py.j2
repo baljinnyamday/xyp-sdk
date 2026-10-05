@@ -62,7 +62,7 @@ class {{ model.name }}(XypModel):
 {% endfor %}
 {% endif %}
     """
-    data = {{ keyword_await }}self._transport.call(
+    {{ "data =" if method.returns else "return" }} {{ keyword_await }}self._transport.call(
         _OPERATION,
         {
 {% for parameter in method.parameters %}
@@ -76,7 +76,5 @@ class {{ model.name }}(XypModel):
     )
 {% if method.returns %}
     return parse_model({{ method.returns }}, data)
-{% else %}
-    return data
 {% endif %}
 {% endfor %}
