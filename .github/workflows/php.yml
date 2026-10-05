@@ -34,9 +34,9 @@ jobs:
       - run: composer validate --strict
       - name: Install dependencies
         run: |
-          flags="--no-interaction --no-progress --prefer-stable"
-          if [ "${{ matrix.dependencies }}" = lowest ]; then flags="$flags --prefer-lowest"; fi
-          composer update $flags
+          flags=(--no-interaction --no-progress --prefer-stable)
+          if [ "${{ matrix.dependencies }}" = lowest ]; then flags+=(--prefer-lowest); fi
+          composer update "${flags[@]}"
       - run: composer test
       - run: composer analyse -- --no-progress
         if: matrix.dependencies == 'highest'

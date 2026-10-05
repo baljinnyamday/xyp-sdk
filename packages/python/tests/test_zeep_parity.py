@@ -212,4 +212,5 @@ def test_response_is_read_the_same_way_as_zeep() -> None:
     assert ours.regnum == theirs["regnum"]
     assert ours.image == theirs["image"] == b"\x89PNG fake image"
     assert ours.birth_date == theirs["birthDate"]
-    assert ours.passport_date is None and theirs["passportDate"] is None
+    assert ours.passport_date is None
+    assert theirs["passportDate"] is None

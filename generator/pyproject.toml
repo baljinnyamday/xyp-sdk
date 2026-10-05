@@ -27,7 +27,14 @@ target-version = "py310"
 ban-relative-imports = "all"
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "UP", "B", "SIM", "RUF", "TID252"]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF", "TID252", "C4", "PIE", "RET", "S", "PT"]
+ignore = [
+  "S603", "S607", # runs the formatters each SDK uses (ruff, gofmt, ...) on its own output
+  "S701", # templates render source code, not HTML
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101"]
 
 [tool.pyright]
 typeCheckingMode = "strict"

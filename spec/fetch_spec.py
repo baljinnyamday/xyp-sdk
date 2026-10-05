@@ -29,10 +29,11 @@ ACTION_PATTERN = re.compile(r'createServerReference\)\("([0-9a-f]+)"[^"]*"' + AC
 
 
 def http(url: str, headers: dict[str, str] | None = None, body: bytes | None = None) -> str:
-    request = urllib.request.Request(url, data=body, headers=headers or {})
+    # Every URL is built on PORTAL, so the scheme is always https.
+    request = urllib.request.Request(url, data=body, headers=headers or {})  # noqa: S310
     for attempt in range(1, ATTEMPTS + 1):
         try:
-            with urllib.request.urlopen(request, timeout=TIMEOUT_SECONDS) as response:
+            with urllib.request.urlopen(request, timeout=TIMEOUT_SECONDS) as response:  # noqa: S310
                 return response.read().decode("utf-8")
         except OSError as error:  # URLError and socket timeouts are both OSErrors
             if attempt == ATTEMPTS:

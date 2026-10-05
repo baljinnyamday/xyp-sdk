@@ -46,14 +46,14 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           version="${GITHUB_REF_NAME#packages/go/}"
-          case "$version" in *-*) flags="--prerelease --latest=false" ;; *) flags="" ;; esac
+          case "$version" in *-*) flags=(--prerelease --latest=false) ;; *) flags=() ;; esac
           {
             echo "**Install:** \`go get $MODULE@$version\` · [pkg.go.dev](https://pkg.go.dev/$MODULE/xyp@$version) · [README](https://github.com/$GITHUB_REPOSITORY/tree/$GITHUB_REF_NAME/packages/go#readme)"
             echo
           } > notes.md
           previous=$(git ls-remote --tags --refs --sort=-v:refname origin 'packages/go/v*' | sed 's#.*refs/tags/##' | grep -vx "$GITHUB_REF_NAME" | head -1)
           gh release create "$GITHUB_REF_NAME" --title "Go: xyp $version" --notes-file notes.md \
-            --generate-notes ${previous:+--notes-start-tag "$previous"} $flags
+            --generate-notes ${previous:+--notes-start-tag "$previous"} "${flags[@]}"
 
   proxy:
     needs: github-release

@@ -99,7 +99,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           version="${GITHUB_REF_NAME#java-v}"
-          case "$version" in *-*) flags="--prerelease --latest=false" ;; *) flags="" ;; esac
+          case "$version" in *-*) flags=(--prerelease --latest=false) ;; *) flags=() ;; esac
           {
             echo "**Install:** \`implementation(\"$GROUP_ID:$ARTIFACT_ID:$version\")\` (Gradle) or the \`<dependency>\` below (Maven) · [Maven Central](https://central.sonatype.com/artifact/$GROUP_ID/$ARTIFACT_ID/$version) · [javadoc.io](https://javadoc.io/doc/$GROUP_ID/$ARTIFACT_ID/$version) · [README](https://github.com/$GITHUB_REPOSITORY/tree/$GITHUB_REF_NAME/packages/java#readme)"
             echo
@@ -114,7 +114,7 @@ jobs:
           } > notes.md
           previous=$(git ls-remote --tags --refs --sort=-v:refname origin 'java-v*' | awk -F/ '{print $3}' | grep -vx "$GITHUB_REF_NAME" | head -1)
           gh release create "$GITHUB_REF_NAME" --title "Java: xyp-sdk $version" --notes-file notes.md \
-            --generate-notes ${previous:+--notes-start-tag "$previous"} $flags
+            --generate-notes ${previous:+--notes-start-tag "$previous"} "${flags[@]}"
 
   central:
     needs: publish

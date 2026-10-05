@@ -39,7 +39,7 @@ class WsdlRequest:
 
 def read_requests(wsdl_path: Path) -> dict[str, WsdlRequest]:
     """operation name -> what its <request> element accepts."""
-    root = parse(wsdl_path).getroot()
+    root = parse(wsdl_path).getroot()  # noqa: S314 - WSDLs checked into this repository
     complex_types = {
         name: node for node in root.iter(f"{_XS}complexType") if (name := node.get("name"))
     }
