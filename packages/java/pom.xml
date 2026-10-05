@@ -225,6 +225,7 @@
           <showWarnings>true</showWarnings>
           <compilerArgs>
             <arg>-Xlint:all</arg>
+            <arg>-Werror</arg>
           </compilerArgs>
         </configuration>
         <executions>
@@ -338,7 +339,9 @@
                 <arg>-XDcompilePolicy=simple</arg>
                 <arg>--should-stop=ifError=FLOW</arg>
                 <arg>-XDaddTypeAnnotationsToSymbol=true</arg>
-                <arg>-Xplugin:ErrorProne</arg>
+                <!-- byte[] record components (photos, signatures) are a documented choice:
+                     the README explains what that means for equals and hashCode. -->
+                <arg>-Xplugin:ErrorProne -Xep:ArrayRecordComponent:OFF</arg>
               </compilerArgs>
               <annotationProcessorPaths>
                 <path>

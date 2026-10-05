@@ -95,7 +95,7 @@ class DecodersTest {
     assertEquals(List.of(), out.extras().mismatches());
     assertEquals("Бат", out.firstName());
     assertEquals(34L, out.age());
-    assertEquals(Boolean.TRUE, out.active());
+    assertEquals(true, out.active());
     assertTrue(
         out.born()
             .time()
@@ -295,13 +295,13 @@ class DecodersTest {
   @ParameterizedTest
   @ValueSource(strings = {"Y", "yes", "T", "on", "TRUE", "1"})
   void readsHandTypedTrue(String text) {
-    assertEquals(Boolean.TRUE, decode("active", text).active());
+    assertEquals(true, decode("active", text).active());
   }
 
   @ParameterizedTest
   @ValueSource(strings = {"N", "no", "F", "off", "0", "False"})
   void readsHandTypedFalse(String text) {
-    assertEquals(Boolean.FALSE, decode("active", text).active());
+    assertEquals(false, decode("active", text).active());
   }
 
   @Test
