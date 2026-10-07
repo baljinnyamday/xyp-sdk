@@ -82,6 +82,15 @@ export type {
   DOCXAccessVerificationServiceResponse,
 } from "../operations/governmentService/dOCXAccessVerificationService.js";
 export type {
+  EnergyQualificationCertificateServiceParams,
+  EnergyQualificationCertificateServiceResponse,
+} from "../operations/governmentService/energyQualificationCertificateService.js";
+export type {
+  EnergyQualificationServiceListData,
+  EnergyQualificationServiceParams,
+  EnergyQualificationServiceResponse,
+} from "../operations/governmentService/energyQualificationService.js";
+export type {
   FeedbackDimensionDepartmentsParams,
   FeedbackDimensionDepartmentsResponse,
 } from "../operations/governmentService/feedbackDimensionDepartments.js";
@@ -130,6 +139,13 @@ export type {
   GetFeedbackDimensionTagsParams,
   GetFeedbackDimensionTagsResponse,
 } from "../operations/governmentService/getFeedbackDimensionTags.js";
+export type {
+  GetFeedbackDimensionTagsV2Categories,
+  GetFeedbackDimensionTagsV2Params,
+  GetFeedbackDimensionTagsV2Response,
+  GetFeedbackDimensionTagsV2Sectors,
+  GetFeedbackDimensionTagsV2Tags,
+} from "../operations/governmentService/getFeedbackDimensionTagsV2.js";
 export type {
   GetFeedbackFactCallCalls,
   GetFeedbackFactCallParams,

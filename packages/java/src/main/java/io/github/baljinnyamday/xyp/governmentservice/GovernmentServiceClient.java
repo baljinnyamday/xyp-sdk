@@ -9,7 +9,7 @@ import io.github.baljinnyamday.xyp.XypException;
 import java.util.Objects;
 
 /**
- * Calls the 54 XYP services of the {@code government_service} group, served from {@code
+ * Calls the 57 XYP services of the {@code government_service} group, served from {@code
  * government-service-1.5.0}.
  *
  * <p>Get it from {@link XypClient#governmentService()}. It holds no state of its own, so it is as
@@ -2017,5 +2017,123 @@ public final class GovernmentServiceClient {
         params,
         options,
         RiskStatusChangeServiceResponse::decode);
+  }
+
+  /**
+   * Calls {@code GS10088_EnergyQualificationService}: Эрчим хүчний салбарын мэргэшлийн зэрэг
+   * эзэмшигчдийн мэдээлэл лавлах.
+   *
+   * <p>Provider: Эрчим хүчний яам.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public EnergyQualificationServiceResponse energyQualificationService(
+      EnergyQualificationServiceParams params) {
+    return energyQualificationService(params, CallOptions.none());
+  }
+
+  /**
+   * Calls {@code GS10088_EnergyQualificationService}: Эрчим хүчний салбарын мэргэшлийн зэрэг
+   * эзэмшигчдийн мэдээлэл лавлах.
+   *
+   * <p>Provider: Эрчим хүчний яам.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
+   *     CallOptions#none()} for none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public EnergyQualificationServiceResponse energyQualificationService(
+      EnergyQualificationServiceParams params, CallOptions options) {
+    return client.invoke(
+        "GS10088_EnergyQualificationService",
+        params,
+        options,
+        EnergyQualificationServiceResponse::decode);
+  }
+
+  /**
+   * Calls {@code GS10089_EnergyQualificationCertificateService}: Эрчим хүчний салбарын мэргэшлийн
+   * зэрэг эзэмшигчийн сертификатын мэдээлэл id-аар лавлах.
+   *
+   * <p>Provider: Эрчим хүчний яам.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public EnergyQualificationCertificateServiceResponse energyQualificationCertificateService(
+      EnergyQualificationCertificateServiceParams params) {
+    return energyQualificationCertificateService(params, CallOptions.none());
+  }
+
+  /**
+   * Calls {@code GS10089_EnergyQualificationCertificateService}: Эрчим хүчний салбарын мэргэшлийн
+   * зэрэг эзэмшигчийн сертификатын мэдээлэл id-аар лавлах.
+   *
+   * <p>Provider: Эрчим хүчний яам.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
+   *     CallOptions#none()} for none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public EnergyQualificationCertificateServiceResponse energyQualificationCertificateService(
+      EnergyQualificationCertificateServiceParams params, CallOptions options) {
+    return client.invoke(
+        "GS10089_EnergyQualificationCertificateService",
+        params,
+        options,
+        EnergyQualificationCertificateServiceResponse::decode);
+  }
+
+  /**
+   * Calls {@code GS10090_GetFeedbackDimensionTagsV2}: Өргөдөл, гомдлын tag мэдээлэл v2.
+   *
+   * <p>Provider: Засгийн газрын Хэрэг эрхлэх газар.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public GetFeedbackDimensionTagsV2Response getFeedbackDimensionTagsV2(
+      GetFeedbackDimensionTagsV2Params params) {
+    return getFeedbackDimensionTagsV2(params, CallOptions.none());
+  }
+
+  /**
+   * Calls {@code GS10090_GetFeedbackDimensionTagsV2}: Өргөдөл, гомдлын tag мэдээлэл v2.
+   *
+   * <p>Provider: Засгийн газрын Хэрэг эрхлэх газар.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
+   *     CallOptions#none()} for none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public GetFeedbackDimensionTagsV2Response getFeedbackDimensionTagsV2(
+      GetFeedbackDimensionTagsV2Params params, CallOptions options) {
+    return client.invoke(
+        "GS10090_GetFeedbackDimensionTagsV2",
+        params,
+        options,
+        GetFeedbackDimensionTagsV2Response::decode);
   }
 }

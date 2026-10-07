@@ -11,6 +11,11 @@ export type {
   CadastreApplicantStatusInfoResponse,
 } from "../operations/property/cadastreApplicantStatusInfo.js";
 export type {
+  CitizenHousingInfoServiceListData,
+  CitizenHousingInfoServiceParams,
+  CitizenHousingInfoServiceResponse,
+} from "../operations/property/citizenHousingInfoService.js";
+export type {
   ElectricRequirementRequestParams,
   ElectricRequirementRequestResponse,
 } from "../operations/property/electricRequirementRequest.js";

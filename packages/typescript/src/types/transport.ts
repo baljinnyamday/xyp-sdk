@@ -150,6 +150,10 @@ export type {
   ProductListResponse,
 } from "../operations/transport/productList.js";
 export type {
+  ProfessionalDriverLicenseEnglishInfoParams,
+  ProfessionalDriverLicenseEnglishInfoResponse,
+} from "../operations/transport/professionalDriverLicenseEnglishInfo.js";
+export type {
   SasCompanyInfoListList,
   SasCompanyInfoListParams,
   SasCompanyInfoListResponse,
@@ -213,6 +217,10 @@ export type {
   VehicleCertificateParams,
   VehicleCertificateResponse,
 } from "../operations/transport/vehicleCertificate.js";
+export type {
+  VehicleCertificateEnglishInfoParams,
+  VehicleCertificateEnglishInfoResponse,
+} from "../operations/transport/vehicleCertificateEnglishInfo.js";
 export type {
   VehicleLegalEntityInfoListData,
   VehicleLegalEntityInfoParams,

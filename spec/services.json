@@ -5653,7 +5653,7 @@
     ]
   },
   {
-    "id": "6aa8f8ca65bee5e097f6c03a",
+    "id": "6abcb45fb8937f047197dd27",
     "operationName": "GS10084_DOCXAccessVerificationService",
     "operationDetail": "Албан бичиг солилцооны дундын системд хандах эрх баталгаажуулах сервис",
     "orgName": "И-Монголиа академи",
@@ -6165,6 +6165,386 @@
         "wsResponseName": "orgCreated",
         "wsResponseDetail": null,
         "parentId": null
+      }
+    ]
+  },
+  {
+    "id": "6abe0a99b8937f047197e2bc",
+    "operationName": "GS10088_EnergyQualificationService",
+    "operationDetail": "Эрчим хүчний салбарын мэргэшлийн зэрэг эзэмшигчдийн мэдээлэл лавлах",
+    "orgName": "Эрчим хүчний яам",
+    "version": "1.5.0",
+    "endpoint": "https://xyp.gov.mn/government-service-1.5.0/ws?WSDL",
+    "input": [
+      {
+        "wsId": 9489,
+        "wsInputName": "regnum",
+        "wsInputDetail": "Регистр",
+        "wsInputDatatype": "String"
+      }
+    ],
+    "output": [
+      {
+        "wsId": 9489,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35007,
+        "wsResponseName": "lastName",
+        "wsResponseDetail": "Эцэг/эхийн нэр",
+        "parentId": null
+      },
+      {
+        "wsId": 9489,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35008,
+        "wsResponseName": "firstName",
+        "wsResponseDetail": "Өөрийн нэр",
+        "parentId": null
+      },
+      {
+        "wsId": 9489,
+        "wsResponseDatatype": "List<T>",
+        "wsResponseId": 35009,
+        "wsResponseName": "listData",
+        "wsResponseDetail": "Жагсаалт",
+        "parentId": null
+      },
+      {
+        "wsId": 9489,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35026,
+        "wsResponseName": "id",
+        "wsResponseDetail": "Сертификатын id",
+        "parentId": 35009
+      },
+      {
+        "wsId": 9489,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35027,
+        "wsResponseName": "decisionNum",
+        "wsResponseDetail": "Тушаалын дугаар",
+        "parentId": 35009
+      },
+      {
+        "wsId": 9489,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35028,
+        "wsResponseName": "decisionDate",
+        "wsResponseDetail": "Тушаалын огноо",
+        "parentId": 35009
+      },
+      {
+        "wsId": 9489,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35029,
+        "wsResponseName": "certificateNum",
+        "wsResponseDetail": "Гэрчилгээний дугаар",
+        "parentId": 35009
+      },
+      {
+        "wsId": 9489,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35030,
+        "wsResponseName": "professionCode",
+        "wsResponseDetail": "Мэргэжлийн код",
+        "parentId": 35009
+      },
+      {
+        "wsId": 9489,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35031,
+        "wsResponseName": "certificateName",
+        "wsResponseDetail": "Мэргэшлийн зэргийн нэр",
+        "parentId": 35009
+      },
+      {
+        "wsId": 9489,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35032,
+        "wsResponseName": "validYear",
+        "wsResponseDetail": "Тушаалын огнооноос хүчинтэй байх жил (0 бол хугацаагүй сунгасан)",
+        "parentId": 35009
+      },
+      {
+        "wsId": 9489,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35033,
+        "wsResponseName": "professionDesc",
+        "wsResponseDetail": "Мэргэжлийн нэр",
+        "parentId": 35009
+      },
+      {
+        "wsId": 9489,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35034,
+        "wsResponseName": "expireDate",
+        "wsResponseDetail": "Сертификатын дуусах огноо (Хоосон бол хугацаагүй сунгасан буюу үргэлж хүчинтэй байна)",
+        "parentId": 35009
+      },
+      {
+        "wsId": 9489,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35035,
+        "wsResponseName": "certificateStatus",
+        "wsResponseDetail": "Төлөв: \"Хүчинтэй\" эсвэл \"Хүчингүй\"",
+        "parentId": 35009
+      }
+    ]
+  },
+  {
+    "id": "6abe0a99b8937f047197e2bd",
+    "operationName": "GS10089_EnergyQualificationCertificateService",
+    "operationDetail": "Эрчим хүчний салбарын мэргэшлийн зэрэг эзэмшигчийн сертификатын мэдээлэл id-аар лавлах",
+    "orgName": "Эрчим хүчний яам",
+    "version": "1.5.0",
+    "endpoint": "https://xyp.gov.mn/government-service-1.5.0/ws?WSDL",
+    "input": [
+      {
+        "wsId": 9509,
+        "wsInputName": "id",
+        "wsInputDetail": "Сертификатын id (GS10088_EnergyQualificationService сервисийн listData-аас авна)",
+        "wsInputDatatype": "String"
+      }
+    ],
+    "output": [
+      {
+        "wsId": 9509,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35036,
+        "wsResponseName": "lastName",
+        "wsResponseDetail": "Овог",
+        "parentId": null
+      },
+      {
+        "wsId": 9509,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35037,
+        "wsResponseName": "firstName",
+        "wsResponseDetail": "Нэр",
+        "parentId": null
+      },
+      {
+        "wsId": 9509,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35038,
+        "wsResponseName": "id",
+        "wsResponseDetail": "Сертификатын id",
+        "parentId": null
+      },
+      {
+        "wsId": 9509,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35039,
+        "wsResponseName": "decisionNum",
+        "wsResponseDetail": "Тушаалын дугаар",
+        "parentId": null
+      },
+      {
+        "wsId": 9509,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35040,
+        "wsResponseName": "decisionDate",
+        "wsResponseDetail": "Тушаалын огноо",
+        "parentId": null
+      },
+      {
+        "wsId": 9509,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35041,
+        "wsResponseName": "certificateNum",
+        "wsResponseDetail": "Гэрчилгээний дугаар",
+        "parentId": null
+      },
+      {
+        "wsId": 9509,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35042,
+        "wsResponseName": "professionCode",
+        "wsResponseDetail": "Мэргэжлийн код",
+        "parentId": null
+      },
+      {
+        "wsId": 9509,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35043,
+        "wsResponseName": "certificateName",
+        "wsResponseDetail": "Мэргэшлийн зэргийн нэр",
+        "parentId": null
+      },
+      {
+        "wsId": 9509,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35044,
+        "wsResponseName": "validYear",
+        "wsResponseDetail": "Тушаалын огнооноос хүчинтэй байх жил (0 бол хугацаагүй сунгасан)",
+        "parentId": null
+      },
+      {
+        "wsId": 9509,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35045,
+        "wsResponseName": "professionDesc",
+        "wsResponseDetail": "Мэргэжлийн нэр",
+        "parentId": null
+      },
+      {
+        "wsId": 9509,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35046,
+        "wsResponseName": "expireDate",
+        "wsResponseDetail": "Сертификатын дуусах огноо (Хоосон бол хугацаагүй сунгасан буюу үргэлж хүчинтэй байна)",
+        "parentId": null
+      },
+      {
+        "wsId": 9509,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35047,
+        "wsResponseName": "certificateStatus",
+        "wsResponseDetail": "Төлөв: \"Хүчинтэй\" / \"Хүчингүй\"",
+        "parentId": null
+      }
+    ]
+  },
+  {
+    "id": "6ac30e1eb8937f047197f5dd",
+    "operationName": "GS10090_GetFeedbackDimensionTagsV2",
+    "operationDetail": "Өргөдөл, гомдлын tag мэдээлэл v2",
+    "orgName": "Засгийн газрын Хэрэг эрхлэх газар",
+    "version": "1.5.0",
+    "endpoint": "https://xyp.gov.mn/government-service-1.5.0/ws?WSDL",
+    "input": [
+      {
+        "wsId": 9569,
+        "wsInputName": "categoryId",
+        "wsInputDetail": null,
+        "wsInputDatatype": "int"
+      },
+      {
+        "wsId": 9569,
+        "wsInputName": "sectorId",
+        "wsInputDetail": null,
+        "wsInputDatatype": "int"
+      }
+    ],
+    "output": [
+      {
+        "wsId": 9569,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35182,
+        "wsResponseName": "name",
+        "wsResponseDetail": null,
+        "parentId": 35179
+      },
+      {
+        "wsId": 9569,
+        "wsResponseDatatype": "int",
+        "wsResponseId": 35183,
+        "wsResponseName": "id",
+        "wsResponseDetail": null,
+        "parentId": 35179
+      },
+      {
+        "wsId": 9569,
+        "wsResponseDatatype": "List<T>",
+        "wsResponseId": 35179,
+        "wsResponseName": "categories",
+        "wsResponseDetail": null,
+        "parentId": null
+      },
+      {
+        "wsId": 9569,
+        "wsResponseDatatype": "List<T>",
+        "wsResponseId": 35180,
+        "wsResponseName": "sectors",
+        "wsResponseDetail": null,
+        "parentId": null
+      },
+      {
+        "wsId": 9569,
+        "wsResponseDatatype": "List<T>",
+        "wsResponseId": 35181,
+        "wsResponseName": "tags",
+        "wsResponseDetail": null,
+        "parentId": null
+      },
+      {
+        "wsId": 9569,
+        "wsResponseDatatype": "int",
+        "wsResponseId": 35185,
+        "wsResponseName": "sectorId",
+        "wsResponseDetail": null,
+        "parentId": 35179
+      },
+      {
+        "wsId": 9569,
+        "wsResponseDatatype": "int",
+        "wsResponseId": 35206,
+        "wsResponseName": "categoryId",
+        "wsResponseDetail": null,
+        "parentId": 35179
+      },
+      {
+        "wsId": 9569,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35186,
+        "wsResponseName": "name",
+        "wsResponseDetail": null,
+        "parentId": 35181
+      },
+      {
+        "wsId": 9569,
+        "wsResponseDatatype": "int",
+        "wsResponseId": 35187,
+        "wsResponseName": "id",
+        "wsResponseDetail": null,
+        "parentId": 35181
+      },
+      {
+        "wsId": 9569,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35188,
+        "wsResponseName": "name",
+        "wsResponseDetail": null,
+        "parentId": 35180
+      },
+      {
+        "wsId": 9569,
+        "wsResponseDatatype": "int",
+        "wsResponseId": 35189,
+        "wsResponseName": "id",
+        "wsResponseDetail": null,
+        "parentId": 35180
+      },
+      {
+        "wsId": 9569,
+        "wsResponseDatatype": "int",
+        "wsResponseId": 35191,
+        "wsResponseName": "sectorId",
+        "wsResponseDetail": null,
+        "parentId": 35181
+      },
+      {
+        "wsId": 9569,
+        "wsResponseDatatype": "int",
+        "wsResponseId": 35192,
+        "wsResponseName": "categoryId",
+        "wsResponseDetail": null,
+        "parentId": 35181
+      },
+      {
+        "wsId": 9569,
+        "wsResponseDatatype": "int",
+        "wsResponseId": 35193,
+        "wsResponseName": "sectorId",
+        "wsResponseDetail": null,
+        "parentId": 35180
+      },
+      {
+        "wsId": 9569,
+        "wsResponseDatatype": "int",
+        "wsResponseId": 35194,
+        "wsResponseName": "categoryId",
+        "wsResponseDetail": null,
+        "parentId": 35180
       }
     ]
   },
@@ -14922,6 +15302,288 @@
         "wsResponseName": "propertyNationNum",
         "wsResponseDetail": null,
         "parentId": 30407
+      }
+    ]
+  },
+  {
+    "id": "6abcb45fb8937f047197dd29",
+    "operationName": "WS100257_CitizenHousingInfoService",
+    "operationDetail": "Иргэний орон сууцны мэдээлэл дуудах сервис",
+    "orgName": "Үндэсний статистикийн хороо",
+    "version": "1.5.0",
+    "endpoint": "https://xyp.gov.mn/property-1.5.0/ws?WSDL",
+    "input": [
+      {
+        "wsId": 9549,
+        "wsInputName": "regnum",
+        "wsInputDetail": "Регистр",
+        "wsInputDatatype": "String"
+      }
+    ],
+    "output": [
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35146,
+        "wsResponseName": "regnum",
+        "wsResponseDetail": "Регистрийн дугаар",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35147,
+        "wsResponseName": "familyName",
+        "wsResponseDetail": "Ургын овог",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35148,
+        "wsResponseName": "lastName",
+        "wsResponseDetail": "Эцэг/эхийн нэр",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35149,
+        "wsResponseName": "firstName",
+        "wsResponseDetail": "Өөрийн нэр",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35150,
+        "wsResponseName": "birthDate",
+        "wsResponseDetail": "Төрсөн он, сар, өдөр",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35151,
+        "wsResponseName": "genderCode",
+        "wsResponseDetail": "Хүйс код",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35152,
+        "wsResponseName": "genderName",
+        "wsResponseDetail": "Хүйс",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35153,
+        "wsResponseName": "relationCode",
+        "wsResponseDetail": "Хамаарлын код",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35154,
+        "wsResponseName": "relationName",
+        "wsResponseDetail": "Хамаарлын нэр",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35155,
+        "wsResponseName": "statusName",
+        "wsResponseDetail": "Оршин суугаа төлөв",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "Long",
+        "wsResponseId": 35156,
+        "wsResponseName": "members",
+        "wsResponseDetail": "Ам бүлийн тоо",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "Long",
+        "wsResponseId": 35157,
+        "wsResponseName": "householdId",
+        "wsResponseDetail": "Өрхийн ID",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35158,
+        "wsResponseName": "householdNo",
+        "wsResponseDetail": "Өрхийн бүртгэлийн дугаар",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "Long",
+        "wsResponseId": 35159,
+        "wsResponseName": "addressId",
+        "wsResponseDetail": "Хаягийн ID",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35160,
+        "wsResponseName": "aimagCode",
+        "wsResponseDetail": "Аймаг код",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35161,
+        "wsResponseName": "aimagName",
+        "wsResponseDetail": "Аймаг нэр",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35162,
+        "wsResponseName": "soumCode",
+        "wsResponseDetail": "Сум код",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35163,
+        "wsResponseName": "soumName",
+        "wsResponseDetail": "Сум нэр",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35164,
+        "wsResponseName": "bagCode",
+        "wsResponseDetail": "Баг код",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35165,
+        "wsResponseName": "bagName",
+        "wsResponseDetail": "Баг нэр",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35166,
+        "wsResponseName": "hesegCode",
+        "wsResponseDetail": "Хэсэг код",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35167,
+        "wsResponseName": "hesegName",
+        "wsResponseDetail": "Хэсэг нэр",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35168,
+        "wsResponseName": "streetName",
+        "wsResponseDetail": "Гудамж",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35169,
+        "wsResponseName": "buildingNo",
+        "wsResponseDetail": "Хашаа/байшингийн дугаар",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35170,
+        "wsResponseName": "householdTypeCode",
+        "wsResponseDetail": "Өрхийн төрөл код",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35171,
+        "wsResponseName": "householdTypeName",
+        "wsResponseDetail": "Өрхийн төрөл нэр",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35172,
+        "wsResponseName": "houseTypeCode",
+        "wsResponseDetail": "Сууцны төрөл код",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35173,
+        "wsResponseName": "houseTypeName",
+        "wsResponseDetail": "Сууцны төрөл нэр",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35174,
+        "wsResponseName": "ownershipTypeCode",
+        "wsResponseDetail": "Эзэмшлийн хэлбэр код",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35175,
+        "wsResponseName": "ownershipTypeName",
+        "wsResponseDetail": "Эзэмшлийн хэлбэр",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35176,
+        "wsResponseName": "heatingTypeCode",
+        "wsResponseDetail": "Хатуу хог, хаягдал зайлуулалт код",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35177,
+        "wsResponseName": "heatingTypeName",
+        "wsResponseDetail": "Хатуу хог, хаягдал зайлуулалт",
+        "parentId": 35126
+      },
+      {
+        "wsId": 9549,
+        "wsResponseDatatype": "List<T>",
+        "wsResponseId": 35126,
+        "wsResponseName": "listData",
+        "wsResponseDetail": "Жагсаалт",
+        "parentId": null
       }
     ]
   },
@@ -34567,934 +35229,6 @@
     ]
   },
   {
-    "id": "6a73d71ac1d3ff8459203ad0",
-    "operationName": "WS100871_InvoiceNumberUthPaymentService",
-    "operationDetail": "Нэхэмжлэхийн дугаараар УТХ-н төлөлтийн мэдээлэл шалгах сервис",
-    "orgName": "Татварын ерөнхий газар",
-    "version": "1.5.0",
-    "endpoint": "https://xyp.gov.mn/payment-1.5.0/ws?WSDL",
-    "input": [
-      {
-        "wsInputName": "invoiceNo",
-        "wsInputDetail": "Төлбөрийн даалгавар /Нэхэмжлэх/-н дугаар",
-        "wsInputDatatype": "String"
-      }
-    ],
-    "output": [
-      {
-        "wsResponseDatatype": "Long",
-        "wsResponseId": 33204,
-        "wsResponseName": "invoiceNo",
-        "wsResponseDetail": "Нэхэмжлэх / Цахим төлбөрийн даалгавар-ын дугаар",
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "Long",
-        "wsResponseId": 33205,
-        "wsResponseName": "amount",
-        "wsResponseDetail": "Нэхэмжлэхийн үлдэгдэл дүн",
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33206,
-        "wsResponseName": "regnum",
-        "wsResponseDetail": "Регистр дугаар",
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33207,
-        "wsResponseName": "tin",
-        "wsResponseDetail": "Татварын дугаар (Tax Identification Number)",
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33208,
-        "wsResponseName": "taxPayerName",
-        "wsResponseDetail": "Татвар төлөгчийн нэр",
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33209,
-        "wsResponseName": "description",
-        "wsResponseDetail": "Тайлбар",
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "Long",
-        "wsResponseId": 33210,
-        "wsResponseName": "stateAccount",
-        "wsResponseDetail": "Төрийн сан дахь татварын орлогын данс",
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33211,
-        "wsResponseName": "stateAccountName",
-        "wsResponseDetail": "Төрийн сан дахь татварын орлогын дансны нэр",
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33212,
-        "wsResponseName": "iban",
-        "wsResponseDetail": "IBAN дугаар",
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "Integer",
-        "wsResponseId": 33213,
-        "wsResponseName": "invoiceType",
-        "wsResponseDetail": "Нэхэмжлэхийн төрөл (1-Тайлангийнх, 2-Төлбөрийн даалгавар, 3-Урьдчилгаа)",
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "Long",
-        "wsResponseId": 33214,
-        "wsResponseName": "taxTypeId",
-        "wsResponseDetail": "Татварын төрөл ID",
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33215,
-        "wsResponseName": "taxTypeCode",
-        "wsResponseDetail": "Татварын төрлийн код",
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33216,
-        "wsResponseName": "taxTypeName",
-        "wsResponseDetail": "Татварын төрлийн нэр",
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "Long",
-        "wsResponseId": 33217,
-        "wsResponseName": "branchId",
-        "wsResponseDetail": "Татварын алба ID",
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33218,
-        "wsResponseName": "branchCode",
-        "wsResponseDetail": "Татварын албаны код",
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33219,
-        "wsResponseName": "branchName",
-        "wsResponseDetail": "Татварын албаны нэр",
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "Long",
-        "wsResponseId": 33220,
-        "wsResponseName": "subBranchId",
-        "wsResponseDetail": "Дэд алба ID",
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33221,
-        "wsResponseName": "subBranchCode",
-        "wsResponseDetail": "Татварын дэд албаны код",
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33222,
-        "wsResponseName": "subBranchName",
-        "wsResponseDetail": "Татварын дэд албаны нэр",
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33223,
-        "wsResponseName": "year",
-        "wsResponseDetail": "Жил",
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "Long",
-        "wsResponseId": 33224,
-        "wsResponseName": "periodId",
-        "wsResponseDetail": "Төлөвт хугацааны ID",
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33225,
-        "wsResponseName": "periodType",
-        "wsResponseDetail": "Хугацааны төрөл (сар, улирал, жил гэх мэт)",
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33226,
-        "wsResponseName": "period",
-        "wsResponseDetail": "Хугацаа (жишээ: 01, 02, 03 гэх мэт)",
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "Integer",
-        "wsResponseId": 33227,
-        "wsResponseName": "payStatus",
-        "wsResponseDetail": "Төлөв (1-Төлөгдсөн, 0-Төлөөгүй гэх мэт)",
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33228,
-        "wsResponseName": "payStatusName",
-        "wsResponseDetail": "Төлвийн нэр",
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33229,
-        "wsResponseName": "createdDate",
-        "wsResponseDetail": "Үүсгэсэн огноо (yyyy-MM-dd HH:mm:ss)",
-        "parentId": null
-      }
-    ]
-  },
-  {
-    "id": "6a73d6cec1d3ff845920379c",
-    "operationName": "WS100872_UnpaidFineService",
-    "operationDetail": "Тээврийн хэрэгслийн улсын дугаараар торгуулийн мэдээлэл авах - Төлбөр төлөгдөөгүй",
-    "orgName": "Монгол улсын ерөнхий прокурорын газар",
-    "version": "1.5.0",
-    "endpoint": "https://xyp.gov.mn/payment-1.5.0/ws?WSDL",
-    "input": [
-      {
-        "wsInputName": "plateNumber",
-        "wsInputDetail": "Тээврийн хэрэгслийн улсын дугаар",
-        "wsInputDatatype": "String"
-      },
-      {
-        "wsInputName": "tokenUsername",
-        "wsInputDetail": null,
-        "wsInputDatatype": "String"
-      },
-      {
-        "wsInputName": "tokenPassword",
-        "wsInputDetail": null,
-        "wsInputDatatype": "String"
-      }
-    ],
-    "output": [
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33406,
-        "wsResponseName": "shiitgelDugaar",
-        "wsResponseDetail": "Шийтгэлийн дугаар",
-        "parentId": 33425
-      },
-      {
-        "wsResponseDatatype": "int",
-        "wsResponseId": 33407,
-        "wsResponseName": "totalAmount",
-        "wsResponseDetail": "Нийт төлөх дүн (торгууль + нэмэлт)",
-        "parentId": 33425
-      },
-      {
-        "wsResponseDatatype": "int",
-        "wsResponseId": 33408,
-        "wsResponseName": "amount",
-        "wsResponseDetail": "Үндсэн торгуулийн дүн",
-        "parentId": 33425
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33409,
-        "wsResponseName": "invoiceNumber",
-        "wsResponseDetail": "Нэхэмжлэхийн дугаар",
-        "parentId": 33425
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33410,
-        "wsResponseName": "statusName",
-        "wsResponseDetail": "Төлбөрийн төлөв",
-        "parentId": 33425
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33411,
-        "wsResponseName": "penaltyDate",
-        "wsResponseDetail": "Торгууль ногдуулсан огноо",
-        "parentId": 33425
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33412,
-        "wsResponseName": "paidDate",
-        "wsResponseDetail": "Төлсөн огноо",
-        "parentId": 33425
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33413,
-        "wsResponseName": "plateNumber",
-        "wsResponseDetail": "Тээврийн хэрэгслийн улсын дугаар",
-        "parentId": 33425
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33415,
-        "wsResponseName": "legalEntityNumber",
-        "wsResponseDetail": "Хуулийн этгээдийн регистр",
-        "parentId": 33425
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33416,
-        "wsResponseName": "lastName",
-        "wsResponseDetail": "Хувь хүний овог",
-        "parentId": 33425
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33417,
-        "wsResponseName": "firstName",
-        "wsResponseDetail": "Хувь хүний нэр",
-        "parentId": 33425
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33418,
-        "wsResponseName": "legalEntityName",
-        "wsResponseDetail": "Хуулийн этгээдийн нэр",
-        "parentId": 33425
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33419,
-        "wsResponseName": "addressDelgerengui",
-        "wsResponseDetail": "Хаяг, байрлалын дэлгэрэнгүй",
-        "parentId": 33425
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33420,
-        "wsResponseName": "zuilZaaltName",
-        "wsResponseDetail": "Хууль, зөрчлийн зүйл заалтын код",
-        "parentId": 33425
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33421,
-        "wsResponseName": "zuilZaalt",
-        "wsResponseDetail": "Хууль, зөрчлийн зүйл заалтын дэлгэрэнгүй тайлбар",
-        "parentId": 33425
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33422,
-        "wsResponseName": "ebbNegjName",
-        "wsResponseDetail": "Эрх бүхий байгууллагын нэгжийн нэр",
-        "parentId": 33425
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33423,
-        "wsResponseName": "ebatName",
-        "wsResponseDetail": "Эрх бүхий албан тушаалтны нэр",
-        "parentId": 33425
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33424,
-        "wsResponseName": "regnum",
-        "wsResponseDetail": "Хувь хүний регистрийн дугаар",
-        "parentId": 33425
-      },
-      {
-        "wsResponseDatatype": "List<T>",
-        "wsResponseId": 33425,
-        "wsResponseName": "listData",
-        "wsResponseDetail": "Жагсаалт",
-        "parentId": null
-      }
-    ]
-  },
-  {
-    "id": "6a73d6afc1d3ff8459203611",
-    "operationName": "WS100873_PaidFineService",
-    "operationDetail": "Тээврийн хэрэгслийн улсын дугаараар торгуулийн мэдээлэл авах - Төлбөр төлөгдсөн",
-    "orgName": "Монгол улсын ерөнхий прокурорын газар",
-    "version": "1.5.0",
-    "endpoint": "https://xyp.gov.mn/payment-1.5.0/ws?WSDL",
-    "input": [
-      {
-        "wsInputName": "plateNumber",
-        "wsInputDetail": "Тээврийн хэрэгслийн улсын дугаар",
-        "wsInputDatatype": "String"
-      },
-      {
-        "wsInputName": "tokenUsername",
-        "wsInputDetail": null,
-        "wsInputDatatype": "String"
-      },
-      {
-        "wsInputName": "tokenPassword",
-        "wsInputDetail": null,
-        "wsInputDatatype": "String"
-      }
-    ],
-    "output": [
-      {
-        "wsResponseDatatype": "List<T>",
-        "wsResponseId": 33426,
-        "wsResponseName": "listData",
-        "wsResponseDetail": "Жагсаалт",
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33427,
-        "wsResponseName": "shiitgelDugaar",
-        "wsResponseDetail": "Шийтгэлийн дугаар",
-        "parentId": 33426
-      },
-      {
-        "wsResponseDatatype": "int",
-        "wsResponseId": 33428,
-        "wsResponseName": "totalAmount",
-        "wsResponseDetail": "Нийт төлөх дүн (торгууль + нэмэлт)",
-        "parentId": 33426
-      },
-      {
-        "wsResponseDatatype": "int",
-        "wsResponseId": 33429,
-        "wsResponseName": "amount",
-        "wsResponseDetail": "Үндсэн торгуулийн дүн",
-        "parentId": 33426
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33430,
-        "wsResponseName": "invoiceNumber",
-        "wsResponseDetail": "Нэхэмжлэхийн дугаар",
-        "parentId": 33426
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33431,
-        "wsResponseName": "statusName",
-        "wsResponseDetail": "Төлбөрийн төлөв",
-        "parentId": 33426
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33432,
-        "wsResponseName": "penaltyDate",
-        "wsResponseDetail": "Торгууль ногдуулсан огноо",
-        "parentId": 33426
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33433,
-        "wsResponseName": "paidDate",
-        "wsResponseDetail": "Төлсөн огноо",
-        "parentId": 33426
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33434,
-        "wsResponseName": "plateNumber",
-        "wsResponseDetail": "Тээврийн хэрэгслийн улсын дугаар",
-        "parentId": 33426
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33435,
-        "wsResponseName": "regnum",
-        "wsResponseDetail": "Хувь хүний регистрийн дугаар",
-        "parentId": 33426
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33436,
-        "wsResponseName": "legalEntityNumber",
-        "wsResponseDetail": "Хуулийн этгээдийн регистр",
-        "parentId": 33426
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33437,
-        "wsResponseName": "lastName",
-        "wsResponseDetail": "Хувь хүний овог",
-        "parentId": 33426
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33438,
-        "wsResponseName": "firstName",
-        "wsResponseDetail": "Хувь хүний нэр",
-        "parentId": 33426
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33439,
-        "wsResponseName": "legalEntityName",
-        "wsResponseDetail": "Хуулийн этгээдийн нэр",
-        "parentId": 33426
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33440,
-        "wsResponseName": "addressDelgerengui",
-        "wsResponseDetail": "Хаяг, байрлалын дэлгэрэнгүй",
-        "parentId": 33426
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33441,
-        "wsResponseName": "zuilZaaltName",
-        "wsResponseDetail": "Хууль, зөрчлийн зүйл заалтын код",
-        "parentId": 33426
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33442,
-        "wsResponseName": "zuilZaalt",
-        "wsResponseDetail": "Хууль, зөрчлийн зүйл заалтын дэлгэрэнгүй тайлбар",
-        "parentId": 33426
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33443,
-        "wsResponseName": "ebbNegjName",
-        "wsResponseDetail": "Эрх бүхий байгууллагын нэгжийн нэр",
-        "parentId": 33426
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33444,
-        "wsResponseName": "ebatName",
-        "wsResponseDetail": "Эрх бүхий албан тушаалтны нэр",
-        "parentId": 33426
-      }
-    ]
-  },
-  {
-    "id": "6a73d6f8c1d3ff8459203963",
-    "operationName": "WS100874_UnpaidFineByRegisterService",
-    "operationDetail": "Иргэн/Хуулийн этгээдийн регистрийн дугаараар торгуулийн мэдээлэл авах - Төлбөр төлөгдөөгүй",
-    "orgName": "Монгол улсын ерөнхий прокурорын газар",
-    "version": "1.5.0",
-    "endpoint": "https://xyp.gov.mn/payment-1.5.0/ws?WSDL",
-    "input": [
-      {
-        "wsInputName": "tokenUsername",
-        "wsInputDetail": null,
-        "wsInputDatatype": "String"
-      },
-      {
-        "wsInputName": "tokenPassword",
-        "wsInputDetail": null,
-        "wsInputDatatype": "String"
-      },
-      {
-        "wsInputName": "regnum",
-        "wsInputDetail": "Хувь хүний регистрийн дугаар",
-        "wsInputDatatype": "String"
-      }
-    ],
-    "output": [
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33446,
-        "wsResponseName": "shiitgelDugaar",
-        "wsResponseDetail": "Шийтгэлийн дугаар",
-        "parentId": 33445
-      },
-      {
-        "wsResponseDatatype": "int",
-        "wsResponseId": 33447,
-        "wsResponseName": "totalAmount",
-        "wsResponseDetail": "Нийт төлөх дүн (торгууль + нэмэлт)",
-        "parentId": 33445
-      },
-      {
-        "wsResponseDatatype": "int",
-        "wsResponseId": 33448,
-        "wsResponseName": "amount",
-        "wsResponseDetail": "Үндсэн торгуулийн дүн",
-        "parentId": 33445
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33449,
-        "wsResponseName": "invoiceNumber",
-        "wsResponseDetail": "Нэхэмжлэхийн дугаар",
-        "parentId": 33445
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33450,
-        "wsResponseName": "statusName",
-        "wsResponseDetail": "Төлбөрийн төлөв",
-        "parentId": 33445
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33451,
-        "wsResponseName": "penaltyDate",
-        "wsResponseDetail": "Торгууль ногдуулсан огноо",
-        "parentId": 33445
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33452,
-        "wsResponseName": "paidDate",
-        "wsResponseDetail": "Төлсөн огноо",
-        "parentId": 33445
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33453,
-        "wsResponseName": "plateNumber",
-        "wsResponseDetail": "Тээврийн хэрэгслийн улсын дугаар",
-        "parentId": 33445
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33454,
-        "wsResponseName": "regnum",
-        "wsResponseDetail": "Хувь хүний регистрийн дугаар",
-        "parentId": 33445
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33455,
-        "wsResponseName": "legalEntityNumber",
-        "wsResponseDetail": "Хуулийн этгээдийн регистр",
-        "parentId": 33445
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33456,
-        "wsResponseName": "lastName",
-        "wsResponseDetail": "Хувь хүний овог",
-        "parentId": 33445
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33457,
-        "wsResponseName": "firstName",
-        "wsResponseDetail": "Хувь хүний нэр",
-        "parentId": 33445
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33458,
-        "wsResponseName": "legalEntityName",
-        "wsResponseDetail": "Хуулийн этгээдийн нэр",
-        "parentId": 33445
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33459,
-        "wsResponseName": "addressDelgerengui",
-        "wsResponseDetail": "Хаяг, байрлалын дэлгэрэнгүй",
-        "parentId": 33445
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33460,
-        "wsResponseName": "zuilZaaltName",
-        "wsResponseDetail": "Хууль, зөрчлийн зүйл заалтын код",
-        "parentId": 33445
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33461,
-        "wsResponseName": "zuilZaalt",
-        "wsResponseDetail": "Хууль, зөрчлийн зүйл заалтын дэлгэрэнгүй тайлбар",
-        "parentId": 33445
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33462,
-        "wsResponseName": "ebbNegjName",
-        "wsResponseDetail": "Эрх бүхий байгууллагын нэгжийн нэр",
-        "parentId": 33445
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33463,
-        "wsResponseName": "ebatName",
-        "wsResponseDetail": "Эрх бүхий албан тушаалтны нэр",
-        "parentId": 33445
-      },
-      {
-        "wsResponseDatatype": "List<T>",
-        "wsResponseId": 33445,
-        "wsResponseName": "listData",
-        "wsResponseDetail": "Жагсаалт",
-        "parentId": null
-      }
-    ]
-  },
-  {
-    "id": "6a73d764c1d3ff8459203dd8",
-    "operationName": "WS100875_PaidFineByRegisterService",
-    "operationDetail": "Иргэн/Хуулийн этгээдийн регистрийн дугаараар торгуулийн мэдээлэл авах - Төлбөр төлөгдсөн",
-    "orgName": "Монгол улсын ерөнхий прокурорын газар",
-    "version": "1.5.0",
-    "endpoint": "https://xyp.gov.mn/payment-1.5.0/ws?WSDL",
-    "input": [
-      {
-        "wsInputName": "regnum",
-        "wsInputDetail": "Хувь хүний регистрийн дугаар",
-        "wsInputDatatype": "String"
-      },
-      {
-        "wsInputName": "tokenUsername",
-        "wsInputDetail": null,
-        "wsInputDatatype": "String"
-      },
-      {
-        "wsInputName": "tokenPassword",
-        "wsInputDetail": null,
-        "wsInputDatatype": "String"
-      }
-    ],
-    "output": [
-      {
-        "wsResponseDatatype": "List<T>",
-        "wsResponseId": 33464,
-        "wsResponseName": "listData",
-        "wsResponseDetail": "Жагсаалт",
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33465,
-        "wsResponseName": "shiitgelDugaar",
-        "wsResponseDetail": "Шийтгэлийн дугаар",
-        "parentId": 33464
-      },
-      {
-        "wsResponseDatatype": "int",
-        "wsResponseId": 33466,
-        "wsResponseName": "totalAmount",
-        "wsResponseDetail": "Нийт төлөх дүн (торгууль + нэмэлт)",
-        "parentId": 33464
-      },
-      {
-        "wsResponseDatatype": "int",
-        "wsResponseId": 33467,
-        "wsResponseName": "amount",
-        "wsResponseDetail": "Үндсэн торгуулийн дүн",
-        "parentId": 33464
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33468,
-        "wsResponseName": "invoiceNumber",
-        "wsResponseDetail": "Нэхэмжлэхийн дугаар",
-        "parentId": 33464
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33469,
-        "wsResponseName": "statusName",
-        "wsResponseDetail": "Төлбөрийн төлөв",
-        "parentId": 33464
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33470,
-        "wsResponseName": "penaltyDate",
-        "wsResponseDetail": "Торгууль ногдуулсан огноо",
-        "parentId": 33464
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33471,
-        "wsResponseName": "paidDate",
-        "wsResponseDetail": "Төлсөн огноо",
-        "parentId": 33464
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33472,
-        "wsResponseName": "plateNumber",
-        "wsResponseDetail": "Тээврийн хэрэгслийн улсын дугаар",
-        "parentId": 33464
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33473,
-        "wsResponseName": "regnum",
-        "wsResponseDetail": "Хувь хүний регистрийн дугаар",
-        "parentId": 33464
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33474,
-        "wsResponseName": "legalEntityNumber",
-        "wsResponseDetail": "Хуулийн этгээдийн регистр",
-        "parentId": 33464
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33475,
-        "wsResponseName": "lastName",
-        "wsResponseDetail": "Хувь хүний овог",
-        "parentId": 33464
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33476,
-        "wsResponseName": "firstName",
-        "wsResponseDetail": "Хувь хүний нэр",
-        "parentId": 33464
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33477,
-        "wsResponseName": "legalEntityName",
-        "wsResponseDetail": "Хуулийн этгээдийн нэр",
-        "parentId": 33464
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33478,
-        "wsResponseName": "addressDelgerengui",
-        "wsResponseDetail": "Хаяг, байрлалын дэлгэрэнгүй",
-        "parentId": 33464
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33479,
-        "wsResponseName": "zuilZaaltName",
-        "wsResponseDetail": "Хууль, зөрчлийн зүйл заалтын код",
-        "parentId": 33464
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33480,
-        "wsResponseName": "zuilZaalt",
-        "wsResponseDetail": "Хууль, зөрчлийн зүйл заалтын дэлгэрэнгүй тайлбар",
-        "parentId": 33464
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33481,
-        "wsResponseName": "ebbNegjName",
-        "wsResponseDetail": "Эрх бүхий байгууллагын нэгжийн нэр",
-        "parentId": 33464
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33482,
-        "wsResponseName": "ebatName",
-        "wsResponseDetail": "Эрх бүхий албан тушаалтны нэр",
-        "parentId": 33464
-      }
-    ]
-  },
-  {
-    "id": "6a73d6cfc1d3ff84592037ad",
-    "operationName": "WS100876_InvoicePaymentInfoService",
-    "operationDetail": "Нэхэмжлэлийн дугаараар төлбөрийн мэдээлэл авах",
-    "orgName": "Монгол улсын ерөнхий прокурорын газар",
-    "version": "1.5.0",
-    "endpoint": "https://xyp.gov.mn/payment-1.5.0/ws?WSDL",
-    "input": [
-      {
-        "wsInputName": "tokenUsername",
-        "wsInputDetail": null,
-        "wsInputDatatype": "String"
-      },
-      {
-        "wsInputName": "invoiceNumber",
-        "wsInputDetail": null,
-        "wsInputDatatype": "String"
-      },
-      {
-        "wsInputName": "tokenPassword",
-        "wsInputDetail": null,
-        "wsInputDatatype": "String"
-      }
-    ],
-    "output": [
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33708,
-        "wsResponseName": "accountName",
-        "wsResponseDetail": null,
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33709,
-        "wsResponseName": "accountNumber",
-        "wsResponseDetail": null,
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "double",
-        "wsResponseId": 33710,
-        "wsResponseName": "amount",
-        "wsResponseDetail": null,
-        "parentId": null
-      },
-      {
-        "wsResponseDatatype": "String",
-        "wsResponseId": 33711,
-        "wsResponseName": "tmean",
-        "wsResponseDetail": null,
-        "parentId": null
-      }
-    ]
-  },
-  {
-    "id": "6a73d785c1d3ff8459203f3e",
-    "operationName": "WS100877_InvoiceStatusService",
-    "operationDetail": "Нэхэмжлэлийн дугаараар төлөв авах",
-    "orgName": "Монгол улсын ерөнхий прокурорын газар",
-    "version": "1.5.0",
-    "endpoint": "https://xyp.gov.mn/payment-1.5.0/ws?WSDL",
-    "input": [
-      {
-        "wsInputName": "invoiceNumber",
-        "wsInputDetail": null,
-        "wsInputDatatype": "String"
-      },
-      {
-        "wsInputName": "tokenUsername",
-        "wsInputDetail": null,
-        "wsInputDatatype": "String"
-      },
-      {
-        "wsInputName": "tokenPassword",
-        "wsInputDetail": null,
-        "wsInputDatatype": "String"
-      }
-    ],
-    "output": [
-      {
-        "wsResponseDatatype": "boolean",
-        "wsResponseId": 33686,
-        "wsResponseName": "status",
-        "wsResponseDetail": null,
-        "parentId": null
-      }
-    ]
-  },
-  {
     "id": "6a73d6d0c1d3ff84592037ba",
     "operationName": "WS100879_ViolationPaymentByRegnum",
     "operationDetail": "Иргэн/хуулийн этгээдийн регистрийн дугаараар төлбөрийн мэдээлэл авах сервис",
@@ -43007,6 +42741,672 @@
         "wsResponseName": "pageCount",
         "wsResponseDetail": "Нийт хуудасны тоо",
         "parentId": 33765
+      }
+    ]
+  },
+  {
+    "id": "6ac30e1eb8937f047197f5df",
+    "operationName": "WS101403_VehicleCertificateEnglishInfo",
+    "operationDetail": "Тээврийн хэрэгслийн цахим гэрчилгээний мэдээлэл авах англи сервис",
+    "orgName": "Авто тээврийн үндэсний төв",
+    "version": "1.5.0",
+    "endpoint": "https://xyp.gov.mn/transport-1.5.0/ws?WSDL",
+    "input": [
+      {
+        "wsId": 9589,
+        "wsInputName": "plateNumber",
+        "wsInputDetail": "Улсын дугаар",
+        "wsInputDatatype": "private String"
+      },
+      {
+        "wsId": 9589,
+        "wsInputName": "cabinNumber",
+        "wsInputDetail": "Арлын дугаар",
+        "wsInputDatatype": "private String"
+      }
+    ],
+    "output": [
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35197,
+        "wsResponseName": "colorName",
+        "wsResponseDetail": "Өнгө",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35198,
+        "wsResponseName": "inspectionExpireDate",
+        "wsResponseDetail": "Техникийн хяналтын хүчинтэй хугацаа",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35199,
+        "wsResponseName": "purposeName",
+        "wsResponseDetail": "Үндсэн төрөл",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35200,
+        "wsResponseName": "qrcode",
+        "wsResponseDetail": "QRCODE дата",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35201,
+        "wsResponseName": "steeringTypeName",
+        "wsResponseDetail": "Жолооны хүрдний байрлал",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35202,
+        "wsResponseName": "cabinNo",
+        "wsResponseDetail": "Арлын дугаар",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35203,
+        "wsResponseName": "engineNo",
+        "wsResponseDetail": "Хөдөлгүүрийн дугаар",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35204,
+        "wsResponseName": "engineModelName",
+        "wsResponseDetail": "Хөдөлгүүрийн загвар",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35205,
+        "wsResponseName": "engineCapacity",
+        "wsResponseDetail": "Багтаамж",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35226,
+        "wsResponseName": "buildYear",
+        "wsResponseDetail": "Үйлдвэрлэсэн он",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35227,
+        "wsResponseName": "modelName",
+        "wsResponseDetail": "Загвар",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35228,
+        "wsResponseName": "archiveNo",
+        "wsResponseDetail": "Архивын дугаар",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35195,
+        "wsResponseName": "countryName",
+        "wsResponseDetail": "Үйлдвэрлэсэн улс",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35196,
+        "wsResponseName": "buildMonth",
+        "wsResponseDetail": "Үйлдвэрлэсэн сар",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35229,
+        "wsResponseName": "fuelTypeName",
+        "wsResponseDetail": "Шатахууны төрөл",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35230,
+        "wsResponseName": "ownerAddress",
+        "wsResponseDetail": "Өмчлөгчийн хаяг",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35231,
+        "wsResponseName": "ownerName",
+        "wsResponseDetail": "Өмчлөгчийн нэр",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35232,
+        "wsResponseName": "ownerFamilyName",
+        "wsResponseDetail": "Өмчлөгчийн ургийн овог",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35233,
+        "wsResponseName": "ownerRegister",
+        "wsResponseDetail": "Өмчлөгчийн регистрийн дугаар",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35234,
+        "wsResponseName": "borrowerAddress",
+        "wsResponseDetail": "Эзэмшигчийн хаяг",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35235,
+        "wsResponseName": "borrowerFamilyName",
+        "wsResponseDetail": "Эзэмшигчийн ургийн овог",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35236,
+        "wsResponseName": "borrowerName",
+        "wsResponseDetail": "Эзэмшигчийн нэр",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35237,
+        "wsResponseName": "borrowerRegister",
+        "wsResponseDetail": "Эзэмшигчийн регистрийн дугаар",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35238,
+        "wsResponseName": "importedDate",
+        "wsResponseDetail": "Орж ирсэн огноо",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35239,
+        "wsResponseName": "vehicleTypeName",
+        "wsResponseDetail": "Төрөл",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35240,
+        "wsResponseName": "serialNumber",
+        "wsResponseDetail": "гэрчилгээний дугаар",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35241,
+        "wsResponseName": "classificationName",
+        "wsResponseDetail": "Ангилал",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35242,
+        "wsResponseName": "modificationVinNo",
+        "wsResponseDetail": "Модификац",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35243,
+        "wsResponseName": "modificationSeatCount",
+        "wsResponseDetail": "Суудлын тоо",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35244,
+        "wsResponseName": "modificationDoorCount",
+        "wsResponseDetail": "Хаалганы тоо",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35245,
+        "wsResponseName": "modificationWidth",
+        "wsResponseDetail": "Өргөн",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35246,
+        "wsResponseName": "modificationLength",
+        "wsResponseDetail": "Урт",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35247,
+        "wsResponseName": "modificationOwnWeight",
+        "wsResponseDetail": "Өөрийн жин",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35248,
+        "wsResponseName": "modificationMaxLoad",
+        "wsResponseDetail": "Даац",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35249,
+        "wsResponseName": "modificationTotalWeight",
+        "wsResponseDetail": "Нийт жин",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35250,
+        "wsResponseName": "modificationAxleCount",
+        "wsResponseDetail": "Тэнхлэгийн тоо",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35251,
+        "wsResponseName": "modificationHeight",
+        "wsResponseDetail": "Өндөр",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35252,
+        "wsResponseName": "plateNumber",
+        "wsResponseDetail": "Улсын дугаар",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35253,
+        "wsResponseName": "markName",
+        "wsResponseDetail": "Марк",
+        "parentId": null
+      },
+      {
+        "wsId": 9589,
+        "wsResponseDatatype": "int",
+        "wsResponseId": 35254,
+        "wsResponseName": "purposeId",
+        "wsResponseDetail": "Зориулалтын ангиллын код",
+        "parentId": null
+      }
+    ]
+  },
+  {
+    "id": "6ac30e1eb8937f047197f5de",
+    "operationName": "WS101404_ProfessionalDriverLicenseEnglishInfo",
+    "operationDetail": "Мэргэшсэн жолоочийн үнэмлэхний лавлагаа англи сервис",
+    "orgName": "Авто тээврийн үндэсний төв",
+    "version": "1.5.0",
+    "endpoint": "https://xyp.gov.mn/transport-1.5.0/ws?WSDL",
+    "input": [
+      {
+        "wsId": 9570,
+        "wsInputName": "regnum",
+        "wsInputDetail": "Регистрийн дугаар",
+        "wsInputDatatype": "String"
+      }
+    ],
+    "output": [
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "int",
+        "wsResponseId": 35207,
+        "wsResponseName": "id",
+        "wsResponseDetail": "Жолоочийн ID",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35208,
+        "wsResponseName": "register",
+        "wsResponseDetail": "Регистрийн дугаар",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "int",
+        "wsResponseId": 35209,
+        "wsResponseName": "licenseNumber",
+        "wsResponseDetail": "Жолооны үнэмлэхний дугаар",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35210,
+        "wsResponseName": "surname",
+        "wsResponseDetail": "Ургийн овог",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35211,
+        "wsResponseName": "lastname",
+        "wsResponseDetail": "Эцэг/эхийн нэр",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35212,
+        "wsResponseName": "firstname",
+        "wsResponseDetail": "Өөрийн нэр",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35213,
+        "wsResponseName": "surnameEn",
+        "wsResponseDetail": "Ургийн овог /англи/",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35214,
+        "wsResponseName": "lastnameEn",
+        "wsResponseDetail": "Эцэг/эхийн нэр /англи/",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35215,
+        "wsResponseName": "firstnameEn",
+        "wsResponseDetail": "Өөрийн нэр /англи/",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "Date",
+        "wsResponseId": 35216,
+        "wsResponseName": "birthdate",
+        "wsResponseDetail": "Төрсөн огноо",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35217,
+        "wsResponseName": "gender",
+        "wsResponseDetail": "Хүйс код",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "Date",
+        "wsResponseId": 35218,
+        "wsResponseName": "classB",
+        "wsResponseDetail": "Мэргэшсэн жолоочийн B ангилал олгосон огноо",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "Date",
+        "wsResponseId": 35219,
+        "wsResponseName": "classC",
+        "wsResponseDetail": "Мэргэшсэн жолоочийн C ангилал олгосон огноо",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "Date",
+        "wsResponseId": 35220,
+        "wsResponseName": "classD",
+        "wsResponseDetail": "Мэргэшсэн жолоочийн D ангилал олгосон огноо",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "Date",
+        "wsResponseId": 35221,
+        "wsResponseName": "classE",
+        "wsResponseDetail": "Мэргэшсэн жолоочийн E ангилал олгосон огноо",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "Date",
+        "wsResponseId": 35222,
+        "wsResponseName": "classTourist",
+        "wsResponseDetail": "Жуулчин тээвэрлэх ангилал олгосон огноо",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "Date",
+        "wsResponseId": 35223,
+        "wsResponseName": "classDanger",
+        "wsResponseDetail": "Аюултай ачаа тээвэрлэх ангилал олгосон огноо",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "Date",
+        "wsResponseId": 35224,
+        "wsResponseName": "classInterPassanger",
+        "wsResponseDetail": "Олон улсын зорчигч тээвэрлэх ангилал олгосон огноо",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "Date",
+        "wsResponseId": 35225,
+        "wsResponseName": "classInterTransport",
+        "wsResponseDetail": "Олон улсын ачаа тээвэрлэх ангилал олгосон огноо",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35266,
+        "wsResponseName": "epdlNumber",
+        "wsResponseDetail": "Мэргэшсэн жолоочийн цахим үнэмлэхний дугаар",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35267,
+        "wsResponseName": "countryName",
+        "wsResponseDetail": "Иргэншил /улсын нэр/",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35268,
+        "wsResponseName": "eyeColor",
+        "wsResponseDetail": "Нүдний өнгө",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35269,
+        "wsResponseName": "eyeColorCode",
+        "wsResponseDetail": "Нүдний өнгө код",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35270,
+        "wsResponseName": "bloodType",
+        "wsResponseDetail": "Цусны бүлэг",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35271,
+        "wsResponseName": "pdlNumber",
+        "wsResponseDetail": "Мэргэшсэн жолоочийн үнэмлэхний дугаар",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "int",
+        "wsResponseId": 35272,
+        "wsResponseName": "haveLicense",
+        "wsResponseDetail": "Үнэмлэхтэй эсэх",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "byte[]",
+        "wsResponseId": 35273,
+        "wsResponseName": "image",
+        "wsResponseDetail": "Жолоочийн зураг",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35274,
+        "wsResponseName": "genderName",
+        "wsResponseDetail": "Хүйс /англи/",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35275,
+        "wsResponseName": "genderCode",
+        "wsResponseDetail": "Хүйс товчлол /M, F/",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35276,
+        "wsResponseName": "countryCode",
+        "wsResponseDetail": "Улсын код /ISO, жнь MNG/",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35277,
+        "wsResponseName": "pictureUrl",
+        "wsResponseDetail": "Жолоочийн зургийн холбоос",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35278,
+        "wsResponseName": "signatureUrl",
+        "wsResponseDetail": "Гарын үсгийн зургийн холбоос",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35279,
+        "wsResponseName": "dlA",
+        "wsResponseDetail": "Жолооны үнэмлэхний A ангилал олгосон огноо",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35280,
+        "wsResponseName": "dlB",
+        "wsResponseDetail": "Жолооны үнэмлэхний B ангилал олгосон огноо",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35281,
+        "wsResponseName": "dlC",
+        "wsResponseDetail": "Жолооны үнэмлэхний C ангилал олгосон огноо",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35282,
+        "wsResponseName": "dlD",
+        "wsResponseDetail": "Жолооны үнэмлэхний D ангилал олгосон огноо",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35283,
+        "wsResponseName": "dlE",
+        "wsResponseDetail": "Жолооны үнэмлэхний E ангилал олгосон огноо",
+        "parentId": null
+      },
+      {
+        "wsId": 9570,
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35284,
+        "wsResponseName": "dlM",
+        "wsResponseDetail": "Жолооны үнэмлэхний M ангилал олгосон огноо",
+        "parentId": null
       }
     ]
   },
@@ -55367,7 +55767,7 @@
     ]
   },
   {
-    "id": "6aa8f8ca65bee5e097f6c03b",
+    "id": "6abcb45fb8937f047197dd28",
     "operationName": "WS400122_DiplomaCopyBilingualService",
     "operationDetail": "Дипломын хуулбар/англи, монгол/ дуудах сервис",
     "orgName": "Боловсролын мэдээллийн технологийн Төв",
@@ -55384,10 +55784,10 @@
     "output": [
       {
         "wsId": 9429,
-        "wsResponseDatatype": "List<T>",
-        "wsResponseId": 34906,
-        "wsResponseName": "detailData",
-        "wsResponseDetail": "Жагсаалт",
+        "wsResponseDatatype": "String",
+        "wsResponseId": 35178,
+        "wsResponseName": "url",
+        "wsResponseDetail": "pdf url/англи, монгол/",
         "parentId": null
       },
       {

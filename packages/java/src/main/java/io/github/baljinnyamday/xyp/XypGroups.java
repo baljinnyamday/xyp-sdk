@@ -94,7 +94,7 @@ public abstract sealed class XypGroups permits XypClient {
   }
 
   /**
-   * Returns the 54 XYP services of the {@code government_service} group, served from {@code
+   * Returns the 57 XYP services of the {@code government_service} group, served from {@code
    * government-service-1.5.0}.
    *
    * @return the {@code government_service} services, bound to this client
@@ -152,7 +152,7 @@ public abstract sealed class XypGroups permits XypClient {
   }
 
   /**
-   * Returns the 33 XYP services of the {@code payment} group, served from {@code payment-1.5.0}.
+   * Returns the 26 XYP services of the {@code payment} group, served from {@code payment-1.5.0}.
    *
    * @return the {@code payment} services, bound to this client
    */
@@ -180,7 +180,7 @@ public abstract sealed class XypGroups permits XypClient {
   }
 
   /**
-   * Returns the 30 XYP services of the {@code property} group, served from {@code property-1.5.0}.
+   * Returns the 31 XYP services of the {@code property} group, served from {@code property-1.5.0}.
    *
    * @return the {@code property} services, bound to this client
    */
@@ -208,7 +208,7 @@ public abstract sealed class XypGroups permits XypClient {
   }
 
   /**
-   * Returns the 48 XYP services of the {@code transport} group, served from {@code
+   * Returns the 50 XYP services of the {@code transport} group, served from {@code
    * transport-1.5.0}.
    *
    * @return the {@code transport} services, bound to this client

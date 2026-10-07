@@ -10,7 +10,7 @@ use Xyp\Auth;
 use Xyp\XypClient;
 
 /**
- * The 30 XYP services of the `property` group, served from property-1.5.0.
+ * The 31 XYP services of the `property` group, served from property-1.5.0.
  *
  * Reached through `$xyp->property`; every method sends one request through that XypClient.
  */
@@ -643,6 +643,27 @@ final class PropertyService
             'WS100256_propertyInfoEng',
             $params,
             PropertyInfoEngResponse::class,
+            auth: $auth,
+            operator: $operator,
+        );
+    }
+
+    /**
+     * Calls WS100257_CitizenHousingInfoService: Иргэний орон сууцны мэдээлэл дуудах сервис.
+     *
+     * Provider: Үндэсний статистикийн хороо
+     *
+     * @throws \Xyp\Exception\XypException
+     */
+    public function CitizenHousingInfoService(
+        CitizenHousingInfoServiceParams $params = new CitizenHousingInfoServiceParams(),
+        ?Auth $auth = null,
+        ?Auth $operator = null,
+    ): CitizenHousingInfoServiceResponse {
+        return $this->client->invoke(
+            'WS100257_CitizenHousingInfoService',
+            $params,
+            CitizenHousingInfoServiceResponse::class,
             auth: $auth,
             operator: $operator,
         );

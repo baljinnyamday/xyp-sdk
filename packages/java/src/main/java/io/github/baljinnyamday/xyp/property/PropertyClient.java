@@ -9,7 +9,7 @@ import io.github.baljinnyamday.xyp.XypException;
 import java.util.Objects;
 
 /**
- * Calls the 30 XYP services of the {@code property} group, served from {@code property-1.5.0}.
+ * Calls the 31 XYP services of the {@code property} group, served from {@code property-1.5.0}.
  *
  * <p>Get it from {@link XypClient#property()}. It holds no state of its own, so it is as
  * thread-safe as the client it is bound to.
@@ -1135,5 +1135,43 @@ public final class PropertyClient {
       PropertyInfoEngParams params, CallOptions options) {
     return client.invoke(
         "WS100256_propertyInfoEng", params, options, PropertyInfoEngResponse::decode);
+  }
+
+  /**
+   * Calls {@code WS100257_CitizenHousingInfoService}: Иргэний орон сууцны мэдээлэл дуудах сервис.
+   *
+   * <p>Provider: Үндэсний статистикийн хороо.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public CitizenHousingInfoServiceResponse citizenHousingInfoService(
+      CitizenHousingInfoServiceParams params) {
+    return citizenHousingInfoService(params, CallOptions.none());
+  }
+
+  /**
+   * Calls {@code WS100257_CitizenHousingInfoService}: Иргэний орон сууцны мэдээлэл дуудах сервис.
+   *
+   * <p>Provider: Үндэсний статистикийн хороо.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
+   *     CallOptions#none()} for none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public CitizenHousingInfoServiceResponse citizenHousingInfoService(
+      CitizenHousingInfoServiceParams params, CallOptions options) {
+    return client.invoke(
+        "WS100257_CitizenHousingInfoService",
+        params,
+        options,
+        CitizenHousingInfoServiceResponse::decode);
   }
 }

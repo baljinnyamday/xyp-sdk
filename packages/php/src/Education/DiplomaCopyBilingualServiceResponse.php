@@ -6,7 +6,6 @@ declare(strict_types=1);
 
 namespace Xyp\Education;
 
-use Xyp\Attribute\ListOf;
 use Xyp\Extras;
 
 /**
@@ -17,12 +16,11 @@ use Xyp\Extras;
 final readonly class DiplomaCopyBilingualServiceResponse
 {
     /**
-     * @param list<DiplomaCopyBilingualServiceDetailData> $detailData Жагсаалт
+     * @param string|null $url pdf url/англи, монгол/
      * @param Extras $xyp What this class could not hold: ->mismatches lists the response fields that did not fit (they kept their default), ->raw is the whole response tree.
      */
     public function __construct(
-        #[ListOf(DiplomaCopyBilingualServiceDetailData::class)]
-        public array $detailData = [],
+        public ?string $url = null,
         public Extras $xyp = new Extras(),
     ) {}
 }

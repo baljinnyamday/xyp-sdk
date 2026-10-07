@@ -22,7 +22,7 @@ trait ServiceGroups
     /** The 6 XYP services of the `foreign_service` group, served from foreign-service-1.5.0. */
     public readonly ForeignService\ForeignServiceService $foreignService;
 
-    /** The 54 XYP services of the `government_service` group, served from government-service-1.5.0. */
+    /** The 57 XYP services of the `government_service` group, served from government-service-1.5.0. */
     public readonly GovernmentService\GovernmentServiceService $governmentService;
 
     /** The 76 XYP services of the `health` group, served from health-1.5.0. */
@@ -40,7 +40,7 @@ trait ServiceGroups
     /** The 6 XYP services of the `meta` group, served from meta-1.5.0. */
     public readonly Meta\MetaService $meta;
 
-    /** The 33 XYP services of the `payment` group, served from payment-1.5.0. */
+    /** The 26 XYP services of the `payment` group, served from payment-1.5.0. */
     public readonly Payment\PaymentService $payment;
 
     /** The 1 XYP service of the `pki` group, served from pki-1.5.0. */
@@ -49,7 +49,7 @@ trait ServiceGroups
     /** The 6 XYP services of the `private_service` group, served from private-service-1.5.0. */
     public readonly PrivateService\PrivateServiceService $privateService;
 
-    /** The 30 XYP services of the `property` group, served from property-1.5.0. */
+    /** The 31 XYP services of the `property` group, served from property-1.5.0. */
     public readonly Property\PropertyService $property;
 
     /** The 24 XYP services of the `statistic` group, served from statistic-1.5.0. */
@@ -58,7 +58,7 @@ trait ServiceGroups
     /** The 9 XYP services of the `tax` group, served from tax-1.5.0. */
     public readonly Tax\TaxService $tax;
 
-    /** The 48 XYP services of the `transport` group, served from transport-1.5.0. */
+    /** The 50 XYP services of the `transport` group, served from transport-1.5.0. */
     public readonly Transport\TransportService $transport;
 
     private function initServiceGroups(): void
