@@ -51,7 +51,7 @@ jobs:
           go vet ./...
           go run .
 
-      - uses: golangci/golangci-lint-action@v8
+      - uses: golangci/golangci-lint-action@v9
         if: matrix.go == 'stable'
         with:
           version: v2.13.2 # the version this configuration was verified against
