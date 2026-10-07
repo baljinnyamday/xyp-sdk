@@ -44,7 +44,6 @@ from xyp.operations.education.civil_capacity_certificate_detail_service import (
     CivilCapacityCertificateDetailServiceResponse,
 )
 from xyp.operations.education.diploma_copy_bilingual_service import (
-    DiplomaCopyBilingualServiceDetailData,
     DiplomaCopyBilingualServiceResponse,
 )
 from xyp.operations.education.foreign_higher_education_detail_service import (
@@ -103,7 +102,6 @@ __all__ = [
     "ChildrenInfoByParentCivilIdListData",
     "ChildrenInfoByParentCivilIdResponse",
     "CivilCapacityCertificateDetailServiceResponse",
-    "DiplomaCopyBilingualServiceDetailData",
     "DiplomaCopyBilingualServiceResponse",
     "ForeignHigherEducationDetailServiceListData",
     "ForeignHigherEducationDetailServiceResponse",

@@ -9,7 +9,7 @@ import io.github.baljinnyamday.xyp.XypException;
 import java.util.Objects;
 
 /**
- * Calls the 48 XYP services of the {@code transport} group, served from {@code transport-1.5.0}.
+ * Calls the 50 XYP services of the {@code transport} group, served from {@code transport-1.5.0}.
  *
  * <p>Get it from {@link XypClient#transport()}. It holds no state of its own, so it is as
  * thread-safe as the client it is bound to.
@@ -1779,5 +1779,85 @@ public final class TransportClient {
         params,
         options,
         PensionerTransportServiceResponse::decode);
+  }
+
+  /**
+   * Calls {@code WS101403_VehicleCertificateEnglishInfo}: Тээврийн хэрэгслийн цахим гэрчилгээний
+   * мэдээлэл авах англи сервис.
+   *
+   * <p>Provider: Авто тээврийн үндэсний төв.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public VehicleCertificateEnglishInfoResponse vehicleCertificateEnglishInfo(
+      VehicleCertificateEnglishInfoParams params) {
+    return vehicleCertificateEnglishInfo(params, CallOptions.none());
+  }
+
+  /**
+   * Calls {@code WS101403_VehicleCertificateEnglishInfo}: Тээврийн хэрэгслийн цахим гэрчилгээний
+   * мэдээлэл авах англи сервис.
+   *
+   * <p>Provider: Авто тээврийн үндэсний төв.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
+   *     CallOptions#none()} for none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public VehicleCertificateEnglishInfoResponse vehicleCertificateEnglishInfo(
+      VehicleCertificateEnglishInfoParams params, CallOptions options) {
+    return client.invoke(
+        "WS101403_VehicleCertificateEnglishInfo",
+        params,
+        options,
+        VehicleCertificateEnglishInfoResponse::decode);
+  }
+
+  /**
+   * Calls {@code WS101404_ProfessionalDriverLicenseEnglishInfo}: Мэргэшсэн жолоочийн үнэмлэхний
+   * лавлагаа англи сервис.
+   *
+   * <p>Provider: Авто тээврийн үндэсний төв.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public ProfessionalDriverLicenseEnglishInfoResponse professionalDriverLicenseEnglishInfo(
+      ProfessionalDriverLicenseEnglishInfoParams params) {
+    return professionalDriverLicenseEnglishInfo(params, CallOptions.none());
+  }
+
+  /**
+   * Calls {@code WS101404_ProfessionalDriverLicenseEnglishInfo}: Мэргэшсэн жолоочийн үнэмлэхний
+   * лавлагаа англи сервис.
+   *
+   * <p>Provider: Авто тээврийн үндэсний төв.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
+   *     CallOptions#none()} for none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public ProfessionalDriverLicenseEnglishInfoResponse professionalDriverLicenseEnglishInfo(
+      ProfessionalDriverLicenseEnglishInfoParams params, CallOptions options) {
+    return client.invoke(
+        "WS101404_ProfessionalDriverLicenseEnglishInfo",
+        params,
+        options,
+        ProfessionalDriverLicenseEnglishInfoResponse::decode);
   }
 }

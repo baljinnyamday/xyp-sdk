@@ -15,16 +15,10 @@ type DiplomaCopyBilingualServiceParams struct {
 	EducationId string `xyp:"educationId"`
 }
 
-// DiplomaCopyBilingualServiceDetailData: Жагсаалт
-type DiplomaCopyBilingualServiceDetailData struct {
-	// pdf url/англи, монгол/
-	Url string `xyp:"url"`
-}
-
 // DiplomaCopyBilingualServiceResponse is the response of WS400122_DiplomaCopyBilingualService: Дипломын хуулбар/англи, монгол/ дуудах сервис.
 type DiplomaCopyBilingualServiceResponse struct {
-	// Жагсаалт
-	DetailData []DiplomaCopyBilingualServiceDetailData `xyp:"detailData"`
+	// pdf url/англи, монгол/
+	Url string `xyp:"url"`
 
 	// Xyp carries what this struct could not. Mismatches lists the response
 	// fields that did not fit the model (they kept their zero value), and Raw is

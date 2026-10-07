@@ -10,7 +10,7 @@ use Xyp\Auth;
 use Xyp\XypClient;
 
 /**
- * The 54 XYP services of the `government_service` group, served from government-service-1.5.0.
+ * The 57 XYP services of the `government_service` group, served from government-service-1.5.0.
  *
  * Reached through `$xyp->governmentService`; every method sends one request through that XypClient.
  */
@@ -1148,6 +1148,69 @@ final class GovernmentServiceService
             'GS10087_RiskStatusChangeService',
             $params,
             RiskStatusChangeServiceResponse::class,
+            auth: $auth,
+            operator: $operator,
+        );
+    }
+
+    /**
+     * Calls GS10088_EnergyQualificationService: Эрчим хүчний салбарын мэргэшлийн зэрэг эзэмшигчдийн мэдээлэл лавлах.
+     *
+     * Provider: Эрчим хүчний яам
+     *
+     * @throws \Xyp\Exception\XypException
+     */
+    public function EnergyQualificationService(
+        EnergyQualificationServiceParams $params = new EnergyQualificationServiceParams(),
+        ?Auth $auth = null,
+        ?Auth $operator = null,
+    ): EnergyQualificationServiceResponse {
+        return $this->client->invoke(
+            'GS10088_EnergyQualificationService',
+            $params,
+            EnergyQualificationServiceResponse::class,
+            auth: $auth,
+            operator: $operator,
+        );
+    }
+
+    /**
+     * Calls GS10089_EnergyQualificationCertificateService: Эрчим хүчний салбарын мэргэшлийн зэрэг эзэмшигчийн сертификатын мэдээлэл id-аар лавлах.
+     *
+     * Provider: Эрчим хүчний яам
+     *
+     * @throws \Xyp\Exception\XypException
+     */
+    public function EnergyQualificationCertificateService(
+        EnergyQualificationCertificateServiceParams $params = new EnergyQualificationCertificateServiceParams(),
+        ?Auth $auth = null,
+        ?Auth $operator = null,
+    ): EnergyQualificationCertificateServiceResponse {
+        return $this->client->invoke(
+            'GS10089_EnergyQualificationCertificateService',
+            $params,
+            EnergyQualificationCertificateServiceResponse::class,
+            auth: $auth,
+            operator: $operator,
+        );
+    }
+
+    /**
+     * Calls GS10090_GetFeedbackDimensionTagsV2: Өргөдөл, гомдлын tag мэдээлэл v2.
+     *
+     * Provider: Засгийн газрын Хэрэг эрхлэх газар
+     *
+     * @throws \Xyp\Exception\XypException
+     */
+    public function GetFeedbackDimensionTagsV2(
+        GetFeedbackDimensionTagsV2Params $params = new GetFeedbackDimensionTagsV2Params(),
+        ?Auth $auth = null,
+        ?Auth $operator = null,
+    ): GetFeedbackDimensionTagsV2Response {
+        return $this->client->invoke(
+            'GS10090_GetFeedbackDimensionTagsV2',
+            $params,
+            GetFeedbackDimensionTagsV2Response::class,
             auth: $auth,
             operator: $operator,
         );

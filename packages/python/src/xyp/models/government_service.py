@@ -63,6 +63,13 @@ from xyp.operations.government_service.create_feedback_session import (
 from xyp.operations.government_service.docx_access_verification_service import (
     DocxAccessVerificationServiceResponse,
 )
+from xyp.operations.government_service.energy_qualification_certificate_service import (
+    EnergyQualificationCertificateServiceResponse,
+)
+from xyp.operations.government_service.energy_qualification_service import (
+    EnergyQualificationServiceListData,
+    EnergyQualificationServiceResponse,
+)
 from xyp.operations.government_service.feedback_dimension_departments import (
     FeedbackDimensionDepartmentsResponse,
 )
@@ -100,6 +107,12 @@ from xyp.operations.government_service.get_explosives_info import (
 )
 from xyp.operations.government_service.get_feedback_dimension_tags import (
     GetFeedbackDimensionTagsResponse,
+)
+from xyp.operations.government_service.get_feedback_dimension_tags_v2 import (
+    GetFeedbackDimensionTagsV2Categories,
+    GetFeedbackDimensionTagsV2Response,
+    GetFeedbackDimensionTagsV2Sectors,
+    GetFeedbackDimensionTagsV2Tags,
 )
 from xyp.operations.government_service.get_feedback_fact_call import (
     GetFeedbackFactCallCalls,
@@ -217,6 +230,9 @@ __all__ = [
     "CreateFeedbackFactCallResponse",
     "CreateFeedbackSessionResponse",
     "DocxAccessVerificationServiceResponse",
+    "EnergyQualificationCertificateServiceResponse",
+    "EnergyQualificationServiceListData",
+    "EnergyQualificationServiceResponse",
     "FeedbackDimensionDepartmentsResponse",
     "FirearmOwnerCertificateInfoResponse",
     "ForeignCitizenInternationalCertResponse",
@@ -233,6 +249,10 @@ __all__ = [
     "GetExplosivesInfoData",
     "GetExplosivesInfoResponse",
     "GetFeedbackDimensionTagsResponse",
+    "GetFeedbackDimensionTagsV2Categories",
+    "GetFeedbackDimensionTagsV2Response",
+    "GetFeedbackDimensionTagsV2Sectors",
+    "GetFeedbackDimensionTagsV2Tags",
     "GetFeedbackFactCallCalls",
     "GetFeedbackFactCallResponse",
     "GetGunModelsInfoData",

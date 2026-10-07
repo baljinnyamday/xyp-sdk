@@ -10,7 +10,7 @@ use Xyp\Auth;
 use Xyp\XypClient;
 
 /**
- * The 48 XYP services of the `transport` group, served from transport-1.5.0.
+ * The 50 XYP services of the `transport` group, served from transport-1.5.0.
  *
  * Reached through `$xyp->transport`; every method sends one request through that XypClient.
  */
@@ -1021,6 +1021,48 @@ final class TransportService
             'WS101402_PensionerTransportService',
             $params,
             PensionerTransportServiceResponse::class,
+            auth: $auth,
+            operator: $operator,
+        );
+    }
+
+    /**
+     * Calls WS101403_VehicleCertificateEnglishInfo: Тээврийн хэрэгслийн цахим гэрчилгээний мэдээлэл авах англи сервис.
+     *
+     * Provider: Авто тээврийн үндэсний төв
+     *
+     * @throws \Xyp\Exception\XypException
+     */
+    public function VehicleCertificateEnglishInfo(
+        VehicleCertificateEnglishInfoParams $params = new VehicleCertificateEnglishInfoParams(),
+        ?Auth $auth = null,
+        ?Auth $operator = null,
+    ): VehicleCertificateEnglishInfoResponse {
+        return $this->client->invoke(
+            'WS101403_VehicleCertificateEnglishInfo',
+            $params,
+            VehicleCertificateEnglishInfoResponse::class,
+            auth: $auth,
+            operator: $operator,
+        );
+    }
+
+    /**
+     * Calls WS101404_ProfessionalDriverLicenseEnglishInfo: Мэргэшсэн жолоочийн үнэмлэхний лавлагаа англи сервис.
+     *
+     * Provider: Авто тээврийн үндэсний төв
+     *
+     * @throws \Xyp\Exception\XypException
+     */
+    public function ProfessionalDriverLicenseEnglishInfo(
+        ProfessionalDriverLicenseEnglishInfoParams $params = new ProfessionalDriverLicenseEnglishInfoParams(),
+        ?Auth $auth = null,
+        ?Auth $operator = null,
+    ): ProfessionalDriverLicenseEnglishInfoResponse {
+        return $this->client->invoke(
+            'WS101404_ProfessionalDriverLicenseEnglishInfo',
+            $params,
+            ProfessionalDriverLicenseEnglishInfoResponse::class,
             auth: $auth,
             operator: $operator,
         );

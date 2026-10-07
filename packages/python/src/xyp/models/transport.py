@@ -118,6 +118,9 @@ from xyp.operations.transport.product_list import (
     ProductListListData,
     ProductListResponse,
 )
+from xyp.operations.transport.professional_driver_license_english_info import (
+    ProfessionalDriverLicenseEnglishInfoResponse,
+)
 from xyp.operations.transport.sas_company_info_list import (
     SasCompanyInfoListList,
     SasCompanyInfoListResponse,
@@ -167,6 +170,9 @@ from xyp.operations.transport.vehicle_border_info import (
 )
 from xyp.operations.transport.vehicle_certificate import (
     VehicleCertificateResponse,
+)
+from xyp.operations.transport.vehicle_certificate_english_info import (
+    VehicleCertificateEnglishInfoResponse,
 )
 from xyp.operations.transport.vehicle_legal_entity_info import (
     VehicleLegalEntityInfoListData,
@@ -232,6 +238,7 @@ __all__ = [
     "PoliceEcLicenseCheckerResponse",
     "ProductListListData",
     "ProductListResponse",
+    "ProfessionalDriverLicenseEnglishInfoResponse",
     "SasCompanyInfoListList",
     "SasCompanyInfoListResponse",
     "SpecialDriverInfoResponse",
@@ -253,6 +260,7 @@ __all__ = [
     "VehicleAndDriverBorderReportResponse",
     "VehicleBorderInfoList",
     "VehicleBorderInfoResponse",
+    "VehicleCertificateEnglishInfoResponse",
     "VehicleCertificateResponse",
     "VehicleLegalEntityInfoListData",
     "VehicleLegalEntityInfoResponse",
