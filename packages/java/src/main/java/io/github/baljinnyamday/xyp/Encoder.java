@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
  * every value.
  *
  * <p>No XML library is used for requests: they escape more characters (and write a newline as
- * {@code &#xA;}), which would no longer match the bytes zeep sends.
+ * <code>&amp;#xA;</code>), which would no longer match the bytes zeep sends.
  */
 final class Encoder {
 

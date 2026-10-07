@@ -116,7 +116,7 @@ class GeneratedClientsTest {
     return Arrays.stream(group.getDeclaredMethods())
         .filter(method -> Modifier.isPublic(method.getModifiers()))
         .filter(method -> !Modifier.isStatic(method.getModifiers()) && !method.isSynthetic())
-        .sorted(Comparator.comparing(Method::getName).thenComparing(Method::getParameterCount))
+        .sorted(Comparator.comparing(Method::getName).thenComparingInt(Method::getParameterCount))
         .toList();
   }
 
@@ -564,7 +564,7 @@ class GeneratedClientsTest {
         return 1.5;
       }
       if (type == Boolean.class) {
-        return Boolean.TRUE;
+        return true;
       }
       if (type == java.math.BigDecimal.class) {
         return java.math.BigDecimal.ONE;

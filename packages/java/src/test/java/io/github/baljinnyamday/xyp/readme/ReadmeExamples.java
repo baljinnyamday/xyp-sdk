@@ -34,6 +34,8 @@ import java.util.Map;
  * in this file. It lives outside the SDK's own package so package-private members cannot sneak into
  * a snippet.
  */
+// The snippets assign results they only show, so the reader sees the types.
+@SuppressWarnings("unused")
 final class ReadmeExamples {
 
   /** The one method of a logging facade the README's error example uses, e.g. SLF4J's. */
