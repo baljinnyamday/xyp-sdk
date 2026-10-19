@@ -68,10 +68,10 @@
     <!-- Run from the command line only: CI reads project.version with help:evaluate, and a
          release bumps it with versions:set. Pinned here so both behave the same everywhere. -->
     <maven-help-plugin.version>3.5.2</maven-help-plugin.version>
-    <versions-maven-plugin.version>2.22.0</versions-maven-plugin.version>
+    <versions-maven-plugin.version>2.23.0</versions-maven-plugin.version>
     <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
-    <central-publishing-maven-plugin.version>0.11.0</central-publishing-maven-plugin.version>
-    <spotless-maven-plugin.version>3.10.3</spotless-maven-plugin.version>
+    <central-publishing-maven-plugin.version>0.12.0</central-publishing-maven-plugin.version>
+    <spotless-maven-plugin.version>3.10.4</spotless-maven-plugin.version>
     <google-java-format.version>1.36.1</google-java-format.version>
   </properties>
 
