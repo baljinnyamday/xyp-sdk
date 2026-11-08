@@ -1,6 +1,7 @@
 package io.github.baljinnyamday.xyp;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -388,9 +389,21 @@ class GeneratedClientsTest {
         Fixtures.envelopes().stream()
             .filter(fixture -> methods.containsKey(fixture.get("operation").asText()))
             .toList();
-    // The WSDLs hold 163 operations, and the public catalog lists 67 of them; the rest have no
-    // typed method (they are reachable through call() with CallOptions endpoint).
-    assertTrue(covered.size() >= 67, "only " + covered.size() + " fixtures have a typed method");
+    // The WSDLs hold more operations than the public catalog lists. Only the listed ones get a
+    // typed method; the rest are reachable through call() with CallOptions endpoint. The expected
+    // set comes from the registry, which RegistryTest pins to spec/services.json, so XYP adding
+    // or removing services does not break this test, but a missing typed method does.
+    Set<String> listed =
+        Fixtures.envelopes().stream()
+            .map(fixture -> fixture.get("operation").asText())
+            .filter(Registry.OPERATION_ENDPOINTS::containsKey)
+            .collect(Collectors.toCollection(TreeSet::new));
+    assertFalse(listed.isEmpty(), "no envelope fixture is for an operation in the catalog");
+    assertEquals(
+        listed,
+        covered.stream()
+            .map(fixture -> fixture.get("operation").asText())
+            .collect(Collectors.toCollection(TreeSet::new)));
     return covered.stream()
         .map(
             fixture ->
