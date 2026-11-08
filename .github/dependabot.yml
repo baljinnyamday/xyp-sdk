@@ -1,13 +1,18 @@
 version: 2
 
 updates:
-  # Workflow actions are the only third-party code this repository runs in CI.
+  # Workflow actions are the only third-party code this repository runs in CI. They are grouped
+  # like the Maven plugins below. Dependabot opens at most five pull requests per ecosystem, so
+  # one pull request per action let five unmerged bumps hold back every other action update.
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: weekly
     commit-message:
       prefix: "ci"
+    groups:
+      actions:
+        patterns: ["*"]
 
   # The Go module has no dependencies on purpose; this watches the Go directive
   # and would catch one creeping in.
