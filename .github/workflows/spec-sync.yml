@@ -12,6 +12,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  issues: write
 
 jobs:
   sync:
@@ -124,3 +125,23 @@ jobs:
           commit-message: "Sync with XYP's service catalog"
           body-path: ${{ runner.temp }}/body.md
           labels: spec-sync
+
+      # A failed sync opens no pull request, so XYP's change would otherwise show only as a red
+      # run in the Actions tab. One open issue collects every failure until someone closes it.
+      - name: Open an issue when the sync fails
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TITLE: spec-sync failed
+        run: |
+          {
+            echo "The [catalog sync]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID) failed, so no pull request was opened or updated."
+            if [ -s "$RUNNER_TEMP/summary.md" ]; then echo; cat "$RUNNER_TEMP/summary.md"; fi
+          } > "$RUNNER_TEMP/failure.md"
+          issue=$(gh issue list --state open --search "in:title \"$TITLE\"" --json number --jq '.[0].number // empty')
+          if [ -n "$issue" ]; then
+            gh issue comment "$issue" --body-file "$RUNNER_TEMP/failure.md"
+          else
+            gh issue create --title "$TITLE" --body-file "$RUNNER_TEMP/failure.md"
+          fi
