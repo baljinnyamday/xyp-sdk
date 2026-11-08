@@ -51,29 +51,29 @@
 
     <!-- Test-only dependencies. The library itself has none at runtime. -->
     <junit.version>6.1.3</junit.version>
-    <jackson.version>2.22.3</jackson.version>
+    <jackson.version>2.22.4</jackson.version>
 
     <!-- Plugins -->
     <maven-clean-plugin.version>3.5.0</maven-clean-plugin.version>
     <maven-resources-plugin.version>3.5.0</maven-resources-plugin.version>
     <maven-compiler-plugin.version>3.16.0</maven-compiler-plugin.version>
-    <maven-surefire-plugin.version>3.6.0</maven-surefire-plugin.version>
+    <maven-surefire-plugin.version>3.6.1</maven-surefire-plugin.version>
     <maven-jar-plugin.version>3.5.1</maven-jar-plugin.version>
     <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
     <maven-javadoc-plugin.version>3.12.0</maven-javadoc-plugin.version>
     <maven-install-plugin.version>3.2.0</maven-install-plugin.version>
     <maven-deploy-plugin.version>3.2.0</maven-deploy-plugin.version>
     <maven-site-plugin.version>3.22.0</maven-site-plugin.version>
-    <maven-enforcer-plugin.version>3.6.3</maven-enforcer-plugin.version>
+    <maven-enforcer-plugin.version>3.7.0</maven-enforcer-plugin.version>
     <!-- Run from the command line only: CI reads project.version with help:evaluate, and a
          release bumps it with versions:set. Pinned here so both behave the same everywhere. -->
     <maven-help-plugin.version>3.5.2</maven-help-plugin.version>
     <versions-maven-plugin.version>2.23.0</versions-maven-plugin.version>
     <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
     <central-publishing-maven-plugin.version>0.12.0</central-publishing-maven-plugin.version>
-    <spotless-maven-plugin.version>3.10.4</spotless-maven-plugin.version>
+    <spotless-maven-plugin.version>3.11.0</spotless-maven-plugin.version>
     <google-java-format.version>1.36.1</google-java-format.version>
-    <error-prone.version>2.50.0</error-prone.version>
+    <error-prone.version>2.52.0</error-prone.version>
   </properties>
 
   <dependencyManagement>
