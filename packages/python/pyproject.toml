@@ -1,6 +1,6 @@
 [project]
 name = "xyp"
-version = "0.1.0a2"
+version = "0.1.0"
 description = "Typed Python SDK for XYP (ХУР), Mongolia's government data exchange system"
 readme = "README.md"
 license = "MIT"
@@ -9,7 +9,7 @@ authors = [{ name = "baljinnyamday" }]
 requires-python = ">=3.10"
 keywords = ["xyp", "khur", "mongolia", "soap", "sdk", "e-mongolia"]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "Programming Language :: Python :: 3",
     "Typing :: Typed",

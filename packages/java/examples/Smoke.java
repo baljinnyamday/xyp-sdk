@@ -3,7 +3,7 @@
 //   export XYP_ACCESS_TOKEN=...            # never commit these
 //   export XYP_PRIVATE_KEY=/path/to/private.key
 //   ./mvnw -q package -DskipTests
-//   java -cp target/xyp-sdk-0.1.0-alpha.1.jar examples/Smoke.java
+//   java -cp target/xyp-sdk-0.1.0.jar examples/Smoke.java
 //
 // Java's single-file source launcher compiles and runs this file; nothing else is needed. The jar
 // from Maven Central works the same way.

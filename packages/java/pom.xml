@@ -6,7 +6,7 @@
 
   <groupId>io.github.baljinnyamday</groupId>
   <artifactId>xyp-sdk</artifactId>
-  <version>0.1.0-alpha.1</version>
+  <version>0.1.0</version>
   <packaging>jar</packaging>
 
   <name>XYP SDK</name>
@@ -47,7 +47,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven.compiler.release>17</maven.compiler.release>
     <!-- Reproducible builds: every entry in the jars gets this timestamp. -->
-    <project.build.outputTimestamp>2026-09-22T00:00:00Z</project.build.outputTimestamp>
+    <project.build.outputTimestamp>2026-11-08T08:20:38Z</project.build.outputTimestamp>
 
     <!-- Test-only dependencies. The library itself has none at runtime. -->
     <junit.version>6.1.3</junit.version>

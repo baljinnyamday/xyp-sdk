@@ -1,6 +1,6 @@
 # xyp-sdk for PHP
 
-[![Packagist](https://img.shields.io/packagist/v/baljinnyamday/xyp-sdk?include_prereleases&label=Packagist)](https://packagist.org/packages/baljinnyamday/xyp-sdk)
+[![Packagist](https://img.shields.io/packagist/v/baljinnyamday/xyp-sdk?label=Packagist)](https://packagist.org/packages/baljinnyamday/xyp-sdk)
 [![PHP](https://img.shields.io/badge/php-%5E8.2-777bb4)](https://www.php.net/supported-versions.php)
 [![php](https://github.com/baljinnyamday/xyp-sdk/actions/workflows/php.yml/badge.svg)](https://github.com/baljinnyamday/xyp-sdk/actions/workflows/php.yml)
 
@@ -8,11 +8,8 @@ Typed PHP SDK for **XYP (ХУР)**, Mongolia's government data exchange system.
 Every XYP service, zero configuration for TLS and signing, PHP 8.2+.
 
 ```bash
-composer require baljinnyamday/xyp-sdk:0.1.0-alpha.1
+composer require baljinnyamday/xyp-sdk
 ```
-
-While the package is pre-release, name the version (or `^0.1@alpha`): Composer
-does not pick an alpha for a plain `composer require`.
 
 ```php
 use Xyp\Citizen\GetCitizenIDCardInfoParams;
@@ -34,7 +31,7 @@ Symfony): it keeps its connection alive between calls.
 Dependencies: the `curl`, `openssl`, `xmlreader` and `libxml` extensions that
 ship with PHP, and `psr/log`. Nothing else enters your `vendor/`.
 
-> **Status: alpha.** The production system is only reachable from the National
+> **How it is tested.** The production system is only reachable from the National
 > Data Center VPN, so the SDK is verified differentially instead: for every
 > operation in the WSDLs we hold, the request XML is byte-identical to what
 > [zeep](https://docs.python-zeep.org) — the SOAP library behind the official
