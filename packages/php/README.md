@@ -23,6 +23,10 @@ $card = $xyp->citizen->getCitizenIDCardInfo(
 echo $card->firstname, ' ', $card->lastname;
 ```
 
+Pass params by name, as above. A params constructor takes its fields in the
+order of XYP's catalog, and XYP sometimes adds fields before existing ones, so a
+call that passes them by position can fill the wrong fields after an update.
+
 That is the whole integration. The SDK signs every request, builds the SOAP
 envelope, verifies XYP's certificate and turns the XML into typed, readonly
 objects. Build one `XypClient` and reuse it (a singleton in Laravel, a service in

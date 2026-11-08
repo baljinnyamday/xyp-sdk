@@ -13,6 +13,10 @@ import io.github.baljinnyamday.xyp.RequestParams;
  * create one with {@link #builder()}.
  */
 public final class RiskStatusChangeServiceParams implements RequestParams {
+  private final String tpid;
+  private final String envpid;
+  private final String videourla;
+  private final String imgurla;
   private final String riskpid;
   private final String sttpid;
   private final String systempid;
@@ -21,6 +25,10 @@ public final class RiskStatusChangeServiceParams implements RequestParams {
   private final String civilid;
 
   private RiskStatusChangeServiceParams(Builder builder) {
+    this.tpid = builder.tpid;
+    this.envpid = builder.envpid;
+    this.videourla = builder.videourla;
+    this.imgurla = builder.imgurla;
     this.riskpid = builder.riskpid;
     this.sttpid = builder.sttpid;
     this.systempid = builder.systempid;
@@ -36,6 +44,42 @@ public final class RiskStatusChangeServiceParams implements RequestParams {
    */
   public static Builder builder() {
     return new Builder();
+  }
+
+  /**
+   * Returns the {@code tpid} field.
+   *
+   * @return the value, or {@code null} when it is not set
+   */
+  public String tpid() {
+    return tpid;
+  }
+
+  /**
+   * Returns the {@code envpid} field.
+   *
+   * @return the value, or {@code null} when it is not set
+   */
+  public String envpid() {
+    return envpid;
+  }
+
+  /**
+   * Returns the {@code videourla} field.
+   *
+   * @return the value, or {@code null} when it is not set
+   */
+  public String videourla() {
+    return videourla;
+  }
+
+  /**
+   * Returns the {@code imgurla} field.
+   *
+   * @return the value, or {@code null} when it is not set
+   */
+  public String imgurla() {
+    return imgurla;
   }
 
   /**
@@ -95,6 +139,10 @@ public final class RiskStatusChangeServiceParams implements RequestParams {
   @Override
   public Params toParams() {
     return Params.builder()
+        .add("tpid", tpid)
+        .add("envpid", envpid)
+        .add("videourla", videourla)
+        .add("imgurla", imgurla)
         .add("riskpid", riskpid)
         .add("sttpid", sttpid)
         .add("systempid", systempid)
@@ -110,6 +158,10 @@ public final class RiskStatusChangeServiceParams implements RequestParams {
    * field again does not change the params it has already built.
    */
   public static final class Builder {
+    private String tpid;
+    private String envpid;
+    private String videourla;
+    private String imgurla;
     private String riskpid;
     private String sttpid;
     private String systempid;
@@ -118,6 +170,50 @@ public final class RiskStatusChangeServiceParams implements RequestParams {
     private String civilid;
 
     private Builder() {}
+
+    /**
+     * Sets the {@code tpid} field.
+     *
+     * @param tpid the value, or {@code null}
+     * @return this builder
+     */
+    public Builder tpid(String tpid) {
+      this.tpid = tpid;
+      return this;
+    }
+
+    /**
+     * Sets the {@code envpid} field.
+     *
+     * @param envpid the value, or {@code null}
+     * @return this builder
+     */
+    public Builder envpid(String envpid) {
+      this.envpid = envpid;
+      return this;
+    }
+
+    /**
+     * Sets the {@code videourla} field.
+     *
+     * @param videourla the value, or {@code null}
+     * @return this builder
+     */
+    public Builder videourla(String videourla) {
+      this.videourla = videourla;
+      return this;
+    }
+
+    /**
+     * Sets the {@code imgurla} field.
+     *
+     * @param imgurla the value, or {@code null}
+     * @return this builder
+     */
+    public Builder imgurla(String imgurla) {
+      this.imgurla = imgurla;
+      return this;
+    }
 
     /**
      * Sets the {@code riskpid} field.

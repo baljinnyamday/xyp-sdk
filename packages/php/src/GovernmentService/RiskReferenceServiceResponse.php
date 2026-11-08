@@ -17,14 +17,19 @@ use Xyp\Extras;
 final readonly class RiskReferenceServiceResponse
 {
     /**
+     * @param string|null $errorMsg Алдааны мэдээлэл
      * @param list<RiskReferenceServiceEnvs> $envs Эрсдлийн орчин
      * @param list<RiskReferenceServiceTypes> $types Эрсдлийн төрөл
      * @param list<RiskReferenceServiceCtypes> $ctypes Эрсдэл бүртгэгч (хувь хүн, байгууллага)
      * @param list<RiskReferenceServiceStatus> $status Эрсдлийн төлөв
      * @param list<RiskReferenceServiceRisks> $risks risks - Эрсдлийн жагсаалт харах
+     * @param list<RiskReferenceServiceRefProvinceList> $refProvinceList
+     * @param list<mixed> $risksMetaData
+     * @param list<RiskReferenceServiceRefDistrictList> $refDistrictList
      * @param Extras $xyp What this class could not hold: ->mismatches lists the response fields that did not fit (they kept their default), ->raw is the whole response tree.
      */
     public function __construct(
+        public ?string $errorMsg = null,
         #[ListOf(RiskReferenceServiceEnvs::class)]
         public array $envs = [],
         #[ListOf(RiskReferenceServiceTypes::class)]
@@ -35,6 +40,12 @@ final readonly class RiskReferenceServiceResponse
         public array $status = [],
         #[ListOf(RiskReferenceServiceRisks::class)]
         public array $risks = [],
+        #[ListOf(RiskReferenceServiceRefProvinceList::class)]
+        public array $refProvinceList = [],
+        #[ListOf('any')]
+        public array $risksMetaData = [],
+        #[ListOf(RiskReferenceServiceRefDistrictList::class)]
+        public array $refDistrictList = [],
         public Extras $xyp = new Extras(),
     ) {}
 }

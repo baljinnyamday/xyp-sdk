@@ -15,19 +15,13 @@ export interface DiplomaCopyBilingualServiceParams {
   readonly educationId?: string;
 }
 
-/** Жагсаалт */
-export interface DiplomaCopyBilingualServiceDetailData {
+/** WS400122_DiplomaCopyBilingualService: Дипломын хуулбар/англи, монгол/ дуудах сервис */
+export interface DiplomaCopyBilingualServiceResponse {
   /** pdf url/англи, монгол/ */
   readonly url: string | null;
 }
 
-/** WS400122_DiplomaCopyBilingualService: Дипломын хуулбар/англи, монгол/ дуудах сервис */
-export interface DiplomaCopyBilingualServiceResponse {
-  /** Жагсаалт */
-  readonly detailData: readonly DiplomaCopyBilingualServiceDetailData[] | null;
-}
-
-const SCHEMA: Schema = { detailData: { list: { object: { url: "string" } } } };
+const SCHEMA: Schema = { url: "string" };
 
 /**
  * WS400122_DiplomaCopyBilingualService: Дипломын хуулбар/англи, монгол/ дуудах сервис

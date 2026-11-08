@@ -82,6 +82,15 @@ export type {
   DOCXAccessVerificationServiceResponse,
 } from "../operations/governmentService/dOCXAccessVerificationService.js";
 export type {
+  EnergyQualificationCertificateServiceParams,
+  EnergyQualificationCertificateServiceResponse,
+} from "../operations/governmentService/energyQualificationCertificateService.js";
+export type {
+  EnergyQualificationServiceListData,
+  EnergyQualificationServiceParams,
+  EnergyQualificationServiceResponse,
+} from "../operations/governmentService/energyQualificationService.js";
+export type {
   FeedbackDimensionDepartmentsParams,
   FeedbackDimensionDepartmentsResponse,
 } from "../operations/governmentService/feedbackDimensionDepartments.js";
@@ -98,16 +107,6 @@ export type {
   GasGunBulletRegistrationCertificateResponse,
 } from "../operations/governmentService/gasGunBulletRegistrationCertificate.js";
 export type {
-  GetAimagCityInfoByZipcodeList,
-  GetAimagCityInfoByZipcodeParams,
-  GetAimagCityInfoByZipcodeResponse,
-} from "../operations/governmentService/getAimagCityInfoByZipcode.js";
-export type {
-  GetBagDistrictListByZipcodeList,
-  GetBagDistrictListByZipcodeParams,
-  GetBagDistrictListByZipcodeResponse,
-} from "../operations/governmentService/getBagDistrictListByZipcode.js";
-export type {
   GetComplaintStatusActions,
   GetComplaintStatusParams,
   GetComplaintStatusResponse,
@@ -118,33 +117,21 @@ export type {
   GetElectoralStationInfoResponse,
 } from "../operations/governmentService/getElectoralStationInfo.js";
 export type {
-  GetExplosivesInfoData,
-  GetExplosivesInfoParams,
-  GetExplosivesInfoResponse,
-} from "../operations/governmentService/getExplosivesInfo.js";
-export type {
-  GetExplosiveToolsInfoParams,
-  GetExplosiveToolsInfoResponse,
-} from "../operations/governmentService/getExplosiveToolsInfo.js";
-export type {
   GetFeedbackDimensionTagsParams,
   GetFeedbackDimensionTagsResponse,
 } from "../operations/governmentService/getFeedbackDimensionTags.js";
+export type {
+  GetFeedbackDimensionTagsV2Categories,
+  GetFeedbackDimensionTagsV2Params,
+  GetFeedbackDimensionTagsV2Response,
+  GetFeedbackDimensionTagsV2Sectors,
+  GetFeedbackDimensionTagsV2Tags,
+} from "../operations/governmentService/getFeedbackDimensionTagsV2.js";
 export type {
   GetFeedbackFactCallCalls,
   GetFeedbackFactCallParams,
   GetFeedbackFactCallResponse,
 } from "../operations/governmentService/getFeedbackFactCall.js";
-export type {
-  GetGunModelsInfoData,
-  GetGunModelsInfoParams,
-  GetGunModelsInfoResponse,
-} from "../operations/governmentService/getGunModelsInfo.js";
-export type {
-  GetListOfCountriesInfoData,
-  GetListOfCountriesInfoParams,
-  GetListOfCountriesInfoResponse,
-} from "../operations/governmentService/getListOfCountriesInfo.js";
 export type {
   GetPersonComplaintStatusListListData,
   GetPersonComplaintStatusListParams,
@@ -155,15 +142,24 @@ export type {
   GetPosReceiptDtlProductResponse,
 } from "../operations/governmentService/getPosReceiptDtlProduct.js";
 export type {
-  GetRawMaterialsInfoData,
-  GetRawMaterialsInfoParams,
-  GetRawMaterialsInfoResponse,
-} from "../operations/governmentService/getRawMaterialsInfo.js";
+  GetReferenceDataChannels,
+  GetReferenceDataClientTypes,
+  GetReferenceDataComplaintTypes,
+  GetReferenceDataLegal,
+  GetReferenceDataParams,
+  GetReferenceDataResponse,
+  GetReferenceDataStatuses,
+} from "../operations/governmentService/getReferenceData.js";
 export type {
-  GetSoumDistrictListByZipcodeList,
-  GetSoumDistrictListByZipcodeParams,
-  GetSoumDistrictListByZipcodeResponse,
-} from "../operations/governmentService/getSoumDistrictListByZipcode.js";
+  GetRiskChildServiceListData,
+  GetRiskChildServiceParams,
+  GetRiskChildServiceResponse,
+} from "../operations/governmentService/getRiskChildService.js";
+export type {
+  GetRiskServiceListData,
+  GetRiskServiceParams,
+  GetRiskServiceResponse,
+} from "../operations/governmentService/getRiskService.js";
 export type {
   GetTreeRegisterListData,
   GetTreeRegisterParams,
@@ -216,6 +212,8 @@ export type {
   RiskReferenceServiceCtypes,
   RiskReferenceServiceEnvs,
   RiskReferenceServiceParams,
+  RiskReferenceServiceRefDistrictList,
+  RiskReferenceServiceRefProvinceList,
   RiskReferenceServiceResponse,
   RiskReferenceServiceRisks,
   RiskReferenceServiceStatus,

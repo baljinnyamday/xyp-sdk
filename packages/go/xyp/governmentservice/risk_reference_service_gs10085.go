@@ -12,7 +12,7 @@ import (
 // optional; a zero value is left out of the request.
 type RiskReferenceServiceParams struct {
 	// лавлах сангуудын шүүлт (заавал биш). Зөвшөөрөгдөх утга: envs, types, ctypes, status.
-	Only []string `xyp:"only"`
+	Only []any `xyp:"only"`
 	// Эрсдлийн жагсаалт харах systempid шүүлт (UUID) (заавал биш)
 	Systempid string `xyp:"systempid"`
 	// Эрсдлийн жагсаалт харах orgregnum шүүлт orgregnum ба systempid хоёуланг өгвөл AND шүүлт (заавал биш)
@@ -21,6 +21,8 @@ type RiskReferenceServiceParams struct {
 	Page *int64 `xyp:"page"`
 	// Эрсдлийн жагсаалт хуудас тутмын тоо (default 20, max 100) (заавал биш)
 	Limit *int64 `xyp:"limit"`
+	// statusId
+	StatusId string `xyp:"statusId"`
 }
 
 // RiskReferenceServiceEnvs: Эрсдлийн орчин
@@ -54,22 +56,41 @@ type RiskReferenceServiceStatus struct {
 
 // RiskReferenceServiceRisks: risks - Эрсдлийн жагсаалт харах
 type RiskReferenceServiceRisks struct {
-	Id       string `xyp:"id"`
-	PublicId string `xyp:"publicId"`
-	Ctpid    string `xyp:"ctpid"`
-	Sttpid   string `xyp:"sttpid"`
-	Desc     string `xyp:"desc"`
-	Lt       string `xyp:"lt"`
-	Ln       string `xyp:"ln"`
-	Civilid  string `xyp:"civilid"`
-	Ctypes   any    `xyp:"ctypes"`
-	Status   any    `xyp:"status"`
-	Types    any    `xyp:"types"`
-	Systems  any    `xyp:"systems"`
+	Id          string `xyp:"id"`
+	PublicId    string `xyp:"publicId"`
+	Ctpid       string `xyp:"ctpid"`
+	Sttpid      string `xyp:"sttpid"`
+	Desc        string `xyp:"desc"`
+	Lt          string `xyp:"lt"`
+	Ln          string `xyp:"ln"`
+	Civilid     string `xyp:"civilid"`
+	Ctypes      any    `xyp:"ctypes"`
+	Status      any    `xyp:"status"`
+	Types       any    `xyp:"types"`
+	Systems     any    `xyp:"systems"`
+	Imgurla     string `xyp:"imgurla"`
+	Videourla   string `xyp:"videourla"`
+	RefProvince any    `xyp:"refProvince"`
+	RefDistrict any    `xyp:"refDistrict"`
+}
+
+// RiskReferenceServiceRefProvinceList is a nested object in the response of GS10085_RiskReferenceService.
+type RiskReferenceServiceRefProvinceList struct {
+	AimagCityCode *int64 `xyp:"aimagCityCode"`
+	AimagCityName string `xyp:"aimagCityName"`
+}
+
+// RiskReferenceServiceRefDistrictList is a nested object in the response of GS10085_RiskReferenceService.
+type RiskReferenceServiceRefDistrictList struct {
+	AimagCityCode    *int64 `xyp:"aimagCityCode"`
+	SoumDistrictCode *int64 `xyp:"soumDistrictCode"`
+	SoumDistrictName string `xyp:"soumDistrictName"`
 }
 
 // RiskReferenceServiceResponse is the response of GS10085_RiskReferenceService: Эрсдлийн лавлах сан.
 type RiskReferenceServiceResponse struct {
+	// Алдааны мэдээлэл
+	ErrorMsg string `xyp:"errorMsg"`
 	// Эрсдлийн орчин
 	Envs []RiskReferenceServiceEnvs `xyp:"envs"`
 	// Эрсдлийн төрөл
@@ -79,7 +100,10 @@ type RiskReferenceServiceResponse struct {
 	// Эрсдлийн төлөв
 	Status []RiskReferenceServiceStatus `xyp:"status"`
 	// risks - Эрсдлийн жагсаалт харах
-	Risks []RiskReferenceServiceRisks `xyp:"risks"`
+	Risks           []RiskReferenceServiceRisks           `xyp:"risks"`
+	RefProvinceList []RiskReferenceServiceRefProvinceList `xyp:"refProvinceList"`
+	RisksMetaData   []any                                 `xyp:"risksMetaData"`
+	RefDistrictList []RiskReferenceServiceRefDistrictList `xyp:"refDistrictList"`
 
 	// Xyp carries what this struct could not. Mismatches lists the response
 	// fields that did not fit the model (they kept their zero value), and Raw is

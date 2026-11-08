@@ -63,6 +63,13 @@ from xyp.operations.government_service.create_feedback_session import (
 from xyp.operations.government_service.docx_access_verification_service import (
     DocxAccessVerificationServiceResponse,
 )
+from xyp.operations.government_service.energy_qualification_certificate_service import (
+    EnergyQualificationCertificateServiceResponse,
+)
+from xyp.operations.government_service.energy_qualification_service import (
+    EnergyQualificationServiceListData,
+    EnergyQualificationServiceResponse,
+)
 from xyp.operations.government_service.feedback_dimension_departments import (
     FeedbackDimensionDepartmentsResponse,
 )
@@ -75,14 +82,6 @@ from xyp.operations.government_service.foreign_citizen_international_cert import
 from xyp.operations.government_service.gas_gun_bullet_registration_certificate import (
     GasGunBulletRegistrationCertificateResponse,
 )
-from xyp.operations.government_service.get_aimag_city_info_by_zipcode import (
-    GetAimagCityInfoByZipcodeList,
-    GetAimagCityInfoByZipcodeResponse,
-)
-from xyp.operations.government_service.get_bag_district_list_by_zipcode import (
-    GetBagDistrictListByZipcodeList,
-    GetBagDistrictListByZipcodeResponse,
-)
 from xyp.operations.government_service.get_complaint_status import (
     GetComplaintStatusActions,
     GetComplaintStatusResponse,
@@ -91,27 +90,18 @@ from xyp.operations.government_service.get_electoral_station_info import (
     GetElectoralStationInfoData,
     GetElectoralStationInfoResponse,
 )
-from xyp.operations.government_service.get_explosive_tools_info import (
-    GetExplosiveToolsInfoResponse,
-)
-from xyp.operations.government_service.get_explosives_info import (
-    GetExplosivesInfoData,
-    GetExplosivesInfoResponse,
-)
 from xyp.operations.government_service.get_feedback_dimension_tags import (
     GetFeedbackDimensionTagsResponse,
+)
+from xyp.operations.government_service.get_feedback_dimension_tags_v2 import (
+    GetFeedbackDimensionTagsV2Categories,
+    GetFeedbackDimensionTagsV2Response,
+    GetFeedbackDimensionTagsV2Sectors,
+    GetFeedbackDimensionTagsV2Tags,
 )
 from xyp.operations.government_service.get_feedback_fact_call import (
     GetFeedbackFactCallCalls,
     GetFeedbackFactCallResponse,
-)
-from xyp.operations.government_service.get_gun_models_info import (
-    GetGunModelsInfoData,
-    GetGunModelsInfoResponse,
-)
-from xyp.operations.government_service.get_list_of_countries_info import (
-    GetListOfCountriesInfoData,
-    GetListOfCountriesInfoResponse,
 )
 from xyp.operations.government_service.get_person_complaint_status_list import (
     GetPersonComplaintStatusListListData,
@@ -120,13 +110,21 @@ from xyp.operations.government_service.get_person_complaint_status_list import (
 from xyp.operations.government_service.get_pos_receipt_dtl_product import (
     GetPosReceiptDtlProductResponse,
 )
-from xyp.operations.government_service.get_raw_materials_info import (
-    GetRawMaterialsInfoData,
-    GetRawMaterialsInfoResponse,
+from xyp.operations.government_service.get_reference_data import (
+    GetReferenceDataChannels,
+    GetReferenceDataClientTypes,
+    GetReferenceDataComplaintTypes,
+    GetReferenceDataLegal,
+    GetReferenceDataResponse,
+    GetReferenceDataStatuses,
 )
-from xyp.operations.government_service.get_soum_district_list_by_zipcode import (
-    GetSoumDistrictListByZipcodeList,
-    GetSoumDistrictListByZipcodeResponse,
+from xyp.operations.government_service.get_risk_child_service import (
+    GetRiskChildServiceListData,
+    GetRiskChildServiceResponse,
+)
+from xyp.operations.government_service.get_risk_service import (
+    GetRiskServiceListData,
+    GetRiskServiceResponse,
 )
 from xyp.operations.government_service.get_tree_register import (
     GetTreeRegisterListData,
@@ -169,6 +167,8 @@ from xyp.operations.government_service.registration_number_validator import (
 from xyp.operations.government_service.risk_reference_service import (
     RiskReferenceServiceCtypes,
     RiskReferenceServiceEnvs,
+    RiskReferenceServiceRefDistrictList,
+    RiskReferenceServiceRefProvinceList,
     RiskReferenceServiceResponse,
     RiskReferenceServiceRisks,
     RiskReferenceServiceStatus,
@@ -217,35 +217,37 @@ __all__ = [
     "CreateFeedbackFactCallResponse",
     "CreateFeedbackSessionResponse",
     "DocxAccessVerificationServiceResponse",
+    "EnergyQualificationCertificateServiceResponse",
+    "EnergyQualificationServiceListData",
+    "EnergyQualificationServiceResponse",
     "FeedbackDimensionDepartmentsResponse",
     "FirearmOwnerCertificateInfoResponse",
     "ForeignCitizenInternationalCertResponse",
     "GasGunBulletRegistrationCertificateResponse",
-    "GetAimagCityInfoByZipcodeList",
-    "GetAimagCityInfoByZipcodeResponse",
-    "GetBagDistrictListByZipcodeList",
-    "GetBagDistrictListByZipcodeResponse",
     "GetComplaintStatusActions",
     "GetComplaintStatusResponse",
     "GetElectoralStationInfoData",
     "GetElectoralStationInfoResponse",
-    "GetExplosiveToolsInfoResponse",
-    "GetExplosivesInfoData",
-    "GetExplosivesInfoResponse",
     "GetFeedbackDimensionTagsResponse",
+    "GetFeedbackDimensionTagsV2Categories",
+    "GetFeedbackDimensionTagsV2Response",
+    "GetFeedbackDimensionTagsV2Sectors",
+    "GetFeedbackDimensionTagsV2Tags",
     "GetFeedbackFactCallCalls",
     "GetFeedbackFactCallResponse",
-    "GetGunModelsInfoData",
-    "GetGunModelsInfoResponse",
-    "GetListOfCountriesInfoData",
-    "GetListOfCountriesInfoResponse",
     "GetPersonComplaintStatusListListData",
     "GetPersonComplaintStatusListResponse",
     "GetPosReceiptDtlProductResponse",
-    "GetRawMaterialsInfoData",
-    "GetRawMaterialsInfoResponse",
-    "GetSoumDistrictListByZipcodeList",
-    "GetSoumDistrictListByZipcodeResponse",
+    "GetReferenceDataChannels",
+    "GetReferenceDataClientTypes",
+    "GetReferenceDataComplaintTypes",
+    "GetReferenceDataLegal",
+    "GetReferenceDataResponse",
+    "GetReferenceDataStatuses",
+    "GetRiskChildServiceListData",
+    "GetRiskChildServiceResponse",
+    "GetRiskServiceListData",
+    "GetRiskServiceResponse",
     "GetTreeRegisterListData",
     "GetTreeRegisterResponse",
     "LawyerInfoServiceResponse",
@@ -266,6 +268,8 @@ __all__ = [
     "RegistrationNumberValidatorResponse",
     "RiskReferenceServiceCtypes",
     "RiskReferenceServiceEnvs",
+    "RiskReferenceServiceRefDistrictList",
+    "RiskReferenceServiceRefProvinceList",
     "RiskReferenceServiceResponse",
     "RiskReferenceServiceRisks",
     "RiskReferenceServiceStatus",

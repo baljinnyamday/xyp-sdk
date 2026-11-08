@@ -29,15 +29,15 @@ import type { Transport } from "./transport.js";
 
 /** Every service group. `Xyp` extends this, so they are available as `xyp.<group>`. */
 export abstract class ServiceGroups {
-  /** 83 services served from citizen-1.5.0. */
+  /** 79 services served from citizen-1.5.0. */
   readonly citizen: CitizenService;
   /** 18 services served from education-1.3.0, education-1.5.0. */
   readonly education: EducationService;
   /** 6 services served from foreign-service-1.5.0. */
   readonly foreignService: ForeignServiceService;
-  /** 54 services served from government-service-1.5.0. */
+  /** 52 services served from government-service-1.5.0. */
   readonly governmentService: GovernmentServiceService;
-  /** 76 services served from health-1.5.0. */
+  /** 79 services served from health-1.5.0. */
   readonly health: HealthService;
   /** 67 services served from insurance-1.5.0. */
   readonly insurance: InsuranceService;
@@ -47,19 +47,19 @@ export abstract class ServiceGroups {
   readonly legalEntity: LegalEntityService;
   /** 6 services served from meta-1.5.0. */
   readonly meta: MetaService;
-  /** 33 services served from payment-1.5.0. */
+  /** 26 services served from payment-1.5.0. */
   readonly payment: PaymentService;
   /** 1 services served from pki-1.5.0. */
   readonly pki: PkiService;
   /** 6 services served from private-service-1.5.0. */
   readonly privateService: PrivateServiceService;
-  /** 30 services served from property-1.5.0. */
+  /** 31 services served from property-1.5.0. */
   readonly property: PropertyService;
   /** 24 services served from statistic-1.5.0. */
   readonly statistic: StatisticService;
   /** 9 services served from tax-1.5.0. */
   readonly tax: TaxService;
-  /** 48 services served from transport-1.5.0. */
+  /** 41 services served from transport-1.5.0. */
   readonly transport: TransportService;
 
   protected constructor(transport: Transport) {

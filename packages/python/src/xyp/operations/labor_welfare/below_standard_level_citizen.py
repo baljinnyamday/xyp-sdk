@@ -45,6 +45,7 @@ def below_standard_level_citizen(
     self: SyncService,
     *,
     regnum: str | None = None,
+    english: int | None = None,
     auth: CitizenAuth | None = None,
     operator: OperatorAuth | None = None,
 ) -> BelowStandardLevelCitizenResponse:
@@ -54,11 +55,13 @@ def below_standard_level_citizen(
 
     Args:
         regnum: регистрийн дугаар
+        english: english
     """
     data = self._transport.call(
         _OPERATION,
         {
             "regnum": regnum,
+            "english": english,
         },
         auth,
         operator,
@@ -70,6 +73,7 @@ async def below_standard_level_citizen_async(
     self: AsyncService,
     *,
     regnum: str | None = None,
+    english: int | None = None,
     auth: CitizenAuth | None = None,
     operator: OperatorAuth | None = None,
 ) -> BelowStandardLevelCitizenResponse:
@@ -79,11 +83,13 @@ async def below_standard_level_citizen_async(
 
     Args:
         regnum: регистрийн дугаар
+        english: english
     """
     data = await self._transport.call(
         _OPERATION,
         {
             "regnum": regnum,
+            "english": english,
         },
         auth,
         operator,

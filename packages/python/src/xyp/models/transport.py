@@ -46,18 +46,9 @@ from xyp.operations.transport.get_citizen_vehicle_list import (
     GetCitizenVehicleListList,
     GetCitizenVehicleListResponse,
 )
-from xyp.operations.transport.get_driver_info_with_register_and_license import (
-    GetDriverInfoWithRegisterAndLicenseResponse,
-)
-from xyp.operations.transport.get_driver_license_info import (
-    GetDriverLicenseInfoResponse,
-)
 from xyp.operations.transport.get_fine_info_using_fine_number import (
     GetFineInfoUsingFineNumberData,
     GetFineInfoUsingFineNumberResponse,
-)
-from xyp.operations.transport.get_international_driver_info import (
-    GetInternationalDriverInfoResponse,
 )
 from xyp.operations.transport.get_organization_vehicle_list import (
     GetOrganizationVehicleListListData,
@@ -118,9 +109,8 @@ from xyp.operations.transport.product_list import (
     ProductListListData,
     ProductListResponse,
 )
-from xyp.operations.transport.sas_company_info_list import (
-    SasCompanyInfoListList,
-    SasCompanyInfoListResponse,
+from xyp.operations.transport.professional_driver_license_english_info import (
+    ProfessionalDriverLicenseEnglishInfoResponse,
 )
 from xyp.operations.transport.special_driver_info import (
     SpecialDriverInfoResponse,
@@ -131,24 +121,6 @@ from xyp.operations.transport.toll_invoice_details import (
 from xyp.operations.transport.train_border_info import (
     TrainBorderInfoListData,
     TrainBorderInfoResponse,
-)
-from xyp.operations.transport.transport_company_create_worker import (
-    TransportCompanyCreateWorkerResponse,
-)
-from xyp.operations.transport.transport_company_employee_list import (
-    TransportCompanyEmployeeListList,
-    TransportCompanyEmployeeListResponse,
-)
-from xyp.operations.transport.transport_company_list import (
-    TransportCompanyListResponse,
-)
-from xyp.operations.transport.transport_company_route_list import (
-    TransportCompanyRouteListList,
-    TransportCompanyRouteListResponse,
-)
-from xyp.operations.transport.transport_company_vehicles_list import (
-    TransportCompanyVehiclesListList,
-    TransportCompanyVehiclesListResponse,
 )
 from xyp.operations.transport.umns_vehicle_info import (
     UmnsVehicleInfoListData,
@@ -167,6 +139,9 @@ from xyp.operations.transport.vehicle_border_info import (
 )
 from xyp.operations.transport.vehicle_certificate import (
     VehicleCertificateResponse,
+)
+from xyp.operations.transport.vehicle_certificate_english_info import (
+    VehicleCertificateEnglishInfoResponse,
 )
 from xyp.operations.transport.vehicle_legal_entity_info import (
     VehicleLegalEntityInfoListData,
@@ -200,11 +175,8 @@ __all__ = [
     "FreightTransportTrainDocumentListResponse",
     "GetCitizenVehicleListList",
     "GetCitizenVehicleListResponse",
-    "GetDriverInfoWithRegisterAndLicenseResponse",
-    "GetDriverLicenseInfoResponse",
     "GetFineInfoUsingFineNumberData",
     "GetFineInfoUsingFineNumberResponse",
-    "GetInternationalDriverInfoResponse",
     "GetOrganizationVehicleListListData",
     "GetOrganizationVehicleListResponse",
     "GetPreOwnedOrgVehicleTotalResponse",
@@ -232,20 +204,11 @@ __all__ = [
     "PoliceEcLicenseCheckerResponse",
     "ProductListListData",
     "ProductListResponse",
-    "SasCompanyInfoListList",
-    "SasCompanyInfoListResponse",
+    "ProfessionalDriverLicenseEnglishInfoResponse",
     "SpecialDriverInfoResponse",
     "TollInvoiceDetailsResponse",
     "TrainBorderInfoListData",
     "TrainBorderInfoResponse",
-    "TransportCompanyCreateWorkerResponse",
-    "TransportCompanyEmployeeListList",
-    "TransportCompanyEmployeeListResponse",
-    "TransportCompanyListResponse",
-    "TransportCompanyRouteListList",
-    "TransportCompanyRouteListResponse",
-    "TransportCompanyVehiclesListList",
-    "TransportCompanyVehiclesListResponse",
     "UmnsVehicleInfoListData",
     "UmnsVehicleInfoResponse",
     "UnlicensedVehiclesListListData",
@@ -253,6 +216,7 @@ __all__ = [
     "VehicleAndDriverBorderReportResponse",
     "VehicleBorderInfoList",
     "VehicleBorderInfoResponse",
+    "VehicleCertificateEnglishInfoResponse",
     "VehicleCertificateResponse",
     "VehicleLegalEntityInfoListData",
     "VehicleLegalEntityInfoResponse",

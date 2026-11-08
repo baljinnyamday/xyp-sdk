@@ -97,14 +97,6 @@ export type {
   CitizenDenationalizationInfoResponse,
 } from "../operations/citizen/citizenDenationalizationInfo.js";
 export type {
-  CitizenDoingCriminalLiabilitylInfoParams,
-  CitizenDoingCriminalLiabilitylInfoResponse,
-} from "../operations/citizen/citizenDoingCriminalLiabilitylInfo.js";
-export type {
-  CitizenDoingCriminalLiabiltyEngInfoParams,
-  CitizenDoingCriminalLiabiltyEngInfoResponse,
-} from "../operations/citizen/citizenDoingCriminalLiabiltyEngInfo.js";
-export type {
   CitizenGraduateSchoolDescriptionParams,
   CitizenGraduateSchoolDescriptionResponse,
 } from "../operations/citizen/citizenGraduateSchoolDescription.js";
@@ -140,11 +132,6 @@ export type {
   CitizenNewDiplomaInfoParams,
   CitizenNewDiplomaInfoResponse,
 } from "../operations/citizen/citizenNewDiplomaInfo.js";
-export type {
-  CitizenWasCriminalLiabilitylInfoListData,
-  CitizenWasCriminalLiabilitylInfoParams,
-  CitizenWasCriminalLiabilitylInfoResponse,
-} from "../operations/citizen/citizenWasCriminalLiabilitylInfo.js";
 export type {
   CivilInfoAtBurtgelmnParams,
   CivilInfoAtBurtgelmnResponse,
@@ -353,11 +340,6 @@ export type {
   PassportValidityCheckerParams,
   PassportValidityCheckerResponse,
 } from "../operations/citizen/passportValidityChecker.js";
-export type {
-  PoliceWeaponMovementTransferServiceListData,
-  PoliceWeaponMovementTransferServiceParams,
-  PoliceWeaponMovementTransferServiceResponse,
-} from "../operations/citizen/policeWeaponMovementTransferService.js";
 export type {
   RegnumChangeInfoEnglishListData,
   RegnumChangeInfoEnglishParams,

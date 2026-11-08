@@ -9,7 +9,7 @@ import io.github.baljinnyamday.xyp.XypException;
 import java.util.Objects;
 
 /**
- * Calls the 48 XYP services of the {@code transport} group, served from {@code transport-1.5.0}.
+ * Calls the 41 XYP services of the {@code transport} group, served from {@code transport-1.5.0}.
  *
  * <p>Get it from {@link XypClient#transport()}. It holds no state of its own, so it is as
  * thread-safe as the client it is bound to.
@@ -166,40 +166,6 @@ public final class TransportClient {
       GetCitizenVehicleListParams params, CallOptions options) {
     return client.invoke(
         "WS100406_getCitizenVehicleList", params, options, GetCitizenVehicleListResponse::decode);
-  }
-
-  /**
-   * Calls {@code WS100407_getDriverLicenseInfo}: Жолоочийн эрхийн мэдээлэл авах.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public GetDriverLicenseInfoResponse getDriverLicenseInfo(GetDriverLicenseInfoParams params) {
-    return getDriverLicenseInfo(params, CallOptions.none());
-  }
-
-  /**
-   * Calls {@code WS100407_getDriverLicenseInfo}: Жолоочийн эрхийн мэдээлэл авах.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
-   *     CallOptions#none()} for none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public GetDriverLicenseInfoResponse getDriverLicenseInfo(
-      GetDriverLicenseInfoParams params, CallOptions options) {
-    return client.invoke(
-        "WS100407_getDriverLicenseInfo", params, options, GetDriverLicenseInfoResponse::decode);
   }
 
   /**
@@ -764,46 +730,6 @@ public final class TransportClient {
   }
 
   /**
-   * Calls {@code WS100454_GetDriverInfoWithRegisterAndLicense}: Жолоочийн үнэмлэхний дугаар болон
-   * регистрийн дугаар тохирч байх үед жолоочийн мэдээлэл дамжуулах сервис.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public GetDriverInfoWithRegisterAndLicenseResponse getDriverInfoWithRegisterAndLicense(
-      GetDriverInfoWithRegisterAndLicenseParams params) {
-    return getDriverInfoWithRegisterAndLicense(params, CallOptions.none());
-  }
-
-  /**
-   * Calls {@code WS100454_GetDriverInfoWithRegisterAndLicense}: Жолоочийн үнэмлэхний дугаар болон
-   * регистрийн дугаар тохирч байх үед жолоочийн мэдээлэл дамжуулах сервис.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
-   *     CallOptions#none()} for none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public GetDriverInfoWithRegisterAndLicenseResponse getDriverInfoWithRegisterAndLicense(
-      GetDriverInfoWithRegisterAndLicenseParams params, CallOptions options) {
-    return client.invoke(
-        "WS100454_GetDriverInfoWithRegisterAndLicense",
-        params,
-        options,
-        GetDriverInfoWithRegisterAndLicenseResponse::decode);
-  }
-
-  /**
    * Calls {@code WS100455_TollInvoiceDetails}: Замын хураамжийн нэхэмжлэх дэлгэрэнгүй мэдээлэл.
    *
    * <p>Provider: Зам, тээврийн хөгжлийн яам.
@@ -875,230 +801,6 @@ public final class TransportClient {
         params,
         options,
         GetFineInfoUsingFineNumberResponse::decode);
-  }
-
-  /**
-   * Calls {@code WS100457_GetInternationalDriverInfo}: Олон улсын жолоочийн үнэмлэхний мэдээлэл.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public GetInternationalDriverInfoResponse getInternationalDriverInfo(
-      GetInternationalDriverInfoParams params) {
-    return getInternationalDriverInfo(params, CallOptions.none());
-  }
-
-  /**
-   * Calls {@code WS100457_GetInternationalDriverInfo}: Олон улсын жолоочийн үнэмлэхний мэдээлэл.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
-   *     CallOptions#none()} for none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public GetInternationalDriverInfoResponse getInternationalDriverInfo(
-      GetInternationalDriverInfoParams params, CallOptions options) {
-    return client.invoke(
-        "WS100457_GetInternationalDriverInfo",
-        params,
-        options,
-        GetInternationalDriverInfoResponse::decode);
-  }
-
-  /**
-   * Calls {@code WS100462_TransportCompanyList}: Байгууллагын жагсаалт.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public TransportCompanyListResponse transportCompanyList(TransportCompanyListParams params) {
-    return transportCompanyList(params, CallOptions.none());
-  }
-
-  /**
-   * Calls {@code WS100462_TransportCompanyList}: Байгууллагын жагсаалт.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
-   *     CallOptions#none()} for none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public TransportCompanyListResponse transportCompanyList(
-      TransportCompanyListParams params, CallOptions options) {
-    return client.invoke(
-        "WS100462_TransportCompanyList", params, options, TransportCompanyListResponse::decode);
-  }
-
-  /**
-   * Calls {@code WS100463_TransportCompanyVehiclesList}: Байгууллагын тээврийн хэрэгслийн жагсаалт.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public TransportCompanyVehiclesListResponse transportCompanyVehiclesList(
-      TransportCompanyVehiclesListParams params) {
-    return transportCompanyVehiclesList(params, CallOptions.none());
-  }
-
-  /**
-   * Calls {@code WS100463_TransportCompanyVehiclesList}: Байгууллагын тээврийн хэрэгслийн жагсаалт.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
-   *     CallOptions#none()} for none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public TransportCompanyVehiclesListResponse transportCompanyVehiclesList(
-      TransportCompanyVehiclesListParams params, CallOptions options) {
-    return client.invoke(
-        "WS100463_TransportCompanyVehiclesList",
-        params,
-        options,
-        TransportCompanyVehiclesListResponse::decode);
-  }
-
-  /**
-   * Calls {@code WS100464_TransportCompanyEmployeeList}: Байгууллагы ажилчдын жагсаалт.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public TransportCompanyEmployeeListResponse transportCompanyEmployeeList(
-      TransportCompanyEmployeeListParams params) {
-    return transportCompanyEmployeeList(params, CallOptions.none());
-  }
-
-  /**
-   * Calls {@code WS100464_TransportCompanyEmployeeList}: Байгууллагы ажилчдын жагсаалт.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
-   *     CallOptions#none()} for none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public TransportCompanyEmployeeListResponse transportCompanyEmployeeList(
-      TransportCompanyEmployeeListParams params, CallOptions options) {
-    return client.invoke(
-        "WS100464_TransportCompanyEmployeeList",
-        params,
-        options,
-        TransportCompanyEmployeeListResponse::decode);
-  }
-
-  /**
-   * Calls {@code WS100465_TransportCompanyRouteList}: Байгууллагын маршрутын жагсаалт.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public TransportCompanyRouteListResponse transportCompanyRouteList(
-      TransportCompanyRouteListParams params) {
-    return transportCompanyRouteList(params, CallOptions.none());
-  }
-
-  /**
-   * Calls {@code WS100465_TransportCompanyRouteList}: Байгууллагын маршрутын жагсаалт.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
-   *     CallOptions#none()} for none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public TransportCompanyRouteListResponse transportCompanyRouteList(
-      TransportCompanyRouteListParams params, CallOptions options) {
-    return client.invoke(
-        "WS100465_TransportCompanyRouteList",
-        params,
-        options,
-        TransportCompanyRouteListResponse::decode);
-  }
-
-  /**
-   * Calls {@code WS100466_TransportCompanyCreateWorker}: http://police.xyp.api:8080/eis/worker.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public TransportCompanyCreateWorkerResponse transportCompanyCreateWorker(
-      TransportCompanyCreateWorkerParams params) {
-    return transportCompanyCreateWorker(params, CallOptions.none());
-  }
-
-  /**
-   * Calls {@code WS100466_TransportCompanyCreateWorker}: http://police.xyp.api:8080/eis/worker.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
-   *     CallOptions#none()} for none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public TransportCompanyCreateWorkerResponse transportCompanyCreateWorker(
-      TransportCompanyCreateWorkerParams params, CallOptions options) {
-    return client.invoke(
-        "WS100466_TransportCompanyCreateWorker",
-        params,
-        options,
-        TransportCompanyCreateWorkerResponse::decode);
   }
 
   /**
@@ -1179,37 +881,6 @@ public final class TransportClient {
         params,
         options,
         FreightTransportTrainDocumentDetailResponse::decode);
-  }
-
-  /**
-   * Calls {@code WS100469_SasCompanyInfoList}: Гэрээт харуул хамгаалалтын байгууллагын жагсаалт.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public SasCompanyInfoListResponse sasCompanyInfoList() {
-    return sasCompanyInfoList(CallOptions.none());
-  }
-
-  /**
-   * Calls {@code WS100469_SasCompanyInfoList}: Гэрээт харуул хамгаалалтын байгууллагын жагсаалт.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
-   *     CallOptions#none()} for none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public SasCompanyInfoListResponse sasCompanyInfoList(CallOptions options) {
-    return client.invoke(
-        "WS100469_SasCompanyInfoList", null, options, SasCompanyInfoListResponse::decode);
   }
 
   /**
@@ -1779,5 +1450,85 @@ public final class TransportClient {
         params,
         options,
         PensionerTransportServiceResponse::decode);
+  }
+
+  /**
+   * Calls {@code WS101403_VehicleCertificateEnglishInfo}: Тээврийн хэрэгслийн цахим гэрчилгээний
+   * мэдээлэл авах англи сервис.
+   *
+   * <p>Provider: Авто тээврийн үндэсний төв.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public VehicleCertificateEnglishInfoResponse vehicleCertificateEnglishInfo(
+      VehicleCertificateEnglishInfoParams params) {
+    return vehicleCertificateEnglishInfo(params, CallOptions.none());
+  }
+
+  /**
+   * Calls {@code WS101403_VehicleCertificateEnglishInfo}: Тээврийн хэрэгслийн цахим гэрчилгээний
+   * мэдээлэл авах англи сервис.
+   *
+   * <p>Provider: Авто тээврийн үндэсний төв.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
+   *     CallOptions#none()} for none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public VehicleCertificateEnglishInfoResponse vehicleCertificateEnglishInfo(
+      VehicleCertificateEnglishInfoParams params, CallOptions options) {
+    return client.invoke(
+        "WS101403_VehicleCertificateEnglishInfo",
+        params,
+        options,
+        VehicleCertificateEnglishInfoResponse::decode);
+  }
+
+  /**
+   * Calls {@code WS101404_ProfessionalDriverLicenseEnglishInfo}: Мэргэшсэн жолоочийн үнэмлэхний
+   * лавлагаа англи сервис.
+   *
+   * <p>Provider: Авто тээврийн үндэсний төв.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public ProfessionalDriverLicenseEnglishInfoResponse professionalDriverLicenseEnglishInfo(
+      ProfessionalDriverLicenseEnglishInfoParams params) {
+    return professionalDriverLicenseEnglishInfo(params, CallOptions.none());
+  }
+
+  /**
+   * Calls {@code WS101404_ProfessionalDriverLicenseEnglishInfo}: Мэргэшсэн жолоочийн үнэмлэхний
+   * лавлагаа англи сервис.
+   *
+   * <p>Provider: Авто тээврийн үндэсний төв.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
+   *     CallOptions#none()} for none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public ProfessionalDriverLicenseEnglishInfoResponse professionalDriverLicenseEnglishInfo(
+      ProfessionalDriverLicenseEnglishInfoParams params, CallOptions options) {
+    return client.invoke(
+        "WS101404_ProfessionalDriverLicenseEnglishInfo",
+        params,
+        options,
+        ProfessionalDriverLicenseEnglishInfoResponse::decode);
   }
 }

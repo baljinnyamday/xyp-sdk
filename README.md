@@ -19,7 +19,7 @@ from one description of the API so every language exposes the same services.
 | TypeScript / Node.js | [`packages/typescript`](packages/typescript) — `npm install xyp-sdk` |
 | Go | [`packages/go`](packages/go) — `go get github.com/baljinnyamday/xyp-sdk/packages/go@latest` |
 | PHP | [`packages/php`](packages/php) — `composer require baljinnyamday/xyp-sdk` |
-| Java | [`packages/java`](packages/java) — Maven `io.github.baljinnyamday:xyp-sdk:0.1.0` |
+| Java | [`packages/java`](packages/java) — Maven `io.github.baljinnyamday:xyp-sdk:0.2.0` |
 
 Unofficial: this project is not affiliated with the National Data Center or
 E-Mongolia Academy.

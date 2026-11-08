@@ -26,6 +26,10 @@ final readonly class RiskReferenceServiceRisks
      * @param mixed $status
      * @param mixed $types
      * @param mixed $systems
+     * @param string|null $imgurla
+     * @param string|null $videourla
+     * @param mixed $refProvince
+     * @param mixed $refDistrict
      */
     public function __construct(
         public ?string $id = null,
@@ -40,5 +44,9 @@ final readonly class RiskReferenceServiceRisks
         public mixed $status = null,
         public mixed $types = null,
         public mixed $systems = null,
+        public ?string $imgurla = null,
+        public ?string $videourla = null,
+        public mixed $refProvince = null,
+        public mixed $refDistrict = null,
     ) {}
 }

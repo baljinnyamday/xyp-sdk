@@ -25,6 +25,10 @@ export type {
   CitizenMonthlyServiceUsageInquiryServiceResponse,
 } from "../operations/health/citizenMonthlyServiceUsageInquiryService.js";
 export type {
+  CitizenQAndAServiceParams,
+  CitizenQAndAServiceResponse,
+} from "../operations/health/citizenQAndAService.js";
+export type {
   CitizenQuestionnaireSubmitServiceParams,
   CitizenQuestionnaireSubmitServiceResponse,
 } from "../operations/health/citizenQuestionnaireSubmitService.js";
@@ -307,6 +311,11 @@ export type {
   MultiLicenseInfoResponse,
 } from "../operations/health/multiLicenseInfo.js";
 export type {
+  NearByHosServiceList,
+  NearByHosServiceParams,
+  NearByHosServiceResponse,
+} from "../operations/health/nearByHosService.js";
+export type {
   PregnancyControlNoteReferenceInfoData,
   PregnancyControlNoteReferenceInfoParams,
   PregnancyControlNoteReferenceInfoResponse,
@@ -320,6 +329,10 @@ export type {
   PreventiveScreeningInfoParams,
   PreventiveScreeningInfoResponse,
 } from "../operations/health/preventiveScreeningInfo.js";
+export type {
+  QuestionCitizenResidentialAddressParams,
+  QuestionCitizenResidentialAddressResponse,
+} from "../operations/health/questionCitizenResidentialAddress.js";
 export type {
   ReceiveServiceComplainDataParams,
   ReceiveServiceComplainDataResponse,

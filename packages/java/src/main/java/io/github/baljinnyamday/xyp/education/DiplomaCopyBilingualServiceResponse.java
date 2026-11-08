@@ -5,7 +5,6 @@ package io.github.baljinnyamday.xyp.education;
 import io.github.baljinnyamday.xyp.Decoders;
 import io.github.baljinnyamday.xyp.Extras;
 import io.github.baljinnyamday.xyp.ResponseReader;
-import java.util.List;
 
 /**
  * The response of {@code WS400122_DiplomaCopyBilingualService}: Дипломын хуулбар/англи, монгол/
@@ -14,11 +13,11 @@ import java.util.List;
  * <p>A field XYP left out, or sent in a shape this record does not expect, is {@code null} (an
  * empty list for a list); {@link #extras()} tells the two apart.
  *
- * @param detailData Жагсаалт
+ * @param url pdf url/англи, монгол/
  * @param extras the response fields that did not fit this record (their component is {@code null}
  *     or empty) and the raw response, including the fields this record does not declare
  */
-public record DiplomaCopyBilingualServiceResponse(List<DetailData> detailData, Extras extras) {
+public record DiplomaCopyBilingualServiceResponse(String url, Extras extras) {
 
   /**
    * Decodes this record from a response tree. The generated client uses it; it is public so you can
@@ -29,26 +28,6 @@ public record DiplomaCopyBilingualServiceResponse(List<DetailData> detailData, E
    */
   public static DiplomaCopyBilingualServiceResponse decode(ResponseReader reader) {
     return new DiplomaCopyBilingualServiceResponse(
-        reader.get("detailData", Decoders.list(Decoders.object(DetailData::decode))),
-        reader.extras());
-  }
-
-  /**
-   * Жагсаалт.
-   *
-   * @param url pdf url/англи, монгол/
-   */
-  public record DetailData(String url) {
-
-    /**
-     * Decodes this record from a response tree. The generated client uses it; it is public so you
-     * can decode a tree you already hold, with {@link ResponseReader#decode}.
-     *
-     * @param reader the reader over this record's element
-     * @return the decoded record
-     */
-    public static DetailData decode(ResponseReader reader) {
-      return new DetailData(reader.get("url", Decoders.STRING));
-    }
+        reader.get("url", Decoders.STRING), reader.extras());
   }
 }

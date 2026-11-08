@@ -16,11 +16,12 @@ import java.util.List;
  * create one with {@link #builder()}.
  */
 public final class RiskReferenceServiceParams implements RequestParams {
-  private final List<String> only;
+  private final List<Object> only;
   private final String systempid;
   private final String orgregnum;
   private final Long page;
   private final Long limit;
+  private final String statusId;
 
   private RiskReferenceServiceParams(Builder builder) {
     this.only = builder.only;
@@ -28,6 +29,7 @@ public final class RiskReferenceServiceParams implements RequestParams {
     this.orgregnum = builder.orgregnum;
     this.page = builder.page;
     this.limit = builder.limit;
+    this.statusId = builder.statusId;
   }
 
   /**
@@ -44,7 +46,7 @@ public final class RiskReferenceServiceParams implements RequestParams {
    *
    * @return the value, or {@code null} when it is not set
    */
-  public List<String> only() {
+  public List<Object> only() {
     return only;
   }
 
@@ -85,6 +87,15 @@ public final class RiskReferenceServiceParams implements RequestParams {
     return limit;
   }
 
+  /**
+   * statusId.
+   *
+   * @return the value, or {@code null} when it is not set
+   */
+  public String statusId() {
+    return statusId;
+  }
+
   @Override
   public Params toParams() {
     return Params.builder()
@@ -93,6 +104,7 @@ public final class RiskReferenceServiceParams implements RequestParams {
         .add("orgregnum", orgregnum)
         .add("page", page)
         .add("limit", limit)
+        .add("statusId", statusId)
         .build();
   }
 
@@ -102,11 +114,12 @@ public final class RiskReferenceServiceParams implements RequestParams {
    * field again does not change the params it has already built.
    */
   public static final class Builder {
-    private List<String> only;
+    private List<Object> only;
     private String systempid;
     private String orgregnum;
     private Long page;
     private Long limit;
+    private String statusId;
 
     private Builder() {}
 
@@ -116,7 +129,7 @@ public final class RiskReferenceServiceParams implements RequestParams {
      * @param only the values, copied (a {@code null} item is not sent), or {@code null}
      * @return this builder
      */
-    public Builder only(List<String> only) {
+    public Builder only(List<Object> only) {
       this.only = only == null ? null : Collections.unmodifiableList(new ArrayList<>(only));
       return this;
     }
@@ -163,6 +176,17 @@ public final class RiskReferenceServiceParams implements RequestParams {
      */
     public Builder limit(Long limit) {
       this.limit = limit;
+      return this;
+    }
+
+    /**
+     * statusId.
+     *
+     * @param statusId the value, or {@code null}
+     * @return this builder
+     */
+    public Builder statusId(String statusId) {
+      this.statusId = statusId;
       return this;
     }
 

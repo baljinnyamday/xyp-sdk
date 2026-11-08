@@ -12,7 +12,7 @@ const OPERATION = "GS10085_RiskReferenceService";
 /** Input of GS10085_RiskReferenceService. */
 export interface RiskReferenceServiceParams {
   /** лавлах сангуудын шүүлт (заавал биш). Зөвшөөрөгдөх утга: envs, types, ctypes, status. */
-  readonly only?: readonly string[];
+  readonly only?: readonly unknown[];
   /** Эрсдлийн жагсаалт харах systempid шүүлт (UUID) (заавал биш) */
   readonly systempid?: string;
   /** Эрсдлийн жагсаалт харах orgregnum шүүлт orgregnum ба systempid хоёуланг өгвөл AND шүүлт (заавал биш) */
@@ -21,6 +21,8 @@ export interface RiskReferenceServiceParams {
   readonly page?: number;
   /** Эрсдлийн жагсаалт хуудас тутмын тоо (default 20, max 100) (заавал биш) */
   readonly limit?: number;
+  /** statusId */
+  readonly statusId?: string;
 }
 
 /** Эрсдлийн орчин */
@@ -66,10 +68,27 @@ export interface RiskReferenceServiceRisks {
   readonly status: unknown | null;
   readonly types: unknown | null;
   readonly systems: unknown | null;
+  readonly imgurla: string | null;
+  readonly videourla: string | null;
+  readonly refProvince: unknown | null;
+  readonly refDistrict: unknown | null;
+}
+
+export interface RiskReferenceServiceRefProvinceList {
+  readonly aimagCityCode: number | null;
+  readonly aimagCityName: string | null;
+}
+
+export interface RiskReferenceServiceRefDistrictList {
+  readonly aimagCityCode: number | null;
+  readonly soumDistrictCode: number | null;
+  readonly soumDistrictName: string | null;
 }
 
 /** GS10085_RiskReferenceService: Эрсдлийн лавлах сан */
 export interface RiskReferenceServiceResponse {
+  /** Алдааны мэдээлэл */
+  readonly errorMsg: string | null;
   /** Эрсдлийн орчин */
   readonly envs: readonly RiskReferenceServiceEnvs[] | null;
   /** Эрсдлийн төрөл */
@@ -80,14 +99,21 @@ export interface RiskReferenceServiceResponse {
   readonly status: readonly RiskReferenceServiceStatus[] | null;
   /** risks - Эрсдлийн жагсаалт харах */
   readonly risks: readonly RiskReferenceServiceRisks[] | null;
+  readonly refProvinceList: readonly RiskReferenceServiceRefProvinceList[] | null;
+  readonly risksMetaData: readonly unknown[] | null;
+  readonly refDistrictList: readonly RiskReferenceServiceRefDistrictList[] | null;
 }
 
 const SCHEMA: Schema = {
+  errorMsg: "string",
   envs: { list: { object: { publicId: "string", id: "string", title: "string" } } },
   types: { list: { object: { id: "string", publicId: "string", title: "string" } } },
   ctypes: { list: { object: { id: "string", publicId: "string", title: "string" } } },
   status: { list: { object: { id: "string", publicId: "string", title: "string", desc: "string" } } },
-  risks: { list: { object: { id: "string", publicId: "string", ctpid: "string", sttpid: "string", desc: "string", lt: "string", ln: "string", civilid: "string", ctypes: "any", status: "any", types: "any", systems: "any" } } },
+  risks: { list: { object: { id: "string", publicId: "string", ctpid: "string", sttpid: "string", desc: "string", lt: "string", ln: "string", civilid: "string", ctypes: "any", status: "any", types: "any", systems: "any", imgurla: "string", videourla: "string", refProvince: "any", refDistrict: "any" } } },
+  refProvinceList: { list: { object: { aimagCityCode: "int", aimagCityName: "string" } } },
+  risksMetaData: { list: "any" },
+  refDistrictList: { list: { object: { aimagCityCode: "int", soumDistrictCode: "int", soumDistrictName: "string" } } },
 };
 
 /**
@@ -104,6 +130,7 @@ export async function riskReferenceService(transport: Transport, params: RiskRef
       orgregnum: params.orgregnum,
       page: params.page,
       limit: params.limit,
+      statusId: params.statusId,
     },
     options,
   );

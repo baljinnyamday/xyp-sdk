@@ -26,6 +26,9 @@ public final class RiskRegistrationServiceParams implements RequestParams {
   private final Double lt;
   private final Double ln;
   private final String civilid;
+  private final String isChild;
+  private final String soumDistrictId;
+  private final String aimagCityId;
 
   private RiskRegistrationServiceParams(Builder builder) {
     this.ctpid = builder.ctpid;
@@ -41,6 +44,9 @@ public final class RiskRegistrationServiceParams implements RequestParams {
     this.lt = builder.lt;
     this.ln = builder.ln;
     this.civilid = builder.civilid;
+    this.isChild = builder.isChild;
+    this.soumDistrictId = builder.soumDistrictId;
+    this.aimagCityId = builder.aimagCityId;
   }
 
   /**
@@ -169,6 +175,33 @@ public final class RiskRegistrationServiceParams implements RequestParams {
     return civilid;
   }
 
+  /**
+   * Returns the {@code isChild} field.
+   *
+   * @return the value, or {@code null} when it is not set
+   */
+  public String isChild() {
+    return isChild;
+  }
+
+  /**
+   * Returns the {@code soumDistrictId} field.
+   *
+   * @return the value, or {@code null} when it is not set
+   */
+  public String soumDistrictId() {
+    return soumDistrictId;
+  }
+
+  /**
+   * Returns the {@code aimagCityId} field.
+   *
+   * @return the value, or {@code null} when it is not set
+   */
+  public String aimagCityId() {
+    return aimagCityId;
+  }
+
   @Override
   public Params toParams() {
     return Params.builder()
@@ -185,6 +218,9 @@ public final class RiskRegistrationServiceParams implements RequestParams {
         .add("lt", lt)
         .add("ln", ln)
         .add("civilid", civilid)
+        .add("isChild", isChild)
+        .add("soumDistrictId", soumDistrictId)
+        .add("aimagCityId", aimagCityId)
         .build();
   }
 
@@ -207,6 +243,9 @@ public final class RiskRegistrationServiceParams implements RequestParams {
     private Double lt;
     private Double ln;
     private String civilid;
+    private String isChild;
+    private String soumDistrictId;
+    private String aimagCityId;
 
     private Builder() {}
 
@@ -350,6 +389,39 @@ public final class RiskRegistrationServiceParams implements RequestParams {
      */
     public Builder civilid(String civilid) {
       this.civilid = civilid;
+      return this;
+    }
+
+    /**
+     * Sets the {@code isChild} field.
+     *
+     * @param isChild the value, or {@code null}
+     * @return this builder
+     */
+    public Builder isChild(String isChild) {
+      this.isChild = isChild;
+      return this;
+    }
+
+    /**
+     * Sets the {@code soumDistrictId} field.
+     *
+     * @param soumDistrictId the value, or {@code null}
+     * @return this builder
+     */
+    public Builder soumDistrictId(String soumDistrictId) {
+      this.soumDistrictId = soumDistrictId;
+      return this;
+    }
+
+    /**
+     * Sets the {@code aimagCityId} field.
+     *
+     * @param aimagCityId the value, or {@code null}
+     * @return this builder
+     */
+    public Builder aimagCityId(String aimagCityId) {
+      this.aimagCityId = aimagCityId;
       return this;
     }
 

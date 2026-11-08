@@ -14,20 +14,20 @@ Maven:
 <dependency>
   <groupId>io.github.baljinnyamday</groupId>
   <artifactId>xyp-sdk</artifactId>
-  <version>0.1.0</version>
+  <version>0.2.0</version>
 </dependency>
 ```
 
 Gradle (Kotlin DSL):
 
 ```kotlin
-implementation("io.github.baljinnyamday:xyp-sdk:0.1.0")
+implementation("io.github.baljinnyamday:xyp-sdk:0.2.0")
 ```
 
 Gradle (Groovy DSL):
 
 ```groovy
-implementation 'io.github.baljinnyamday:xyp-sdk:0.1.0'
+implementation 'io.github.baljinnyamday:xyp-sdk:0.2.0'
 ```
 
 Maven and Gradle resolve exactly the version you name, so a pre-release is never
@@ -429,7 +429,7 @@ never the whole response, which echoes your access token.
 export XYP_ACCESS_TOKEN=...                  # never commit these
 export XYP_PRIVATE_KEY=/path/to/private.key
 ./mvnw -q package -DskipTests                # or download the jar from Maven Central
-java -cp target/xyp-sdk-0.1.0.jar examples/Smoke.java
+java -cp target/xyp-sdk-0.2.0.jar examples/Smoke.java
 ```
 
 It prints `OK: organisation=… registered=true approved_services=… model_mismatches=0`,
@@ -468,9 +468,9 @@ between minor versions; the changes are listed in the GitHub release notes.
 Set the version, commit, and push a tag `java-v<version>`:
 
 ```bash
-./mvnw versions:set -DnewVersion=0.1.1 -DgenerateBackupPoms=false
-git commit -am "Java SDK 0.1.1"
-git tag java-v0.1.1 && git push origin java-v0.1.1
+./mvnw versions:set -DnewVersion=0.2.1 -DgenerateBackupPoms=false
+git commit -am "Java SDK 0.2.1"
+git tag java-v0.2.1 && git push origin java-v0.2.1
 ```
 
 The tag must match `<version>` in `pom.xml`. The `java-release` workflow runs

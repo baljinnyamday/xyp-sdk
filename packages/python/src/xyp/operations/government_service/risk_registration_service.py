@@ -25,6 +25,7 @@ class RiskRegistrationServiceResponse(XypModel):
     rschlog: Any | None = Field(default=None, alias="rschlog")
     org: Any | None = Field(default=None, alias="org")
     org_created: bool | None = Field(default=None, alias="orgCreated")
+    error_msg: str | None = Field(default=None, alias="errorMsg", description="Алдааны мэдээлэл")
 
 
 def risk_registration_service(
@@ -43,6 +44,9 @@ def risk_registration_service(
     lt: float | None = None,
     ln: float | None = None,
     civilid: str | None = None,
+    is_child: str | None = None,
+    soum_district_id: str | None = None,
+    aimag_city_id: str | None = None,
     auth: CitizenAuth | None = None,
     operator: OperatorAuth | None = None,
 ) -> RiskRegistrationServiceResponse:
@@ -64,6 +68,9 @@ def risk_registration_service(
         lt: lt
         ln: ln
         civilid: civilid
+        is_child: isChild
+        soum_district_id: soumDistrictId
+        aimag_city_id: aimagCityId
     """
     data = self._transport.call(
         _OPERATION,
@@ -81,6 +88,9 @@ def risk_registration_service(
             "lt": lt,
             "ln": ln,
             "civilid": civilid,
+            "isChild": is_child,
+            "soumDistrictId": soum_district_id,
+            "aimagCityId": aimag_city_id,
         },
         auth,
         operator,
@@ -104,6 +114,9 @@ async def risk_registration_service_async(
     lt: float | None = None,
     ln: float | None = None,
     civilid: str | None = None,
+    is_child: str | None = None,
+    soum_district_id: str | None = None,
+    aimag_city_id: str | None = None,
     auth: CitizenAuth | None = None,
     operator: OperatorAuth | None = None,
 ) -> RiskRegistrationServiceResponse:
@@ -125,6 +138,9 @@ async def risk_registration_service_async(
         lt: lt
         ln: ln
         civilid: civilid
+        is_child: isChild
+        soum_district_id: soumDistrictId
+        aimag_city_id: aimagCityId
     """
     data = await self._transport.call(
         _OPERATION,
@@ -142,6 +158,9 @@ async def risk_registration_service_async(
             "lt": lt,
             "ln": ln,
             "civilid": civilid,
+            "isChild": is_child,
+            "soumDistrictId": soum_district_id,
+            "aimagCityId": aimag_city_id,
         },
         auth,
         operator,

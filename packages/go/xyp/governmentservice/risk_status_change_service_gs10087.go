@@ -11,6 +11,10 @@ import (
 // RiskStatusChangeServiceParams is the input of GS10087_RiskStatusChangeService. Every field is
 // optional; a zero value is left out of the request.
 type RiskStatusChangeServiceParams struct {
+	Tpid      string `xyp:"tpid"`
+	Envpid    string `xyp:"envpid"`
+	Videourla string `xyp:"videourla"`
+	Imgurla   string `xyp:"imgurla"`
 	Riskpid   string `xyp:"riskpid"`
 	Sttpid    string `xyp:"sttpid"`
 	Systempid string `xyp:"systempid"`
@@ -21,10 +25,11 @@ type RiskStatusChangeServiceParams struct {
 
 // RiskStatusChangeServiceResponse is the response of GS10087_RiskStatusChangeService: Эрсдэлийн төлөв солих.
 type RiskStatusChangeServiceResponse struct {
-	Risk       any   `xyp:"risk"`
-	Rschlog    any   `xyp:"rschlog"`
-	Org        any   `xyp:"org"`
-	OrgCreated *bool `xyp:"orgCreated"`
+	ErrorMsg   string `xyp:"errorMsg"`
+	Risk       any    `xyp:"risk"`
+	Rschlog    any    `xyp:"rschlog"`
+	Org        any    `xyp:"org"`
+	OrgCreated *bool  `xyp:"orgCreated"`
 
 	// Xyp carries what this struct could not. Mismatches lists the response
 	// fields that did not fit the model (they kept their zero value), and Raw is

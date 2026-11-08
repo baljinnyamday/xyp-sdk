@@ -57,21 +57,9 @@ export type {
   GetListOfEttDividendInfoResponse,
 } from "../operations/payment/getListOfEttDividendInfo.js";
 export type {
-  InvoiceNumberUthPaymentServiceParams,
-  InvoiceNumberUthPaymentServiceResponse,
-} from "../operations/payment/invoiceNumberUthPaymentService.js";
-export type {
-  InvoicePaymentInfoServiceParams,
-  InvoicePaymentInfoServiceResponse,
-} from "../operations/payment/invoicePaymentInfoService.js";
-export type {
   InvoicePaymentInquiryServicerParams,
   InvoicePaymentInquiryServicerResponse,
 } from "../operations/payment/invoicePaymentInquiryServicer.js";
-export type {
-  InvoiceStatusServiceParams,
-  InvoiceStatusServiceResponse,
-} from "../operations/payment/invoiceStatusService.js";
 export type {
   LegalEntityBSLoanInfoLiveStockData,
   LegalEntityBSLoanInfoParams,
@@ -91,16 +79,6 @@ export type {
   OverdueOrganizationLoanDebtReferenceParams,
   OverdueOrganizationLoanDebtReferenceResponse,
 } from "../operations/payment/overdueOrganizationLoanDebtReference.js";
-export type {
-  PaidFineByRegisterServiceListData,
-  PaidFineByRegisterServiceParams,
-  PaidFineByRegisterServiceResponse,
-} from "../operations/payment/paidFineByRegisterService.js";
-export type {
-  PaidFineServiceListData,
-  PaidFineServiceParams,
-  PaidFineServiceResponse,
-} from "../operations/payment/paidFineService.js";
 export type {
   PaymentInfoByRegisterServiceListData,
   PaymentInfoByRegisterServiceParams,
@@ -138,16 +116,6 @@ export type {
   TaxReceiptBankByRegnumParams,
   TaxReceiptBankByRegnumResponse,
 } from "../operations/payment/taxReceiptBankByRegnum.js";
-export type {
-  UnpaidFineByRegisterServiceListData,
-  UnpaidFineByRegisterServiceParams,
-  UnpaidFineByRegisterServiceResponse,
-} from "../operations/payment/unpaidFineByRegisterService.js";
-export type {
-  UnpaidFineServiceListData,
-  UnpaidFineServiceParams,
-  UnpaidFineServiceResponse,
-} from "../operations/payment/unpaidFineService.js";
 export type {
   ViolationPaymentByPlateNumberPaidList,
   ViolationPaymentByPlateNumberParams,

@@ -16,18 +16,10 @@ from xyp.auth import CitizenAuth, OperatorAuth
 _OPERATION = "WS400122_DiplomaCopyBilingualService"
 
 
-class DiplomaCopyBilingualServiceDetailData(XypModel):
-    """Жагсаалт"""
-
-    url: str | None = Field(default=None, alias="url", description="pdf url/англи, монгол/")
-
-
 class DiplomaCopyBilingualServiceResponse(XypModel):
     """WS400122_DiplomaCopyBilingualService: Дипломын хуулбар/англи, монгол/ дуудах сервис"""
 
-    detail_data: list[DiplomaCopyBilingualServiceDetailData] | None = Field(
-        default=None, alias="detailData", description="Жагсаалт"
-    )
+    url: str | None = Field(default=None, alias="url", description="pdf url/англи, монгол/")
 
 
 def diploma_copy_bilingual_service(

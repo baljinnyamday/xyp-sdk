@@ -21,6 +21,7 @@ _OPERATION = "GS10087_RiskStatusChangeService"
 class RiskStatusChangeServiceResponse(XypModel):
     """GS10087_RiskStatusChangeService: Эрсдэлийн төлөв солих"""
 
+    error_msg: str | None = Field(default=None, alias="errorMsg")
     risk: Any | None = Field(default=None, alias="risk")
     rschlog: Any | None = Field(default=None, alias="rschlog")
     org: Any | None = Field(default=None, alias="org")
@@ -30,6 +31,10 @@ class RiskStatusChangeServiceResponse(XypModel):
 def risk_status_change_service(
     self: SyncService,
     *,
+    tpid: str | None = None,
+    envpid: str | None = None,
+    videourla: str | None = None,
+    imgurla: str | None = None,
     riskpid: str | None = None,
     sttpid: str | None = None,
     systempid: str | None = None,
@@ -44,6 +49,10 @@ def risk_status_change_service(
     Provider: И-Монголиа академи
 
     Args:
+        tpid: tpid
+        envpid: envpid
+        videourla: videourla
+        imgurla: imgurla
         riskpid: riskpid
         sttpid: sttpid
         systempid: systempid
@@ -54,6 +63,10 @@ def risk_status_change_service(
     data = self._transport.call(
         _OPERATION,
         {
+            "tpid": tpid,
+            "envpid": envpid,
+            "videourla": videourla,
+            "imgurla": imgurla,
             "riskpid": riskpid,
             "sttpid": sttpid,
             "systempid": systempid,
@@ -70,6 +83,10 @@ def risk_status_change_service(
 async def risk_status_change_service_async(
     self: AsyncService,
     *,
+    tpid: str | None = None,
+    envpid: str | None = None,
+    videourla: str | None = None,
+    imgurla: str | None = None,
     riskpid: str | None = None,
     sttpid: str | None = None,
     systempid: str | None = None,
@@ -84,6 +101,10 @@ async def risk_status_change_service_async(
     Provider: И-Монголиа академи
 
     Args:
+        tpid: tpid
+        envpid: envpid
+        videourla: videourla
+        imgurla: imgurla
         riskpid: riskpid
         sttpid: sttpid
         systempid: systempid
@@ -94,6 +115,10 @@ async def risk_status_change_service_async(
     data = await self._transport.call(
         _OPERATION,
         {
+            "tpid": tpid,
+            "envpid": envpid,
+            "videourla": videourla,
+            "imgurla": imgurla,
             "riskpid": riskpid,
             "sttpid": sttpid,
             "systempid": systempid,

@@ -10,7 +10,7 @@ use Xyp\Auth;
 use Xyp\XypClient;
 
 /**
- * The 48 XYP services of the `transport` group, served from transport-1.5.0.
+ * The 41 XYP services of the `transport` group, served from transport-1.5.0.
  *
  * Reached through `$xyp->transport`; every method sends one request through that XypClient.
  */
@@ -97,27 +97,6 @@ final class TransportService
             'WS100406_getCitizenVehicleList',
             $params,
             GetCitizenVehicleListResponse::class,
-            auth: $auth,
-            operator: $operator,
-        );
-    }
-
-    /**
-     * Calls WS100407_getDriverLicenseInfo: Жолоочийн эрхийн мэдээлэл авах.
-     *
-     * Provider: Цагдаагийн ерөнхий газар
-     *
-     * @throws \Xyp\Exception\XypException
-     */
-    public function getDriverLicenseInfo(
-        GetDriverLicenseInfoParams $params = new GetDriverLicenseInfoParams(),
-        ?Auth $auth = null,
-        ?Auth $operator = null,
-    ): GetDriverLicenseInfoResponse {
-        return $this->client->invoke(
-            'WS100407_getDriverLicenseInfo',
-            $params,
-            GetDriverLicenseInfoResponse::class,
             auth: $auth,
             operator: $operator,
         );
@@ -439,27 +418,6 @@ final class TransportService
     }
 
     /**
-     * Calls WS100454_GetDriverInfoWithRegisterAndLicense: Жолоочийн үнэмлэхний дугаар болон регистрийн дугаар тохирч байх үед жолоочийн мэдээлэл дамжуулах сервис.
-     *
-     * Provider: Цагдаагийн ерөнхий газар
-     *
-     * @throws \Xyp\Exception\XypException
-     */
-    public function GetDriverInfoWithRegisterAndLicense(
-        GetDriverInfoWithRegisterAndLicenseParams $params = new GetDriverInfoWithRegisterAndLicenseParams(),
-        ?Auth $auth = null,
-        ?Auth $operator = null,
-    ): GetDriverInfoWithRegisterAndLicenseResponse {
-        return $this->client->invoke(
-            'WS100454_GetDriverInfoWithRegisterAndLicense',
-            $params,
-            GetDriverInfoWithRegisterAndLicenseResponse::class,
-            auth: $auth,
-            operator: $operator,
-        );
-    }
-
-    /**
      * Calls WS100455_TollInvoiceDetails: Замын хураамжийн нэхэмжлэх дэлгэрэнгүй мэдээлэл.
      *
      * Provider: Зам, тээврийн хөгжлийн яам
@@ -502,132 +460,6 @@ final class TransportService
     }
 
     /**
-     * Calls WS100457_GetInternationalDriverInfo: Олон улсын жолоочийн үнэмлэхний мэдээлэл.
-     *
-     * Provider: Цагдаагийн ерөнхий газар
-     *
-     * @throws \Xyp\Exception\XypException
-     */
-    public function GetInternationalDriverInfo(
-        GetInternationalDriverInfoParams $params = new GetInternationalDriverInfoParams(),
-        ?Auth $auth = null,
-        ?Auth $operator = null,
-    ): GetInternationalDriverInfoResponse {
-        return $this->client->invoke(
-            'WS100457_GetInternationalDriverInfo',
-            $params,
-            GetInternationalDriverInfoResponse::class,
-            auth: $auth,
-            operator: $operator,
-        );
-    }
-
-    /**
-     * Calls WS100462_TransportCompanyList: Байгууллагын жагсаалт.
-     *
-     * Provider: Цагдаагийн ерөнхий газар
-     *
-     * @throws \Xyp\Exception\XypException
-     */
-    public function TransportCompanyList(
-        TransportCompanyListParams $params = new TransportCompanyListParams(),
-        ?Auth $auth = null,
-        ?Auth $operator = null,
-    ): TransportCompanyListResponse {
-        return $this->client->invoke(
-            'WS100462_TransportCompanyList',
-            $params,
-            TransportCompanyListResponse::class,
-            auth: $auth,
-            operator: $operator,
-        );
-    }
-
-    /**
-     * Calls WS100463_TransportCompanyVehiclesList: Байгууллагын тээврийн хэрэгслийн жагсаалт.
-     *
-     * Provider: Цагдаагийн ерөнхий газар
-     *
-     * @throws \Xyp\Exception\XypException
-     */
-    public function TransportCompanyVehiclesList(
-        TransportCompanyVehiclesListParams $params = new TransportCompanyVehiclesListParams(),
-        ?Auth $auth = null,
-        ?Auth $operator = null,
-    ): TransportCompanyVehiclesListResponse {
-        return $this->client->invoke(
-            'WS100463_TransportCompanyVehiclesList',
-            $params,
-            TransportCompanyVehiclesListResponse::class,
-            auth: $auth,
-            operator: $operator,
-        );
-    }
-
-    /**
-     * Calls WS100464_TransportCompanyEmployeeList: Байгууллагы ажилчдын жагсаалт.
-     *
-     * Provider: Цагдаагийн ерөнхий газар
-     *
-     * @throws \Xyp\Exception\XypException
-     */
-    public function TransportCompanyEmployeeList(
-        TransportCompanyEmployeeListParams $params = new TransportCompanyEmployeeListParams(),
-        ?Auth $auth = null,
-        ?Auth $operator = null,
-    ): TransportCompanyEmployeeListResponse {
-        return $this->client->invoke(
-            'WS100464_TransportCompanyEmployeeList',
-            $params,
-            TransportCompanyEmployeeListResponse::class,
-            auth: $auth,
-            operator: $operator,
-        );
-    }
-
-    /**
-     * Calls WS100465_TransportCompanyRouteList: Байгууллагын маршрутын жагсаалт.
-     *
-     * Provider: Цагдаагийн ерөнхий газар
-     *
-     * @throws \Xyp\Exception\XypException
-     */
-    public function TransportCompanyRouteList(
-        TransportCompanyRouteListParams $params = new TransportCompanyRouteListParams(),
-        ?Auth $auth = null,
-        ?Auth $operator = null,
-    ): TransportCompanyRouteListResponse {
-        return $this->client->invoke(
-            'WS100465_TransportCompanyRouteList',
-            $params,
-            TransportCompanyRouteListResponse::class,
-            auth: $auth,
-            operator: $operator,
-        );
-    }
-
-    /**
-     * Calls WS100466_TransportCompanyCreateWorker: http://police.xyp.api:8080/eis/worker.
-     *
-     * Provider: Цагдаагийн ерөнхий газар
-     *
-     * @throws \Xyp\Exception\XypException
-     */
-    public function TransportCompanyCreateWorker(
-        TransportCompanyCreateWorkerParams $params = new TransportCompanyCreateWorkerParams(),
-        ?Auth $auth = null,
-        ?Auth $operator = null,
-    ): TransportCompanyCreateWorkerResponse {
-        return $this->client->invoke(
-            'WS100466_TransportCompanyCreateWorker',
-            $params,
-            TransportCompanyCreateWorkerResponse::class,
-            auth: $auth,
-            operator: $operator,
-        );
-    }
-
-    /**
      * Calls WS100467_FreightTransportTrainDocumentList: Галт тэрэгний ачаа тээврийн бичиг баримтын жагсаалтын сервис.
      *
      * Provider: Улаанбаатар төмөр зам
@@ -664,27 +496,6 @@ final class TransportService
             'WS100468_FreightTransportTrainDocumentDetail',
             $params,
             FreightTransportTrainDocumentDetailResponse::class,
-            auth: $auth,
-            operator: $operator,
-        );
-    }
-
-    /**
-     * Calls WS100469_SasCompanyInfoList: Гэрээт харуул хамгаалалтын байгууллагын жагсаалт.
-     *
-     * Provider: Цагдаагийн ерөнхий газар
-     *
-     * @throws \Xyp\Exception\XypException
-     */
-    public function SasCompanyInfoList(
-        SasCompanyInfoListParams $params = new SasCompanyInfoListParams(),
-        ?Auth $auth = null,
-        ?Auth $operator = null,
-    ): SasCompanyInfoListResponse {
-        return $this->client->invoke(
-            'WS100469_SasCompanyInfoList',
-            $params,
-            SasCompanyInfoListResponse::class,
             auth: $auth,
             operator: $operator,
         );
@@ -1021,6 +832,48 @@ final class TransportService
             'WS101402_PensionerTransportService',
             $params,
             PensionerTransportServiceResponse::class,
+            auth: $auth,
+            operator: $operator,
+        );
+    }
+
+    /**
+     * Calls WS101403_VehicleCertificateEnglishInfo: Тээврийн хэрэгслийн цахим гэрчилгээний мэдээлэл авах англи сервис.
+     *
+     * Provider: Авто тээврийн үндэсний төв
+     *
+     * @throws \Xyp\Exception\XypException
+     */
+    public function VehicleCertificateEnglishInfo(
+        VehicleCertificateEnglishInfoParams $params = new VehicleCertificateEnglishInfoParams(),
+        ?Auth $auth = null,
+        ?Auth $operator = null,
+    ): VehicleCertificateEnglishInfoResponse {
+        return $this->client->invoke(
+            'WS101403_VehicleCertificateEnglishInfo',
+            $params,
+            VehicleCertificateEnglishInfoResponse::class,
+            auth: $auth,
+            operator: $operator,
+        );
+    }
+
+    /**
+     * Calls WS101404_ProfessionalDriverLicenseEnglishInfo: Мэргэшсэн жолоочийн үнэмлэхний лавлагаа англи сервис.
+     *
+     * Provider: Авто тээврийн үндэсний төв
+     *
+     * @throws \Xyp\Exception\XypException
+     */
+    public function ProfessionalDriverLicenseEnglishInfo(
+        ProfessionalDriverLicenseEnglishInfoParams $params = new ProfessionalDriverLicenseEnglishInfoParams(),
+        ?Auth $auth = null,
+        ?Auth $operator = null,
+    ): ProfessionalDriverLicenseEnglishInfoResponse {
+        return $this->client->invoke(
+            'WS101404_ProfessionalDriverLicenseEnglishInfo',
+            $params,
+            ProfessionalDriverLicenseEnglishInfoResponse::class,
             auth: $auth,
             operator: $operator,
         );

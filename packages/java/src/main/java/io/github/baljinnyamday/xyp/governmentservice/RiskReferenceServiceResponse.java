@@ -13,20 +13,28 @@ import java.util.List;
  * <p>A field XYP left out, or sent in a shape this record does not expect, is {@code null} (an
  * empty list for a list); {@link #extras()} tells the two apart.
  *
+ * @param errorMsg Алдааны мэдээлэл
  * @param envs Эрсдлийн орчин
  * @param types Эрсдлийн төрөл
  * @param ctypes Эрсдэл бүртгэгч (хувь хүн, байгууллага)
  * @param status Эрсдлийн төлөв
  * @param risks risks - Эрсдлийн жагсаалт харах
+ * @param refProvinceList the {@code refProvinceList} field
+ * @param risksMetaData the {@code risksMetaData} field
+ * @param refDistrictList the {@code refDistrictList} field
  * @param extras the response fields that did not fit this record (their component is {@code null}
  *     or empty) and the raw response, including the fields this record does not declare
  */
 public record RiskReferenceServiceResponse(
+    String errorMsg,
     List<Envs> envs,
     List<Types> types,
     List<Ctypes> ctypes,
     List<Status> status,
     List<Risks> risks,
+    List<RefProvinceList> refProvinceList,
+    List<Object> risksMetaData,
+    List<RefDistrictList> refDistrictList,
     Extras extras) {
 
   /**
@@ -38,11 +46,15 @@ public record RiskReferenceServiceResponse(
    */
   public static RiskReferenceServiceResponse decode(ResponseReader reader) {
     return new RiskReferenceServiceResponse(
+        reader.get("errorMsg", Decoders.STRING),
         reader.get("envs", Decoders.list(Decoders.object(Envs::decode))),
         reader.get("types", Decoders.list(Decoders.object(Types::decode))),
         reader.get("ctypes", Decoders.list(Decoders.object(Ctypes::decode))),
         reader.get("status", Decoders.list(Decoders.object(Status::decode))),
         reader.get("risks", Decoders.list(Decoders.object(Risks::decode))),
+        reader.get("refProvinceList", Decoders.list(Decoders.object(RefProvinceList::decode))),
+        reader.get("risksMetaData", Decoders.list(Decoders.ANY)),
+        reader.get("refDistrictList", Decoders.list(Decoders.object(RefDistrictList::decode))),
         reader.extras());
   }
 
@@ -159,6 +171,10 @@ public record RiskReferenceServiceResponse(
    * @param status the {@code status} field
    * @param types the {@code types} field
    * @param systems the {@code systems} field
+   * @param imgurla the {@code imgurla} field
+   * @param videourla the {@code videourla} field
+   * @param refProvince the {@code refProvince} field
+   * @param refDistrict the {@code refDistrict} field
    */
   public record Risks(
       String id,
@@ -172,7 +188,11 @@ public record RiskReferenceServiceResponse(
       Object ctypes,
       Object status,
       Object types,
-      Object systems) {
+      Object systems,
+      String imgurla,
+      String videourla,
+      Object refProvince,
+      Object refDistrict) {
 
     /**
      * Decodes this record from a response tree. The generated client uses it; it is public so you
@@ -194,7 +214,59 @@ public record RiskReferenceServiceResponse(
           reader.get("ctypes", Decoders.ANY),
           reader.get("status", Decoders.ANY),
           reader.get("types", Decoders.ANY),
-          reader.get("systems", Decoders.ANY));
+          reader.get("systems", Decoders.ANY),
+          reader.get("imgurla", Decoders.STRING),
+          reader.get("videourla", Decoders.STRING),
+          reader.get("refProvince", Decoders.ANY),
+          reader.get("refDistrict", Decoders.ANY));
+    }
+  }
+
+  /**
+   * An element of the {@code refProvinceList} list in the response of {@code
+   * GS10085_RiskReferenceService}.
+   *
+   * @param aimagCityCode the {@code aimagCityCode} field
+   * @param aimagCityName the {@code aimagCityName} field
+   */
+  public record RefProvinceList(Long aimagCityCode, String aimagCityName) {
+
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static RefProvinceList decode(ResponseReader reader) {
+      return new RefProvinceList(
+          reader.get("aimagCityCode", Decoders.INT), reader.get("aimagCityName", Decoders.STRING));
+    }
+  }
+
+  /**
+   * An element of the {@code refDistrictList} list in the response of {@code
+   * GS10085_RiskReferenceService}.
+   *
+   * @param aimagCityCode the {@code aimagCityCode} field
+   * @param soumDistrictCode the {@code soumDistrictCode} field
+   * @param soumDistrictName the {@code soumDistrictName} field
+   */
+  public record RefDistrictList(
+      Long aimagCityCode, Long soumDistrictCode, String soumDistrictName) {
+
+    /**
+     * Decodes this record from a response tree. The generated client uses it; it is public so you
+     * can decode a tree you already hold, with {@link ResponseReader#decode}.
+     *
+     * @param reader the reader over this record's element
+     * @return the decoded record
+     */
+    public static RefDistrictList decode(ResponseReader reader) {
+      return new RefDistrictList(
+          reader.get("aimagCityCode", Decoders.INT),
+          reader.get("soumDistrictCode", Decoders.INT),
+          reader.get("soumDistrictName", Decoders.STRING));
     }
   }
 }

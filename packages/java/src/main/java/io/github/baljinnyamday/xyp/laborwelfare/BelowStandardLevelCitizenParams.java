@@ -14,9 +14,11 @@ import io.github.baljinnyamday.xyp.RequestParams;
  */
 public final class BelowStandardLevelCitizenParams implements RequestParams {
   private final String regnum;
+  private final Long english;
 
   private BelowStandardLevelCitizenParams(Builder builder) {
     this.regnum = builder.regnum;
+    this.english = builder.english;
   }
 
   /**
@@ -37,9 +39,18 @@ public final class BelowStandardLevelCitizenParams implements RequestParams {
     return regnum;
   }
 
+  /**
+   * Returns the {@code english} field.
+   *
+   * @return the value, or {@code null} when it is not set
+   */
+  public Long english() {
+    return english;
+  }
+
   @Override
   public Params toParams() {
-    return Params.builder().add("regnum", regnum).build();
+    return Params.builder().add("regnum", regnum).add("english", english).build();
   }
 
   /**
@@ -49,6 +60,7 @@ public final class BelowStandardLevelCitizenParams implements RequestParams {
    */
   public static final class Builder {
     private String regnum;
+    private Long english;
 
     private Builder() {}
 
@@ -60,6 +72,17 @@ public final class BelowStandardLevelCitizenParams implements RequestParams {
      */
     public Builder regnum(String regnum) {
       this.regnum = regnum;
+      return this;
+    }
+
+    /**
+     * Sets the {@code english} field.
+     *
+     * @param english the value, or {@code null}
+     * @return this builder
+     */
+    public Builder english(Long english) {
+      this.english = english;
       return this;
     }
 

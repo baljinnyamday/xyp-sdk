@@ -25,6 +25,9 @@ export interface RiskRegistrationServiceParams {
   readonly lt?: number;
   readonly ln?: number;
   readonly civilid?: string;
+  readonly isChild?: string;
+  readonly soumDistrictId?: string;
+  readonly aimagCityId?: string;
 }
 
 /** GS10086_RiskRegistrationService: Эрсдэл бүртгэх нэгдсэн үйлдэл */
@@ -33,9 +36,11 @@ export interface RiskRegistrationServiceResponse {
   readonly rschlog: unknown | null;
   readonly org: unknown | null;
   readonly orgCreated: boolean | null;
+  /** Алдааны мэдээлэл */
+  readonly errorMsg: string | null;
 }
 
-const SCHEMA: Schema = { risk: "any", rschlog: "any", org: "any", orgCreated: "bool" };
+const SCHEMA: Schema = { risk: "any", rschlog: "any", org: "any", orgCreated: "bool", errorMsg: "string" };
 
 /**
  * GS10086_RiskRegistrationService: Эрсдэл бүртгэх нэгдсэн үйлдэл
@@ -59,6 +64,9 @@ export async function riskRegistrationService(transport: Transport, params: Risk
       lt: params.lt,
       ln: params.ln,
       civilid: params.civilid,
+      isChild: params.isChild,
+      soumDistrictId: params.soumDistrictId,
+      aimagCityId: params.aimagCityId,
     },
     options,
   );

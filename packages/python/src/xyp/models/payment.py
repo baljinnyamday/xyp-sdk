@@ -45,17 +45,8 @@ from xyp.operations.payment.get_all_authority_info import (
 from xyp.operations.payment.get_list_of_ett_dividend_info import (
     GetListOfEttDividendInfoResponse,
 )
-from xyp.operations.payment.invoice_number_uth_payment_service import (
-    InvoiceNumberUthPaymentServiceResponse,
-)
-from xyp.operations.payment.invoice_payment_info_service import (
-    InvoicePaymentInfoServiceResponse,
-)
 from xyp.operations.payment.invoice_payment_inquiry_servicer import (
     InvoicePaymentInquiryServicerResponse,
-)
-from xyp.operations.payment.invoice_status_service import (
-    InvoiceStatusServiceResponse,
 )
 from xyp.operations.payment.legal_entity_bs_loan_info import (
     LegalEntityBsLoanInfoLiveStockData,
@@ -71,14 +62,6 @@ from xyp.operations.payment.overdue_citizen_loan_debt_reference import (
 )
 from xyp.operations.payment.overdue_organization_loan_debt_reference import (
     OverdueOrganizationLoanDebtReferenceResponse,
-)
-from xyp.operations.payment.paid_fine_by_register_service import (
-    PaidFineByRegisterServiceListData,
-    PaidFineByRegisterServiceResponse,
-)
-from xyp.operations.payment.paid_fine_service import (
-    PaidFineServiceListData,
-    PaidFineServiceResponse,
 )
 from xyp.operations.payment.payment_info_by_register_service import (
     PaymentInfoByRegisterServiceListData,
@@ -108,14 +91,6 @@ from xyp.operations.payment.tax_payer_info import (
 )
 from xyp.operations.payment.tax_receipt_bank_by_regnum import (
     TaxReceiptBankByRegnumResponse,
-)
-from xyp.operations.payment.unpaid_fine_by_register_service import (
-    UnpaidFineByRegisterServiceListData,
-    UnpaidFineByRegisterServiceResponse,
-)
-from xyp.operations.payment.unpaid_fine_service import (
-    UnpaidFineServiceListData,
-    UnpaidFineServiceResponse,
 )
 from xyp.operations.payment.violation_payment_by_plate_number import (
     ViolationPaymentByPlateNumberPaidList,
@@ -147,10 +122,7 @@ __all__ = [
     "GetAllAuthorityInfoListData",
     "GetAllAuthorityInfoResponse",
     "GetListOfEttDividendInfoResponse",
-    "InvoiceNumberUthPaymentServiceResponse",
-    "InvoicePaymentInfoServiceResponse",
     "InvoicePaymentInquiryServicerResponse",
-    "InvoiceStatusServiceResponse",
     "LegalEntityBsLoanInfoLiveStockData",
     "LegalEntityBsLoanInfoResponse",
     "OrgenzationLoanInfoTitanMain",
@@ -158,10 +130,6 @@ __all__ = [
     "OrgenzationLoanInfoTitanResponse",
     "OverdueCitizenLoanDebtReferenceResponse",
     "OverdueOrganizationLoanDebtReferenceResponse",
-    "PaidFineByRegisterServiceListData",
-    "PaidFineByRegisterServiceResponse",
-    "PaidFineServiceListData",
-    "PaidFineServiceResponse",
     "PaymentInfoByRegisterServiceListData",
     "PaymentInfoByRegisterServiceResponse",
     "PaymentOrderInvoiceGeneratorResponse",
@@ -175,10 +143,6 @@ __all__ = [
     "TaxPayerInfoListTins",
     "TaxPayerInfoResponse",
     "TaxReceiptBankByRegnumResponse",
-    "UnpaidFineByRegisterServiceListData",
-    "UnpaidFineByRegisterServiceResponse",
-    "UnpaidFineServiceListData",
-    "UnpaidFineServiceResponse",
     "ViolationPaymentByPlateNumberPaidList",
     "ViolationPaymentByPlateNumberResponse",
     "ViolationPaymentByPlateNumberUnpaidList",

@@ -17,8 +17,10 @@ final readonly class BelowStandardLevelCitizenParams
 {
     /**
      * @param string|null $regnum регистрийн дугаар
+     * @param int|null $english
      */
     public function __construct(
         public ?string $regnum = null,
+        public ?int $english = null,
     ) {}
 }

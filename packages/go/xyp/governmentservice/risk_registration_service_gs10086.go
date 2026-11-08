@@ -14,17 +14,20 @@ type RiskRegistrationServiceParams struct {
 	Ctpid  string `xyp:"ctpid"`
 	Sttpid string `xyp:"sttpid"`
 	// эрсдэлийн тайлбар
-	Desc      string   `xyp:"desc"`
-	Tpid      string   `xyp:"tpid"`
-	Envpid    string   `xyp:"envpid"`
-	Systempid string   `xyp:"systempid"`
-	Orgregnum string   `xyp:"orgregnum"`
-	Orgname   string   `xyp:"orgname"`
-	Imgurl    string   `xyp:"imgurl"`
-	Videourl  string   `xyp:"videourl"`
-	Lt        *float64 `xyp:"lt"`
-	Ln        *float64 `xyp:"ln"`
-	Civilid   string   `xyp:"civilid"`
+	Desc           string   `xyp:"desc"`
+	Tpid           string   `xyp:"tpid"`
+	Envpid         string   `xyp:"envpid"`
+	Systempid      string   `xyp:"systempid"`
+	Orgregnum      string   `xyp:"orgregnum"`
+	Orgname        string   `xyp:"orgname"`
+	Imgurl         string   `xyp:"imgurl"`
+	Videourl       string   `xyp:"videourl"`
+	Lt             *float64 `xyp:"lt"`
+	Ln             *float64 `xyp:"ln"`
+	Civilid        string   `xyp:"civilid"`
+	IsChild        string   `xyp:"isChild"`
+	SoumDistrictId string   `xyp:"soumDistrictId"`
+	AimagCityId    string   `xyp:"aimagCityId"`
 }
 
 // RiskRegistrationServiceResponse is the response of GS10086_RiskRegistrationService: Эрсдэл бүртгэх нэгдсэн үйлдэл.
@@ -33,6 +36,8 @@ type RiskRegistrationServiceResponse struct {
 	Rschlog    any   `xyp:"rschlog"`
 	Org        any   `xyp:"org"`
 	OrgCreated *bool `xyp:"orgCreated"`
+	// Алдааны мэдээлэл
+	ErrorMsg string `xyp:"errorMsg"`
 
 	// Xyp carries what this struct could not. Mismatches lists the response
 	// fields that did not fit the model (they kept their zero value), and Raw is

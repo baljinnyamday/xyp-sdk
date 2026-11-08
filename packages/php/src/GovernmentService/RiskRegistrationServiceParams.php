@@ -29,6 +29,9 @@ final readonly class RiskRegistrationServiceParams
      * @param float|null $lt
      * @param float|null $ln
      * @param string|null $civilid
+     * @param string|null $isChild
+     * @param string|null $soumDistrictId
+     * @param string|null $aimagCityId
      */
     public function __construct(
         public ?string $ctpid = null,
@@ -44,5 +47,8 @@ final readonly class RiskRegistrationServiceParams
         public ?float $lt = null,
         public ?float $ln = null,
         public ?string $civilid = null,
+        public ?string $isChild = null,
+        public ?string $soumDistrictId = null,
+        public ?string $aimagCityId = null,
     ) {}
 }

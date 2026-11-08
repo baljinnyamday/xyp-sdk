@@ -58,22 +58,10 @@ export type {
   GetCitizenVehicleListResponse,
 } from "../operations/transport/getCitizenVehicleList.js";
 export type {
-  GetDriverInfoWithRegisterAndLicenseParams,
-  GetDriverInfoWithRegisterAndLicenseResponse,
-} from "../operations/transport/getDriverInfoWithRegisterAndLicense.js";
-export type {
-  GetDriverLicenseInfoParams,
-  GetDriverLicenseInfoResponse,
-} from "../operations/transport/getDriverLicenseInfo.js";
-export type {
   GetFineInfoUsingFineNumberData,
   GetFineInfoUsingFineNumberParams,
   GetFineInfoUsingFineNumberResponse,
 } from "../operations/transport/getFineInfoUsingFineNumber.js";
-export type {
-  GetInternationalDriverInfoParams,
-  GetInternationalDriverInfoResponse,
-} from "../operations/transport/getInternationalDriverInfo.js";
 export type {
   GetOrganizationVehicleListListData,
   GetOrganizationVehicleListParams,
@@ -150,10 +138,9 @@ export type {
   ProductListResponse,
 } from "../operations/transport/productList.js";
 export type {
-  SasCompanyInfoListList,
-  SasCompanyInfoListParams,
-  SasCompanyInfoListResponse,
-} from "../operations/transport/sasCompanyInfoList.js";
+  ProfessionalDriverLicenseEnglishInfoParams,
+  ProfessionalDriverLicenseEnglishInfoResponse,
+} from "../operations/transport/professionalDriverLicenseEnglishInfo.js";
 export type {
   SpecialDriverInfoParams,
   SpecialDriverInfoResponse,
@@ -167,29 +154,6 @@ export type {
   TrainBorderInfoParams,
   TrainBorderInfoResponse,
 } from "../operations/transport/trainBorderInfo.js";
-export type {
-  TransportCompanyCreateWorkerParams,
-  TransportCompanyCreateWorkerResponse,
-} from "../operations/transport/transportCompanyCreateWorker.js";
-export type {
-  TransportCompanyEmployeeListList,
-  TransportCompanyEmployeeListParams,
-  TransportCompanyEmployeeListResponse,
-} from "../operations/transport/transportCompanyEmployeeList.js";
-export type {
-  TransportCompanyListParams,
-  TransportCompanyListResponse,
-} from "../operations/transport/transportCompanyList.js";
-export type {
-  TransportCompanyRouteListList,
-  TransportCompanyRouteListParams,
-  TransportCompanyRouteListResponse,
-} from "../operations/transport/transportCompanyRouteList.js";
-export type {
-  TransportCompanyVehiclesListList,
-  TransportCompanyVehiclesListParams,
-  TransportCompanyVehiclesListResponse,
-} from "../operations/transport/transportCompanyVehiclesList.js";
 export type {
   UmnsVehicleInfoListData,
   UmnsVehicleInfoParams,
@@ -213,6 +177,10 @@ export type {
   VehicleCertificateParams,
   VehicleCertificateResponse,
 } from "../operations/transport/vehicleCertificate.js";
+export type {
+  VehicleCertificateEnglishInfoParams,
+  VehicleCertificateEnglishInfoResponse,
+} from "../operations/transport/vehicleCertificateEnglishInfo.js";
 export type {
   VehicleLegalEntityInfoListData,
   VehicleLegalEntityInfoParams,

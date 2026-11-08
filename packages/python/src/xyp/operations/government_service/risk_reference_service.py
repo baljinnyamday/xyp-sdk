@@ -67,11 +67,27 @@ class RiskReferenceServiceRisks(XypModel):
     status: Any | None = Field(default=None, alias="status")
     types: Any | None = Field(default=None, alias="types")
     systems: Any | None = Field(default=None, alias="systems")
+    imgurla: str | None = Field(default=None, alias="imgurla")
+    videourla: str | None = Field(default=None, alias="videourla")
+    ref_province: Any | None = Field(default=None, alias="refProvince")
+    ref_district: Any | None = Field(default=None, alias="refDistrict")
+
+
+class RiskReferenceServiceRefProvinceList(XypModel):
+    aimag_city_code: int | None = Field(default=None, alias="aimagCityCode")
+    aimag_city_name: str | None = Field(default=None, alias="aimagCityName")
+
+
+class RiskReferenceServiceRefDistrictList(XypModel):
+    aimag_city_code: int | None = Field(default=None, alias="aimagCityCode")
+    soum_district_code: int | None = Field(default=None, alias="soumDistrictCode")
+    soum_district_name: str | None = Field(default=None, alias="soumDistrictName")
 
 
 class RiskReferenceServiceResponse(XypModel):
     """GS10085_RiskReferenceService: Эрсдлийн лавлах сан"""
 
+    error_msg: str | None = Field(default=None, alias="errorMsg", description="Алдааны мэдээлэл")
     envs: list[RiskReferenceServiceEnvs] | None = Field(
         default=None, alias="envs", description="Эрсдлийн орчин"
     )
@@ -87,16 +103,24 @@ class RiskReferenceServiceResponse(XypModel):
     risks: list[RiskReferenceServiceRisks] | None = Field(
         default=None, alias="risks", description="risks - Эрсдлийн жагсаалт харах"
     )
+    ref_province_list: list[RiskReferenceServiceRefProvinceList] | None = Field(
+        default=None, alias="refProvinceList"
+    )
+    risks_meta_data: list[Any] | None = Field(default=None, alias="risksMetaData")
+    ref_district_list: list[RiskReferenceServiceRefDistrictList] | None = Field(
+        default=None, alias="refDistrictList"
+    )
 
 
 def risk_reference_service(
     self: SyncService,
     *,
-    only: Sequence[str] | None = None,
+    only: Sequence[Any] | None = None,
     systempid: str | None = None,
     orgregnum: str | None = None,
     page: int | None = None,
     limit: int | None = None,
+    status_id: str | None = None,
     auth: CitizenAuth | None = None,
     operator: OperatorAuth | None = None,
 ) -> RiskReferenceServiceResponse:
@@ -110,6 +134,7 @@ def risk_reference_service(
         orgregnum: Эрсдлийн жагсаалт харах orgregnum шүүлт orgregnum ба systempid хоёуланг өгвөл AND шүүлт (заавал биш)
         page: Эрсдлийн жагсаалт хуудасны дугаар (default 1) (заавал биш)
         limit: Эрсдлийн жагсаалт хуудас тутмын тоо (default 20, max 100) (заавал биш)
+        status_id: statusId
     """
     data = self._transport.call(
         _OPERATION,
@@ -119,6 +144,7 @@ def risk_reference_service(
             "orgregnum": orgregnum,
             "page": page,
             "limit": limit,
+            "statusId": status_id,
         },
         auth,
         operator,
@@ -129,11 +155,12 @@ def risk_reference_service(
 async def risk_reference_service_async(
     self: AsyncService,
     *,
-    only: Sequence[str] | None = None,
+    only: Sequence[Any] | None = None,
     systempid: str | None = None,
     orgregnum: str | None = None,
     page: int | None = None,
     limit: int | None = None,
+    status_id: str | None = None,
     auth: CitizenAuth | None = None,
     operator: OperatorAuth | None = None,
 ) -> RiskReferenceServiceResponse:
@@ -147,6 +174,7 @@ async def risk_reference_service_async(
         orgregnum: Эрсдлийн жагсаалт харах orgregnum шүүлт orgregnum ба systempid хоёуланг өгвөл AND шүүлт (заавал биш)
         page: Эрсдлийн жагсаалт хуудасны дугаар (default 1) (заавал биш)
         limit: Эрсдлийн жагсаалт хуудас тутмын тоо (default 20, max 100) (заавал биш)
+        status_id: statusId
     """
     data = await self._transport.call(
         _OPERATION,
@@ -156,6 +184,7 @@ async def risk_reference_service_async(
             "orgregnum": orgregnum,
             "page": page,
             "limit": limit,
+            "statusId": status_id,
         },
         auth,
         operator,
