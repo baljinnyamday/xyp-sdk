@@ -64,3 +64,24 @@ jobs:
         run: |
           go install golang.org/x/vuln/cmd/govulncheck@latest
           govulncheck ./...
+
+  # gofmt, vet, lint and the race detector give the same answer on every OS, so they run on
+  # Linux only. This job runs the tests on the other systems users build the module on.
+  other-os:
+    name: tests on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest]
+    defaults:
+      run:
+        shell: bash
+        working-directory: packages/go
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+          cache-dependency-path: packages/go/go.mod
+      - run: go test -count=1 ./...

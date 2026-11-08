@@ -73,7 +73,8 @@ final class KeyLoaderTest extends TestCase
         // passphrase; OpenSSL must not fall back to prompting on the terminal.
         $php = escapeshellarg(PHP_BINARY);
         $script = escapeshellarg(__DIR__ . '/prompt_probe.php');
-        $output = shell_exec("{$php} {$script} 2>&1 < /dev/null");
+        $null = PHP_OS_FAMILY === 'Windows' ? 'NUL' : '/dev/null';
+        $output = shell_exec("{$php} {$script} 2>&1 < {$null}");
 
         self::assertSame('rejected', $output);
     }

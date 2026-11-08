@@ -42,3 +42,22 @@ jobs:
         run: |
           uv run --isolated --no-project --with dist/*.whl python -c \
             "from xyp._tls import build_verify; assert len(build_verify(True).get_ca_certs()) == 2"
+
+  # Lint, format and type checks give the same answer on every OS, so they run on Linux only.
+  # This job runs the tests on the other systems users install the SDK on.
+  other-os:
+    name: tests on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest]
+    defaults:
+      run:
+        shell: bash
+        working-directory: packages/python
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync --python 3.13
+      - run: uv run pytest
