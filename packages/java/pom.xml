@@ -274,6 +274,12 @@
           <doclint>all,-missing</doclint>
           <failOnWarnings>true</failOnWarnings>
           <quiet>true</quiet>
+          <!-- JDK 17's javadoc reads the patched module's sources in the platform charset even
+               with -encoding UTF-8, so on Windows (windows-1252) the Mongolian descriptions in
+               the generated classes fail as unmappable characters. -->
+          <additionalJOptions>
+            <additionalJOption>-J-Dfile.encoding=UTF-8</additionalJOption>
+          </additionalJOptions>
         </configuration>
         <executions>
           <execution>
