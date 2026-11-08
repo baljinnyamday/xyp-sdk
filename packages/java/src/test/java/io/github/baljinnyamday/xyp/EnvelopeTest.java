@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.nio.CharBuffer;
 import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
@@ -113,7 +114,7 @@ class EnvelopeTest {
         Arguments.of("an empty string is left out", Params.of("s", ""), "<request />"),
         Arguments.of(
             "any CharSequence is text",
-            Params.of("s", new StringBuilder("a&b")),
+            Params.of("s", CharBuffer.wrap("a&b")),
             "<request><s>a&amp;b</s></request>"),
         Arguments.of(
             "an empty Optional is left out", Params.of("n", Optional.empty()), "<request />"),
@@ -177,6 +178,8 @@ class EnvelopeTest {
     assertEquals(want, Scalars.formatDouble(value));
   }
 
+  // Literals with more digits than a double holds are inputs to the formatter, on purpose.
+  @SuppressWarnings("FloatingPointLiteralPrecision")
   static Stream<Arguments> doublesAreWrittenLikeGoFormatFloat() {
     return Stream.of(
         Arguments.of(0.5, "0.5"),
@@ -194,6 +197,7 @@ class EnvelopeTest {
   }
 
   @Test
+  @SuppressWarnings("FloatingPointLiteralPrecision") // 3.4028235f rounds, on purpose
   void floatsUseTheirOwnPrecision() {
     assertEquals("0.1", Scalars.formatFloat(0.1f));
     assertEquals("16777216", Scalars.formatFloat(16777216f));

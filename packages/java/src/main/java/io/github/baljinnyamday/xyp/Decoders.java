@@ -69,7 +69,7 @@ public final class Decoders {
    * {@code "expected an object"}; a field inside it that does not fit costs only that field.
    *
    * @param <T> the type of the object
-   * @param decoder the decoder of the nested object, usually a record's {@code decode} method
+   * @param decoder the decoder of the nested object, usually a record's static decode method
    * @return a decoder whose absent value is {@code null}
    */
   public static <T> Decoder<T> object(ResponseDecoder<T> decoder) {

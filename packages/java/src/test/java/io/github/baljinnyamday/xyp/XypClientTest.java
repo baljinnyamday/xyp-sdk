@@ -229,7 +229,7 @@ class XypClientTest {
             r -> r.get("isPensioner", Decoders.BOOL));
     client.call(PENSION_OPERATION, params);
 
-    assertEquals(Boolean.TRUE, first);
+    assertEquals(true, first);
     assertEquals(List.of("/insurance-1.5.0/ws?WSDL"), wsdlReads(fake));
     List<FakeXyp.Recorded> requests = fake.recorded();
     String last = requests.get(requests.size() - 1).body();

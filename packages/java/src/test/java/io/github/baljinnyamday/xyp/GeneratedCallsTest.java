@@ -189,7 +189,7 @@ class GeneratedCallsTest {
 
     assertEquals(7L, response.id());
     assertEquals("Тест байгууллага", response.orgTitle());
-    assertEquals(Boolean.TRUE, response.registered());
+    assertEquals(true, response.registered());
     assertEquals(2, response.approvedServices().size());
     assertEquals(Map.of("ws", "WS100101_getCitizenIDCardInfo"), response.approvedServices().get(0));
     assertEquals("2027-01-01", response.expireDate().raw());
