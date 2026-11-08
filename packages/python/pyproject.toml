@@ -1,6 +1,6 @@
 [project]
 name = "xyp"
-version = "0.1.0"
+version = "0.2.0"
 description = "Typed Python SDK for XYP (ХУР), Mongolia's government data exchange system"
 readme = "README.md"
 license = "MIT"
