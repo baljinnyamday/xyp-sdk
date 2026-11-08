@@ -9,11 +9,8 @@ Every XYP service, no third-party dependencies, zero configuration for TLS and
 signing.
 
 ```bash
-go get github.com/baljinnyamday/xyp-sdk/packages/go@v0.1.0-alpha.1
+go get github.com/baljinnyamday/xyp-sdk/packages/go@latest
 ```
-
-While the module is pre-release, `@latest` will not pick it: ask for the version
-explicitly. Once a stable version exists, `go get …/packages/go@latest` works.
 
 ```go
 import (
@@ -42,7 +39,7 @@ connections alive.
 
 Standard library only — nothing enters your dependency tree but this module.
 
-> **Status: alpha.** The production system is only reachable from the National
+> **How it is tested.** The production system is only reachable from the National
 > Data Center VPN, so the SDK is verified differentially instead: for every
 > operation in the WSDLs we hold, the request XML is byte-identical to what
 > [zeep](https://docs.python-zeep.org) — the SOAP library behind the official

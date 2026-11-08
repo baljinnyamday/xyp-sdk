@@ -4,12 +4,8 @@ Typed Python SDK for **XYP (ХУР)**, Mongolia's government data exchange syste
 Every XYP service, sync and async, fully type-hinted.
 
 ```bash
-pip install "xyp>=0.1.0a2"     # or: uv add "xyp>=0.1.0a2"
+pip install xyp     # or: uv add xyp
 ```
-
-It is a pre-release until it has been confirmed against production. Naming the
-version like this lets pip pick the pre-release of `xyp` only; avoid
-`pip install --pre xyp`, which also pulls pre-releases of every dependency.
 
 ```python
 from xyp import Xyp
@@ -23,7 +19,7 @@ print(card.firstname, card.lastname)
 That is the whole integration. The SDK signs every request, builds the SOAP
 envelope, verifies XYP's certificate and turns the XML into typed objects.
 
-> **Status: alpha.** The production system is only reachable from the National
+> **How it is tested.** The production system is only reachable from the National
 > Data Center VPN, so the SDK is verified differentially instead: for every
 > operation in the WSDLs we hold, the test suite checks that the XML this SDK
 > sends is identical to what [zeep](https://docs.python-zeep.org) — the SOAP

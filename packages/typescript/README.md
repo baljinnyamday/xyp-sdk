@@ -4,7 +4,7 @@ Typed Node.js SDK for **XYP (ХУР)**, Mongolia's government data exchange syst
 Every XYP service, fully typed, zero configuration for TLS and signing.
 
 ```bash
-npm install xyp-sdk@alpha     # pnpm add / yarn add / bun add work the same
+npm install xyp-sdk           # pnpm add / yarn add / bun add work the same
 ```
 
 ```ts
@@ -24,7 +24,7 @@ route handlers, NestJS, Express, and anything else that runs on a server. It
 ships its own types; no `@types` package needed. It does not run in browsers:
 XYP needs your private key and the government VPN.
 
-> **Status: alpha.** The production system is only reachable from the National
+> **How it is tested.** The production system is only reachable from the National
 > Data Center VPN, so the SDK is verified differentially instead: for every
 > operation in the WSDLs we hold, the request XML is byte-identical to what
 > [zeep](https://docs.python-zeep.org) — the SOAP library behind the official

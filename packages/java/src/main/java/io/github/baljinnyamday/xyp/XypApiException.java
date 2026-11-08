@@ -24,31 +24,25 @@ public final class XypApiException extends XypException {
   /** The documented result codes, grouped the way XYP groups them. */
   public enum Reason {
     /** Code 1: the data provider has no record for this request. */
-    NOT_FOUND(1),
+    NOT_FOUND,
     /** Code 2: XYP internal error. */
-    INTERNAL(2),
+    INTERNAL,
     /** Code 3: missing input, wrong endpoint, or a bad accessToken/timeStamp/signature header. */
-    INVALID_REQUEST(3),
+    INVALID_REQUEST,
     /** Codes 200-202: the auth block (citizen and/or operator approval) is missing. */
-    AUTH_REQUIRED(200, 201, 202),
+    AUTH_REQUIRED,
     /** Codes 203 and 501: your access token may not call this service. */
-    ACCESS_DENIED(203, 501),
+    ACCESS_DENIED,
     /** Codes 301-304: fingerprint not registered, not matched, or matching failed. */
-    FINGERPRINT(301, 302, 303, 304),
+    FINGERPRINT,
     /** Codes 401-402: the citizen must visit the registry, or is not the owner. */
-    CITIZEN_DATA(401, 402),
+    CITIZEN_DATA,
     /** Codes 601-605: the citizen's digital signature or certificate was rejected. */
-    SIGNATURE(601, 602, 603, 604, 605),
+    SIGNATURE,
     /** Codes 801-802: the data provider's database is unreachable or timed out. */
-    PROVIDER(801, 802),
+    PROVIDER,
     /** A code the list above does not cover. */
     OTHER;
-
-    private final int[] codes;
-
-    Reason(int... codes) {
-      this.codes = codes;
-    }
 
     /**
      * Finds the reason for a result code.
@@ -57,14 +51,18 @@ public final class XypApiException extends XypException {
      * @return the matching reason, or {@link #OTHER} for a code that is not documented
      */
     public static Reason of(int resultCode) {
-      for (Reason reason : values()) {
-        for (int code : reason.codes) {
-          if (code == resultCode) {
-            return reason;
-          }
-        }
-      }
-      return OTHER;
+      return switch (resultCode) {
+        case 1 -> NOT_FOUND;
+        case 2 -> INTERNAL;
+        case 3 -> INVALID_REQUEST;
+        case 200, 201, 202 -> AUTH_REQUIRED;
+        case 203, 501 -> ACCESS_DENIED;
+        case 301, 302, 303, 304 -> FINGERPRINT;
+        case 401, 402 -> CITIZEN_DATA;
+        case 601, 602, 603, 604, 605 -> SIGNATURE;
+        case 801, 802 -> PROVIDER;
+        default -> OTHER;
+      };
     }
   }
 
