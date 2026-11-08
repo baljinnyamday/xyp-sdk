@@ -66,3 +66,26 @@ jobs:
         run: |
           find scripts/consumer/target/lib -type f
           test "$(find scripts/consumer/target/lib -type f | wc -l)" -eq 1
+
+  # The format check, the consumer checks and the other JDKs give the same answer on every OS,
+  # so they run on Linux only. This job runs the tests on the other systems users build on.
+  other-os:
+    name: tests on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest]
+    defaults:
+      run:
+        shell: bash
+        working-directory: packages/java
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: maven
+          cache-dependency-path: packages/java/pom.xml
+      - run: ./mvnw -B verify

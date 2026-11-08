@@ -22,6 +22,12 @@
 /packages/php/scripts              export-ignore
 /packages/php/tests                export-ignore
 
+# gofmt, google-java-format, php-cs-fixer and ruff all write LF, and CI checks their output.
+# Without this, Git on Windows checks files out with CRLF and every format check fails there.
+# mvnw.cmd is a Windows batch file and stays CRLF.
+* text=auto eol=lf
+*.cmd -text
+
 # Written by xyp-generator.
 /packages/php/src/Registry.php      linguist-generated
 /packages/php/src/ServiceGroups.php linguist-generated

@@ -17,10 +17,11 @@ final class LocalServer
     public function __construct(string $router)
     {
         $port = self::freePort();
+        $null = PHP_OS_FAMILY === 'Windows' ? 'NUL' : '/dev/null';
         // One process, no PHP_CLI_SERVER_WORKERS: forked workers outlive proc_terminate().
         $process = proc_open(
             [PHP_BINARY, '-S', '127.0.0.1:' . $port, $router],
-            [0 => ['pipe', 'r'], 1 => ['file', '/dev/null', 'w'], 2 => ['file', '/dev/null', 'w']],
+            [0 => ['pipe', 'r'], 1 => ['file', $null, 'w'], 2 => ['file', $null, 'w']],
             $pipes,
         );
         if (!\is_resource($process)) {

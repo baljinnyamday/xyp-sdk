@@ -62,7 +62,7 @@ public final class XypKeys {
     } catch (IOException | SecurityException failure) {
       // Only the failure class, never the path's contents or the key itself.
       throw new XypConfigException(
-          "cannot read the private key file (" + fileProblem(failure) + ")");
+          "cannot read the private key file (" + fileProblem(path, failure) + ")");
     }
     return parsePrivateKey(data);
   }
@@ -157,9 +157,14 @@ public final class XypKeys {
     return new XypConfigException("privateKey must be an RSA key");
   }
 
-  private static String fileProblem(Exception failure) {
+  static String fileProblem(Path path, Exception failure) {
     if (failure instanceof NoSuchFileException) {
       return "no such file";
+    }
+    // Windows refuses to open a directory with AccessDeniedException, where other systems report
+    // a plain IOException. Checking for a directory first gives the same answer on every OS.
+    if (Files.isDirectory(path)) {
+      return "unreadable";
     }
     if (failure instanceof AccessDeniedException || failure instanceof SecurityException) {
       return "permission denied";

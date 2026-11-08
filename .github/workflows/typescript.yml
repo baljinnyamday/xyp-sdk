@@ -50,3 +50,34 @@ jobs:
           npm install --silent "$RUNNER_TEMP"/xyp-sdk-*.tgz
           cp "$GITHUB_WORKSPACE/packages/typescript/scripts/release_check.mjs" .
           node release_check.mjs
+
+  # Lint, format and type checks give the same answer on every OS, so they run on Linux only.
+  # This job runs the tests and loads the built package on the other systems users run it on.
+  other-os:
+    name: tests on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest]
+    defaults:
+      run:
+        shell: bash
+        working-directory: packages/typescript
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: packages/typescript/package.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: packages/typescript/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test
+      - run: pnpm build
+      - name: The built package works from CommonJS and ESM
+        run: |
+          node -e "const { Xyp, XypConfigError } = require('./dist/index.cjs'); try { new Xyp() } catch (e) { if (!(e instanceof XypConfigError)) throw e }"
+          node --input-type=module -e "import { Xyp, XypConfigError } from './dist/index.js'; try { new Xyp() } catch (e) { if (!(e instanceof XypConfigError)) throw e }"

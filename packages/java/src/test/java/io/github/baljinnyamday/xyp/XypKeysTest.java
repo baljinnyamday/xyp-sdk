@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.AccessDeniedException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.KeyPair;
@@ -111,6 +112,14 @@ class XypKeysTest {
     XypConfigException directoryInstead =
         assertThrows(XypConfigException.class, () -> XypKeys.loadPrivateKey(directory));
     assertEquals("cannot read the private key file (unreadable)", directoryInstead.getMessage());
+  }
+
+  @Test
+  void aDirectoryIsUnreadableEvenWhenTheSystemSaysAccessDenied(@TempDir Path directory) {
+    // Files.readAllBytes(directory) throws this on Windows.
+    var windowsFailure = new AccessDeniedException(directory.toString());
+
+    assertEquals("unreadable", XypKeys.fileProblem(directory, windowsFailure));
   }
 
   static Stream<Arguments> refusesBadInputWithoutLeakingKeyMaterial() {

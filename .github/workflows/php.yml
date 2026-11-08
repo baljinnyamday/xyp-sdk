@@ -68,3 +68,26 @@ jobs:
           composer config repositories.xyp '{"type": "path", "url": "'"$DIST"'", "options": {"symlink": false, "versions": {"baljinnyamday/xyp-sdk": "0.0.1"}}}'
           composer require --no-interaction --no-progress baljinnyamday/xyp-sdk:0.0.1
           php consumer.php
+
+  # Static analysis and the code style check give the same answer on every OS, so they run on
+  # Linux only. This job runs the tests on the other systems users install the package on.
+  other-os:
+    name: tests on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest]
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.5"
+          extensions: curl, openssl, xmlreader
+          coverage: none
+          tools: composer:v2
+      - run: composer update --no-interaction --no-progress --prefer-stable
+      - run: composer test
