@@ -11,6 +11,10 @@ const OPERATION = "GS10087_RiskStatusChangeService";
 
 /** Input of GS10087_RiskStatusChangeService. */
 export interface RiskStatusChangeServiceParams {
+  readonly tpid?: string;
+  readonly envpid?: string;
+  readonly videourla?: string;
+  readonly imgurla?: string;
   readonly riskpid?: string;
   readonly sttpid?: string;
   readonly systempid?: string;
@@ -21,13 +25,14 @@ export interface RiskStatusChangeServiceParams {
 
 /** GS10087_RiskStatusChangeService: Эрсдэлийн төлөв солих */
 export interface RiskStatusChangeServiceResponse {
+  readonly errorMsg: string | null;
   readonly risk: unknown | null;
   readonly rschlog: unknown | null;
   readonly org: unknown | null;
   readonly orgCreated: boolean | null;
 }
 
-const SCHEMA: Schema = { risk: "any", rschlog: "any", org: "any", orgCreated: "bool" };
+const SCHEMA: Schema = { errorMsg: "string", risk: "any", rschlog: "any", org: "any", orgCreated: "bool" };
 
 /**
  * GS10087_RiskStatusChangeService: Эрсдэлийн төлөв солих
@@ -38,6 +43,10 @@ export async function riskStatusChangeService(transport: Transport, params: Risk
   const data = await transport.call(
     OPERATION,
     {
+      tpid: params.tpid,
+      envpid: params.envpid,
+      videourla: params.videourla,
+      imgurla: params.imgurla,
       riskpid: params.riskpid,
       sttpid: params.sttpid,
       systempid: params.systempid,

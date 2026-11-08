@@ -13,6 +13,7 @@ const OPERATION = "WS100943_belowStandardLevelCitizen";
 export interface BelowStandardLevelCitizenParams {
   /** регистрийн дугаар */
   readonly regnum?: string;
+  readonly english?: number;
 }
 
 /** WS100943_belowStandardLevelCitizen: Амьжиргааны баталгаажих түвшнээс доогуур оноотой иргэдийн мэдээллийг дуудах сервис */
@@ -59,6 +60,7 @@ export async function belowStandardLevelCitizen(transport: Transport, params: Be
     OPERATION,
     {
       regnum: params.regnum,
+      english: params.english,
     },
     options,
   );

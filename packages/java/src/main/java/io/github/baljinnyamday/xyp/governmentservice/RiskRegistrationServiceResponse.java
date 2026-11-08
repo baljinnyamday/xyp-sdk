@@ -16,11 +16,12 @@ import io.github.baljinnyamday.xyp.ResponseReader;
  * @param rschlog the {@code rschlog} field
  * @param org the {@code org} field
  * @param orgCreated the {@code orgCreated} field
+ * @param errorMsg Алдааны мэдээлэл
  * @param extras the response fields that did not fit this record (their component is {@code null}
  *     or empty) and the raw response, including the fields this record does not declare
  */
 public record RiskRegistrationServiceResponse(
-    Object risk, Object rschlog, Object org, Boolean orgCreated, Extras extras) {
+    Object risk, Object rschlog, Object org, Boolean orgCreated, String errorMsg, Extras extras) {
 
   /**
    * Decodes this record from a response tree. The generated client uses it; it is public so you can
@@ -35,6 +36,7 @@ public record RiskRegistrationServiceResponse(
         reader.get("rschlog", Decoders.ANY),
         reader.get("org", Decoders.ANY),
         reader.get("orgCreated", Decoders.BOOL),
+        reader.get("errorMsg", Decoders.STRING),
         reader.extras());
   }
 }

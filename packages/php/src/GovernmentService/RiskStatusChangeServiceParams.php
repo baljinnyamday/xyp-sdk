@@ -16,6 +16,10 @@ namespace Xyp\GovernmentService;
 final readonly class RiskStatusChangeServiceParams
 {
     /**
+     * @param string|null $tpid
+     * @param string|null $envpid
+     * @param string|null $videourla
+     * @param string|null $imgurla
      * @param string|null $riskpid
      * @param string|null $sttpid
      * @param string|null $systempid
@@ -24,6 +28,10 @@ final readonly class RiskStatusChangeServiceParams
      * @param string|null $civilid
      */
     public function __construct(
+        public ?string $tpid = null,
+        public ?string $envpid = null,
+        public ?string $videourla = null,
+        public ?string $imgurla = null,
         public ?string $riskpid = null,
         public ?string $sttpid = null,
         public ?string $systempid = null,

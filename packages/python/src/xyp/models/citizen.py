@@ -76,12 +76,6 @@ from xyp.operations.citizen.citizen_denationalization_info import (
     CitizenDenationalizationInfoListData,
     CitizenDenationalizationInfoResponse,
 )
-from xyp.operations.citizen.citizen_doing_criminal_liabilityl_info import (
-    CitizenDoingCriminalLiabilitylInfoResponse,
-)
-from xyp.operations.citizen.citizen_doing_criminal_liabilty_eng_info import (
-    CitizenDoingCriminalLiabiltyEngInfoResponse,
-)
 from xyp.operations.citizen.citizen_graduate_school_description import (
     CitizenGraduateSchoolDescriptionResponse,
 )
@@ -109,10 +103,6 @@ from xyp.operations.citizen.citizen_look_up_info import (
 from xyp.operations.citizen.citizen_new_diploma_info import (
     CitizenNewDiplomaInfoData,
     CitizenNewDiplomaInfoResponse,
-)
-from xyp.operations.citizen.citizen_was_criminal_liabilityl_info import (
-    CitizenWasCriminalLiabilitylInfoListData,
-    CitizenWasCriminalLiabilitylInfoResponse,
 )
 from xyp.operations.citizen.civil_info_at_burtgelmn import (
     CivilInfoAtBurtgelmnResponse,
@@ -275,10 +265,6 @@ from xyp.operations.citizen.passport_validity_checker import (
     PassportValidityCheckerList,
     PassportValidityCheckerResponse,
 )
-from xyp.operations.citizen.police_weapon_movement_transfer_service import (
-    PoliceWeaponMovementTransferServiceListData,
-    PoliceWeaponMovementTransferServiceResponse,
-)
 from xyp.operations.citizen.regnum_change_info_english import (
     RegnumChangeInfoEnglishListData,
     RegnumChangeInfoEnglishResponse,
@@ -327,8 +313,6 @@ __all__ = [
     "CitizenBirthInfoWS101123Response",
     "CitizenDenationalizationInfoListData",
     "CitizenDenationalizationInfoResponse",
-    "CitizenDoingCriminalLiabilitylInfoResponse",
-    "CitizenDoingCriminalLiabiltyEngInfoResponse",
     "CitizenGraduateSchoolDescriptionResponse",
     "CitizenGraduateSchoolInfoResponse",
     "CitizenGraduateSchoolListListData",
@@ -341,8 +325,6 @@ __all__ = [
     "CitizenLookUpInfoResponse",
     "CitizenNewDiplomaInfoData",
     "CitizenNewDiplomaInfoResponse",
-    "CitizenWasCriminalLiabilitylInfoListData",
-    "CitizenWasCriminalLiabilitylInfoResponse",
     "CivilInfoAtBurtgelmnResponse",
     "CivilServiceEmployeeInfoResponse",
     "ConformityCertificateDetailServiceResponse",
@@ -410,8 +392,6 @@ __all__ = [
     "PassportInvalidInfoResponse",
     "PassportValidityCheckerList",
     "PassportValidityCheckerResponse",
-    "PoliceWeaponMovementTransferServiceListData",
-    "PoliceWeaponMovementTransferServiceResponse",
     "RegnumChangeInfoEnglishListData",
     "RegnumChangeInfoEnglishResponse",
     "RegnumInfoEnglishListData",

@@ -9,6 +9,10 @@ from xyp.operations.property.cadastre_applicant_status_info import (
     CadastreApplicantStatusInfoListData,
     CadastreApplicantStatusInfoResponse,
 )
+from xyp.operations.property.citizen_housing_info_service import (
+    CitizenHousingInfoServiceListData,
+    CitizenHousingInfoServiceResponse,
+)
 from xyp.operations.property.electric_requirement_request import (
     ElectricRequirementRequestResponse,
 )
@@ -123,6 +127,8 @@ from xyp.operations.property.umns_property_info import (
 __all__ = [
     "CadastreApplicantStatusInfoListData",
     "CadastreApplicantStatusInfoResponse",
+    "CitizenHousingInfoServiceListData",
+    "CitizenHousingInfoServiceResponse",
     "ElectricRequirementRequestDetailsResponse",
     "ElectricRequirementRequestHoldResponse",
     "ElectricRequirementRequestListListData",

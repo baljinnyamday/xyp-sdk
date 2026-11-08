@@ -9,7 +9,7 @@ import io.github.baljinnyamday.xyp.XypException;
 import java.util.Objects;
 
 /**
- * Calls the 76 XYP services of the {@code health} group, served from {@code health-1.5.0}.
+ * Calls the 79 XYP services of the {@code health} group, served from {@code health-1.5.0}.
  *
  * <p>Get it from {@link XypClient#health()}. It holds no state of its own, so it is as thread-safe
  * as the client it is bound to.
@@ -2829,5 +2829,115 @@ public final class HealthClient {
         params,
         options,
         CitizenQuestionnaireSubmitServiceResponse::decode);
+  }
+
+  /**
+   * Calls {@code WS301104_CitizenQAndAService}: Иргэний хариулсан асуумжийг илгээх сервис.
+   *
+   * <p>Provider: Эрүүл мэндийн даатгалын ерөнхий газар.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public CitizenQAndAServiceResponse citizenQAndAService(CitizenQAndAServiceParams params) {
+    return citizenQAndAService(params, CallOptions.none());
+  }
+
+  /**
+   * Calls {@code WS301104_CitizenQAndAService}: Иргэний хариулсан асуумжийг илгээх сервис.
+   *
+   * <p>Provider: Эрүүл мэндийн даатгалын ерөнхий газар.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
+   *     CallOptions#none()} for none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public CitizenQAndAServiceResponse citizenQAndAService(
+      CitizenQAndAServiceParams params, CallOptions options) {
+    return client.invoke(
+        "WS301104_CitizenQAndAService", params, options, CitizenQAndAServiceResponse::decode);
+  }
+
+  /**
+   * Calls {@code WS301105_QuestionCitizenResidentialAddress}: Иргэний оршин сууж буй хаягийн
+   * асуумж.
+   *
+   * <p>Provider: Эрүүл мэндийн даатгалын ерөнхий газар.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public QuestionCitizenResidentialAddressResponse questionCitizenResidentialAddress(
+      QuestionCitizenResidentialAddressParams params) {
+    return questionCitizenResidentialAddress(params, CallOptions.none());
+  }
+
+  /**
+   * Calls {@code WS301105_QuestionCitizenResidentialAddress}: Иргэний оршин сууж буй хаягийн
+   * асуумж.
+   *
+   * <p>Provider: Эрүүл мэндийн даатгалын ерөнхий газар.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
+   *     CallOptions#none()} for none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public QuestionCitizenResidentialAddressResponse questionCitizenResidentialAddress(
+      QuestionCitizenResidentialAddressParams params, CallOptions options) {
+    return client.invoke(
+        "WS301105_QuestionCitizenResidentialAddress",
+        params,
+        options,
+        QuestionCitizenResidentialAddressResponse::decode);
+  }
+
+  /**
+   * Calls {@code WS301106_NearByHosService}: Иргэний оршин сууж буй хаягт ойр байрлах анхан шатны
+   * эрүүл мэндийн байгууллагын мэдээлэл дамжуулах сервис.
+   *
+   * <p>Provider: Эрүүл мэндийн даатгалын ерөнхий газар.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public NearByHosServiceResponse nearByHosService(NearByHosServiceParams params) {
+    return nearByHosService(params, CallOptions.none());
+  }
+
+  /**
+   * Calls {@code WS301106_NearByHosService}: Иргэний оршин сууж буй хаягт ойр байрлах анхан шатны
+   * эрүүл мэндийн байгууллагын мэдээлэл дамжуулах сервис.
+   *
+   * <p>Provider: Эрүүл мэндийн даатгалын ерөнхий газар.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
+   *     CallOptions#none()} for none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public NearByHosServiceResponse nearByHosService(
+      NearByHosServiceParams params, CallOptions options) {
+    return client.invoke(
+        "WS301106_NearByHosService", params, options, NearByHosServiceResponse::decode);
   }
 }

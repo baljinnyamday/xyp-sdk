@@ -12,6 +12,7 @@ import io.github.baljinnyamday.xyp.ResponseReader;
  * <p>A field XYP left out, or sent in a shape this record does not expect, is {@code null} (an
  * empty list for a list); {@link #extras()} tells the two apart.
  *
+ * @param errorMsg the {@code errorMsg} field
  * @param risk the {@code risk} field
  * @param rschlog the {@code rschlog} field
  * @param org the {@code org} field
@@ -20,7 +21,7 @@ import io.github.baljinnyamday.xyp.ResponseReader;
  *     or empty) and the raw response, including the fields this record does not declare
  */
 public record RiskStatusChangeServiceResponse(
-    Object risk, Object rschlog, Object org, Boolean orgCreated, Extras extras) {
+    String errorMsg, Object risk, Object rschlog, Object org, Boolean orgCreated, Extras extras) {
 
   /**
    * Decodes this record from a response tree. The generated client uses it; it is public so you can
@@ -31,6 +32,7 @@ public record RiskStatusChangeServiceResponse(
    */
   public static RiskStatusChangeServiceResponse decode(ResponseReader reader) {
     return new RiskStatusChangeServiceResponse(
+        reader.get("errorMsg", Decoders.STRING),
         reader.get("risk", Decoders.ANY),
         reader.get("rschlog", Decoders.ANY),
         reader.get("org", Decoders.ANY),

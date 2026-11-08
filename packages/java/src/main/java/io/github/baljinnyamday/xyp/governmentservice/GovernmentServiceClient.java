@@ -9,7 +9,7 @@ import io.github.baljinnyamday.xyp.XypException;
 import java.util.Objects;
 
 /**
- * Calls the 54 XYP services of the {@code government_service} group, served from {@code
+ * Calls the 52 XYP services of the {@code government_service} group, served from {@code
  * government-service-1.5.0}.
  *
  * <p>Get it from {@link XypClient#governmentService()}. It holds no state of its own, so it is as
@@ -612,177 +612,6 @@ public final class GovernmentServiceClient {
   }
 
   /**
-   * Calls {@code GS10037_getExplosivesInfo}: Тэсрэх бодисийн мэдээлэл авах сервис.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public GetExplosivesInfoResponse getExplosivesInfo(GetExplosivesInfoParams params) {
-    return getExplosivesInfo(params, CallOptions.none());
-  }
-
-  /**
-   * Calls {@code GS10037_getExplosivesInfo}: Тэсрэх бодисийн мэдээлэл авах сервис.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
-   *     CallOptions#none()} for none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public GetExplosivesInfoResponse getExplosivesInfo(
-      GetExplosivesInfoParams params, CallOptions options) {
-    return client.invoke(
-        "GS10037_getExplosivesInfo", params, options, GetExplosivesInfoResponse::decode);
-  }
-
-  /**
-   * Calls {@code GS10038_getExplosiveToolsInfo}: Тэсэлгээний хэрэгслийн мэдээлэл авах сервис.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public GetExplosiveToolsInfoResponse getExplosiveToolsInfo(GetExplosiveToolsInfoParams params) {
-    return getExplosiveToolsInfo(params, CallOptions.none());
-  }
-
-  /**
-   * Calls {@code GS10038_getExplosiveToolsInfo}: Тэсэлгээний хэрэгслийн мэдээлэл авах сервис.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
-   *     CallOptions#none()} for none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public GetExplosiveToolsInfoResponse getExplosiveToolsInfo(
-      GetExplosiveToolsInfoParams params, CallOptions options) {
-    return client.invoke(
-        "GS10038_getExplosiveToolsInfo", params, options, GetExplosiveToolsInfoResponse::decode);
-  }
-
-  /**
-   * Calls {@code GS10039_getRawMaterialsInfo}: Түүхий эдийн мэдээлэл авах сервис.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public GetRawMaterialsInfoResponse getRawMaterialsInfo(GetRawMaterialsInfoParams params) {
-    return getRawMaterialsInfo(params, CallOptions.none());
-  }
-
-  /**
-   * Calls {@code GS10039_getRawMaterialsInfo}: Түүхий эдийн мэдээлэл авах сервис.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
-   *     CallOptions#none()} for none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public GetRawMaterialsInfoResponse getRawMaterialsInfo(
-      GetRawMaterialsInfoParams params, CallOptions options) {
-    return client.invoke(
-        "GS10039_getRawMaterialsInfo", params, options, GetRawMaterialsInfoResponse::decode);
-  }
-
-  /**
-   * Calls {@code GS10040_getListOfCountriesInfo}: Улс орнуудын жагсаалтыг авах сервис.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public GetListOfCountriesInfoResponse getListOfCountriesInfo(
-      GetListOfCountriesInfoParams params) {
-    return getListOfCountriesInfo(params, CallOptions.none());
-  }
-
-  /**
-   * Calls {@code GS10040_getListOfCountriesInfo}: Улс орнуудын жагсаалтыг авах сервис.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
-   *     CallOptions#none()} for none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public GetListOfCountriesInfoResponse getListOfCountriesInfo(
-      GetListOfCountriesInfoParams params, CallOptions options) {
-    return client.invoke(
-        "GS10040_getListOfCountriesInfo", params, options, GetListOfCountriesInfoResponse::decode);
-  }
-
-  /**
-   * Calls {@code GS10041_getGunModelsInfo}: Галт зэвсгийн загварын мэдээлэл авах сервис.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public GetGunModelsInfoResponse getGunModelsInfo(GetGunModelsInfoParams params) {
-    return getGunModelsInfo(params, CallOptions.none());
-  }
-
-  /**
-   * Calls {@code GS10041_getGunModelsInfo}: Галт зэвсгийн загварын мэдээлэл авах сервис.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
-   *     CallOptions#none()} for none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public GetGunModelsInfoResponse getGunModelsInfo(
-      GetGunModelsInfoParams params, CallOptions options) {
-    return client.invoke(
-        "GS10041_getGunModelsInfo", params, options, GetGunModelsInfoResponse::decode);
-  }
-
-  /**
    * Calls {@code GS10042_getElectoralStationInfo}: Сонгуулийн хэсгийн мэдээлэл авах сервис.
    *
    * <p>Provider: Улсын бүртгэлийн ерөнхий газар.
@@ -852,120 +681,6 @@ public final class GovernmentServiceClient {
    */
   public CheckImeiResponse checkImei(CheckImeiParams params, CallOptions options) {
     return client.invoke("GS10043_checkImei", params, options, CheckImeiResponse::decode);
-  }
-
-  /**
-   * Calls {@code GS10049_GetAimagCityInfoByZipcode}: Аймаг/хотын жагсаалт авах.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public GetAimagCityInfoByZipcodeResponse getAimagCityInfoByZipcode(
-      GetAimagCityInfoByZipcodeParams params) {
-    return getAimagCityInfoByZipcode(params, CallOptions.none());
-  }
-
-  /**
-   * Calls {@code GS10049_GetAimagCityInfoByZipcode}: Аймаг/хотын жагсаалт авах.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
-   *     CallOptions#none()} for none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public GetAimagCityInfoByZipcodeResponse getAimagCityInfoByZipcode(
-      GetAimagCityInfoByZipcodeParams params, CallOptions options) {
-    return client.invoke(
-        "GS10049_GetAimagCityInfoByZipcode",
-        params,
-        options,
-        GetAimagCityInfoByZipcodeResponse::decode);
-  }
-
-  /**
-   * Calls {@code GS10050_GetSoumDistrictListByZipcode}: Сум/дүүргийн жагсаалт.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public GetSoumDistrictListByZipcodeResponse getSoumDistrictListByZipcode(
-      GetSoumDistrictListByZipcodeParams params) {
-    return getSoumDistrictListByZipcode(params, CallOptions.none());
-  }
-
-  /**
-   * Calls {@code GS10050_GetSoumDistrictListByZipcode}: Сум/дүүргийн жагсаалт.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
-   *     CallOptions#none()} for none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public GetSoumDistrictListByZipcodeResponse getSoumDistrictListByZipcode(
-      GetSoumDistrictListByZipcodeParams params, CallOptions options) {
-    return client.invoke(
-        "GS10050_GetSoumDistrictListByZipcode",
-        params,
-        options,
-        GetSoumDistrictListByZipcodeResponse::decode);
-  }
-
-  /**
-   * Calls {@code GS10051_GetBagDistrictListByZipcode}: Баг/хорооны жагсаалт.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public GetBagDistrictListByZipcodeResponse getBagDistrictListByZipcode(
-      GetBagDistrictListByZipcodeParams params) {
-    return getBagDistrictListByZipcode(params, CallOptions.none());
-  }
-
-  /**
-   * Calls {@code GS10051_GetBagDistrictListByZipcode}: Баг/хорооны жагсаалт.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
-   *     CallOptions#none()} for none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public GetBagDistrictListByZipcodeResponse getBagDistrictListByZipcode(
-      GetBagDistrictListByZipcodeParams params, CallOptions options) {
-    return client.invoke(
-        "GS10051_GetBagDistrictListByZipcode",
-        params,
-        options,
-        GetBagDistrictListByZipcodeResponse::decode);
   }
 
   /**
@@ -2017,5 +1732,225 @@ public final class GovernmentServiceClient {
         params,
         options,
         RiskStatusChangeServiceResponse::decode);
+  }
+
+  /**
+   * Calls {@code GS10088_EnergyQualificationService}: Эрчим хүчний салбарын мэргэшлийн зэрэг
+   * эзэмшигчдийн мэдээлэл лавлах.
+   *
+   * <p>Provider: Эрчим хүчний яам.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public EnergyQualificationServiceResponse energyQualificationService(
+      EnergyQualificationServiceParams params) {
+    return energyQualificationService(params, CallOptions.none());
+  }
+
+  /**
+   * Calls {@code GS10088_EnergyQualificationService}: Эрчим хүчний салбарын мэргэшлийн зэрэг
+   * эзэмшигчдийн мэдээлэл лавлах.
+   *
+   * <p>Provider: Эрчим хүчний яам.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
+   *     CallOptions#none()} for none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public EnergyQualificationServiceResponse energyQualificationService(
+      EnergyQualificationServiceParams params, CallOptions options) {
+    return client.invoke(
+        "GS10088_EnergyQualificationService",
+        params,
+        options,
+        EnergyQualificationServiceResponse::decode);
+  }
+
+  /**
+   * Calls {@code GS10089_EnergyQualificationCertificateService}: Эрчим хүчний салбарын мэргэшлийн
+   * зэрэг эзэмшигчийн сертификатын мэдээлэл id-аар лавлах.
+   *
+   * <p>Provider: Эрчим хүчний яам.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public EnergyQualificationCertificateServiceResponse energyQualificationCertificateService(
+      EnergyQualificationCertificateServiceParams params) {
+    return energyQualificationCertificateService(params, CallOptions.none());
+  }
+
+  /**
+   * Calls {@code GS10089_EnergyQualificationCertificateService}: Эрчим хүчний салбарын мэргэшлийн
+   * зэрэг эзэмшигчийн сертификатын мэдээлэл id-аар лавлах.
+   *
+   * <p>Provider: Эрчим хүчний яам.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
+   *     CallOptions#none()} for none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public EnergyQualificationCertificateServiceResponse energyQualificationCertificateService(
+      EnergyQualificationCertificateServiceParams params, CallOptions options) {
+    return client.invoke(
+        "GS10089_EnergyQualificationCertificateService",
+        params,
+        options,
+        EnergyQualificationCertificateServiceResponse::decode);
+  }
+
+  /**
+   * Calls {@code GS10090_GetFeedbackDimensionTagsV2}: Өргөдөл, гомдлын tag мэдээлэл v2.
+   *
+   * <p>Provider: Засгийн газрын Хэрэг эрхлэх газар.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public GetFeedbackDimensionTagsV2Response getFeedbackDimensionTagsV2(
+      GetFeedbackDimensionTagsV2Params params) {
+    return getFeedbackDimensionTagsV2(params, CallOptions.none());
+  }
+
+  /**
+   * Calls {@code GS10090_GetFeedbackDimensionTagsV2}: Өргөдөл, гомдлын tag мэдээлэл v2.
+   *
+   * <p>Provider: Засгийн газрын Хэрэг эрхлэх газар.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
+   *     CallOptions#none()} for none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public GetFeedbackDimensionTagsV2Response getFeedbackDimensionTagsV2(
+      GetFeedbackDimensionTagsV2Params params, CallOptions options) {
+    return client.invoke(
+        "GS10090_GetFeedbackDimensionTagsV2",
+        params,
+        options,
+        GetFeedbackDimensionTagsV2Response::decode);
+  }
+
+  /**
+   * Calls {@code GS10091_GetReferenceData}: Өргөдөл, гомдлын нэгдсэн мэдээллийн сангийн лавлах
+   * мэдээлэл авах.
+   *
+   * <p>Provider: Засгийн газрын Хэрэг эрхлэх газар.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public GetReferenceDataResponse getReferenceData(GetReferenceDataParams params) {
+    return getReferenceData(params, CallOptions.none());
+  }
+
+  /**
+   * Calls {@code GS10091_GetReferenceData}: Өргөдөл, гомдлын нэгдсэн мэдээллийн сангийн лавлах
+   * мэдээлэл авах.
+   *
+   * <p>Provider: Засгийн газрын Хэрэг эрхлэх газар.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
+   *     CallOptions#none()} for none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public GetReferenceDataResponse getReferenceData(
+      GetReferenceDataParams params, CallOptions options) {
+    return client.invoke(
+        "GS10091_GetReferenceData", params, options, GetReferenceDataResponse::decode);
+  }
+
+  /**
+   * Calls {@code GS10092_GetRiskService}: Эрсдлийн жагсаалт.
+   *
+   * <p>Provider: И-Монголиа академи.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public GetRiskServiceResponse getRiskService(GetRiskServiceParams params) {
+    return getRiskService(params, CallOptions.none());
+  }
+
+  /**
+   * Calls {@code GS10092_GetRiskService}: Эрсдлийн жагсаалт.
+   *
+   * <p>Provider: И-Монголиа академи.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
+   *     CallOptions#none()} for none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public GetRiskServiceResponse getRiskService(GetRiskServiceParams params, CallOptions options) {
+    return client.invoke("GS10092_GetRiskService", params, options, GetRiskServiceResponse::decode);
+  }
+
+  /**
+   * Calls {@code GS10093_GetRiskChildService}: Эрсдлийн жагсаалт хүүхэд.
+   *
+   * <p>Provider: И-Монголиа академи.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public GetRiskChildServiceResponse getRiskChildService(GetRiskChildServiceParams params) {
+    return getRiskChildService(params, CallOptions.none());
+  }
+
+  /**
+   * Calls {@code GS10093_GetRiskChildService}: Эрсдлийн жагсаалт хүүхэд.
+   *
+   * <p>Provider: И-Монголиа академи.
+   *
+   * @param params the request fields; {@code null} sends none
+   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
+   *     CallOptions#none()} for none
+   * @return the decoded response
+   * @throws XypApiException if XYP answers with a non-zero result code
+   * @throws XypException if the call fails for any other reason: configuration, network, or a
+   *     response that is not the expected SOAP
+   */
+  public GetRiskChildServiceResponse getRiskChildService(
+      GetRiskChildServiceParams params, CallOptions options) {
+    return client.invoke(
+        "GS10093_GetRiskChildService", params, options, GetRiskChildServiceResponse::decode);
   }
 }

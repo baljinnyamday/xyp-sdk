@@ -10,7 +10,7 @@ use Xyp\Auth;
 use Xyp\XypClient;
 
 /**
- * The 76 XYP services of the `health` group, served from health-1.5.0.
+ * The 79 XYP services of the `health` group, served from health-1.5.0.
  *
  * Reached through `$xyp->health`; every method sends one request through that XypClient.
  */
@@ -1609,6 +1609,69 @@ final class HealthService
             'WS300192_CitizenQuestionnaireSubmitService',
             $params,
             CitizenQuestionnaireSubmitServiceResponse::class,
+            auth: $auth,
+            operator: $operator,
+        );
+    }
+
+    /**
+     * Calls WS301104_CitizenQAndAService: Иргэний хариулсан асуумжийг илгээх сервис.
+     *
+     * Provider: Эрүүл мэндийн даатгалын ерөнхий газар
+     *
+     * @throws \Xyp\Exception\XypException
+     */
+    public function CitizenQAndAService(
+        CitizenQAndAServiceParams $params = new CitizenQAndAServiceParams(),
+        ?Auth $auth = null,
+        ?Auth $operator = null,
+    ): CitizenQAndAServiceResponse {
+        return $this->client->invoke(
+            'WS301104_CitizenQAndAService',
+            $params,
+            CitizenQAndAServiceResponse::class,
+            auth: $auth,
+            operator: $operator,
+        );
+    }
+
+    /**
+     * Calls WS301105_QuestionCitizenResidentialAddress: Иргэний оршин сууж буй хаягийн асуумж.
+     *
+     * Provider: Эрүүл мэндийн даатгалын ерөнхий газар
+     *
+     * @throws \Xyp\Exception\XypException
+     */
+    public function QuestionCitizenResidentialAddress(
+        QuestionCitizenResidentialAddressParams $params = new QuestionCitizenResidentialAddressParams(),
+        ?Auth $auth = null,
+        ?Auth $operator = null,
+    ): QuestionCitizenResidentialAddressResponse {
+        return $this->client->invoke(
+            'WS301105_QuestionCitizenResidentialAddress',
+            $params,
+            QuestionCitizenResidentialAddressResponse::class,
+            auth: $auth,
+            operator: $operator,
+        );
+    }
+
+    /**
+     * Calls WS301106_NearByHosService: Иргэний оршин сууж буй хаягт ойр байрлах анхан шатны эрүүл мэндийн байгууллагын мэдээлэл дамжуулах сервис.
+     *
+     * Provider: Эрүүл мэндийн даатгалын ерөнхий газар
+     *
+     * @throws \Xyp\Exception\XypException
+     */
+    public function NearByHosService(
+        NearByHosServiceParams $params = new NearByHosServiceParams(),
+        ?Auth $auth = null,
+        ?Auth $operator = null,
+    ): NearByHosServiceResponse {
+        return $this->client->invoke(
+            'WS301106_NearByHosService',
+            $params,
+            NearByHosServiceResponse::class,
             auth: $auth,
             operator: $operator,
         );

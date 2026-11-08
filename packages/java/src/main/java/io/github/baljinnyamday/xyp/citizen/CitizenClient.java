@@ -9,7 +9,7 @@ import io.github.baljinnyamday.xyp.XypException;
 import java.util.Objects;
 
 /**
- * Calls the 83 XYP services of the {@code citizen} group, served from {@code citizen-1.5.0}.
+ * Calls the 79 XYP services of the {@code citizen} group, served from {@code citizen-1.5.0}.
  *
  * <p>Get it from {@link XypClient#citizen()}. It holds no state of its own, so it is as thread-safe
  * as the client it is bound to.
@@ -1313,86 +1313,6 @@ public final class CitizenClient {
   }
 
   /**
-   * Calls {@code WS100174_citizenDoingCriminalLiabilitylInfo}: Хүний эрүүгийн хариуцлага хүлээж
-   * байгаа эсэх тухай.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public CitizenDoingCriminalLiabilitylInfoResponse citizenDoingCriminalLiabilitylInfo(
-      CitizenDoingCriminalLiabilitylInfoParams params) {
-    return citizenDoingCriminalLiabilitylInfo(params, CallOptions.none());
-  }
-
-  /**
-   * Calls {@code WS100174_citizenDoingCriminalLiabilitylInfo}: Хүний эрүүгийн хариуцлага хүлээж
-   * байгаа эсэх тухай.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
-   *     CallOptions#none()} for none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public CitizenDoingCriminalLiabilitylInfoResponse citizenDoingCriminalLiabilitylInfo(
-      CitizenDoingCriminalLiabilitylInfoParams params, CallOptions options) {
-    return client.invoke(
-        "WS100174_citizenDoingCriminalLiabilitylInfo",
-        params,
-        options,
-        CitizenDoingCriminalLiabilitylInfoResponse::decode);
-  }
-
-  /**
-   * Calls {@code WS100175_citizenWasCriminalLiabilitylInfo}: Хүний эрүүгийн хариуцлага хүлээж
-   * байсан эсэх тухай.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public CitizenWasCriminalLiabilitylInfoResponse citizenWasCriminalLiabilitylInfo(
-      CitizenWasCriminalLiabilitylInfoParams params) {
-    return citizenWasCriminalLiabilitylInfo(params, CallOptions.none());
-  }
-
-  /**
-   * Calls {@code WS100175_citizenWasCriminalLiabilitylInfo}: Хүний эрүүгийн хариуцлага хүлээж
-   * байсан эсэх тухай.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
-   *     CallOptions#none()} for none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public CitizenWasCriminalLiabilitylInfoResponse citizenWasCriminalLiabilitylInfo(
-      CitizenWasCriminalLiabilitylInfoParams params, CallOptions options) {
-    return client.invoke(
-        "WS100175_citizenWasCriminalLiabilitylInfo",
-        params,
-        options,
-        CitizenWasCriminalLiabilitylInfoResponse::decode);
-  }
-
-  /**
    * Calls {@code WS100182_childrenRankStatisticInfo}: Эхийн хэд дэх хүүхэдийн мэдээлэл.
    *
    * <p>Provider: Улсын бүртгэлийн ерөнхий газар.
@@ -1861,46 +1781,6 @@ public final class CitizenClient {
       DeceaseListByDateParams params, CallOptions options) {
     return client.invoke(
         "WS101133_deceaseListByDate", params, options, DeceaseListByDateResponse::decode);
-  }
-
-  /**
-   * Calls {@code WS101134_CitizenDoingCriminalLiabiltyEngInfo}: Хүний эрүүгийн хариуцлага хүлээж
-   * байгаа эсэх тухай англи хэлдээр.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public CitizenDoingCriminalLiabiltyEngInfoResponse citizenDoingCriminalLiabiltyEngInfo(
-      CitizenDoingCriminalLiabiltyEngInfoParams params) {
-    return citizenDoingCriminalLiabiltyEngInfo(params, CallOptions.none());
-  }
-
-  /**
-   * Calls {@code WS101134_CitizenDoingCriminalLiabiltyEngInfo}: Хүний эрүүгийн хариуцлага хүлээж
-   * байгаа эсэх тухай англи хэлдээр.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
-   *     CallOptions#none()} for none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public CitizenDoingCriminalLiabiltyEngInfoResponse citizenDoingCriminalLiabiltyEngInfo(
-      CitizenDoingCriminalLiabiltyEngInfoParams params, CallOptions options) {
-    return client.invoke(
-        "WS101134_CitizenDoingCriminalLiabiltyEngInfo",
-        params,
-        options,
-        CitizenDoingCriminalLiabiltyEngInfoResponse::decode);
   }
 
   /**
@@ -3021,43 +2901,5 @@ public final class CitizenClient {
         params,
         options,
         RegnumChangeInfoEnglishResponse::decode);
-  }
-
-  /**
-   * Calls {@code WS102107_PoliceWeaponMovementTransferService}: Галт зэвсгийн хөдөлгөөний мэдээлэл.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public PoliceWeaponMovementTransferServiceResponse policeWeaponMovementTransferService(
-      PoliceWeaponMovementTransferServiceParams params) {
-    return policeWeaponMovementTransferService(params, CallOptions.none());
-  }
-
-  /**
-   * Calls {@code WS102107_PoliceWeaponMovementTransferService}: Галт зэвсгийн хөдөлгөөний мэдээлэл.
-   *
-   * <p>Provider: Цагдаагийн ерөнхий газар.
-   *
-   * @param params the request fields; {@code null} sends none
-   * @param options the citizen's and the operator's authentication, or an endpoint override; {@link
-   *     CallOptions#none()} for none
-   * @return the decoded response
-   * @throws XypApiException if XYP answers with a non-zero result code
-   * @throws XypException if the call fails for any other reason: configuration, network, or a
-   *     response that is not the expected SOAP
-   */
-  public PoliceWeaponMovementTransferServiceResponse policeWeaponMovementTransferService(
-      PoliceWeaponMovementTransferServiceParams params, CallOptions options) {
-    return client.invoke(
-        "WS102107_PoliceWeaponMovementTransferService",
-        params,
-        options,
-        PoliceWeaponMovementTransferServiceResponse::decode);
   }
 }

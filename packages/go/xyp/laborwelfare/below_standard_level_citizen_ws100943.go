@@ -12,7 +12,8 @@ import (
 // optional; a zero value is left out of the request.
 type BelowStandardLevelCitizenParams struct {
 	// регистрийн дугаар
-	Regnum string `xyp:"regnum"`
+	Regnum  string `xyp:"regnum"`
+	English *int64 `xyp:"english"`
 }
 
 // BelowStandardLevelCitizenResponse is the response of WS100943_belowStandardLevelCitizen: Амьжиргааны баталгаажих түвшнээс доогуур оноотой иргэдийн мэдээллийг дуудах сервис.

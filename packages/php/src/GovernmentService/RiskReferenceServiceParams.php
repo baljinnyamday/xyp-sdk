@@ -16,11 +16,12 @@ namespace Xyp\GovernmentService;
 final readonly class RiskReferenceServiceParams
 {
     /**
-     * @param list<string> $only лавлах сангуудын шүүлт (заавал биш). Зөвшөөрөгдөх утга: envs, types, ctypes, status.
+     * @param list<mixed> $only лавлах сангуудын шүүлт (заавал биш). Зөвшөөрөгдөх утга: envs, types, ctypes, status.
      * @param string|null $systempid Эрсдлийн жагсаалт харах systempid шүүлт (UUID) (заавал биш)
      * @param string|null $orgregnum Эрсдлийн жагсаалт харах orgregnum шүүлт orgregnum ба systempid хоёуланг өгвөл AND шүүлт (заавал биш)
      * @param int|null $page Эрсдлийн жагсаалт хуудасны дугаар (default 1) (заавал биш)
      * @param int|null $limit Эрсдлийн жагсаалт хуудас тутмын тоо (default 20, max 100) (заавал биш)
+     * @param string|null $statusId statusId
      */
     public function __construct(
         public array $only = [],
@@ -28,5 +29,6 @@ final readonly class RiskReferenceServiceParams
         public ?string $orgregnum = null,
         public ?int $page = null,
         public ?int $limit = null,
+        public ?string $statusId = null,
     ) {}
 }

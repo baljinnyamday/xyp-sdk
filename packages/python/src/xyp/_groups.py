@@ -37,7 +37,7 @@ class SyncGroups:
 
     @cached_property
     def citizen(self) -> CitizenService:
-        """83 services served from citizen-1.5.0."""
+        """79 services served from citizen-1.5.0."""
         from xyp.services.citizen import CitizenService
 
         return CitizenService(self._transport)
@@ -58,14 +58,14 @@ class SyncGroups:
 
     @cached_property
     def government_service(self) -> GovernmentServiceService:
-        """54 services served from government-service-1.5.0."""
+        """52 services served from government-service-1.5.0."""
         from xyp.services.government_service import GovernmentServiceService
 
         return GovernmentServiceService(self._transport)
 
     @cached_property
     def health(self) -> HealthService:
-        """76 services served from health-1.5.0."""
+        """79 services served from health-1.5.0."""
         from xyp.services.health import HealthService
 
         return HealthService(self._transport)
@@ -100,7 +100,7 @@ class SyncGroups:
 
     @cached_property
     def payment(self) -> PaymentService:
-        """33 services served from payment-1.5.0."""
+        """26 services served from payment-1.5.0."""
         from xyp.services.payment import PaymentService
 
         return PaymentService(self._transport)
@@ -121,7 +121,7 @@ class SyncGroups:
 
     @cached_property
     def property(self) -> PropertyService:
-        """30 services served from property-1.5.0."""
+        """31 services served from property-1.5.0."""
         from xyp.services.property import PropertyService
 
         return PropertyService(self._transport)
@@ -142,7 +142,7 @@ class SyncGroups:
 
     @cached_property
     def transport(self) -> TransportService:
-        """48 services served from transport-1.5.0."""
+        """41 services served from transport-1.5.0."""
         from xyp.services.transport import TransportService
 
         return TransportService(self._transport)
@@ -153,7 +153,7 @@ class AsyncGroups:
 
     @cached_property
     def citizen(self) -> AsyncCitizenService:
-        """83 services served from citizen-1.5.0."""
+        """79 services served from citizen-1.5.0."""
         from xyp.services.citizen import AsyncCitizenService
 
         return AsyncCitizenService(self._transport)
@@ -174,14 +174,14 @@ class AsyncGroups:
 
     @cached_property
     def government_service(self) -> AsyncGovernmentServiceService:
-        """54 services served from government-service-1.5.0."""
+        """52 services served from government-service-1.5.0."""
         from xyp.services.government_service import AsyncGovernmentServiceService
 
         return AsyncGovernmentServiceService(self._transport)
 
     @cached_property
     def health(self) -> AsyncHealthService:
-        """76 services served from health-1.5.0."""
+        """79 services served from health-1.5.0."""
         from xyp.services.health import AsyncHealthService
 
         return AsyncHealthService(self._transport)
@@ -216,7 +216,7 @@ class AsyncGroups:
 
     @cached_property
     def payment(self) -> AsyncPaymentService:
-        """33 services served from payment-1.5.0."""
+        """26 services served from payment-1.5.0."""
         from xyp.services.payment import AsyncPaymentService
 
         return AsyncPaymentService(self._transport)
@@ -237,7 +237,7 @@ class AsyncGroups:
 
     @cached_property
     def property(self) -> AsyncPropertyService:
-        """30 services served from property-1.5.0."""
+        """31 services served from property-1.5.0."""
         from xyp.services.property import AsyncPropertyService
 
         return AsyncPropertyService(self._transport)
@@ -258,7 +258,7 @@ class AsyncGroups:
 
     @cached_property
     def transport(self) -> AsyncTransportService:
-        """48 services served from transport-1.5.0."""
+        """41 services served from transport-1.5.0."""
         from xyp.services.transport import AsyncTransportService
 
         return AsyncTransportService(self._transport)

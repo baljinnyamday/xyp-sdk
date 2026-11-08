@@ -20,6 +20,7 @@ final readonly class RiskRegistrationServiceResponse
      * @param mixed $rschlog
      * @param mixed $org
      * @param bool|null $orgCreated
+     * @param string|null $errorMsg Алдааны мэдээлэл
      * @param Extras $xyp What this class could not hold: ->mismatches lists the response fields that did not fit (they kept their default), ->raw is the whole response tree.
      */
     public function __construct(
@@ -27,6 +28,7 @@ final readonly class RiskRegistrationServiceResponse
         public mixed $rschlog = null,
         public mixed $org = null,
         public ?bool $orgCreated = null,
+        public ?string $errorMsg = null,
         public Extras $xyp = new Extras(),
     ) {}
 }

@@ -16,6 +16,7 @@ use Xyp\Extras;
 final readonly class RiskStatusChangeServiceResponse
 {
     /**
+     * @param string|null $errorMsg
      * @param mixed $risk
      * @param mixed $rschlog
      * @param mixed $org
@@ -23,6 +24,7 @@ final readonly class RiskStatusChangeServiceResponse
      * @param Extras $xyp What this class could not hold: ->mismatches lists the response fields that did not fit (they kept their default), ->raw is the whole response tree.
      */
     public function __construct(
+        public ?string $errorMsg = null,
         public mixed $risk = null,
         public mixed $rschlog = null,
         public mixed $org = null,

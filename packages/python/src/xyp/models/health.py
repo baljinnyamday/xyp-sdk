@@ -20,6 +20,9 @@ from xyp.operations.health.citizen_monthly_service_usage_inquiry_service import 
     CitizenMonthlyServiceUsageInquiryServiceInsuranceModel,
     CitizenMonthlyServiceUsageInquiryServiceResponse,
 )
+from xyp.operations.health.citizen_q_and_a_service import (
+    CitizenQAndAServiceResponse,
+)
 from xyp.operations.health.citizen_questionnaire_submit_service import (
     CitizenQuestionnaireSubmitServiceResponse,
 )
@@ -241,6 +244,10 @@ from xyp.operations.health.multi_license_info import (
     MultiLicenseInfoLicenses,
     MultiLicenseInfoResponse,
 )
+from xyp.operations.health.near_by_hos_service import (
+    NearByHosServiceList,
+    NearByHosServiceResponse,
+)
 from xyp.operations.health.pregnancy_control_note_reference_info import (
     PregnancyControlNoteReferenceInfoData,
     PregnancyControlNoteReferenceInfoResponse,
@@ -251,6 +258,9 @@ from xyp.operations.health.pregnancy_summary import (
 from xyp.operations.health.preventive_screening_info import (
     PreventiveScreeningInfoListdata,
     PreventiveScreeningInfoResponse,
+)
+from xyp.operations.health.question_citizen_residential_address import (
+    QuestionCitizenResidentialAddressResponse,
 )
 from xyp.operations.health.receive_service_complain_data import (
     ReceiveServiceComplainDataResponse,
@@ -288,6 +298,7 @@ __all__ = [
     "CitizenImageDiagnosisAndAnalysisInfoResponse",
     "CitizenMonthlyServiceUsageInquiryServiceInsuranceModel",
     "CitizenMonthlyServiceUsageInquiryServiceResponse",
+    "CitizenQAndAServiceResponse",
     "CitizenQuestionnaireSubmitServiceResponse",
     "CitizenServicePackageNumberInquiryServiceListData",
     "CitizenServicePackageNumberInquiryServiceResponse",
@@ -387,11 +398,14 @@ __all__ = [
     "MultiDegreeInfoResponse",
     "MultiLicenseInfoLicenses",
     "MultiLicenseInfoResponse",
+    "NearByHosServiceList",
+    "NearByHosServiceResponse",
     "PregnancyControlNoteReferenceInfoData",
     "PregnancyControlNoteReferenceInfoResponse",
     "PregnancySummaryResponse",
     "PreventiveScreeningInfoListdata",
     "PreventiveScreeningInfoResponse",
+    "QuestionCitizenResidentialAddressResponse",
     "ReceiveServiceComplainDataResponse",
     "ReceiveTabletComplainResponse",
     "RequestPrescriptionRegisterResponse",

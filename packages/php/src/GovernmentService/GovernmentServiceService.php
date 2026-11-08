@@ -10,7 +10,7 @@ use Xyp\Auth;
 use Xyp\XypClient;
 
 /**
- * The 54 XYP services of the `government_service` group, served from government-service-1.5.0.
+ * The 52 XYP services of the `government_service` group, served from government-service-1.5.0.
  *
  * Reached through `$xyp->governmentService`; every method sends one request through that XypClient.
  */
@@ -355,111 +355,6 @@ final class GovernmentServiceService
     }
 
     /**
-     * Calls GS10037_getExplosivesInfo: Тэсрэх бодисийн мэдээлэл авах сервис.
-     *
-     * Provider: Цагдаагийн ерөнхий газар
-     *
-     * @throws \Xyp\Exception\XypException
-     */
-    public function getExplosivesInfo(
-        GetExplosivesInfoParams $params = new GetExplosivesInfoParams(),
-        ?Auth $auth = null,
-        ?Auth $operator = null,
-    ): GetExplosivesInfoResponse {
-        return $this->client->invoke(
-            'GS10037_getExplosivesInfo',
-            $params,
-            GetExplosivesInfoResponse::class,
-            auth: $auth,
-            operator: $operator,
-        );
-    }
-
-    /**
-     * Calls GS10038_getExplosiveToolsInfo: Тэсэлгээний хэрэгслийн мэдээлэл авах сервис.
-     *
-     * Provider: Цагдаагийн ерөнхий газар
-     *
-     * @throws \Xyp\Exception\XypException
-     */
-    public function getExplosiveToolsInfo(
-        GetExplosiveToolsInfoParams $params = new GetExplosiveToolsInfoParams(),
-        ?Auth $auth = null,
-        ?Auth $operator = null,
-    ): GetExplosiveToolsInfoResponse {
-        return $this->client->invoke(
-            'GS10038_getExplosiveToolsInfo',
-            $params,
-            GetExplosiveToolsInfoResponse::class,
-            auth: $auth,
-            operator: $operator,
-        );
-    }
-
-    /**
-     * Calls GS10039_getRawMaterialsInfo: Түүхий эдийн мэдээлэл авах сервис.
-     *
-     * Provider: Цагдаагийн ерөнхий газар
-     *
-     * @throws \Xyp\Exception\XypException
-     */
-    public function getRawMaterialsInfo(
-        GetRawMaterialsInfoParams $params = new GetRawMaterialsInfoParams(),
-        ?Auth $auth = null,
-        ?Auth $operator = null,
-    ): GetRawMaterialsInfoResponse {
-        return $this->client->invoke(
-            'GS10039_getRawMaterialsInfo',
-            $params,
-            GetRawMaterialsInfoResponse::class,
-            auth: $auth,
-            operator: $operator,
-        );
-    }
-
-    /**
-     * Calls GS10040_getListOfCountriesInfo: Улс орнуудын жагсаалтыг авах сервис.
-     *
-     * Provider: Цагдаагийн ерөнхий газар
-     *
-     * @throws \Xyp\Exception\XypException
-     */
-    public function getListOfCountriesInfo(
-        GetListOfCountriesInfoParams $params = new GetListOfCountriesInfoParams(),
-        ?Auth $auth = null,
-        ?Auth $operator = null,
-    ): GetListOfCountriesInfoResponse {
-        return $this->client->invoke(
-            'GS10040_getListOfCountriesInfo',
-            $params,
-            GetListOfCountriesInfoResponse::class,
-            auth: $auth,
-            operator: $operator,
-        );
-    }
-
-    /**
-     * Calls GS10041_getGunModelsInfo: Галт зэвсгийн загварын мэдээлэл авах сервис.
-     *
-     * Provider: Цагдаагийн ерөнхий газар
-     *
-     * @throws \Xyp\Exception\XypException
-     */
-    public function getGunModelsInfo(
-        GetGunModelsInfoParams $params = new GetGunModelsInfoParams(),
-        ?Auth $auth = null,
-        ?Auth $operator = null,
-    ): GetGunModelsInfoResponse {
-        return $this->client->invoke(
-            'GS10041_getGunModelsInfo',
-            $params,
-            GetGunModelsInfoResponse::class,
-            auth: $auth,
-            operator: $operator,
-        );
-    }
-
-    /**
      * Calls GS10042_getElectoralStationInfo: Сонгуулийн хэсгийн мэдээлэл авах сервис.
      *
      * Provider: Улсын бүртгэлийн ерөнхий газар
@@ -496,69 +391,6 @@ final class GovernmentServiceService
             'GS10043_checkImei',
             $params,
             CheckImeiResponse::class,
-            auth: $auth,
-            operator: $operator,
-        );
-    }
-
-    /**
-     * Calls GS10049_GetAimagCityInfoByZipcode: Аймаг/хотын жагсаалт авах.
-     *
-     * Provider: Цагдаагийн ерөнхий газар
-     *
-     * @throws \Xyp\Exception\XypException
-     */
-    public function GetAimagCityInfoByZipcode(
-        GetAimagCityInfoByZipcodeParams $params = new GetAimagCityInfoByZipcodeParams(),
-        ?Auth $auth = null,
-        ?Auth $operator = null,
-    ): GetAimagCityInfoByZipcodeResponse {
-        return $this->client->invoke(
-            'GS10049_GetAimagCityInfoByZipcode',
-            $params,
-            GetAimagCityInfoByZipcodeResponse::class,
-            auth: $auth,
-            operator: $operator,
-        );
-    }
-
-    /**
-     * Calls GS10050_GetSoumDistrictListByZipcode: Сум/дүүргийн жагсаалт.
-     *
-     * Provider: Цагдаагийн ерөнхий газар
-     *
-     * @throws \Xyp\Exception\XypException
-     */
-    public function GetSoumDistrictListByZipcode(
-        GetSoumDistrictListByZipcodeParams $params = new GetSoumDistrictListByZipcodeParams(),
-        ?Auth $auth = null,
-        ?Auth $operator = null,
-    ): GetSoumDistrictListByZipcodeResponse {
-        return $this->client->invoke(
-            'GS10050_GetSoumDistrictListByZipcode',
-            $params,
-            GetSoumDistrictListByZipcodeResponse::class,
-            auth: $auth,
-            operator: $operator,
-        );
-    }
-
-    /**
-     * Calls GS10051_GetBagDistrictListByZipcode: Баг/хорооны жагсаалт.
-     *
-     * Provider: Цагдаагийн ерөнхий газар
-     *
-     * @throws \Xyp\Exception\XypException
-     */
-    public function GetBagDistrictListByZipcode(
-        GetBagDistrictListByZipcodeParams $params = new GetBagDistrictListByZipcodeParams(),
-        ?Auth $auth = null,
-        ?Auth $operator = null,
-    ): GetBagDistrictListByZipcodeResponse {
-        return $this->client->invoke(
-            'GS10051_GetBagDistrictListByZipcode',
-            $params,
-            GetBagDistrictListByZipcodeResponse::class,
             auth: $auth,
             operator: $operator,
         );
@@ -1148,6 +980,132 @@ final class GovernmentServiceService
             'GS10087_RiskStatusChangeService',
             $params,
             RiskStatusChangeServiceResponse::class,
+            auth: $auth,
+            operator: $operator,
+        );
+    }
+
+    /**
+     * Calls GS10088_EnergyQualificationService: Эрчим хүчний салбарын мэргэшлийн зэрэг эзэмшигчдийн мэдээлэл лавлах.
+     *
+     * Provider: Эрчим хүчний яам
+     *
+     * @throws \Xyp\Exception\XypException
+     */
+    public function EnergyQualificationService(
+        EnergyQualificationServiceParams $params = new EnergyQualificationServiceParams(),
+        ?Auth $auth = null,
+        ?Auth $operator = null,
+    ): EnergyQualificationServiceResponse {
+        return $this->client->invoke(
+            'GS10088_EnergyQualificationService',
+            $params,
+            EnergyQualificationServiceResponse::class,
+            auth: $auth,
+            operator: $operator,
+        );
+    }
+
+    /**
+     * Calls GS10089_EnergyQualificationCertificateService: Эрчим хүчний салбарын мэргэшлийн зэрэг эзэмшигчийн сертификатын мэдээлэл id-аар лавлах.
+     *
+     * Provider: Эрчим хүчний яам
+     *
+     * @throws \Xyp\Exception\XypException
+     */
+    public function EnergyQualificationCertificateService(
+        EnergyQualificationCertificateServiceParams $params = new EnergyQualificationCertificateServiceParams(),
+        ?Auth $auth = null,
+        ?Auth $operator = null,
+    ): EnergyQualificationCertificateServiceResponse {
+        return $this->client->invoke(
+            'GS10089_EnergyQualificationCertificateService',
+            $params,
+            EnergyQualificationCertificateServiceResponse::class,
+            auth: $auth,
+            operator: $operator,
+        );
+    }
+
+    /**
+     * Calls GS10090_GetFeedbackDimensionTagsV2: Өргөдөл, гомдлын tag мэдээлэл v2.
+     *
+     * Provider: Засгийн газрын Хэрэг эрхлэх газар
+     *
+     * @throws \Xyp\Exception\XypException
+     */
+    public function GetFeedbackDimensionTagsV2(
+        GetFeedbackDimensionTagsV2Params $params = new GetFeedbackDimensionTagsV2Params(),
+        ?Auth $auth = null,
+        ?Auth $operator = null,
+    ): GetFeedbackDimensionTagsV2Response {
+        return $this->client->invoke(
+            'GS10090_GetFeedbackDimensionTagsV2',
+            $params,
+            GetFeedbackDimensionTagsV2Response::class,
+            auth: $auth,
+            operator: $operator,
+        );
+    }
+
+    /**
+     * Calls GS10091_GetReferenceData: Өргөдөл, гомдлын нэгдсэн мэдээллийн сангийн лавлах мэдээлэл авах.
+     *
+     * Provider: Засгийн газрын Хэрэг эрхлэх газар
+     *
+     * @throws \Xyp\Exception\XypException
+     */
+    public function GetReferenceData(
+        GetReferenceDataParams $params = new GetReferenceDataParams(),
+        ?Auth $auth = null,
+        ?Auth $operator = null,
+    ): GetReferenceDataResponse {
+        return $this->client->invoke(
+            'GS10091_GetReferenceData',
+            $params,
+            GetReferenceDataResponse::class,
+            auth: $auth,
+            operator: $operator,
+        );
+    }
+
+    /**
+     * Calls GS10092_GetRiskService: Эрсдлийн жагсаалт.
+     *
+     * Provider: И-Монголиа академи
+     *
+     * @throws \Xyp\Exception\XypException
+     */
+    public function GetRiskService(
+        GetRiskServiceParams $params = new GetRiskServiceParams(),
+        ?Auth $auth = null,
+        ?Auth $operator = null,
+    ): GetRiskServiceResponse {
+        return $this->client->invoke(
+            'GS10092_GetRiskService',
+            $params,
+            GetRiskServiceResponse::class,
+            auth: $auth,
+            operator: $operator,
+        );
+    }
+
+    /**
+     * Calls GS10093_GetRiskChildService: Эрсдлийн жагсаалт хүүхэд.
+     *
+     * Provider: И-Монголиа академи
+     *
+     * @throws \Xyp\Exception\XypException
+     */
+    public function GetRiskChildService(
+        GetRiskChildServiceParams $params = new GetRiskChildServiceParams(),
+        ?Auth $auth = null,
+        ?Auth $operator = null,
+    ): GetRiskChildServiceResponse {
+        return $this->client->invoke(
+            'GS10093_GetRiskChildService',
+            $params,
+            GetRiskChildServiceResponse::class,
             auth: $auth,
             operator: $operator,
         );

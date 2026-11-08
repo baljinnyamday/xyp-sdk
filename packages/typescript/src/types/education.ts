@@ -52,7 +52,6 @@ export type {
   CivilCapacityCertificateDetailServiceResponse,
 } from "../operations/education/civilCapacityCertificateDetailService.js";
 export type {
-  DiplomaCopyBilingualServiceDetailData,
   DiplomaCopyBilingualServiceParams,
   DiplomaCopyBilingualServiceResponse,
 } from "../operations/education/diplomaCopyBilingualService.js";

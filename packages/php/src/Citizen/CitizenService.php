@@ -10,7 +10,7 @@ use Xyp\Auth;
 use Xyp\XypClient;
 
 /**
- * The 83 XYP services of the `citizen` group, served from citizen-1.5.0.
+ * The 79 XYP services of the `citizen` group, served from citizen-1.5.0.
  *
  * Reached through `$xyp->citizen`; every method sends one request through that XypClient.
  */
@@ -775,48 +775,6 @@ final class CitizenService
     }
 
     /**
-     * Calls WS100174_citizenDoingCriminalLiabilitylInfo: Хүний эрүүгийн хариуцлага хүлээж байгаа эсэх тухай.
-     *
-     * Provider: Цагдаагийн ерөнхий газар
-     *
-     * @throws \Xyp\Exception\XypException
-     */
-    public function citizenDoingCriminalLiabilitylInfo(
-        CitizenDoingCriminalLiabilitylInfoParams $params = new CitizenDoingCriminalLiabilitylInfoParams(),
-        ?Auth $auth = null,
-        ?Auth $operator = null,
-    ): CitizenDoingCriminalLiabilitylInfoResponse {
-        return $this->client->invoke(
-            'WS100174_citizenDoingCriminalLiabilitylInfo',
-            $params,
-            CitizenDoingCriminalLiabilitylInfoResponse::class,
-            auth: $auth,
-            operator: $operator,
-        );
-    }
-
-    /**
-     * Calls WS100175_citizenWasCriminalLiabilitylInfo: Хүний эрүүгийн хариуцлага хүлээж байсан эсэх тухай.
-     *
-     * Provider: Цагдаагийн ерөнхий газар
-     *
-     * @throws \Xyp\Exception\XypException
-     */
-    public function citizenWasCriminalLiabilitylInfo(
-        CitizenWasCriminalLiabilitylInfoParams $params = new CitizenWasCriminalLiabilitylInfoParams(),
-        ?Auth $auth = null,
-        ?Auth $operator = null,
-    ): CitizenWasCriminalLiabilitylInfoResponse {
-        return $this->client->invoke(
-            'WS100175_citizenWasCriminalLiabilitylInfo',
-            $params,
-            CitizenWasCriminalLiabilitylInfoResponse::class,
-            auth: $auth,
-            operator: $operator,
-        );
-    }
-
-    /**
      * Calls WS100182_childrenRankStatisticInfo: Эхийн хэд дэх хүүхэдийн мэдээлэл.
      *
      * Provider: Улсын бүртгэлийн ерөнхий газар
@@ -1084,27 +1042,6 @@ final class CitizenService
             'WS101133_deceaseListByDate',
             $params,
             DeceaseListByDateResponse::class,
-            auth: $auth,
-            operator: $operator,
-        );
-    }
-
-    /**
-     * Calls WS101134_CitizenDoingCriminalLiabiltyEngInfo: Хүний эрүүгийн хариуцлага хүлээж байгаа эсэх тухай англи хэлдээр.
-     *
-     * Provider: Цагдаагийн ерөнхий газар
-     *
-     * @throws \Xyp\Exception\XypException
-     */
-    public function CitizenDoingCriminalLiabiltyEngInfo(
-        CitizenDoingCriminalLiabiltyEngInfoParams $params = new CitizenDoingCriminalLiabiltyEngInfoParams(),
-        ?Auth $auth = null,
-        ?Auth $operator = null,
-    ): CitizenDoingCriminalLiabiltyEngInfoResponse {
-        return $this->client->invoke(
-            'WS101134_CitizenDoingCriminalLiabiltyEngInfo',
-            $params,
-            CitizenDoingCriminalLiabiltyEngInfoResponse::class,
             auth: $auth,
             operator: $operator,
         );
@@ -1735,27 +1672,6 @@ final class CitizenService
             'WS102102_RegnumChangeInfoEnglish',
             $params,
             RegnumChangeInfoEnglishResponse::class,
-            auth: $auth,
-            operator: $operator,
-        );
-    }
-
-    /**
-     * Calls WS102107_PoliceWeaponMovementTransferService: Галт зэвсгийн хөдөлгөөний мэдээлэл.
-     *
-     * Provider: Цагдаагийн ерөнхий газар
-     *
-     * @throws \Xyp\Exception\XypException
-     */
-    public function PoliceWeaponMovementTransferService(
-        PoliceWeaponMovementTransferServiceParams $params = new PoliceWeaponMovementTransferServiceParams(),
-        ?Auth $auth = null,
-        ?Auth $operator = null,
-    ): PoliceWeaponMovementTransferServiceResponse {
-        return $this->client->invoke(
-            'WS102107_PoliceWeaponMovementTransferService',
-            $params,
-            PoliceWeaponMovementTransferServiceResponse::class,
             auth: $auth,
             operator: $operator,
         );
