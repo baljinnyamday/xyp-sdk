@@ -51,10 +51,13 @@ jobs:
           go vet ./...
           go run .
 
-      - uses: golangci/golangci-lint-action@v8
+      # Go 1.27.3 writes export data version 5. golangci-lint reads it from v2.14.0 on (x/tools
+      # v0.50.0); older releases fail every package with "export data version 5 is greater than
+      # maximum supported version 4".
+      - uses: golangci/golangci-lint-action@v9
         if: matrix.go == 'stable'
         with:
-          version: v2.13.2 # the version this configuration was verified against
+          version: v2.15.0 # the version this configuration was verified against
           working-directory: packages/go
       - name: govulncheck
         if: matrix.go == 'stable'
