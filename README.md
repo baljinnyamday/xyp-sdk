@@ -1,8 +1,8 @@
 # xyp-sdk
 
-[![PyPI](https://img.shields.io/pypi/v/xyp?include_prereleases&label=PyPI%20%C2%B7%20xyp)](https://pypi.org/project/xyp/)
-[![npm](https://img.shields.io/npm/v/xyp-sdk/alpha?label=npm%20%C2%B7%20xyp-sdk)](https://www.npmjs.com/package/xyp-sdk)
-[![Packagist](https://img.shields.io/packagist/v/baljinnyamday/xyp-sdk?include_prereleases&label=Packagist%20%C2%B7%20baljinnyamday%2Fxyp-sdk)](https://packagist.org/packages/baljinnyamday/xyp-sdk)
+[![PyPI](https://img.shields.io/pypi/v/xyp?label=PyPI%20%C2%B7%20xyp)](https://pypi.org/project/xyp/)
+[![npm](https://img.shields.io/npm/v/xyp-sdk?label=npm%20%C2%B7%20xyp-sdk)](https://www.npmjs.com/package/xyp-sdk)
+[![Packagist](https://img.shields.io/packagist/v/baljinnyamday/xyp-sdk?label=Packagist%20%C2%B7%20baljinnyamday%2Fxyp-sdk)](https://packagist.org/packages/baljinnyamday/xyp-sdk)
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.baljinnyamday/xyp-sdk?label=Maven%20Central)](https://central.sonatype.com/artifact/io.github.baljinnyamday/xyp-sdk)
 [![python](https://github.com/baljinnyamday/xyp-sdk/actions/workflows/python.yml/badge.svg)](https://github.com/baljinnyamday/xyp-sdk/actions/workflows/python.yml)
 [![typescript](https://github.com/baljinnyamday/xyp-sdk/actions/workflows/typescript.yml/badge.svg)](https://github.com/baljinnyamday/xyp-sdk/actions/workflows/typescript.yml)
@@ -13,13 +13,13 @@
 SDKs for **XYP (ХУР)**, Mongolia's government data exchange system, generated
 from one description of the API so every language exposes the same services.
 
-| Language | Package | Status |
-| --- | --- | --- |
-| Python | [`packages/python`](packages/python) — `pip install "xyp>=0.1.0a2"` | alpha |
-| TypeScript / Node.js | [`packages/typescript`](packages/typescript) — `npm install xyp-sdk@alpha` | alpha |
-| Go | [`packages/go`](packages/go) — `go get github.com/baljinnyamday/xyp-sdk/packages/go@v0.1.0-alpha.1` | alpha |
-| PHP | [`packages/php`](packages/php) — `composer require baljinnyamday/xyp-sdk:0.1.0-alpha.1` | alpha |
-| Java | [`packages/java`](packages/java) — Maven `io.github.baljinnyamday:xyp-sdk:0.1.0-alpha.1` | alpha |
+| Language | Package |
+| --- | --- |
+| Python | [`packages/python`](packages/python) — `pip install xyp` |
+| TypeScript / Node.js | [`packages/typescript`](packages/typescript) — `npm install xyp-sdk` |
+| Go | [`packages/go`](packages/go) — `go get github.com/baljinnyamday/xyp-sdk/packages/go@latest` |
+| PHP | [`packages/php`](packages/php) — `composer require baljinnyamday/xyp-sdk` |
+| Java | [`packages/java`](packages/java) — Maven `io.github.baljinnyamday:xyp-sdk:0.1.0` |
 
 Unofficial: this project is not affiliated with the National Data Center or
 E-Mongolia Academy.

@@ -1,6 +1,6 @@
 {
   "name": "xyp-sdk",
-  "version": "0.1.0-alpha.2",
+  "version": "0.1.0",
   "description": "Typed Node.js SDK for XYP (ХУР), Mongolia's government data exchange system",
   "license": "MIT",
   "author": "baljinnyamday",
