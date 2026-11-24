@@ -22,16 +22,16 @@ jobs:
     env:
       MAVEN_OPTS: --sun-misc-unsafe-memory-access=allow
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v5
-      - uses: pnpm/action-setup@v4
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v7
+      - uses: pnpm/action-setup@v6
         with:
           package_json_file: packages/typescript/package.json
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
       # gofmt is what the Go emitter formats its output with.
-      - uses: actions/setup-go@v5
+      - uses: actions/setup-go@v7
         with:
           go-version: stable
           cache-dependency-path: packages/go/go.mod
@@ -117,7 +117,7 @@ jobs:
 
       - name: Open or update the pull request
         if: steps.diff.outputs.changed == 'true'
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           branch: spec-sync
           delete-branch: true

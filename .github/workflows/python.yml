@@ -17,8 +17,8 @@ jobs:
       run:
         working-directory: packages/python
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v5
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v7
       - run: uv sync --python ${{ matrix.python }}
       - run: uv run ruff check .
       - run: uv run ruff format --check .
@@ -31,8 +31,8 @@ jobs:
       run:
         working-directory: packages/python
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v5
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v7
       - run: uv build --out-dir dist
       - name: The installed wheel works with stable dependencies
         run: uv run --isolated --no-project --with dist/*.whl python scripts/release_check.py
@@ -57,7 +57,7 @@ jobs:
         shell: bash
         working-directory: packages/python
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v5
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v7
       - run: uv sync --python 3.13
       - run: uv run pytest
