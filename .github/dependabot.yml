@@ -41,3 +41,63 @@ updates:
     ignore:
       # The consumer check depends on the SDK itself, at the version CI passes in.
       - dependency-name: "io.github.baljinnyamday:xyp-sdk"
+
+  # The entries below group minor and patch updates so a breaking major bump gets its own pull
+  # request instead of blocking safe updates. They set increase-if-necessary because these are
+  # published libraries whose version ranges should not be raised when they already allow the
+  # new release (Dependabot's default auto guesses app vs library in undocumented ways).
+
+  # Dependabot's npm ecosystem reads pnpm-lock.yaml.
+  - package-ecosystem: npm
+    directory: /packages/typescript
+    versioning-strategy: increase-if-necessary
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: "typescript"
+    groups:
+      typescript:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
+    ignore:
+      # @types/node tracks the oldest Node line the package supports, not the newest release.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: uv
+    directory: /packages/python
+    versioning-strategy: increase-if-necessary
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: "python"
+    groups:
+      python:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
+
+  - package-ecosystem: uv
+    directory: /generator
+    versioning-strategy: increase-if-necessary
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: "generator"
+    groups:
+      generator:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
+
+  # The PHP package's composer.json sits at the repository root because Packagist only reads
+  # it from there.
+  - package-ecosystem: composer
+    directory: /
+    versioning-strategy: increase-if-necessary
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: "php"
+    groups:
+      php:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
