@@ -155,7 +155,6 @@ final class CurlTransport implements Transport
         if (is_string($verify) && $authorities === null) {
             return $options + [CURLOPT_CAINFO => $this->authorities->file($verify)];
         }
-        assert(is_string($authorities));
 
         return $options + $this->authorities->curlOptions($authorities);
     }
